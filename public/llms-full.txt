@@ -1,0 +1,157 @@
+# Meelte — Complete Knowledge Base for AI Systems & LLMs (Unabridged)
+
+> Meelte is a hyper-local community and commerce platform built for Indian neighborhoods. It connects residents with nearby food, fashion, events, services, health providers, neighborhood communities, and local job opportunities — while keeping user location private.
+
+This file provides the comprehensive, unabridged knowledge base and reference corpus for autonomous agents, large language models (LLMs), and AI search engines (including GPTBot, ClaudeBot, PerplexityBot, DeepSeekBot, and Google-Extended) without requiring multi-page HTTP requests.
+
+---
+
+## 1. Platform Overview & Identity
+
+- **Entity Name**: Meelte
+- **Product Type**: Hyper-local community, discovery, and commerce platform (mobile app + web)
+- **Positioning**: Community-driven hyper-local discovery, connection, and commerce for India
+- **Primary Website**: https://meelte.com
+- **Android App**: Google Play Store — https://play.google.com/store/apps/details?id=com.meelte.classico
+- **Tagline**: "Discover Opportunities. Build Connections. Create Experiences."
+- **Official Contact Email**: support@meelte.com
+- **Recruitment Email**: hr@meelte.com
+- **Phone**: +91-80-00000000
+- **Languages**: English, Hindi, Kannada (en-IN)
+- **Coverage**: India (active community hubs in Bengaluru, Gaya, and Ranchi, expanding nationwide)
+- **Membership**: Free for community members
+- **Social Profiles**:
+  - Instagram: https://www.instagram.com/meelte.official
+  - Facebook: https://www.facebook.com/meelTe
+  - Twitter / X: https://twitter.com/meelteapp
+  - LinkedIn: https://www.linkedin.com/company/meelte/
+  - YouTube: https://www.youtube.com/@meelte
+- **Primary Mission**: Replace overwhelming, distant global feeds and expensive, untargeted local advertising with a focused platform that connects neighbors, nearby opportunities, community events, local businesses, and jobs.
+
+---
+
+## 2. Platform & Technology
+
+- **Marketing Website**: Next.js 16 (App Router) with React 19, Tailwind CSS v4 design tokens, and static/ISR rendering.
+- **Mobile App**: Native Android app distributed via the Google Play Store (`com.meelte.classico`); companion web experience accessible from any browser.
+- **Dynamic Data**: Served by a dedicated external backend for events, jobs, merchant profiles, and inquiries; the marketing site performs read and lead-capture operations.
+- **Search & Discovery Standards**: JSON-LD schemas (Organization, WebSite, MobileApplication, FAQPage, BreadcrumbList, Service, JobPosting, Event, LocalBusiness), Open Graph protocol, canonical tags, automated XML sitemap, robots directives, and AEO-optimized direct answers.
+
+---
+
+## 3. Comprehensive Feature & Service Directory
+
+### 3.1 Hyper-Local Discovery
+- **Primary Focus**: Browse nearby dining, fashion boutiques, wellness clinics, trusted services, and events across 5 curated categories.
+- **Canonical URL**: https://meelte.com/#categories
+- **Audience**: Residents looking for relevant local products, services, and happenings.
+
+### 3.2 Neighborhood Community & Networking
+- **Primary Focus**: Connect with neighbors sharing language, cultural background, hobbies, and personal goals in a safe, privacy-respecting environment.
+- **Canonical URL**: https://meelte.com/about
+- **Audience**: Newcomers to a city and residents looking to expand their local social circle.
+
+### 3.3 Community Event Creation & Hosting
+- **Primary Focus**: Organize, publish, and drive attendance for neighborhood gatherings, weekend workshops, cultural festivals, and sports meetups.
+- **Canonical URL**: https://meelte.com/
+- **Audience**: Community organizers, clubs, and hosts.
+
+### 3.4 Grow with Meelte (SMB Local Marketing)
+- **Primary Focus**: Promote local products and services directly to nearby residents without prohibitive commission fees or advertising overhead.
+- **Canonical URL**: https://meelte.com/merchant
+- **Audience**: Local merchants, cafes, boutiques, clinics, and service providers.
+- **Commission**: 0% commission on orders, walk-ins, and customer footfall.
+
+### 3.5 Local Jobs Board & HR Recruitment
+- **Primary Focus**: Streamlined local job listings where candidates apply with resume uploads and local employers manage applications.
+- **Canonical URL**: https://meelte.com/jobs
+- **Audience**: Local job seekers and local employers/HR recruiters.
+
+---
+
+## 4. Discovery Categories (5 Core Verticals)
+
+### 4.1 Food
+- **Canonical URL**: https://meelte.com/category/food
+- **Overview**: Discover authentic local eateries, homemade bakes, street food specialties, and nearby cafes.
+
+### 4.2 Fashion
+- **Canonical URL**: https://meelte.com/category/fashion
+- **Overview**: Shop directly from neighborhood boutiques, regional designers, and artisanal tailors.
+
+### 4.3 Events
+- **Canonical URL**: https://meelte.com/category/events
+- **Overview**: Find weekend gatherings, tech meetups, art workshops, and cultural events happening near you.
+
+### 4.4 Services
+- **Canonical URL**: https://meelte.com/category/services
+- **Overview**: Connect with verified local mechanics, plumbers, tutors, freelance pros, and home repair experts.
+
+### 4.5 Health
+- **Canonical URL**: https://meelte.com/category/health
+- **Overview**: Locate neighborhood yoga studios, dental clinics, physiotherapy centers, and fitness trainers.
+
+---
+
+## 5. Product Pillars
+
+- **Discover**: Explore local products, nearby dining, trusted services, and neighborhood happenings without the noise.
+- **Connect**: Find and meet people who share your language, culture, interests, and hobbies in your neighborhood.
+- **Create**: Organize, publish, and host community events, interest clubs, and neighborhood gatherings.
+- **Grow**: Promote your local business, showcase products, and connect directly with nearby customers.
+- **Local Jobs Board**: Candidates apply easily with resume upload; local HR recruiters post openings via a dedicated dashboard.
+
+---
+
+## 6. Coverage & Availability
+
+Meelte is available across India, with active community hubs in **Bengaluru**, **Gaya**, and **Ranchi** where localized community groups and verified physical storefronts are established. The platform is actively expanding to additional Tier-1 and Tier-2 cities across India.
+
+---
+
+## 7. Privacy, Safety & Trust
+
+- **Privacy First**: User location is strictly processed on-device to filter and display nearby listings and community meetups.
+- **No Location Monetization**: Meelte never logs, monetizes, packages, or sells user location coordinates or browsing history to third-party ad brokers.
+- **Community Moderated**: Listings and community activity are moderated to keep the platform safe and relevant.
+- **Made for India**: The platform, content, and languages are designed for Indian neighborhoods.
+
+---
+
+## 8. Direct Answers to High-Frequency Questions (AEO/GEO)
+
+### What is Meelte and how does the platform work?
+Meelte is a hyper-local community and commerce platform designed for Indian neighborhoods. Unlike global social networks that surface distant viral feeds, Meelte connects you directly with authentic local cafes, fashion boutiques, neighborhood events, trusted services, and nearby jobs within a few kilometres of your location.
+
+### How does Meelte protect user location and data privacy?
+Your location is strictly processed on-device to filter and display nearby listings and community meetups. Meelte never logs, monetizes, packages, or sells user location coordinates or browsing history to third-party ad brokers.
+
+### How can local merchants join with zero commission?
+Local businesses, cafes, boutiques, clinics, and service pros can list their store on Meelte with 0% commission on orders, walk-ins, or customer footfall. Merchants receive direct phone calls and WhatsApp messages from nearby customers without aggregator middlemen taking a cut.
+
+### Is Meelte free for community members and event organizers?
+Yes. Meelte is 100% free for community members. You can browse nearby listings, join neighborhood interest groups, RSVP for community events, host local meetups, and apply for verified local jobs without paying any subscription or booking fees.
+
+### In which cities is Meelte currently available?
+Meelte is actively focused on operational hubs in Bengaluru, Gaya, and Ranchi, with localized community groups and verified physical storefronts. The platform is actively expanding to additional Tier-1 and Tier-2 cities across India.
+
+### How does the local jobs board work for job seekers and employers?
+Job seekers can explore verified neighborhood openings in retail, hospitality, clinics, and local services with transparent salary ranges. Candidates apply directly via mobile with resume uploads and zero agency fees. Local business owners can post openings directly via the merchant desk.
+
+### Where can users download and access the Meelte app?
+The official Meelte mobile app is available on the Google Play Store for Android devices (package: com.meelte.classico). The companion web experience is accessible directly from your browser across all mobile and desktop devices.
+
+---
+
+## 9. Machine-Readable Schema & Endpoint Index
+
+- **Robots Directives**: https://meelte.com/robots.txt
+- **XML Sitemap**: https://meelte.com/sitemap.xml
+- **Curated LLM Manifest**: https://meelte.com/llms.txt
+- **Full LLM Knowledge Base**: https://meelte.com/llms-full.txt
+- **Services Markdown**: https://meelte.com/services.md
+- **About Markdown**: https://meelte.com/about.md
+- **Security Policy**: https://meelte.com/.well-known/security.txt
+- **Web Manifest**: https://meelte.com/manifest.webmanifest
+- **Official Contact Portal**: https://meelte.com/contact
+- **Android App Listing**: https://play.google.com/store/apps/details?id=com.meelte.classico

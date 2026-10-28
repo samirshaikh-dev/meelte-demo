@@ -1,0 +1,49 @@
+# Meelte
+
+> Meelte is a hyper-local community and commerce platform for India. It connects residents with nearby food, fashion, events, services, health providers, neighborhood communities, and local job opportunities — without selling or sharing user location.
+
+Meelte helps people discover what matters within their neighborhood, meet like-minded neighbors, create and host community gatherings, and find verified local jobs. Local merchants promote their products and services directly to nearby customers with 0% commission. Meelte is free for community members and available on the Google Play Store for Android.
+
+- Official Website: https://meelte.com
+- Contact: support@meelte.com
+- Languages: English, Hindi, Kannada
+- Coverage: India (active community hubs in Bengaluru, Gaya, and Ranchi)
+
+---
+
+## Core Pages
+
+- [Home](https://meelte.com/): Platform overview, the Discover / Connect / Create / Grow pillars, 5 discovery categories, jobs spotlight, and Android app download.
+- [About](https://meelte.com/about): Meelte's origin story, mission, and the local problems the platform was built to solve.
+- [Grow with Meelte](https://meelte.com/merchant): Merchant and local business promotion with 0% commission and direct customer inquiries.
+- [Local Jobs Board](https://meelte.com/jobs): Verified neighborhood job openings with direct applications and resume upload.
+- [Contact](https://meelte.com/contact): Support, merchant onboarding, event partnerships, and recruitment inquiries.
+- [Privacy Policy](https://meelte.com/privacy): How Meelte handles location and personal data.
+- [Terms of Service](https://meelte.com/terms): Platform terms and usage conditions.
+- [Sitemap](https://meelte.com/sitemap): Human-readable directory of all public pages.
+
+## Discovery Categories
+
+- [Food](https://meelte.com/category/food): Local dining, artisan foods, homemade bakes, street food specialties, and neighborhood cafes.
+- [Fashion](https://meelte.com/category/fashion): Local boutiques, apparel, regional designers, and handmade accessories.
+- [Events](https://meelte.com/category/events): Community meetups, cultural festivals, workshops, and sports gatherings.
+- [Services](https://meelte.com/category/services): Verified home services, repairs, tutors, and local professionals.
+- [Health](https://meelte.com/category/health): Neighborhood clinics, fitness studios, and holistic wellness centers.
+
+## Core Features
+
+- [Discover](https://meelte.com/): Real-time hyper-local search across nearby products, dining, services, and events.
+- [Connect](https://meelte.com/about): Find and meet neighbors who share your language, culture, interests, and goals.
+- [Create](https://meelte.com/): Organize, publish, and host community events, interest clubs, and neighborhood gatherings.
+- [Grow](https://meelte.com/merchant): Local businesses promote products and services to nearby customers with 0% commission.
+- [Local Jobs Board](https://meelte.com/jobs): Local job listings where candidates apply with resume uploads and employers manage applications.
+
+## Optional
+
+- [llms-full.txt](https://meelte.com/llms-full.txt): Complete, unabridged Meelte knowledge base with all features, categories, and AEO answers.
+- [services.md](https://meelte.com/services.md): Plain markdown directory of everything people and businesses can do on Meelte.
+- [about.md](https://meelte.com/about.md): Plain markdown overview of Meelte's mission, coverage, and privacy commitment.
+- [security.txt](https://meelte.com/.well-known/security.txt): Security contact and vulnerability disclosure policy.
+- [Robots Directives](https://meelte.com/robots.txt): Crawl rules and AI agent access directives.
+- [XML Sitemap](https://meelte.com/sitemap.xml): Machine-readable sitemap for search engines and crawlers.
+- [Web Manifest](https://meelte.com/manifest.webmanifest): PWA manifest and app icons.

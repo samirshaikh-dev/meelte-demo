@@ -1,26 +1,181 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand Primary */
+  --color-primary: #6D3BB3;
+  --color-primary-foreground: #FFFFFF;
+  --color-primary-hover: #5B2E91;
+  --color-primary-dark: #5B2E91;
+  --color-primary-light: #7A45C4;
+  --color-primary-royal: #6B2C70;
+  --color-primary-active: #4A247A;
+
+  /* Accent Amber */
+  --color-accent: #F59E0B;
+  --color-accent-foreground: #1F1F28;
+  --color-accent-hover: #D97706;
+
+  /* Surfaces & Canvas (Violet-tinted soft community canvas) */
+  --color-canvas: #F8F5FF;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #FAF8FF;
+  --color-surface-muted: #F3EEFF;
+
+  /* High Contrast Text */
+  --color-foreground: #1F1F28;
+  --color-foreground-secondary: #4B5563;
+  --color-foreground-muted: #9CA3AF;
+
+  /* Borders & Dividers */
+  --color-border: #ECECEC;
+  --color-border-subtle: #F0F1F3;
+  --color-border-focus: rgba(109, 59, 179, 0.4);
+
+  /* Status Colors */
+  --color-success: #2E7D32;
+  --color-warning: #ED6C02;
+  --color-error: #D32F2F;
+  --color-info: #1976D2;
+
+  /* Shadows (Purple-tinted soft depth) */
+  --shadow-soft: 0 1px 2px rgba(31, 31, 40, 0.02), 0 6px 24px -6px rgba(109, 59, 179, 0.08);
+  --shadow-card: 0 1px 1px rgba(31, 31, 40, 0.01), 0 8px 40px -12px rgba(109, 59, 179, 0.12);
+  --shadow-card-hover: 0 12px 36px -8px rgba(109, 59, 179, 0.16);
+
+  /* Radii */
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F8F5FF;
+  --foreground: #1F1F28;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Radix Accordion Keyframes & Animations */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.22s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.18s ease-in;
+}
+
+/* Accessible focus ring standard across interactive controls */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Accessible Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Sonner toast tokens
+   sonner injects its default stylesheet into <head> at runtime, *after* this
+   file, so equal-specificity rules here would lose the cascade. Every selector
+   below is therefore anchored to `html` for one extra specificity point, which
+   is why they are written as `html [data-sonner-…]` instead of the bare
+   attribute selectors. Token values map to the Meelte design system
+   (docs/color-theme.md) instead of the library's raw red/green defaults.
+───────────────────────────────────────────── */
+html [data-sonner-toaster] {
+  --border-radius: 16px; /* rounded-2xl */
+  font-family: var(--font-sans);
+}
+
+html [data-sonner-toaster][data-sonner-theme="light"] {
+  --normal-bg: var(--color-surface);
+  --normal-border: var(--color-border);
+  --normal-text: var(--color-foreground);
+
+  /* Soft tints instead of the library's raw status palette */
+  --success-bg: #f1f9f2;
+  --success-border: #cde9d1;
+  --success-text: var(--color-success);
+
+  --error-bg: #fdf2f2;
+  --error-border: #f6d3d3;
+  --error-text: var(--color-error);
+
+  --info-bg: var(--color-surface-muted);
+  --info-border: #e2d6fa;
+  --info-text: var(--color-primary);
+
+  --warning-bg: #fff8ec;
+  --warning-border: #f7e2bc;
+  --warning-text: var(--color-warning);
+}
+
+html [data-sonner-toast][data-styled="true"] {
+  box-shadow: var(--shadow-card);
+}
+
+html [data-sonner-toast][data-styled="true"] [data-title] {
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+html [data-sonner-toast][data-styled="true"] [data-description] {
+  line-height: 1.45;
+}
+
+/* Keyboard-visible focus on the toast itself, in brand colour */
+html [data-sonner-toast]:focus-visible {
+  box-shadow: var(--shadow-card), 0 0 0 2px var(--color-border-focus);
 }
