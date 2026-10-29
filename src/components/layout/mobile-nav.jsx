@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   Menu,
@@ -10,7 +11,6 @@ import {
   Compass,
   Users,
   Mail,
-  MapPin,
   Lightbulb,
   Store,
   ChevronDown,
@@ -57,15 +57,29 @@ export function MobileNav() {
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-border">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-hover text-white font-bold text-lg shadow-soft">
-                M
-              </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-base text-foreground tracking-tight leading-none">Meelte</span>
-                <span className="text-[10px] text-primary font-semibold tracking-wider uppercase mt-0.5">Community</span>
-              </div>
-            </div>
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2.5 group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              aria-label="Meelte Home"
+            >
+              <Image
+                src="/icon_only_meelte.png"
+                alt="Meelte"
+                width={40}
+                height={40}
+                className="h-9 w-9 shrink-0 rounded-xl object-contain shadow-soft group-hover:scale-105 transition-transform duration-200"
+              />
+              <Image
+                src="/only_meelte.png"
+                alt="Meelte wordmark"
+                width={110}
+                height={32}
+                className="h-7 w-auto shrink-0 max-w-[110px] object-contain tracking-tight"
+                style={{ letterSpacing: "-0.02em" }}
+                priority={false}
+              />
+            </Link>
             <Dialog.Close asChild>
               <button
                 type="button"
@@ -81,17 +95,8 @@ export function MobileNav() {
             Meelte mobile navigation menu with direct links to ecosystem, discovery categories, merchant desk, trust guidelines, and app downloads.
           </p>
 
-          {/* Active Cities Pill */}
-          <div className="mt-3 py-1.5">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-muted text-primary text-xs font-medium border border-primary/10">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
-              <MapPin className="h-3 w-3" aria-hidden="true" />
-              <span>Bengaluru · Gaya · Ranchi</span>
-            </div>
-          </div>
-
           {/* Navigation Links */}
-          <nav className="mt-3 flex flex-col gap-1 flex-1 overflow-y-auto pr-1">
+          <nav className="mt-4 flex flex-col gap-1 flex-1 overflow-y-auto pr-1">
             {/* Product Accordion */}
             <div className="flex flex-col">
               <button
