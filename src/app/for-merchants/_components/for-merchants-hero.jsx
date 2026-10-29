@@ -29,6 +29,9 @@ const FOR_MERCHANTS_BREADCRUMBS = [
  * Merchant pricing is not published, the app has no verification programme, and
  * direct phone/WhatsApp handling is not confirmed in the product code
  * (project-context.md §13, docs/target_customer.md §4.4).
+ *
+ * The illustrative storefront phone preview was removed with the other hero mocks; the
+ * hero now states the merchant value in copy instead of a simulated screen.
  */
 const trustPills = [
   {
@@ -94,67 +97,6 @@ function SparkleAccent() {
   );
 }
 
-function MerchantPreview() {
-  return (
-    <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px]">
-      <div className="absolute -inset-x-10 -top-10 h-40 bg-gradient-to-b from-accent/25 via-primary/15 to-transparent blur-3xl" aria-hidden="true" />
-      <div className="relative rounded-[2.25rem] bg-gradient-to-b from-white/95 to-white/80 p-2 shadow-[0_60px_120px_-60px_rgba(109,59,179,0.9)] ring-1 ring-white/70">
-        <div className="rounded-[1.9rem] overflow-hidden bg-gradient-to-b from-[#f7f3ff] to-white">
-          <div className="flex items-center justify-between px-5 pt-4">
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-accent" />
-              <span className="text-xs font-semibold text-foreground">Your Storefront</span>
-            </div>
-            <div className="flex items-center gap-1 text-[10px] text-foreground-secondary">
-              <MapPin className="h-3 w-3" aria-hidden="true" />
-              <span>Bengaluru • Gaya • Ranchi</span>
-            </div>
-          </div>
-          <div className="px-5 pt-4">
-            <div className="rounded-2xl bg-white shadow-soft px-4 py-3 flex items-center justify-between">
-              <div>
-                <p className="text-xs text-foreground-secondary">Status</p>
-                <p className="text-sm font-semibold text-foreground">Live • Discoverable nearby</p>
-              </div>
-              <div className="h-9 w-9 rounded-full bg-gradient-to-br from-accent to-amber-500 flex items-center justify-center shadow-[0_10px_40px_-12px_rgba(245,158,11,0.9)]">
-                <Store className="h-4 w-4 text-white" aria-hidden="true" />
-              </div>
-            </div>
-          </div>
-          <div className="px-5 pt-4 space-y-2">
-            {[
-              { title: "Time-boxed offer", desc: "Price, discount and dates" },
-              { title: "Up to 100 products", desc: "One product or a full catalogue" },
-              { title: "0% commission", desc: "No cut of what you earn" },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl bg-white/90 backdrop-blur px-4 py-3 flex items-center justify-between shadow-[0_30px_60px_-40px_rgba(109,59,179,0.8)]"
-              >
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                  <p className="text-xs text-foreground-secondary">{item.desc}</p>
-                </div>
-                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
-              </div>
-            ))}
-          </div>
-          <div className="px-5 pt-5 pb-6">
-            <div className="rounded-2xl bg-gradient-to-r from-primary via-primary-hover to-primary-royal px-4 py-3 text-white flex items-center justify-between shadow-[0_40px_80px_-40px_rgba(109,59,179,0.9)]">
-              <div>
-                <p className="text-sm font-semibold">Set up in person</p>
-                <p className="text-xs text-white/80">A field team member visits the shop</p>
-              </div>
-              <Percent className="h-5 w-5" aria-hidden="true" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-16 w-3/4 rounded-full bg-primary/20 blur-3xl" aria-hidden="true" />
-    </div>
-  );
-}
-
 export function ForMerchantsHero() {
   return (
     <section className="relative pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
@@ -167,13 +109,12 @@ export function ForMerchantsHero() {
       </div>
 
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left: Text content */}
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col items-center text-center lg:items-start lg:text-left"
+            className="flex flex-col items-center text-center"
           >
             <motion.div variants={fadeUpVariants} className="flex items-center gap-2">
               <div className="flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur px-2.5 py-1 shadow-soft ring-1 ring-white/70">
@@ -195,7 +136,7 @@ export function ForMerchantsHero() {
             </motion.div>
 
             <motion.div variants={fadeUpVariants} className="mt-6">
-              <Breadcrumbs items={FOR_MERCHANTS_BREADCRUMBS} />
+              <Breadcrumbs items={FOR_MERCHANTS_BREADCRUMBS} listClassName="justify-center" />
             </motion.div>
 
             <motion.h1
@@ -247,7 +188,7 @@ export function ForMerchantsHero() {
 
             <motion.div
               variants={fadeUpVariants}
-              className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:w-auto lg:items-start"
+              className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
             >
               <Button
                 as="a"
@@ -276,7 +217,7 @@ export function ForMerchantsHero() {
 
             <motion.div
               variants={fadeUpVariants}
-              className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-foreground-secondary lg:justify-start"
+              className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-foreground-secondary"
             >
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
@@ -291,16 +232,6 @@ export function ForMerchantsHero() {
                 <span>Serving Bengaluru, Gaya &amp; Ranchi</span>
               </div>
             </motion.div>
-          </motion.div>
-
-          {/* Right: Visual */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, type: "spring", stiffness: 110, damping: 18 }}
-            className="relative flex items-center justify-center"
-          >
-            <MerchantPreview />
           </motion.div>
         </div>
       </Container>

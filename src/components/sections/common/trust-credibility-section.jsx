@@ -90,10 +90,6 @@ export function TrustCredibilitySection() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-border/60 text-[11px] text-success font-semibold flex items-center gap-1">
-                  <ShieldCheck className="h-3.5 w-3.5 text-success" aria-hidden="true" />
-                  <span>Institutional Commitment</span>
-                </div>
               </Reveal>
             );
           })}
@@ -112,32 +108,23 @@ export function TrustCredibilitySection() {
               <p className="mt-2 text-xs sm:text-sm text-foreground-secondary leading-relaxed">
                 We operate with open lines of communication for both community members and local business partners. For support, partnerships, or job openings, reach out directly.
               </p>
-              <div className="mt-4 flex flex-wrap items-center gap-4 text-xs font-semibold text-foreground">
-                <a
-                  href={`mailto:${SUPPORT_EMAIL}`}
-                  className="inline-flex items-center gap-1.5 text-primary hover:underline"
-                >
-                  <Mail className="h-4 w-4" aria-hidden="true" />
-                  <span>{SUPPORT_EMAIL}</span>
-                </a>
-                <span className="text-foreground-muted">•</span>
-                <a
-                  href={`mailto:${HR_EMAIL}`}
-                  className="inline-flex items-center gap-1.5 text-primary hover:underline"
-                >
-                  <Building2 className="h-4 w-4" aria-hidden="true" />
-                  <span>{HR_EMAIL}</span>
-                </a>
-              </div>
             </div>
 
-            <div className="p-5 rounded-2xl bg-surface border border-border/80 text-xs text-foreground-secondary flex flex-col gap-2 shrink-0 w-full sm:w-auto">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-                <span className="font-bold text-foreground">Active Operational Cities:</span>
-              </div>
-              <p className="font-medium text-primary">Bengaluru · Gaya · Ranchi</p>
-              <p className="text-[11px] text-foreground-muted">Android Package: com.meelte.classico</p>
+            <div className="flex flex-col gap-3 shrink-0 w-full sm:w-auto sm:flex-row lg:flex-col">
+              <a
+                href={`mailto:${SUPPORT_EMAIL}`}
+                className="inline-flex items-center gap-2 rounded-2xl bg-surface border border-border/80 shadow-2xs px-5 py-4 text-xs font-semibold text-primary hover:border-primary/30 hover:shadow-soft transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              >
+                <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{SUPPORT_EMAIL}</span>
+              </a>
+              <a
+                href={`mailto:${HR_EMAIL}`}
+                className="inline-flex items-center gap-2 rounded-2xl bg-surface border border-border/80 shadow-2xs px-5 py-4 text-xs font-semibold text-primary hover:border-primary/30 hover:shadow-soft transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              >
+                <Building2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{HR_EMAIL}</span>
+              </a>
             </div>
           </div>
         </Reveal>

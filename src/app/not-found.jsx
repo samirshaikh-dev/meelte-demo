@@ -19,7 +19,6 @@ export const metadata = buildPageMetadata({
 
 const SUGGESTED_LINKS = [
   { label: "Home", href: "/", icon: Home },
-  { label: "Discover Nearby", href: "/discover", icon: Compass },
   { label: "How It Works", href: "/how-it-works", icon: MapPin },
   { label: "Contact Us", href: "/contact", icon: ArrowRight },
 ];
@@ -32,89 +31,67 @@ export default function NotFound() {
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-primary/5 blur-3xl" />
         <div className="absolute top-20 right-1/4 h-[300px] w-[300px] rounded-full bg-accent/5 blur-3xl" />
       </div>
-      <Container className="relative z-10 w-full max-w-[95rem] 2xl:max-w-[100rem]">
+      <Container className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto w-full text-center">
-          <div className="relative mb-6">
-            <span className="inline-block text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-extrabold tracking-tighter bg-gradient-to-br from-primary via-primary-hover to-primary-royal bg-clip-text text-transparent leading-none drop-shadow-sm">
+          <div className="relative mb-5">
+            <span className="inline-block text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-extrabold tracking-tighter bg-gradient-to-br from-primary via-primary-hover to-primary-royal bg-clip-text text-transparent leading-none drop-shadow-sm">
               404
             </span>
-            <div className="absolute inset-x-0 -bottom-6 mx-auto h-1 w-32 bg-gradient-to-r from-transparent via-primary/40 to-transparent rounded-full" />
+            <div className="absolute inset-x-0 -bottom-5 mx-auto h-1 w-24 bg-gradient-to-r from-transparent via-primary/40 to-transparent rounded-full" />
           </div>
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-4">
+
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-3">
             Lost in the neighborhood
           </h1>
-          <p className="text-lg text-foreground-secondary mb-10 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base text-foreground-secondary mb-8 leading-relaxed max-w-xl mx-auto">
             Looks like this page wandered off. Let&apos;s get you back to discovering
             local opportunities, events, and businesses near you.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12">
             <Button asChild size="lg" className="shadow-card hover:shadow-lg transition-shadow">
-              <Link href="/">
+              <Link href="/" className="inline-flex items-center gap-2">
                 <Home className="h-4 w-4" aria-hidden="true" />
                 <span>Go to Homepage</span>
               </Link>
             </Button>
             <Button asChild variant="secondary" size="lg" className="hover:shadow-md transition-shadow">
-              <Link href="/discover">
+              <Link href="/discover" className="inline-flex items-center gap-2">
                 <Compass className="h-4 w-4" aria-hidden="true" />
                 <span>Explore Nearby</span>
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="hover:shadow-md transition-shadow">
-              <Link href="/contact">
+              <Link href="/contact" className="inline-flex items-center gap-2">
                 <span>Contact Us</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
           </div>
 
-          <div className="mb-10">
-            <p className="text-sm font-medium text-foreground-secondary mb-4">Or try these pages</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {SUGGESTED_LINKS.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface border border-border/80 text-sm text-foreground-secondary hover:text-primary hover:border-primary/40 hover:bg-surface-muted transition-all"
-                  >
-                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                    <span>{link.label}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          <Card className="mx-auto max-w-2xl p-6 sm:p-8 text-left shadow-soft border-primary/15 bg-gradient-to-br from-surface to-surface-subtle hover:shadow-card transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="h-11 w-11 shrink-0 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 text-primary border border-primary/20 shadow-soft flex items-center justify-center">
-                <Search className="h-5 w-5" aria-hidden="true" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-lg font-bold text-foreground mb-2">
+      <Card className="mx-auto w-full max-w-3xl p-5 sm:p-6 text-left shadow-soft border-primary/15 bg-gradient-to-br from-surface to-surface-subtle hover:shadow-card transition-shadow">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
+              <div className="flex-1 min-w-0">
+                <h2 className="text-lg font-bold text-foreground mb-1.5">
                   Find what matters near you
                 </h2>
-                <p className="text-base text-foreground-secondary leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-foreground-secondary leading-relaxed">
                   Meelte connects you with local businesses, community events, and
                   opportunities right in your neighborhood — all in one place.
                 </p>
-                <Button
-                  as="a"
-                  href={PLAY_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="primary"
-                  size="md"
-                  className="shadow-soft hover:shadow-md transition-shadow"
-                >
-                  <span>Get the Meelte App</span>
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Button>
               </div>
+              <Button
+                as="a"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="primary"
+                size="md"
+                className="shadow-soft hover:shadow-md transition-shadow inline-flex items-center gap-2 shrink-0 self-start sm:self-center"
+              >
+                <span>Get the Meelte App</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
             </div>
           </Card>
         </div>

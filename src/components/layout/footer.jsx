@@ -1,12 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ShieldCheck } from "@/lib/icons";
+import {
+  ShieldCheck,
+  InstagramIcon,
+  FacebookIcon,
+  XIcon,
+  LinkedInIcon,
+  YouTubeIcon,
+} from "@/lib/icons";
 import { PLATFORM_AREAS } from "@/constants/app-constants";
 import { Container } from "./container";
-import { PLAY_STORE_URL, SOCIAL_LINKS } from "../../config/site";
+import { SOCIAL_LINKS } from "../../config/site";
 import { NewsletterForm } from "../footer/newsletter-form";
-import { StoreButton } from "../footer/store-button";
 import { FooterColumn } from "../footer/footer-column";
 
 const CURRENT_YEAR = 2026;
@@ -62,24 +67,7 @@ export function Footer() {
       <Container className="relative z-10">
         <div className="grid grid-cols-1 gap-10 pb-10 pt-10 sm:grid-cols-2 sm:gap-12 sm:pt-12 lg:grid-cols-12 lg:gap-12 lg:pt-14">
           <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <Image
-                src="/icon_only_meelte.png"
-                alt="Meelte"
-                width={40}
-                height={40}
-                className="h-10 w-10 shrink-0 rounded-xl object-contain shadow-soft"
-              />
-              <Image
-                src="/only_meelte.png"
-                alt="Meelte wordmark"
-                width={110}
-                height={32}
-                className="h-7 w-auto shrink-0 max-w-[110px] object-contain"
-                style={{ letterSpacing: "-0.02em" }}
-                priority={false}
-              />
-            </Link>
+
 
             <p className="max-w-sm text-sm leading-relaxed text-foreground-secondary">
               The hyperlocal community platform connecting neighbors with local businesses and opportunities.
@@ -95,68 +83,57 @@ export function Footer() {
           </div>
 
           <div className="sm:col-span-1 lg:col-span-2">
-            <FooterColumn title="Discovery">
-              <ul className="flex flex-col gap-2" role="list">
-                {DISCOVERY_LINKS.map((item) => (
-                  <li key={item.id}>
-                    <Link
-                      href={item.href}
-                      className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </FooterColumn>
+            <nav aria-label="Discovery">
+              <FooterColumn title="Discovery">
+                <ul className="flex flex-col gap-2" role="list">
+                  {DISCOVERY_LINKS.map((item) => (
+                    <li key={item.id}>
+                      <Link
+                        href={item.href}
+                        className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </FooterColumn>
+            </nav>
           </div>
 
           <div className="sm:col-span-1 lg:col-span-2">
-            <FooterColumn title="Company">
-              <ul className="flex flex-col gap-2" role="list">
-                {COMPANY_LINKS.map((item) => {
-                  const isInternal = item.href.startsWith("/");
-                  return (
-                    <li key={item.label}>
-                      {isInternal ? (
-                        <Link
-                          href={item.href}
-                          className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                        >
-                          {item.label}
-                        </Link>
-                      ) : (
-                        <a
-                          href={item.href}
-                          className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                        >
-                          {item.label}
-                        </a>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </FooterColumn>
+            <nav aria-label="Company">
+              <FooterColumn title="Company">
+                <ul className="flex flex-col gap-2" role="list">
+                  {COMPANY_LINKS.map((item) => {
+                    const isInternal = item.href.startsWith("/");
+                    return (
+                      <li key={item.label}>
+                        {isInternal ? (
+                          <Link
+                            href={item.href}
+                            className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                          >
+                            {item.label}
+                          </Link>
+                        ) : (
+                          <a
+                            href={item.href}
+                            className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                          >
+                            {item.label}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </FooterColumn>
+            </nav>
           </div>
 
           <div className="sm:col-span-2 lg:col-span-4">
-            <div className="flex max-w-sm flex-col gap-6">
-              <div className="flex flex-col gap-3">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-foreground">
-                  GET THE APP
-                </h3>
-                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-                  <StoreButton type="google" href={PLAY_STORE_URL} />
-                  {/* The iOS listing URL is still with the app developer. The owner has
-                      chosen to keep the button in place with href="#" until it arrives —
-                      swap it for the real App Store URL and delete this comment then. */}
-                  <StoreButton type="apple" href="#" />
-                </div>
-              </div>
-
-              <NewsletterForm />
-            </div>
+            <NewsletterForm />
           </div>
         </div>
 
@@ -167,9 +144,9 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Meelte on Instagram"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
-              <span className="text-xs">IG</span>
+              <InstagramIcon className="h-4 w-4" />
             </a>
           )}
           {SOCIAL_LINKS.FACEBOOK && (
@@ -178,9 +155,9 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Meelte on Facebook"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
-              <span className="text-xs">FB</span>
+              <FacebookIcon className="h-4 w-4" />
             </a>
           )}
           {SOCIAL_LINKS.TWITTER && (
@@ -189,9 +166,9 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Meelte on Twitter"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
-              <span className="text-xs">X</span>
+              <XIcon className="h-4 w-4" />
             </a>
           )}
           {SOCIAL_LINKS.LINKEDIN && (
@@ -200,9 +177,9 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Meelte on LinkedIn"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
-              <span className="text-xs">IN</span>
+              <LinkedInIcon className="h-4 w-4" />
             </a>
           )}
           {SOCIAL_LINKS.YOUTUBE && (
@@ -211,9 +188,9 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Meelte on YouTube"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
-              <span className="text-xs">YT</span>
+              <YouTubeIcon className="h-4 w-4" />
             </a>
           )}
         </div>

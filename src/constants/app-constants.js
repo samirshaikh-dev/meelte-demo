@@ -42,14 +42,13 @@ export const PLATFORM_AREAS = [
     id: "offers",
     name: "Local offers",
     anchor: "offers",
-    tagline: "Time-boxed offers from shops and service businesses",
+    tagline: "Time-boxed offers from nearby shops",
     description:
-      "Independent shops post a single product or a full catalogue of up to 100 items, with a price, a discount and a start and end date. Every ad runs for a fixed window, so what you see nearby is current.",
+      "Shops post what is on offer with a price, a discount and the dates it runs. Every offer is time-boxed, so what you see nearby is current — and you can follow a shop to hear about its next one.",
     points: [
-      "A single-product ad or a shop catalogue of up to 100 items",
-      "Original and final price, or a flat / up-to percentage discount",
-      "One-tap Google Maps directions, plus likes, comments and shares",
-      "Follow a shop to hear about its next offer",
+      "One product, or a shop catalogue of up to 100 items",
+      "A price, a discount and the exact dates it runs",
+      "One-tap Google Maps directions to the shop",
     ],
   },
   {
@@ -58,12 +57,11 @@ export const PLATFORM_AREAS = [
     anchor: "events",
     tagline: "Gatherings where the host controls the guest list",
     description:
-      "Residents, clubs and organisers publish events with a date, time, pinned location and joining cost. Attendees request to join with their group size, and the host decides who comes.",
+      "Residents, clubs and organisers publish events with a date, a time, a location and a joining cost. You request to join — alone or with friends — and the host decides who comes.",
     points: [
       "Public or private events with a start and end time",
-      "Join requests that state the group size, approved by the host",
-      "Joining cost set by the host in ₹ and settled directly with them",
-      "Hosts can remove an attendee at any time",
+      "Join requests that state your group size, approved by the host",
+      "Joining cost set by the host in ₹, paid directly to them",
     ],
   },
   {
@@ -76,8 +74,7 @@ export const PLATFORM_AREAS = [
     points: [
       "Friends, follows and shop updates in one place",
       "1:1 chat with text, emoji, documents and location sharing",
-      "Agora-powered audio and video calls",
-      "Block and report available on every profile",
+      "Voice and video calls, plus block and report",
     ],
   },
 ];

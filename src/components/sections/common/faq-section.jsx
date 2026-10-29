@@ -1,15 +1,39 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDown, HelpCircle, ShieldCheck, Store, Compass } from "@/lib/icons";
+import { ArrowRight, ChevronDown, HelpCircle, ShieldCheck, Store, Compass } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 import { FAQ_ITEMS } from "@/constants/faq-constants";
+import { SUPPORT_EMAIL } from "@/config/site";
 
 export { FAQ_ITEMS };
 
-export function FaqSection() {
+/**
+ * AEO FAQ accordion.
+ *
+ * @param {Array<{ id: string; question: string; answer: string }>} [items]
+ *   Subset of `FAQ_ITEMS` to render. Defaults to the full list; the homepage
+ *   and /discover pass a trimmed teaser so their sections stay short.
+ * @param {string} [viewAllHref]
+ *   Optional link to the complete FAQ page, rendered under the accordion.
+ * @param {string} [title]
+ *   Section heading. Override on pages whose teaser covers a narrower set of
+ *   questions than the full FAQ.
+ * @param {string} [description]
+ *   Supporting line under the heading.
+ */
+export function FaqSection({
+  items = FAQ_ITEMS,
+  viewAllHref,
+  title = "Clear, honest answers about Meelte.",
+  description = "Everything you need to know about privacy, city coverage, merchant listings, events, payments, referrals, and app access.",
+}) {
+  const faqs = Array.isArray(items) && items.length > 0 ? items : FAQ_ITEMS;
+  const firstFaqId = faqs[0]?.id;
+
   return (
     <section id="faq" className="py-16 sm:py-24 bg-surface scroll-mt-20 border-b border-border/80">
       <Container className="max-w-4xl">
@@ -20,10 +44,10 @@ export function FaqSection() {
             <span>Frequently Asked Questions</span>
           </Badge>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight">
-            Clear, honest answers about Meelte.
+            {title}
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
-            Everything you need to know about privacy, city coverage, merchant listings, events, payments, referrals, and app access.
+            {description}
           </p>
         </div>
 
@@ -32,9 +56,9 @@ export function FaqSection() {
           type="single"
           collapsible
           className="flex flex-col gap-3.5"
-          defaultValue="faq-1"
+          defaultValue={firstFaqId}
         >
-          {FAQ_ITEMS.map((faq) => (
+          {faqs.map((faq) => (
             <Accordion.Item
               key={faq.id}
               value={faq.id}
@@ -60,25 +84,38 @@ export function FaqSection() {
           ))}
         </Accordion.Root>
 
+        {/* Optional link to the complete FAQ page (homepage teaser) */}
+        {viewAllHref && faqs.length < FAQ_ITEMS.length && (
+          <div className="mt-8 text-center">
+            <Link
+              href={viewAllHref}
+              className="inline-flex items-center gap-1.5 rounded text-sm font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+            >
+              <span>See all questions</span>
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </Link>
+          </div>
+        )}
+
         {/* Still have questions? Help desk footer */}
         <div className="mt-12 text-center p-6 rounded-3xl bg-canvas border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
             <span className="text-sm font-bold text-foreground block">Have a specific question about your neighborhood or business?</span>
-            <span className="text-xs text-foreground-secondary">Our local support coordinators are ready to help.</span>
+            <span className="text-xs text-foreground-secondary">Our support team can help.</span>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href="mailto:support@meelte.com?subject=Meelte%20Inquiry"
-              className="text-xs font-bold text-primary hover:underline px-3 py-2"
+              href={`mailto:${SUPPORT_EMAIL}?subject=Meelte%20Inquiry`}
+              className="rounded text-xs font-bold text-primary hover:underline px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               Contact Support →
             </a>
-            <a
-              href="#for-businesses"
-              className="text-xs font-bold text-foreground bg-surface hover:bg-surface-subtle border border-border px-3.5 py-2 rounded-xl transition-colors shadow-2xs"
+            <Link
+              href="/for-merchants"
+              className="text-xs font-bold text-foreground bg-surface hover:bg-surface-subtle border border-border px-3.5 py-2 rounded-xl transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
-              For Merchants Desk
-            </a>
+              Merchant desk
+            </Link>
           </div>
         </div>
       </Container>

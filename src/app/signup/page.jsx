@@ -13,7 +13,7 @@ const SIGNUP_BREADCRUMBS = [
 export const metadata = buildPageMetadata({
   title: "Sign Up — Meelte | Your Neighborhood Has More to Offer",
   description:
-    "Discover local places, meet people nearby, and stay connected to what's happening around you. Meelte brings your neighborhood closer — available on the mobile app, with the web experience coming soon.",
+    "Join Meelte to discover local offers, events and people nearby. Refer & earn Amazon vouchers, connect with neighbors and support local businesses — available on the mobile app, web coming soon.",
   path: "/signup",
   keywords: [
     "Meelte sign up",
@@ -23,6 +23,9 @@ export const metadata = buildPageMetadata({
     "connect with neighbors",
     "neighborhood platform",
     "Meelte mobile app",
+    "refer and earn Meelte",
+    "Meelte referral program",
+    "Amazon voucher referral",
   ],
 });
 

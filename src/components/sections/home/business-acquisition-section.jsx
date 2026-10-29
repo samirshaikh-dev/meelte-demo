@@ -139,9 +139,9 @@ export function BusinessAcquisitionSection() {
         {/* 3-Step Onboarding Pathway */}
         <div className="mb-12">
           <Reveal className="text-center max-w-xl mx-auto mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">
+            {/* <span className="text-xs font-bold uppercase tracking-wider text-primary">
               Simple 3-Step Process
-            </span>
+            </span> */}
             <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mt-1">
               How onboarding works for your business
             </h3>
@@ -165,10 +165,10 @@ export function BusinessAcquisitionSection() {
                     {step.description}
                   </p>
                 </div>
-                <div className="mt-6 pt-3 border-t border-border/50 text-[11px] text-success font-semibold flex items-center gap-1.5">
+                {/* <div className="mt-6 pt-3 border-t border-border/50 text-[11px] text-success font-semibold flex items-center gap-1.5">
                   <CheckCircle2 className="h-3.5 w-3.5 text-success" aria-hidden="true" />
                   <span>No commission deducted</span>
-                </div>
+                </div> */}
               </Reveal>
             ))}
           </div>

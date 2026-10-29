@@ -1,20 +1,17 @@
 "use client";
 
-import React, { useRef } from "react";
 import {
   Download,
   ArrowRight,
   MapPin,
   Users,
-  CalendarDays,
-  Store,
   UserPlus,
 } from "@/lib/icons";
 import { PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 
 const HOW_IT_WORKS_BREADCRUMBS = [
   { name: "Home", path: "/" },
@@ -22,57 +19,14 @@ const HOW_IT_WORKS_BREADCRUMBS = [
 ];
 
 /**
- * Hero cards.
+ * Hero content.
  *
  * The previous set advertised "Local Jobs" and "Service Pros" as platform roles, and the
- * phone mock below showed invented businesses at invented distances ("Chai Corner • 200m",
+ * phone mock showed invented businesses at invented distances ("Chai Corner • 200m",
  * "Weekend Badminton • 450m"). Neither is in the product (docs/target_customer.md §1, §5),
- * so the cards now name the three real areas plus the privacy position, and the mock shows
- * interface shape without any named listing.
+ * so the mock and the decorative cards built around it have been removed; the hero now
+ * states the three real areas and the privacy position in plain copy.
  */
-const floatingCards = [
-  {
-    id: 1,
-    text: "Local Shops",
-    subtext: "Post time-boxed offers",
-    icon: Store,
-    emoji: "🏪",
-    className: "top-[8%] left-[6%] lg:left-[10%]",
-    delay: 0.4,
-    floatDuration: 6,
-  },
-  {
-    id: 2,
-    text: "Community Events",
-    subtext: "Host approves who joins",
-    icon: CalendarDays,
-    emoji: "🎉",
-    className: "top-[22%] right-[4%] lg:right-[8%]",
-    delay: 0.6,
-    floatDuration: 7,
-  },
-  {
-    id: 3,
-    text: "Neighbours & Chat",
-    subtext: "1:1 chat and calls",
-    icon: Users,
-    emoji: "💬",
-    className: "bottom-[28%] left-[2%] lg:left-[6%]",
-    delay: 0.8,
-    floatDuration: 6.5,
-  },
-  {
-    id: 4,
-    text: "Location Privacy",
-    subtext: "Never sold or shared",
-    icon: MapPin,
-    emoji: "🔒",
-    className: "bottom-[14%] right-[8%] lg:right-[12%]",
-    delay: 1.0,
-    floatDuration: 7.5,
-  },
-];
-
 const trustPills = [
   {
     id: 1,
@@ -117,134 +71,6 @@ const fadeUpVariants = {
     },
   },
 };
-
-const floatVariants = {
-  animate: (custom) => ({
-    y: [0, -10, 0],
-    transition: {
-      duration: custom.floatDuration,
-      repeat: Infinity,
-      repeatType: "mirror",
-      ease: "easeInOut",
-      delay: custom.delay,
-    },
-  }),
-};
-
-function FloatingCard({ card }) {
-  const cardRef = useRef(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { stiffness: 150, damping: 20, mass: 0.5 };
-  const x = useSpring(useTransform(mouseX, [-50, 50], [-6, 6]), springConfig);
-  const y = useSpring(useTransform(mouseY, [-50, 50], [-4, 6]), springConfig);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-  const Icon = card.icon;
-
-  return (
-    <motion.div
-      ref={cardRef}
-      custom={card}
-      variants={floatVariants}
-      animate="animate"
-      initial={{ opacity: 0, scale: 0.9, y: 16 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ delay: card.delay, type: "spring", stiffness: 140, damping: 16 }}
-      style={{ x, y }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`absolute hidden sm:flex items-center gap-2 px-3 py-2 rounded-2xl bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_20px_60px_-20px_rgba(109,59,179,0.45)] ${card.className}`}
-      role="listitem"
-      aria-label={card.text}
-    >
-      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary/15 to-primary/5 text-lg" aria-hidden="true">
-        {card.emoji}
-      </span>
-      <div className="flex flex-col">
-        <span className="text-xs font-semibold text-foreground leading-tight">{card.text}</span>
-        <span className="text-[10px] text-foreground-secondary">{card.subtext}</span>
-      </div>
-      <Icon className="h-3.5 w-3.5 text-primary/80" aria-hidden="true" />
-    </motion.div>
-  );
-}
-
-function PhoneMockup() {
-  return (
-    <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[340px]">
-      <div className="absolute -inset-x-10 -top-10 h-40 bg-gradient-to-b from-primary/20 via-fuchsia-200/20 to-transparent blur-3xl" aria-hidden="true" />
-      <div className="relative rounded-[2.25rem] bg-gradient-to-b from-white/95 to-white/80 p-2 shadow-[0_60px_120px_-60px_rgba(76,29,149,0.9)] ring-1 ring-white/70">
-        <div className="rounded-[1.9rem] overflow-hidden bg-gradient-to-b from-[#f7f3ff] to-white">
-          <div className="flex items-center justify-between px-5 pt-4">
-            <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-primary/70" />
-              <span className="text-xs font-semibold text-foreground">Meelte</span>
-            </div>
-            <div className="flex items-center gap-1 text-[10px] text-foreground-secondary">
-              <MapPin className="h-3 w-3" aria-hidden="true" />
-              <span>Bengaluru • Gaya • Ranchi</span>
-            </div>
-          </div>
-          <div className="px-5 pt-4">
-            <div className="rounded-2xl bg-white shadow-soft px-4 py-3 flex items-center justify-between">
-              <div>
-                <p className="text-xs text-foreground-secondary">Discover nearby</p>
-                <p className="text-sm font-semibold text-foreground">Offers • Events • Chat</p>
-              </div>
-              <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-indigo-500 flex items-center justify-center shadow-[0_10px_40px_-12px_rgba(109,59,179,0.9)]">
-                <ArrowRight className="h-4 w-4 text-white" aria-hidden="true" />
-              </div>
-            </div>
-          </div>
-          <div className="px-5 pt-4 space-y-2">
-            {[
-              { title: "Weekend shop offer", tag: "Price and end date shown" },
-              { title: "Local event", tag: "Ask to join with your group" },
-              { title: "One-to-one chat", tag: "Text, location, audio and video" },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-2xl bg-white/90 backdrop-blur px-4 py-3 flex items-center justify-between shadow-[0_30px_60px_-40px_rgba(109,59,179,0.8)]"
-              >
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                  <p className="text-xs text-foreground-secondary">{item.tag}</p>
-                </div>
-                <span className="text-xs font-medium text-primary">View</span>
-              </div>
-            ))}
-          </div>
-          <div className="px-5 pt-5 pb-6">
-            <div className="rounded-2xl bg-gradient-to-r from-primary via-indigo-500 to-fuchsia-400 px-4 py-3 text-white flex items-center justify-between shadow-[0_40px_80px_-40px_rgba(99,102,241,0.9)]">
-              <div>
-                <p className="text-sm font-semibold">Ask the host to join</p>
-                <p className="text-xs text-white/80">Group size stated up front</p>
-              </div>
-              <Users className="h-5 w-5" aria-hidden="true" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-16 w-3/4 rounded-full bg-primary/20 blur-3xl" aria-hidden="true" />
-    </div>
-  );
-}
 
 function SparkleAccent() {
   return (
@@ -313,13 +139,12 @@ export function HowItWorksHero() {
       </div>
 
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left: Text content */}
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col items-center text-center lg:items-start lg:text-left"
+            className="flex flex-col items-center text-center"
           >
             <motion.div variants={fadeUpVariants} className="flex items-center gap-2">
               <div className="flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur px-2.5 py-1 shadow-soft ring-1 ring-white/70">
@@ -341,7 +166,7 @@ export function HowItWorksHero() {
             </motion.div>
 
             <motion.div variants={fadeUpVariants} className="mt-6">
-              <Breadcrumbs items={HOW_IT_WORKS_BREADCRUMBS} />
+              <Breadcrumbs items={HOW_IT_WORKS_BREADCRUMBS} listClassName="justify-center" />
             </motion.div>
 
             <motion.h1
@@ -393,7 +218,7 @@ export function HowItWorksHero() {
 
             <motion.div
               variants={fadeUpVariants}
-              className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:w-auto lg:items-start"
+              className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
             >
               <Button
                 as="a"
@@ -421,21 +246,6 @@ export function HowItWorksHero() {
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
               </Button>
             </motion.div>
-          </motion.div>
-
-          {/* Right: Visual */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, type: "spring", stiffness: 110, damping: 18 }}
-            className="relative flex items-center justify-center"
-          >
-            <div className="relative">
-              <PhoneMockup />
-              {floatingCards.map((card) => (
-                <FloatingCard key={card.id} card={card} />
-              ))}
-            </div>
           </motion.div>
         </div>
       </Container>

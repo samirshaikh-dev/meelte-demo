@@ -68,9 +68,9 @@ export function NewsletterForm() {
     <div className="w-full max-w-xs">
       <div className="flex flex-col gap-1">
         <p className="text-sm font-semibold text-foreground">Get neighborhood updates</p>
-        <p className="text-xs text-foreground-secondary">
+        {/* <p className="text-xs text-foreground-secondary">
           New shops, events and people near you.
-        </p>
+        </p> */}
       </div>
 
       {status === 'success' ? (
@@ -108,7 +108,7 @@ export function NewsletterForm() {
               {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
             </button>
           </div>
-          <p className="text-[11px] text-foreground-secondary">We never share your email.</p>
+          {/* <p className="text-[11px] text-foreground-secondary">We never share your email.</p> */}
           {status === 'error' && message && (
             <p id="footer-newsletter-error" className="text-xs text-error">
               {message}

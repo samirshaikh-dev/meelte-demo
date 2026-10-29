@@ -4,10 +4,10 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Download, ChevronDown } from "../../lib/icons";
-import { PLAY_STORE_URL } from "../../config/site";
+import { ChevronDown } from "../../lib/icons";
+import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
 import { Container } from "./container";
-import { Button } from "../ui/button";
+import { StoreButton } from "../footer/store-button";
 import { MobileNav } from "./mobile-nav";
 
 const PRODUCT_LINKS = [
@@ -21,11 +21,11 @@ const PRODUCT_LINKS = [
     href: "/discover",
     description: "Find local shops, events & services",
   },
-  {
-    label: "Case Studies",
-    href: "/case-studies",
-    description: "See how local shops grow with Meelte",
-  },
+  // {
+  //   label: "Case Studies",
+  //   href: "/case-studies",
+  //   description: "See how local shops grow with Meelte",
+  // },
 ];
 
 const COMPANY_LINKS = [
@@ -117,7 +117,7 @@ export function Navbar() {
 
         {/* Center: Desktop Navigation Links */}
         <nav
-          className="hidden md:flex items-center gap-1.5 lg:gap-2 flex-1 justify-center"
+          className="hidden lg:flex items-center gap-1.5 lg:gap-2 flex-1 justify-center"
           aria-label="Main Navigation"
         >
           {/* Product Dropdown */}
@@ -261,37 +261,15 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* Right: CTA Action & Mobile Menu */}
+        {/* Right: store downloads above `lg`, hamburger drawer below it.
+            The two downloads live in the navbar only from `lg` up; every smaller
+            breakpoint gets them inside the MobileNav drawer, which is now the single
+            place a compact CTA is offered. */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-muted/80 border border-border/60">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
-            <span className="text-[11px] font-medium text-foreground-secondary">Mobile App Live • Web App Coming Soon</span>
+          <div className="hidden lg:flex items-center gap-2">
+            <StoreButton type="google" href={PLAY_STORE_URL} variant="brand" />
+            <StoreButton type="apple" href={APP_STORE_URL} variant="brand" />
           </div>
-          <Button
-            as="a"
-            href={PLAY_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="primary"
-            size="md"
-            className="hidden sm:inline-flex shadow-soft"
-          >
-            <Download className="h-4 w-4" aria-hidden="true" />
-            <span>Get the App</span>
-          </Button>
-
-          <Button
-            as="a"
-            href={PLAY_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="primary"
-            size="md"
-            className="sm:hidden shadow-soft"
-          >
-            <Download className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>App</span>
-          </Button>
 
           {/* Mobile Sheet Drawer */}
           <MobileNav />

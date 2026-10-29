@@ -1,13 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import {
-  Compass,
-  MapPin,
-  Download,
-  ArrowRight,
-  ShieldCheck,
-} from "@/lib/icons";
+import { Compass, Download, ArrowRight } from "@/lib/icons";
 import { PLAY_STORE_URL } from "@/config/site";
+import { PLATFORM_AREAS } from "@/constants/app-constants";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +23,11 @@ const DISCOVER_BREADCRUMBS = [
  * default 60 km radius (docs/target_customer.md §1), and the app is the only place
  * real listings appear. The mock also claimed "on-device location", but ad
  * geofencing is evaluated against server-side city zones (§1 "Ad geofencing").
+ *
+ * The card that listed the three operational hubs has been removed so the hero is
+ * a single text-first column like the other page heroes. The section links below
+ * are generated from PLATFORM_AREAS, so they stay in step with the anchors the
+ * footer and the CollectionPage schema point at.
  */
 export function DiscoverHero() {
   return (
@@ -35,86 +35,70 @@ export function DiscoverHero() {
       <Container>
         <Breadcrumbs items={DISCOVER_BREADCRUMBS} className="mb-6" />
 
-        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-7">
-            <Badge variant="primary" className="mb-4 gap-1.5">
-              <Compass className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Discover</span>
-            </Badge>
+        <div className="max-w-3xl">
+          <Badge variant="primary" className="mb-4 gap-1.5">
+            <Compass className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>Discover</span>
+          </Badge>
 
-            <h1 className="text-3xl font-black leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]">
-              What is on near you, right now.
-            </h1>
+          <h1 className="text-3xl font-black leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]">
+            What is on near you, right now.
+          </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
-              Meelte shows time-boxed offers from nearby shops, local events you can ask to
-              join, and the people and businesses you already follow — in a feed sorted by
-              distance instead of an endless global timeline.
-            </p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
+            Meelte is a nearby-first feed: time-boxed offers from local shops, events you
+            can ask to join, and chat with the people and shops you follow. Everything is
+            sorted by distance instead of an endless global timeline.
+          </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button
-                as="a"
-                href={PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="primary"
-                size="lg"
-                className="group justify-center font-semibold sm:w-auto"
-              >
-                <Download className="h-5 w-5" aria-hidden="true" />
-                <span>Get the Android app</span>
-                <ArrowRight
-                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </Button>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button
+              as="a"
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+              size="lg"
+              className="group justify-center font-semibold sm:w-auto"
+            >
+              <Download className="h-5 w-5" aria-hidden="true" />
+              <span>Get the Android app</span>
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Button>
 
-              <Button
-                as={Link}
-                href="/how-it-works"
-                variant="outline"
-                size="lg"
-                className="justify-center font-medium sm:w-auto"
-              >
-                <span>See how it works</span>
-              </Button>
-            </div>
-
-            <p className="mt-5 text-sm text-foreground-secondary">
-              The Android app is live on Google Play. The web app is still in development.
-            </p>
+            <Button
+              as={Link}
+              href="/how-it-works"
+              variant="outline"
+              size="lg"
+              className="justify-center font-medium sm:w-auto"
+            >
+              <span>See how it works</span>
+            </Button>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="rounded-3xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-foreground">
-                Where Meelte runs
-              </h2>
-              <ul role="list" className="mt-4 space-y-3">
-                {[
-                  { city: "Bengaluru", state: "Karnataka" },
-                  { city: "Gaya", state: "Bihar" },
-                  { city: "Ranchi", state: "Jharkhand" },
-                ].map((hub) => (
-                  <li key={hub.city} className="flex items-center gap-2.5">
-                    <MapPin className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                    <span className="text-sm font-semibold text-foreground">{hub.city}</span>
-                    <span className="text-xs text-foreground-secondary">{hub.state}</span>
-                  </li>
-                ))}
-              </ul>
+          <p className="mt-5 text-sm text-foreground-secondary">
+            The Android app is live on Google Play. The web app is still in development.
+          </p>
 
-              <div className="mt-6 border-t border-border/70 pt-5">
-                <div className="flex items-start gap-2.5">
-                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                  <p className="text-sm leading-relaxed text-foreground-secondary">
-                    Location is used to sort what is near you. It is never sold or shared.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <nav aria-label="On this page" className="mt-7 border-t border-border/70 pt-5">
+            <ul role="list" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+              <li className="font-semibold text-foreground-secondary">On this page:</li>
+              {PLATFORM_AREAS.map((area) => (
+                <li key={area.id}>
+                  <a
+                    href={`#${area.anchor}`}
+                    className="rounded font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                  >
+                    {area.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </Container>
     </section>

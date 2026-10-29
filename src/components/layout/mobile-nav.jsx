@@ -7,7 +7,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import {
   Menu,
   X,
-  Download,
   Compass,
   Users,
   Mail,
@@ -17,13 +16,13 @@ import {
   Briefcase,
   FileText,
 } from "../../lib/icons";
-import { PLAY_STORE_URL } from "../../config/site";
-import { Button } from "../ui/button";
+import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
+import { StoreButton } from "../footer/store-button";
 
 const PRODUCT_ITEMS = [
   { label: "How It Works", href: "/how-it-works", icon: Lightbulb, note: "Roles, app experience & platform flow" },
   { label: "Discover Nearby", href: "/discover", icon: Compass, note: "Find local shops, events & services" },
-  { label: "Case Studies", href: "/case-studies", icon: FileText, note: "See how local shops grow with Meelte" },
+  // { label: "Case Studies", href: "/case-studies", icon: FileText, note: "See how local shops grow with Meelte" },
 ];
 
 const COMPANY_ITEMS = [
@@ -43,7 +42,7 @@ export function MobileNav() {
         <button
           type="button"
           aria-label="Open navigation menu"
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-foreground shadow-2xs transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-foreground shadow-2xs transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 lg:hidden"
         >
           <Menu className="h-5 w-5 text-foreground" aria-hidden="true" />
         </button>
@@ -92,7 +91,7 @@ export function MobileNav() {
           </div>
 
           <p id="mobile-nav-description" className="sr-only">
-            Meelte mobile navigation menu with direct links to ecosystem, discovery categories, merchant desk, trust guidelines, and app downloads.
+            Meelte navigation menu with product and company links plus the Google Play and App Store downloads.
           </p>
 
           {/* Navigation Links */}
@@ -188,20 +187,14 @@ export function MobileNav() {
             </div>
           </nav>
 
-          {/* Bottom Actions */}
+          {/* Bottom actions — the drawer is now the only compact download surface
+              below `lg`, so it carries both stores instead of a single app button. */}
           <div className="pt-4 border-t border-border mt-auto flex flex-col gap-2.5">
-            <Button
-              as="a"
-              href={PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-              size="md"
-              className="w-full justify-center shadow-soft"
-            >
-              <Download className="h-4 w-4" aria-hidden="true" />
-              <span>Get the App</span>
-            </Button>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground-secondary">
+              Get the app
+            </span>
+            <StoreButton type="google" href={PLAY_STORE_URL} />
+            <StoreButton type="apple" href={APP_STORE_URL} />
           </div>
         </Dialog.Content>
       </Dialog.Portal>

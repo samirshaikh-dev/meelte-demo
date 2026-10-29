@@ -21,6 +21,10 @@ export const SUPPORT_EMAIL = "support@meelte.com";
 export const HR_EMAIL = "hr@meelte.com";
 export const CONTACT_PHONE = "+91-8884524444";
 export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.meelte.classico&pcampaignid=web_share";
+// Placeholder until the app developer supplies the iOS listing URL. Kept as "#" so the
+// App Store button can ship in the navbar and footer without pointing at a wrong listing;
+// replace this one value and both surfaces update (project-context.md §10 item 9).
+export const APP_STORE_URL = "#";
 export const APPLE_LOGO_URL = "https://meelte.com/apple-touch-icon.png";
 export const TWITTER_HANDLE = "@meelteapp";
 export const BING_SITE_VERIFICATION = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || "";
@@ -55,6 +59,7 @@ export const SITE_CONFIG = {
   HR_EMAIL,
   CONTACT_PHONE,
   PLAY_STORE_URL,
+  APP_STORE_URL,
   TWITTER_HANDLE,
   SOCIAL_LINKS,
   SAME_AS_LINKS,

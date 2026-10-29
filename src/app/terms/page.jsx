@@ -68,7 +68,7 @@ export default function TermsAndConditionsPage() {
           <div className="pt-8 space-y-12 text-foreground-secondary text-base sm:text-lg leading-relaxed">
             {/* Preamble */}
             <p className="text-foreground text-lg sm:text-xl font-normal leading-relaxed">
-              By selecting “I Agree”, creating an account, logging in, accessing, or using Meelte, you acknowledge that you have read, understood, and agreed to these Terms & Conditions, our Privacy Policy, Community Guidelines, and all applicable laws.
+              Creating an account, logging in, accessing, or using Meelte, you acknowledge that you have read, understood, and agreed to these Terms & Conditions, our Privacy Policy, Community Guidelines, and all applicable laws.
             </p>
 
             {/* Section 1 */}

@@ -2,25 +2,41 @@ import React from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { DiscoverAreas } from "@/components/sections/discover";
-import { TrustCredibilitySection, FaqSection } from "@/components/sections/common";
+import { FaqSection } from "@/components/sections/common";
 import { FinalConversionCTA } from "@/components/sections/home";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import {
   getBreadcrumbsJsonLd,
   getCollectionPageJsonLd,
+  getFaqPageJsonLd,
 } from "@/lib/seo/structured-data";
 import { PLATFORM_AREAS } from "@/constants/app-constants";
+import { FAQ_ITEMS } from "@/constants/faq-constants";
 import { DiscoverHero } from "./_components/discover-hero";
+import { DiscoverSteps } from "./_components/discover-steps";
 
 const DISCOVER_BREADCRUMBS = [
   { name: "Home", path: "/" },
   { name: "Discover" },
 ];
 
+/**
+ * /discover FAQ teaser.
+ *
+ * Drawn from `src/data/faq.json`, the single copy source. A first-time discover
+ * visitor asks five things before installing: where it works, how to get the app,
+ * how joining works, who handles payment, and whether it is safe. The rest of the
+ * 12 questions stay on /faq, linked from the section footer. Filtering (rather
+ * than a hand-written copy of the answers) keeps the accordion and the FAQPage
+ * schema identical.
+ */
+const DISCOVER_FAQ_IDS = ["faq-5", "faq-7", "faq-9", "faq-11", "faq-13"];
+const DISCOVER_FAQS = FAQ_ITEMS.filter((faq) => DISCOVER_FAQ_IDS.includes(faq.id));
+
 export const metadata = buildPageMetadata({
-  title: "Nearby Offers, Events & People | Meelte",
+  title: "What's Nearby: Local Offers, Events & People | Meelte",
   description:
-    "See time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with people you meet. Meelte sorts everything by distance, live in Bengaluru, Gaya and Ranchi.",
+    "Time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat — sorted by distance. Android app live; web app coming soon.",
   path: "/discover",
   keywords: [
     "hyperlocal discovery app",
@@ -37,10 +53,19 @@ export const metadata = buildPageMetadata({
 /**
  * /discover describes what the Meelte app actually contains.
  *
+ * The page follows a single conversion path — understand, see how it starts,
+ * clear the objections, install:
+ *   1. DiscoverHero      what it is and the primary action
+ *   2. DiscoverAreas     the three capabilities, scannable
+ *   3. DiscoverSteps     install → allow location → find something nearby
+ *   4. FaqSection        five objection-handling questions, linked to /faq
+ *   5. FinalConversionCTA  install for residents, onboarding for merchants
+ *
  * The ItemList below is generated from PLATFORM_AREAS and points at the anchor ids
  * rendered by <DiscoverAreas>, so the structured data, the footer links and the
  * on-page sections all resolve to the same three targets. The earlier version
  * advertised five /discover#category fragments and fifteen invented businesses.
+ * The FAQPage graph is built from exactly the questions rendered here.
  */
 function getDiscoverJsonLd() {
   const collectionJsonLd = getCollectionPageJsonLd({
@@ -56,9 +81,11 @@ function getDiscoverJsonLd() {
 
   return {
     "@context": "https://schema.org",
-    "@graph": [collectionJsonLd, getBreadcrumbsJsonLd(DISCOVER_BREADCRUMBS)].filter(
-      Boolean
-    ),
+    "@graph": [
+      collectionJsonLd,
+      getFaqPageJsonLd(DISCOVER_FAQS),
+      getBreadcrumbsJsonLd(DISCOVER_BREADCRUMBS),
+    ].filter(Boolean),
   };
 }
 
@@ -88,8 +115,13 @@ export default function DiscoverPage() {
       <main id="main-content" className="flex-1">
         <DiscoverHero />
         <DiscoverAreas />
-        <TrustCredibilitySection />
-        <FaqSection />
+        <DiscoverSteps />
+        <FaqSection
+          items={DISCOVER_FAQS}
+          viewAllHref="/faq"
+          title="Questions people ask before they install."
+          description="Where Meelte works, how to get the app, how joining an event works, who handles payment, and how safety is handled."
+        />
         <FinalConversionCTA />
       </main>
 

@@ -4,19 +4,27 @@ import { Footer } from "@/components/layout/footer";
 import {
   HeroSection,
   BusinessAcquisitionSection,
-  HyperlocalDiscoverySection,
   FinalConversionCTA,
 } from "@/components/sections/home";
 import { TrustCredibilitySection, FaqSection } from "@/components/sections/common";
 import { FAQ_ITEMS } from "@/constants/faq-constants";
 import { getFaqPageJsonLd } from "@/lib/seo/structured-data";
 
+/**
+ * Homepage FAQ teaser: a short subset of `src/data/faq.json` (the single copy
+ * source). The full set stays on /faq, and the homepage FAQPage JSON-LD is
+ * generated from exactly these same items so schema never claims content that
+ * is not rendered here.
+ */
+const HOMEPAGE_FAQ_COUNT = 4;
+const HOMEPAGE_FAQS = FAQ_ITEMS.slice(0, HOMEPAGE_FAQ_COUNT);
+
 export default function HomePage() {
-  const faqJsonLd = getFaqPageJsonLd(FAQ_ITEMS);
+  const faqJsonLd = getFaqPageJsonLd(HOMEPAGE_FAQS);
 
   return (
     <div className="flex min-h-screen flex-col bg-canvas selection:bg-primary/20 selection:text-primary">
-      {/* Schema.org FAQPage for AEO & Google Rich Results */}
+      {/* Schema.org FAQPage for the questions rendered in the homepage teaser */}
       {faqJsonLd && (
         <script
           type="application/ld+json"
@@ -48,17 +56,14 @@ export default function HomePage() {
         {/* ── SECTION 4: Trust, Credibility & Institutional Guarantees ── */}
         <TrustCredibilitySection />
 
-        {/* ── SECTION 5: Organic Discovery across Bengaluru, Gaya & Ranchi Hubs ── */}
-        <HyperlocalDiscoverySection />
+        {/* ── SECTION 5: Homepage FAQ Teaser (first 4 questions, full set on /faq) ── */}
+        <FaqSection items={HOMEPAGE_FAQS} viewAllHref="/faq" />
 
-        {/* ── SECTION 6: Dual-Audience FAQ Accordion ── */}
-        <FaqSection />
-
-        {/* ── SECTION 7: Conversion-Focused Final Dual Action ── */}
+        {/* ── SECTION 6: Conversion-Focused Final Dual Action ── */}
         <FinalConversionCTA />
       </main>
 
-      {/* ── SECTION 8: Global Multi-Column Directory Footer ── */}
+      {/* ── SECTION 7: Global Multi-Column Directory Footer ── */}
       <Footer />
     </div>
   );
