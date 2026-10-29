@@ -51,9 +51,10 @@ export const Button = React.forwardRef(
         disabled={isButton ? disabled : undefined}
         aria-disabled={disabled ? "true" : undefined}
         className={cn(
-          "inline-flex items-center justify-center font-semibold transition-all duration-150 ease-out select-none",
+          "inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out select-none",
+          "hover:-translate-y-[1px] active:translate-y-0",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2",
-          "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
+          "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:translate-y-0 disabled:shadow-none",
           buttonVariants[variant] || buttonVariants.primary,
           buttonSizes[size] || buttonSizes.md,
           className

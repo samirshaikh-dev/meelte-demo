@@ -7,6 +7,7 @@ import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SUPPORT_EMAIL } from "@/config/site";
+import { Reveal } from "@/components/animations/reveal";
 
 /**
  * Comparison rows.
@@ -73,7 +74,7 @@ export function BusinessAcquisitionSection() {
     <section id="for-businesses" className="py-16 sm:py-24 bg-surface-subtle scroll-mt-20 border-b border-border/80">
       <Container>
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
+        <Reveal className="max-w-3xl mb-12 sm:mb-16">
           <Badge variant="accent" className="mb-3 gap-1.5 py-1 px-3">
             <Store className="h-3.5 w-3.5 text-accent-foreground" aria-hidden="true" />
             <span className="font-bold">Grow with Meelte · For Local Merchants</span>
@@ -85,10 +86,10 @@ export function BusinessAcquisitionSection() {
             Delivery aggregators take a percentage of every order and sit between you and the
             customer. Meelte is built the other way round: your shop, your offer, your counter.
           </p>
-        </div>
+        </Reveal>
 
         {/* Side-by-Side Comparison: Aggregators vs Meelte */}
-        <div className="mb-14">
+        <Reveal className="mb-14" delay={0.05}>
           <div className="overflow-hidden rounded-3xl border border-border/80 bg-surface shadow-card">
             <div className="p-6 sm:p-8 bg-gradient-to-r from-primary to-primary-dark text-white">
               <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-1">
@@ -133,24 +134,25 @@ export function BusinessAcquisitionSection() {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* 3-Step Onboarding Pathway */}
         <div className="mb-12">
-          <div className="text-center max-w-xl mx-auto mb-10">
+          <Reveal className="text-center max-w-xl mx-auto mb-10">
             <span className="text-xs font-bold uppercase tracking-wider text-primary">
               Simple 3-Step Process
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mt-1">
               How onboarding works for your business
             </h3>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {ONBOARDING_STEPS.map((step) => (
-              <div
+            {ONBOARDING_STEPS.map((step, idx) => (
+              <Reveal
                 key={step.number}
-                className="p-6 rounded-3xl bg-surface border border-border/80 shadow-soft flex flex-col justify-between"
+                delay={0.08 + idx * 0.08}
+                className="p-6 rounded-3xl bg-surface border border-border/80 shadow-soft flex flex-col justify-between transition-transform duration-300 hover:-translate-y-[2px] hover:shadow-card"
               >
                 <div>
                   <span className="text-2xl font-black text-primary/40 block mb-3">
@@ -167,51 +169,53 @@ export function BusinessAcquisitionSection() {
                   <CheckCircle2 className="h-3.5 w-3.5 text-success" aria-hidden="true" />
                   <span>No commission deducted</span>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
 
         {/* Business CTA Action Card with Enquiry Dialog */}
-        <div className="rounded-3xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="max-w-xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-2">
-              Merchant onboarding
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Ready to list your local shop?
-            </h3>
-            <p className="mt-2 text-sm sm:text-base text-white/90 leading-relaxed">
-              Meelte onboards shops in person in Bengaluru, Gaya and Ranchi. Read the dedicated{" "}
-              <Link href="/for-merchants" className="underline decoration-accent/70 hover:decoration-white transition-colors font-semibold">
-                For Merchants
-              </Link>{" "}
-              page for what a shop can publish.
-            </p>
-          </div>
+        <Reveal delay={0.1}>
+          <div className="rounded-3xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="max-w-xl">
+              <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-2">
+                Merchant onboarding
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Ready to list your local shop?
+              </h3>
+              <p className="mt-2 text-sm sm:text-base text-white/90 leading-relaxed">
+                Meelte onboards shops in person in Bengaluru, Gaya and Ranchi. Read the dedicated{" "}
+                <Link href="/for-merchants" className="underline decoration-accent/70 hover:decoration-white transition-colors font-semibold">
+                  For Merchants
+                </Link>{" "}
+                page for what a shop can publish.
+              </p>
+            </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
-            <Link href="/for-merchants">
-              <Button
-                variant="accent"
-                size="lg"
-                className="w-full sm:w-auto font-bold shadow-soft text-accent-foreground"
-              >
-                <Store className="h-4 w-4" aria-hidden="true" />
-                <span>Start a merchant enquiry</span>
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
+              <Link href="/for-merchants">
+                <Button
+                  variant="accent"
+                  size="lg"
+                  className="w-full sm:w-auto font-bold shadow-soft text-accent-foreground hover:-translate-y-[2px] hover:scale-[1.02]"
+                >
+                  <Store className="h-4 w-4" aria-hidden="true" />
+                  <span>Start a merchant enquiry</span>
+                </Button>
+              </Link>
 
-            <div className="flex flex-col items-center gap-2">
-              <a
-                href={`mailto:${SUPPORT_EMAIL}?subject=Merchant%20Partnership%20Enquiry`}
-                className="text-xs font-semibold text-white/90 hover:text-white px-3 py-2 text-center underline hover:decoration-white transition-colors"
-              >
-                Email Merchant Desk →
-              </a>
+              <div className="flex flex-col items-center gap-2">
+                <a
+                  href={`mailto:${SUPPORT_EMAIL}?subject=Merchant%20Partnership%20Enquiry`}
+                  className="text-xs font-semibold text-white/90 hover:text-white px-3 py-2 text-center underline hover:decoration-white transition-colors"
+                >
+                  Email Merchant Desk →
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

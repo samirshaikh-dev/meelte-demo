@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { metadata as siteMetadata, viewport as siteViewport } from "../lib/seo/metadata.js";
 import { getRootJsonLd } from "../lib/seo/structured-data.js";
+import { MotionProvider } from "../components/providers/motion-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-canvas text-foreground">
-        {children}
+        <MotionProvider>
+          {children}
+        </MotionProvider>
         {/*
           Single toast surface for the whole app.
           Visual tokens (surface, border, radius, status colours) are mapped to the Meelte

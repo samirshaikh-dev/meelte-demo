@@ -11,6 +11,7 @@ import {
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
+import { Reveal } from "@/components/animations/reveal";
 
 /**
  * App walkthrough — four capabilities, described exactly as they behave.

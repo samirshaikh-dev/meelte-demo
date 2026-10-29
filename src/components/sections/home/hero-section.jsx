@@ -168,7 +168,10 @@ function PhoneMockup() {
         <div className="rounded-[1.9rem] overflow-hidden bg-gradient-to-b from-[#f7f3ff] to-white">
           <div className="flex items-center justify-between px-5 pt-4">
             <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-primary/70" />
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-primary/60 opacity-75 motion-safe:animate-ping" aria-hidden="true" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary/80" aria-hidden="true" />
+              </span>
               <span className="text-xs font-semibold text-foreground">Meelte</span>
             </div>
             <div className="flex items-center gap-1 text-[10px] text-foreground-secondary">
@@ -374,7 +377,7 @@ export function HeroSection() {
                 rel="noopener noreferrer"
                 variant="primary"
                 size="lg"
-                className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-[0_30px_70px_-30px_rgba(109,59,179,0.9)] transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] focus-visible:scale-[1.01] sm:w-auto"
+                className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-[0_30px_70px_-30px_rgba(109,59,179,0.9)] transition-all duration-200 hover:-translate-y-[2px] hover:scale-[1.02] hover:shadow-[0_40px_90px_-30px_rgba(109,59,179,0.95)] focus-visible:scale-[1.02] sm:w-auto"
               >
                 <span className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-indigo-500 to-violet-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <span className="absolute inset-x-0 -top-10 h-16 bg-white/20 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
@@ -387,7 +390,7 @@ export function HeroSection() {
                 href="/for-merchants"
                 variant="outline"
                 size="lg"
-                className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
+                className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-all duration-200 hover:-translate-y-[2px] hover:scale-[1.02] hover:shadow-soft sm:w-auto"
               >
                 <Store className="h-4 w-4" aria-hidden="true" />
                 <span>For Local Businesses</span>
