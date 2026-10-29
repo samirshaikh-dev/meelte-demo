@@ -11,23 +11,31 @@ import {
   Users,
   Mail,
   MapPin,
-  ArrowRight,
   Lightbulb,
   Store,
+  ChevronDown,
+  Briefcase,
+  FileText,
 } from "../../lib/icons";
 import { PLAY_STORE_URL } from "../../config/site";
 import { Button } from "../ui/button";
 
-const NAV_ITEMS = [
+const PRODUCT_ITEMS = [
+  { label: "How It Works", href: "/how-it-works", icon: Lightbulb, note: "Roles, app experience & platform flow" },
+  { label: "Discover Nearby", href: "/discover", icon: Compass, note: "Find local shops, events & services" },
+  { label: "Case Studies", href: "/case-studies", icon: FileText, note: "See how local shops grow with Meelte" },
+];
+
+const COMPANY_ITEMS = [
   { label: "About Us", href: "/about", icon: Users, note: "Our mission, pillars & story" },
-  { label: "How It Works", href: "/how-it-works", icon: Lightbulb, note: "Roles, app experience & zero commission" },
-  { label: "For Merchants", href: "/for-merchants", icon: Store, note: "List for free • 0% commission" },
-  { label: "Discover", href: "/discover", icon: Compass, note: "Local food, events & services" },
+  { label: "Careers", href: "/careers", icon: Briefcase, note: "Join the Meelte team" },
   { label: "Contact Us", href: "/contact", icon: Mail, note: "Support, partnerships & queries" },
 ];
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [productExpanded, setProductExpanded] = useState(false);
+  const [companyExpanded, setCompanyExpanded] = useState(false);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -84,42 +92,99 @@ export function MobileNav() {
 
           {/* Navigation Links */}
           <nav className="mt-3 flex flex-col gap-1 flex-1 overflow-y-auto pr-1">
-            {NAV_ITEMS.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-start gap-3 p-2.5 rounded-xl text-sm font-medium text-foreground hover:bg-surface-muted hover:text-primary transition-colors group"
-                >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                    <Icon className="h-4 w-4" aria-hidden="true" />
-                  </div>
-                  <div className="flex flex-col min-w-0 flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-foreground group-hover:text-primary">{item.label}</span>
-                    </div>
-                    <span className="text-[11px] text-foreground-secondary">{item.note}</span>
-                  </div>
-                </Link>
-              );
-            })}
+            {/* Product Accordion */}
+            <div className="flex flex-col">
+              <button
+                type="button"
+                onClick={() => setProductExpanded(!productExpanded)}
+                className="flex items-center justify-between p-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-surface-muted transition-colors"
+                aria-expanded={productExpanded}
+              >
+                <span>Product</span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${productExpanded ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                />
+              </button>
+              {productExpanded && (
+                <div className="flex flex-col gap-1 ml-2 mt-1">
+                  {PRODUCT_ITEMS.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="flex items-start gap-3 p-2 rounded-xl text-sm font-medium text-foreground hover:bg-surface-muted hover:text-primary transition-colors group"
+                      >
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                          <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                        </div>
+                        <div className="flex flex-col min-w-0 flex-1">
+                          <span className="font-semibold text-foreground group-hover:text-primary">{item.label}</span>
+                          <span className="text-[10px] text-foreground-secondary">{item.note}</span>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* For Merchants - Direct Link */}
+            <Link
+              href="/for-merchants"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 p-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-surface-muted hover:text-primary transition-colors group"
+            >
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <Store className="h-4 w-4" aria-hidden="true" />
+              </div>
+              <span>For Merchants</span>
+            </Link>
+
+            {/* Company Accordion */}
+            <div className="flex flex-col">
+              <button
+                type="button"
+                onClick={() => setCompanyExpanded(!companyExpanded)}
+                className="flex items-center justify-between p-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-surface-muted transition-colors"
+                aria-expanded={companyExpanded}
+              >
+                <span>Company</span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-200 ${companyExpanded ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                />
+              </button>
+              {companyExpanded && (
+                <div className="flex flex-col gap-1 ml-2 mt-1">
+                  {COMPANY_ITEMS.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="flex items-start gap-3 p-2 rounded-xl text-sm font-medium text-foreground hover:bg-surface-muted hover:text-primary transition-colors group"
+                      >
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                          <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                        </div>
+                        <div className="flex flex-col min-w-0 flex-1">
+                          <span className="font-semibold text-foreground group-hover:text-primary">{item.label}</span>
+                          <span className="text-[10px] text-foreground-secondary">{item.note}</span>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Bottom Actions */}
           <div className="pt-4 border-t border-border mt-auto flex flex-col gap-2.5">
-            <Button
-              as="a"
-              href="/signup"
-              variant="outline"
-              size="md"
-              className="w-full justify-center"
-              onClick={() => setOpen(false)}
-            >
-              <span>Sign Up</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
             <Button
               as="a"
               href={PLAY_STORE_URL}
@@ -130,15 +195,8 @@ export function MobileNav() {
               className="w-full justify-center shadow-soft"
             >
               <Download className="h-4 w-4" aria-hidden="true" />
-              <span>Get the Meelte App</span>
+              <span>Get the App</span>
             </Button>
-            <a
-              href="/for-merchants"
-              onClick={() => setOpen(false)}
-              className="text-center text-xs font-semibold text-primary py-1 hover:underline"
-            >
-              Are you a local merchant? Partner with Meelte →
-            </a>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

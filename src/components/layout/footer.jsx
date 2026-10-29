@@ -24,6 +24,7 @@ const COMPANY_LINKS = [
   { label: "Discover", href: "/discover" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "For Merchants", href: "/for-merchants" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
   { label: "Trust & Safety", href: "/#trust" },
   { label: "FAQ", href: "/#faq" },

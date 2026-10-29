@@ -1,6 +1,6 @@
 /**
  * Meelte — Site Configuration & Brand Single Source of Truth
- * Guided by AI_RULE.md, context.md, and docs/color-theme.md
+ * Guided by AI_RULE.md, project-context.md, and docs/Design.md
  */
 
 import {

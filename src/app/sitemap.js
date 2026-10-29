@@ -39,6 +39,12 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
+      url: `${siteUrl}/careers`,
+      lastModified: STABLE_RELEASE_DATE,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/contact`,
       lastModified: STABLE_RELEASE_DATE,
       changeFrequency: "monthly",

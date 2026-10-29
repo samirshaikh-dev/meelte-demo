@@ -26,9 +26,9 @@ const GOOGLE_MAPS_URL =
 
 const TOPICS = [
   "General Inquiry",
-  "Merchant Onboarding (0% Commission)",
+  "Merchant/Business Onboarding",
   "Community Support & Feedback",
-  "Event Partnership & Meetups",
+  "Event Partnerships & Meetups",
   "Careers & Hiring",
 ];
 

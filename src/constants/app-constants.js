@@ -1,7 +1,7 @@
 /**
  * Meelte — Application Domain Constants
  * Static catalogs, focus regions, brand color tokens, and product pillars.
- * Guided by docs/target_customer.md and docs/color-theme.md.
+ * Guided by docs/target_customer.md and docs/Design.md.
  */
 
 /** Focus coverage for hyper-local services, events, and advertising */

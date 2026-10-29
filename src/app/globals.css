@@ -132,7 +132,7 @@ body {
    below is therefore anchored to `html` for one extra specificity point, which
    is why they are written as `html [data-sonner-…]` instead of the bare
    attribute selectors. Token values map to the Meelte design system
-   (docs/color-theme.md) instead of the library's raw red/green defaults.
+   (docs/Design.md) instead of the library's raw red/green defaults.
 ───────────────────────────────────────────── */
 html [data-sonner-toaster] {
   --border-radius: 16px; /* rounded-2xl */

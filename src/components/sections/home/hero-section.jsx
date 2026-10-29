@@ -4,15 +4,14 @@ import React, { useRef } from "react";
 import {
   Download,
   ArrowRight,
-  ShieldCheck,
-  Percent,
-  Users,
   MapPin,
-  CalendarDays,
-  Wrench,
-  Briefcase,
+  Navigation,
+  MessageCircle,
+  Tag,
   Coffee,
+  Users,
   Sparkles,
+  Store,
 } from "@/lib/icons";
 import { PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
@@ -22,7 +21,8 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 const floatingCards = [
   {
     id: 1,
-    text: "Chai Corner - 200m",
+    text: "Chai Corner - ₹40",
+    subtext: "200m away",
     icon: Coffee,
     emoji: "☕",
     className: "top-[8%] left-[6%] lg:left-[10%]",
@@ -32,50 +32,33 @@ const floatingCards = [
   {
     id: 2,
     text: "Sunday Yoga Meetup",
+    subtext: "450m away",
     icon: Users,
     emoji: "🧘",
     className: "top-[22%] right-[4%] lg:right-[8%]",
     delay: 0.6,
     floatDuration: 7,
   },
-  {
-    id: 3,
-    text: "Verified Electrician",
-    icon: Wrench,
-    emoji: "🔌",
-    className: "bottom-[28%] left-[2%] lg:left-[6%]",
-    delay: 0.8,
-    floatDuration: 6.5,
-  },
-  {
-    id: 4,
-    text: "Part-time Job Nearby",
-    icon: Briefcase,
-    emoji: "💼",
-    className: "bottom-[14%] right-[8%] lg:right-[12%]",
-    delay: 1.0,
-    floatDuration: 7.5,
-  },
 ];
 
 const trustPills = [
   {
     id: 1,
-    label: "Private",
-    icon: ShieldCheck,
-    ariaLabel: "100% Private - Location never sold or tracked",
+    label: "Hyper-local (60km)",
+    icon: MapPin,
+    ariaLabel: "Hyper-local within 60km radius",
   },
   {
     id: 2,
-    label: "0% Cut",
-    icon: Percent,
-    ariaLabel: "0% Cut - Zero commission on merchant sales",
+    label: "Exclusive Discounts",
+    icon: Tag,
+    ariaLabel: "Exclusive local discounts and offers",
   },
   {
     id: 3,
-    label: "Moderated",
-    icon: Users,
-    ariaLabel: "Moderated - Spam-free local community",
+    label: "Direct Chat",
+    icon: MessageCircle,
+    ariaLabel: "Direct chat with local businesses",
   },
 ];
 
@@ -154,7 +137,7 @@ function FloatingCard({ card }) {
       style={{ x, y }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`absolute hidden sm:flex items-center gap-2 px-3 py-2 rounded-2xl bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_20px_60px_-20px_rgba(109,59,179,0.45)] ${card.className}`}
+      className={`absolute hidden sm:flex items-center gap-2 px-3 py-2 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/70 shadow-[0_20px_60px_-20px_rgba(109,59,179,0.45)] ${card.className}`}
       role="listitem"
       aria-label={card.text}
     >
@@ -163,7 +146,7 @@ function FloatingCard({ card }) {
       </span>
       <div className="flex flex-col">
         <span className="text-xs font-semibold text-foreground leading-tight">{card.text}</span>
-        <span className="text-[10px] text-foreground-secondary">Nearby</span>
+        <span className="text-[10px] text-foreground-secondary">{card.subtext || "Nearby"}</span>
       </div>
       <Icon className="h-3.5 w-3.5 text-primary/80" aria-hidden="true" />
     </motion.div>
@@ -183,7 +166,7 @@ function PhoneMockup() {
             </div>
             <div className="flex items-center gap-1 text-[10px] text-foreground-secondary">
               <MapPin className="h-3 w-3" aria-hidden="true" />
-              <span>Bengaluru</span>
+              <span>Nearby</span>
             </div>
           </div>
           <div className="px-5 pt-4">
@@ -193,25 +176,28 @@ function PhoneMockup() {
                 <p className="text-sm font-semibold text-foreground">Shops • Events • Services</p>
               </div>
               <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-indigo-500 flex items-center justify-center shadow-[0_10px_40px_-12px_rgba(109,59,179,0.9)]">
-                <ArrowRight className="h-4 w-4 text-white" aria-hidden="true" />
+                <Navigation className="h-4 w-4 text-white" aria-hidden="true" />
               </div>
             </div>
           </div>
           <div className="px-5 pt-4 space-y-2">
             {[
-              { title: "Chai Corner", tag: "Food • 200m" },
-              { title: "Sunday Yoga Meetup", tag: "Events • 450m" },
-              { title: "Verified Electrician", tag: "Services • 650m" },
+              { title: "Chai Corner", tag: "Food • ₹40 • 200m away" },
+              { title: "Sunday Yoga Meetup", tag: "Events • 450m away" },
+              { title: "Local Grocery Store", tag: "Food • ₹120 • 650m away" },
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl bg-white/90 backdrop-blur px-4 py-3 flex items-center justify-between shadow-[0_30px_60px_-40px_rgba(109,59,179,0.8)]"
+                className="rounded-2xl bg-white/95 backdrop-blur px-4 py-3 flex items-center justify-between shadow-[0_30px_60px_-40px_rgba(109,59,179,0.8)]"
               >
                 <div>
                   <p className="text-sm font-semibold text-foreground">{item.title}</p>
                   <p className="text-xs text-foreground-secondary">{item.tag}</p>
                 </div>
-                <span className="text-xs font-medium text-primary">View</span>
+                <span className="flex items-center gap-1 text-xs font-medium text-primary">
+                  <Navigation className="h-3 w-3" aria-hidden="true" />
+                  Directions
+                </span>
               </div>
             ))}
           </div>
@@ -221,7 +207,7 @@ function PhoneMockup() {
                 <p className="text-sm font-semibold">Find something nearby</p>
                 <p className="text-xs text-white/80">Right around you</p>
               </div>
-              <CalendarDays className="h-5 w-5" aria-hidden="true" />
+              <MapPin className="h-5 w-5" aria-hidden="true" />
             </div>
           </div>
         </div>
@@ -329,10 +315,10 @@ export function HeroSection() {
               variants={fadeUpVariants}
               className="mt-6 text-[2.8rem] sm:text-6xl lg:text-[4.25rem] font-black tracking-tight leading-[1.02]"
             >
-              <span className="text-foreground">Your neighborhood, </span>
+              <span className="text-foreground">Discover what’s happening </span>
               <span className="relative inline-block">
                 <span className="bg-gradient-to-r from-primary via-indigo-500 to-violet-500 bg-clip-text text-transparent">
-                  connected directly.
+                  near you.
                 </span>
                 <svg
                   className="absolute -bottom-2 left-0 w-full hidden sm:block"
@@ -366,48 +352,38 @@ export function HeroSection() {
               variants={fadeUpVariants}
               className="mt-5 max-w-xl text-lg sm:text-xl text-foreground-secondary leading-relaxed"
             >
-              Discover shops, events and services right around you.
+              Find local shops, exclusive offers, and community events right around the corner. The web app is coming soon—join us on mobile today.
             </motion.p>
 
             <motion.div
               variants={fadeUpVariants}
-              className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:w-auto lg:items-start"
+              className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:w-auto lg:items-start"
             >
               <Button
                 as="a"
-                href="/signup"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="primary"
                 size="lg"
                 className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-[0_30px_70px_-30px_rgba(109,59,179,0.9)] transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] focus-visible:scale-[1.01] sm:w-auto"
               >
                 <span className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-indigo-500 to-violet-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <span className="absolute inset-x-0 -top-10 h-16 bg-white/20 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
-                <span>Sign Up</span>
-                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+                <Download className="h-5 w-5 transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true" />
+                <span>Get the App</span>
               </Button>
 
               <Button
                 as="a"
-                href="#discover"
+                href="/for-merchants"
                 variant="outline"
                 size="lg"
                 className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
               >
-                <span>Explore Nearby</span>
+                <Store className="h-4 w-4" aria-hidden="true" />
+                <span>For Local Businesses</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-              </Button>
-
-              <Button
-                as="a"
-                href={PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="ghost"
-                size="lg"
-                className="group w-full rounded-2xl px-6 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
-              >
-                <Download className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true" />
-                <span>Get on Play Store</span>
               </Button>
             </motion.div>
           </motion.div>

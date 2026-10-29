@@ -1,7 +1,7 @@
 /**
  * Meelte — Frequently Asked Questions (FAQ) Data
  * Centralized constant for both Server Components (JSON-LD schema) and Client Components (Accordion).
- * Guided by AI_RULE.md and context.md.
+ * Guided by AI_RULE.md and project-context.md.
  */
 
 export const FAQ_ITEMS = [
