@@ -4,47 +4,81 @@
  * Guided by docs/target_customer.md and docs/Design.md.
  */
 
-/** Focus coverage for hyper-local services, events, and advertising */
+/**
+ * Coverage model — confirmed by the business (Oct 2026).
+ *
+ * Meelte is expanding to the whole of India. Today, three cities are actually being
+ * worked by field executives: **Bengaluru**, **Gaya** and **Ranchi**. Those are the only
+ * places where in-person shop onboarding happens, so that is what the page copy and
+ * `areaServed` naming describe.
+ *
+ * The constants stay at country level on purpose: `areaServed` should not imply that a
+ * resident of, say, Chennai is onboarded in person today. Do not swap these to a city
+ * list without also revisiting the "onboarded in person by our field team" copy.
+ */
 export const TARGET_CITIES = ["India"];
 
 export const ALL_COVERED_AREAS = ["India (Pan-India)"];
 
-/** Core hyper-local discovery categories */
-export const CATEGORIES = [
+/** The three cities where the field team currently onboards shops in person. */
+export const OPERATIONAL_HUBS = ["Bengaluru", "Gaya", "Ranchi"];
+
+/**
+ * The three areas of the Meelte product that actually exist today.
+ *
+ * Sourced from docs/target_customer.md §1 ("Core capabilities found in the code"):
+ * local offers (ads), local events, and the social layer. Meelte's shop and event
+ * records each carry their own category field, but the set of category values is
+ * defined in the Flutter app repository and is not audited here — so the website
+ * must not publish its own "N kinds of nearby business" taxonomy. Earlier versions
+ * of this file did exactly that (Food/Fashion/Events/Services/Health) and the claim
+ * had no product evidence.
+ *
+ * `anchor` must match the section id rendered on /discover so the footer links,
+ * the on-page anchors, and the CollectionPage JSON-LD all resolve.
+ */
+export const PLATFORM_AREAS = [
   {
-    id: "food",
-    name: "Food",
-    slug: "food",
-    tagline: "Local dining, artisan foods & neighborhood cafes",
-    description: "Discover authentic local eateries, homemade bakes, street food specialties, and nearby cafes.",
-  },
-  {
-    id: "fashion",
-    name: "Fashion",
-    slug: "fashion",
-    tagline: "Local boutiques, apparel & handmade accessories",
-    description: "Shop directly from neighborhood boutiques, regional designers, and artisanal tailors.",
+    id: "offers",
+    name: "Local offers",
+    anchor: "offers",
+    tagline: "Time-boxed offers from shops and service businesses",
+    description:
+      "Independent shops post a single product or a full catalogue of up to 100 items, with a price, a discount and a start and end date. Every ad runs for a fixed window, so what you see nearby is current.",
+    points: [
+      "A single-product ad or a shop catalogue of up to 100 items",
+      "Original and final price, or a flat / up-to percentage discount",
+      "One-tap Google Maps directions, plus likes, comments and shares",
+      "Follow a shop to hear about its next offer",
+    ],
   },
   {
     id: "events",
-    name: "Events",
-    slug: "events",
-    tagline: "Community meetups, cultural festivals & sports",
-    description: "Find weekend gatherings, tech meetups, art workshops, and cultural events happening near you.",
+    name: "Local events",
+    anchor: "events",
+    tagline: "Gatherings where the host controls the guest list",
+    description:
+      "Residents, clubs and organisers publish events with a date, time, pinned location and joining cost. Attendees request to join with their group size, and the host decides who comes.",
+    points: [
+      "Public or private events with a start and end time",
+      "Join requests that state the group size, approved by the host",
+      "Joining cost set by the host in ₹ and settled directly with them",
+      "Hosts can remove an attendee at any time",
+    ],
   },
   {
-    id: "services",
-    name: "Services",
-    slug: "services",
-    tagline: "Home services, repairs & trusted professionals",
-    description: "Connect with verified local mechanics, plumbers, tutors, freelance pros, and home repair experts.",
-  },
-  {
-    id: "health",
-    name: "Health",
-    slug: "health",
-    tagline: "Clinics, fitness studios & holistic wellness",
-    description: "Locate neighborhood yoga studios, dental clinics, physiotherapy centers, and fitness trainers.",
+    id: "people",
+    name: "People & chat",
+    anchor: "people",
+    tagline: "Talk to the people and shops you meet locally",
+    description:
+      "Add friends, follow the shops and hosts you like, and talk one to one. Chat carries text, emoji, documents and location, and voice and video calls are built in. Finding new people is still rolling out.",
+    points: [
+      "Friends, follows and shop updates in one place",
+      "1:1 chat with text, emoji, documents and location sharing",
+      "Agora-powered audio and video calls",
+      "Block and report available on every profile",
+    ],
   },
 ];
 
@@ -67,7 +101,7 @@ export const PILLARS = [
   {
     id: "discover",
     title: "Discover",
-    description: "Explore local products, nearby dining, trusted services, and neighborhood happenings without the noise.",
+    description: "Explore local products, nearby dining, local services, and neighborhood happenings without the noise.",
   },
   {
     id: "connect",
@@ -89,7 +123,8 @@ export const PILLARS = [
 const appConstants = {
   TARGET_CITIES,
   ALL_COVERED_AREAS,
-  CATEGORIES,
+  OPERATIONAL_HUBS,
+  PLATFORM_AREAS,
   BRAND_COLORS,
   PILLARS,
 };

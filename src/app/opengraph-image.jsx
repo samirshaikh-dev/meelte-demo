@@ -98,7 +98,7 @@ export default function Image() {
               maxWidth: "820px",
             }}
           >
-            Hyper-local community platform connecting residents, local businesses, events, and jobs across India.
+            Hyper-local community platform for finding nearby shop offers, local events, and the people around you.
           </p>
         </div>
 

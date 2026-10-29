@@ -18,10 +18,10 @@ import { SUPPORT_EMAIL, HR_EMAIL, PLAY_STORE_URL } from "@/config/site";
 const PILLARS_OF_TRUST = [
   {
     icon: Lock,
-    title: "On-Device Location Privacy",
-    guarantee: "100% Uncompromised",
+    title: "Location Privacy",
+    guarantee: "Never Sold",
     description:
-      "Your coordinates are computed locally on your device to display nearby listings. We do not store movement history, build tracking profiles, or sell location data to third-party ad brokers.",
+      "Your location is used to sort what is near you and to decide which nearby city zone applies. We do not build movement histories, create tracking profiles, or sell location data to third-party ad brokers.",
   },
   {
     icon: HeartHandshake,
@@ -33,16 +33,16 @@ const PILLARS_OF_TRUST = [
   {
     icon: UserCheck,
     title: "Community Moderation",
-    guarantee: "Spam & Scam Free",
+    guarantee: "Moderated",
     description:
-      "All listings, events, and job postings are reviewed under clear community guidelines. Inappropriate content, abusive behavior, and fake accounts are removed promptly.",
+      "Ads, comments and events pass through community moderation. Inappropriate content, abusive behavior, and fake accounts are removed promptly.",
   },
   {
     icon: Building2,
-    title: "Verified Physical Presence",
-    guarantee: "Authentic Local Hubs",
+    title: "In-Person Onboarding",
+    guarantee: "Real Local Hubs",
     description:
-      "We focus deeply on real neighborhoods in Bengaluru, Gaya, and Ranchi rather than claiming superficial coverage. Every listed business has verified physical operations.",
+      "Shops are signed up in person by Meelte's field team rather than self-declared online. We work city by city — Bengaluru, Gaya and Ranchi — instead of claiming coverage we do not have.",
   },
 ];
 
@@ -88,8 +88,8 @@ export function TrustCredibilitySection() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-border/60 text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
+                <div className="mt-6 pt-3 border-t border-border/60 text-[11px] text-success font-semibold flex items-center gap-1">
+                  <ShieldCheck className="h-3.5 w-3.5 text-success" aria-hidden="true" />
                   <span>Institutional Commitment</span>
                 </div>
               </div>

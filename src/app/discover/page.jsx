@@ -1,70 +1,64 @@
 import React from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { DiscoverClient, DISCOVERY_CATEGORIES } from "@/components/sections/discover";
+import { DiscoverAreas } from "@/components/sections/discover";
 import { TrustCredibilitySection, FaqSection } from "@/components/sections/common";
 import { FinalConversionCTA } from "@/components/sections/home";
 import { buildPageMetadata } from "@/lib/seo/metadata";
-import { getCollectionPageJsonLd } from "@/lib/seo/structured-data";
-import { APP_URL } from "@/config/site";
+import {
+  getBreadcrumbsJsonLd,
+  getCollectionPageJsonLd,
+} from "@/lib/seo/structured-data";
+import { PLATFORM_AREAS } from "@/constants/app-constants";
 import { DiscoverHero } from "./_components/discover-hero";
 
+const DISCOVER_BREADCRUMBS = [
+  { name: "Home", path: "/" },
+  { name: "Discover" },
+];
+
 export const metadata = buildPageMetadata({
-  title: "Discover Local Food, Fashion, Events & Services | Meelte",
+  title: "Nearby Offers, Events & People | Meelte",
   description:
-    "Explore authentic neighborhood cafes, artisanal boutiques, weekend community runs, verified home services and local jobs across Bengaluru, Gaya, and Ranchi on Meelte.",
+    "See time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with people you meet. Meelte sorts everything by distance, live in Bengaluru, Gaya and Ranchi.",
   path: "/discover",
   keywords: [
-    "hyperlocal discovery",
-    "neighborhood cafes",
-    "local boutiques",
-    "community events",
-    "home services Bengaluru",
-    "local discovery Gaya",
-    "Ranchi local business",
-    "local jobs near me",
-    "find local services",
-    "discover nearby offers",
+    "hyperlocal discovery app",
+    "nearby offers",
+    "local events near me",
+    "community app India",
+    "hyperlocal community platform",
+    "event hosting app",
+    "discover nearby shops",
+    "meelte app",
   ],
 });
 
+/**
+ * /discover describes what the Meelte app actually contains.
+ *
+ * The ItemList below is generated from PLATFORM_AREAS and points at the anchor ids
+ * rendered by <DiscoverAreas>, so the structured data, the footer links and the
+ * on-page sections all resolve to the same three targets. The earlier version
+ * advertised five /discover#category fragments and fifteen invented businesses.
+ */
 function getDiscoverJsonLd() {
-  const collectionItems = DISCOVERY_CATEGORIES.map((cat) => ({
-    name: cat.name,
-    path: `/discover#${cat.id}`,
-  }));
-
   const collectionJsonLd = getCollectionPageJsonLd({
-    name: "Meelte Hyperlocal Discovery Directory",
+    name: "What you can do in Meelte",
     description:
-      "Community directory of local dining, fashion, events, services, and health studios across Indian neighborhoods.",
+      "Local offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you follow.",
     path: "/discover",
-    items: collectionItems,
+    items: PLATFORM_AREAS.map((area) => ({
+      name: area.name,
+      path: `/discover#${area.anchor}`,
+    })),
   });
 
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      collectionJsonLd,
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${APP_URL}/discover#breadcrumb`,
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: APP_URL,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Discover",
-            item: `${APP_URL}/discover`,
-          },
-        ],
-      },
-    ].filter(Boolean),
+    "@graph": [collectionJsonLd, getBreadcrumbsJsonLd(DISCOVER_BREADCRUMBS)].filter(
+      Boolean
+    ),
   };
 }
 
@@ -89,25 +83,17 @@ export default function DiscoverPage() {
         Skip to main content
       </a>
 
-      {/* Brand Navigation Header */}
       <Navbar />
 
-      {/* Main Content Landmark */}
       <main id="main-content" className="flex-1">
         <DiscoverHero />
-
-        <div id="discover-listings">
-          <DiscoverClient />
-        </div>
-
+        <DiscoverAreas />
         <TrustCredibilitySection />
         <FaqSection />
         <FinalConversionCTA />
       </main>
 
-      {/* Global Footer */}
       <Footer />
     </div>
   );
 }
-

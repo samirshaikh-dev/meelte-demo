@@ -23,7 +23,7 @@ export function FaqSection() {
             Clear, honest answers about Meelte.
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
-            Everything you need to know about our privacy-first philosophy, zero commission merchant model, city coverage, and app access.
+            Everything you need to know about privacy, city coverage, merchant listings, events, payments, referrals, and app access.
           </p>
         </div>
 

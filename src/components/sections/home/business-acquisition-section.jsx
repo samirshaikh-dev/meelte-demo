@@ -22,7 +22,7 @@ import {
   TOAST_COPY,
   TOAST_ID,
   notifyError,
-  notifySuccess,
+  notifyInfo,
 } from "@/lib/toast-feedback";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
@@ -30,48 +30,62 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { SUPPORT_EMAIL, CONTACT_PHONE } from "@/config/site";
 
+/**
+ * Comparison rows.
+ *
+ * Rewritten because the previous version asserted competitor figures ("20% – 35%
+ * cut taken"), a walking-distance radius ("Hyperlocal Proximity (< 3 km)") that
+ * contradicts the product's 60 km default sort, and a verification programme
+ * ("Free Community Verification") that does not exist in the app. The right-hand
+ * column now describes aggregator behaviour only in general terms — no invented
+ * percentages — and the left-hand column states only what the product does
+ * (docs/target_customer.md §1, §4.3).
+ */
 const COMPARISON_POINTS = [
   {
-    feature: "Commission per Order or Walk-in",
-    meelte: "0% Commission",
-    aggregators: "20% – 35% cut taken",
-    detail: "Keep 100% of your earnings. No revenue sharing.",
+    feature: "Commission on a sale",
+    meelte: "0% commission",
+    aggregators: "A percentage of every order",
+    detail: "Meelte does not deduct a cut of what a shop earns.",
   },
   {
-    feature: "Customer Ownership & Data",
-    meelte: "Direct Phone & WhatsApp",
-    aggregators: "Masked numbers & locked data",
-    detail: "Build real relationships with repeat neighborhood buyers.",
+    feature: "Who sees your offer",
+    meelte: "Nearby residents, sorted by distance",
+    aggregators: "Whoever the ranking favours",
+    detail: "Offers appear to people in the city zone the ad is published in.",
   },
   {
-    feature: "Local Discoverability",
-    meelte: "Hyperlocal Proximity (< 3 km)",
-    aggregators: "Pay-to-rank sponsored bidding",
-    detail: "Nearby neighbors see your store based on real proximity.",
+    feature: "What you can list",
+    meelte: "One product, or a catalogue of up to 100",
+    aggregators: "Menu-bound listings",
+    detail: "Photograph a menu or price list and the app fills in the items.",
   },
   {
-    feature: "Setup & Onboarding Fees",
-    meelte: "Free Community Verification",
-    aggregators: "Hefty onboarding charges",
-    detail: "No barrier to entry for verified local businesses.",
+    feature: "How you get set up",
+    meelte: "In person, by our field team",
+    aggregators: "Self-serve sign-up",
+    detail: "A field team member visits the shop and helps publish the first ad.",
   },
 ];
 
 const ONBOARDING_STEPS = [
   {
     number: "01",
-    title: "Submit Quick Enquiry",
-    description: "Provide your business name, category, and neighborhood address in under 60 seconds.",
+    title: "Tell us about the shop",
+    description:
+      "Send your business name, category, phone number and city — or call the merchant desk directly. The field team visits shops in person.",
   },
   {
     number: "02",
-    title: "Community Verification",
-    description: "Our local coordinator verifies your physical presence to maintain a trusted, spam-free directory.",
+    title: "A field team visit",
+    description:
+      "Someone from the team meets you at the shop, sets up the profile and shows you how to publish an offer from the app.",
   },
   {
     number: "03",
-    title: "Storefront Goes Live",
-    description: "Your digital profile, contact details, and catalog become discoverable to nearby residents on the Meelte App.",
+    title: "Publish your first ad",
+    description:
+      "A single product or a catalogue of up to 100, with a price or discount and the dates it should run. It goes live at 12:00 AM on the start date.",
   },
 ];
 
@@ -81,10 +95,9 @@ export function BusinessAcquisitionSection() {
     businessName: "",
     contactPerson: "",
     phone: "",
-    category: "Food & Cafes",
+    category: "Food & beverage",
     city: "Bengaluru",
   });
-  const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -122,24 +135,27 @@ export function BusinessAcquisitionSection() {
       return;
     }
 
-    setSubmitting(true);
-    // TODO(backend): replace this simulated submit with a POST to API_ENDPOINTS.MERCHANT_INQUIRY
-    // via src/services/ once NEXT_PUBLIC_MEELTE_API_BASE_URL is provisioned (AI_RULE.md §2.1).
-    setTimeout(() => {
-      setSubmitting(false);
-      setModalOpen(false);
-      notifySuccess(TOAST_COPY.merchantSuccess, {
-        id: TOAST_ID.merchant,
-        description: TOAST_COPY.merchantSuccessDescription(formData.phone),
-      });
-      setFormData({
-        businessName: "",
-        contactPerson: "",
-        phone: "",
-        category: "Food & Cafes",
-        city: "Bengaluru",
-      });
-    }, 600);
+    // No backend endpoint is provisioned yet (AI_RULE.md §2.1), so the form hands the
+    // enquiry to the user's mail client instead of showing a success state for a
+    // request that was never sent. The toast says exactly that.
+    const subject = encodeURIComponent(
+      `Merchant enquiry — ${formData.businessName.trim()}`
+    );
+    const body = encodeURIComponent(
+      [
+        `Business: ${formData.businessName.trim()}`,
+        `Contact: ${formData.contactPerson.trim() || "—"}`,
+        `Phone: ${formData.phone.trim()}`,
+        `Category: ${formData.category}`,
+        `City: ${formData.city}`,
+      ].join("\n")
+    );
+
+    window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+    notifyInfo(TOAST_COPY.merchantHandoff, {
+      id: TOAST_ID.merchant,
+      description: TOAST_COPY.merchantHandoffDescription(SUPPORT_EMAIL),
+    });
   };
 
   return (
@@ -152,10 +168,11 @@ export function BusinessAcquisitionSection() {
             <span className="font-bold">Grow with Meelte · For Local Merchants</span>
           </Badge>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight">
-            Direct customer connections. Zero commission cuts.
+            Sell to the people already nearby. 0% commission.
           </h2>
           <p className="mt-4 text-base sm:text-lg text-foreground-secondary leading-relaxed">
-            National delivery apps take up to a third of your profit margins and lock your customer data behind opaque paywalls. Meelte restores direct, neighborhood-first commerce.
+            Delivery aggregators take a percentage of every order and sit between you and the
+            customer. Meelte is built the other way round: your shop, your offer, your counter.
           </p>
         </div>
 
@@ -187,17 +204,19 @@ export function BusinessAcquisitionSection() {
                   </div>
 
                   <div className="md:col-span-4 flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" aria-hidden="true" />
+                    <CheckCircle2 className="h-4 w-4 text-success shrink-0" aria-hidden="true" />
                     <div>
-                      <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 inline-block">
+                      <span className="text-xs font-bold text-success bg-success/10 px-2.5 py-1 rounded-md border border-success/30 inline-block">
                         {item.meelte}
                       </span>
                     </div>
                   </div>
 
                   <div className="md:col-span-4 flex items-center gap-2 text-xs text-foreground-secondary">
-                    <span className="text-red-500 font-bold shrink-0">✕</span>
-                    <span className="line-through text-foreground-muted">{item.aggregators}</span>
+                    <span className="text-error font-bold shrink-0" aria-hidden="true">
+                      ✕
+                    </span>
+                    <span className="text-foreground-muted">{item.aggregators}</span>
                   </div>
                 </div>
               ))}
@@ -233,9 +252,9 @@ export function BusinessAcquisitionSection() {
                     {step.description}
                   </p>
                 </div>
-                <div className="mt-6 pt-3 border-t border-border/50 text-[11px] text-emerald-700 font-semibold flex items-center gap-1.5">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" aria-hidden="true" />
-                  <span>Guaranteed zero hidden fees</span>
+                <div className="mt-6 pt-3 border-t border-border/50 text-[11px] text-success font-semibold flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-success" aria-hidden="true" />
+                  <span>No commission deducted</span>
                 </div>
               </div>
             ))}
@@ -246,17 +265,17 @@ export function BusinessAcquisitionSection() {
         <div className="rounded-3xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-xl">
             <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-2">
-              Free Verification & Setup
+              Merchant onboarding
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Ready to list your local store or service?
+              Ready to list your local shop?
             </h3>
             <p className="mt-2 text-sm sm:text-base text-white/90 leading-relaxed">
-              Join local cafes, boutiques, tailors, clinics, and service pros already growing their presence in Bengaluru, Gaya, and Ranchi. Learn more on our dedicated{" "}
+              Meelte onboards shops in person in Bengaluru, Gaya and Ranchi. Read the dedicated{" "}
               <Link href="/for-merchants" className="underline decoration-accent/70 hover:decoration-white transition-colors font-semibold">
                 For Merchants
               </Link>{" "}
-              page.
+              page for what a shop can publish.
             </p>
           </div>
 
@@ -269,7 +288,7 @@ export function BusinessAcquisitionSection() {
                   className="w-full sm:w-auto font-bold shadow-soft text-accent-foreground"
                 >
                   <Store className="h-4 w-4" aria-hidden="true" />
-                  <span>Start Business Enquiry</span>
+                  <span>Start a merchant enquiry</span>
                 </Button>
               </Dialog.Trigger>
 
@@ -288,7 +307,7 @@ export function BusinessAcquisitionSection() {
                         <Dialog.Title className="text-lg font-bold text-foreground">
                           Merchant Onboarding Enquiry
                         </Dialog.Title>
-                        <span className="text-xs text-primary font-medium">Free • 0% Commission</span>
+                        <span className="text-xs text-primary font-medium">0% commission</span>
                       </div>
                     </div>
                     <Dialog.Close asChild>
@@ -303,7 +322,8 @@ export function BusinessAcquisitionSection() {
                   </div>
 
                   <p id="enquiry-dialog-description" className="mt-3 text-xs text-foreground-secondary leading-relaxed">
-                    Submit your business details below. Our local community coordinator will call you to verify your shop presence and configure your free storefront.
+                    Send us the shop details and a member of our field team will get in touch to
+                    set up your profile and publish your first offer.
                   </p>
 
                   <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-3.5" noValidate>
@@ -315,7 +335,7 @@ export function BusinessAcquisitionSection() {
                         id="businessName"
                         type="text"
                         required
-                        placeholder="e.g. Roast & Toast Cafe / Kalarang Handloom"
+                        placeholder="The name on your shop board"
                         value={formData.businessName}
                         onChange={(e) => {
                           setFormData({ ...formData, businessName: e.target.value });
@@ -389,12 +409,12 @@ export function BusinessAcquisitionSection() {
                           onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-canvas text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                         >
-                          <option>Food & Cafes</option>
-                          <option>Fashion & Apparel</option>
-                          <option>Community & Events</option>
-                          <option>Home Services</option>
-                          <option>Health & Wellness</option>
-                          <option>Retail & Others</option>
+                          <option>Food & beverage</option>
+                          <option>Fashion & apparel</option>
+                          <option>Home & repair services</option>
+                          <option>Health & wellness</option>
+                          <option>Retail</option>
+                          <option>Something else</option>
                         </select>
                       </div>
 
@@ -420,12 +440,22 @@ export function BusinessAcquisitionSection() {
                       type="submit"
                       variant="primary"
                       size="lg"
-                      disabled={submitting}
                       className="mt-2 w-full justify-center shadow-soft"
                     >
                       <Send className="h-4 w-4" aria-hidden="true" />
-                      <span>{submitting ? "Submitting..." : "Submit Verification Request"}</span>
+                      <span>Open email with these details</span>
                     </Button>
+
+                    <p className="text-[11px] text-foreground-secondary text-center leading-relaxed">
+                      This sends the enquiry through your own email app. Nothing is submitted
+                      until you send it. Prefer to talk?{" "}
+                      <a
+                        href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
+                        className="font-semibold text-primary underline"
+                      >
+                        Call {CONTACT_PHONE}
+                      </a>
+                    </p>
                   </form>
                 </Dialog.Content>
               </Dialog.Portal>

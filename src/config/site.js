@@ -6,7 +6,7 @@
 import {
   TARGET_CITIES,
   ALL_COVERED_AREAS,
-  CATEGORIES,
+  PLATFORM_AREAS,
   BRAND_COLORS,
   PILLARS,
 } from "../constants/app-constants";
@@ -14,9 +14,9 @@ import {
 export const APP_NAME = "Meelte";
 export const SITE_NAME = "Meelte";
 export const APP_TAGLINE = "Discover Opportunities. Build Connections. Create Experiences.";
-export const APP_DESCRIPTION = "Meelte is a hyper-local community platform connecting residents, local businesses, events, and job opportunities across India.";
-export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://meelte.com";
-export const API_BASE_URL = process.env.NEXT_PUBLIC_MEELTE_API_BASE_URL || "https://api.meelte.com";
+export const APP_DESCRIPTION = "Meelte is a hyper-local community platform connecting residents with nearby offers, events and people across India.";
+export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL;
+export const API_BASE_URL = process.env.NEXT_PUBLIC_MEELTE_API_BASE_URL;
 export const SUPPORT_EMAIL = "support@meelte.com";
 export const HR_EMAIL = "hr@meelte.com";
 export const CONTACT_PHONE = "+91-8884524444";
@@ -60,7 +60,7 @@ export const SITE_CONFIG = {
   SAME_AS_LINKS,
   TARGET_CITIES,
   ALL_COVERED_AREAS,
-  CATEGORIES,
+  PLATFORM_AREAS,
   BRAND_COLORS,
   PILLARS,
 };

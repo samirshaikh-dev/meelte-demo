@@ -171,7 +171,7 @@ export default function CareersPage() {
             </p>
 
             <p className="mt-4 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl">
-              We're a small, mission-driven team focused on helping people discover
+              We&apos;re a small, mission-driven team focused on helping people discover
               opportunities, connect with their neighbors, and grow local communities.
             </p>
 
@@ -241,7 +241,7 @@ export default function CareersPage() {
                 Perks & Benefits
               </Badge>
               <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-                Why you'll love working here
+                Why you&apos;ll love working here
               </h2>
               <p className="mt-4 text-base sm:text-lg text-foreground-secondary leading-relaxed">
                 We take care of our team so we can focus on building for our communities.
@@ -295,8 +295,8 @@ export default function CareersPage() {
                 No open roles at the moment
               </h3>
               <p className="mt-2 text-base text-foreground-secondary leading-relaxed max-w-xl mx-auto">
-                We're not actively hiring right now. If you believe you'd be a great
-                fit for Meelte, we'd still love to hear from you.
+                We&apos;re not actively hiring right now. If you believe you&apos;d be a great
+                fit for Meelte, we&apos;d still love to hear from you.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 <Button as="a" href={mailtoHref} variant="primary" size="lg">
@@ -312,11 +312,11 @@ export default function CareersPage() {
           <Container className="max-w-4xl">
             <Card className="p-8 sm:p-10 text-center shadow-card border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                Think you'd be a great fit?
+                Think you&apos;d be a great fit?
               </h2>
               <p className="mt-3 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
-                Tell us a bit about yourself and share your resume. We'll reach out
-                if there's a good fit.
+                Tell us a bit about yourself and share your resume. We&apos;ll reach out
+                if there&apos;s a good fit.
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
                 <Button

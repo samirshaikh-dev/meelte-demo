@@ -1,55 +1,47 @@
 # Meelte — Services & Feature Directory
 
-> Clean markdown summary of everything people, businesses, organizers, and employers can do on Meelte — the hyper-local community and commerce platform for India.
+> Clean markdown summary of what residents, businesses and event hosts can do on Meelte — the hyper-local community platform for India.
 
 Official Website: https://meelte.com
 Contact: support@meelte.com
 
 ---
 
-## 1. Hyper-Local Discovery
-- **URL**: https://meelte.com/#categories
+## 1. Local Offers (Shop Ads)
+- **URL**: https://meelte.com/discover#offers
 - **Category**: Discovery
-- **Overview**: Browse nearby dining, fashion boutiques, wellness clinics, trusted services, and events across 5 curated categories.
-- **For**: Residents looking for relevant local products, services, and happenings.
+- **Overview**: Shops and service businesses post a single-product ad or a shop ad carrying up to 100 products, priced as an original and final price or as a flat / "up to" percentage discount. Every ad runs from 12:00 AM on its start date to 11:59 PM on its end date.
+- **Viewer actions**: like, comment, share, get one-tap Google Maps directions, follow the shop.
+- **For**: Residents looking for current local offers, and independent shops without a marketing team.
 
-## 2. Neighborhood Community & Networking
-- **URL**: https://meelte.com/about
-- **Category**: Community
-- **Overview**: Connect with neighbors sharing language, cultural background, hobbies, and personal goals in a safe, privacy-respecting environment.
-- **For**: Newcomers to a city and residents looking to expand their local social circle.
-
-## 3. Community Event Creation & Hosting
-- **URL**: https://meelte.com/
+## 2. Local Events
+- **URL**: https://meelte.com/discover#events
 - **Category**: Events
-- **Overview**: Organize, publish, and drive attendance for neighborhood gatherings, weekend workshops, cultural festivals, and sports meetups.
-- **For**: Community organizers, clubs, and hosts.
+- **Overview**: Events carry a category, joining cost in ₹, start and end time, cover image, map location and public or private visibility. Attendees send a "Request to Join" alone or with a group, stating the group size; the host approves, rejects or removes people.
+- **For**: Individuals, clubs and small organisers running local gatherings, activities or paid meet-ups.
 
-## 4. Grow with Meelte (SMB Local Marketing)
-- **URL**: https://meelte.com/merchant
+## 3. People & Chat
+- **URL**: https://meelte.com/discover#people
+- **Category**: Community
+- **Overview**: Friends, follows, one-to-one chat with text, emoji, documents and location sharing, and audio or video calls. Every user can block and report. Finding new people is still rolling out.
+- **For**: Newcomers to a city and residents staying in touch with people they met locally.
+
+## 4. Grow with Meelte (Local Business Promotion)
+- **URL**: https://meelte.com/for-merchants
 - **Category**: Commerce
-- **Overview**: Promote local products and services directly to nearby residents without prohibitive commission fees or advertising overhead. Merchants keep 100% of sales (0% commission).
+- **Overview**: Shops are onboarded in person by Meelte's field team and can publish their offers to nearby residents, including menu or price-list import from a photo and AI-generated product images for items that were not photographed.
 - **For**: Local merchants, cafes, boutiques, clinics, and service providers.
-
-## 5. Local Jobs Board & HR Recruitment
-- **URL**: https://meelte.com/jobs
-- **Category**: Jobs
-- **Overview**: Streamlined local job listings where candidates apply with resume uploads and local employers manage applications via a dedicated dashboard.
-- **For**: Local job seekers and local employers/HR recruiters.
+- **Note**: Merchant pricing is not published.
 
 ---
 
-## Discovery Categories
+## What Meelte Does Not Do
 
-| Category | URL | What You'll Find |
-| :--- | :--- | :--- |
-| **Food** | https://meelte.com/category/food | Local dining, artisan foods, homemade bakes, street food, and neighborhood cafes. |
-| **Fashion** | https://meelte.com/category/fashion | Local boutiques, apparel, regional designers, and handmade accessories. |
-| **Events** | https://meelte.com/category/events | Community meetups, cultural festivals, workshops, and sports gatherings. |
-| **Services** | https://meelte.com/category/services | Verified home services, repairs, tutors, and local professionals. |
-| **Health** | https://meelte.com/category/health | Neighborhood clinics, fitness studios, and holistic wellness centers. |
+- No in-app payments, ticketing or escrow. Purchases are settled directly with the shop, and event costs are settled directly with the host.
+- No jobs board.
+- No identity or background verification of individual users.
 
 ---
 
 ## Availability
-Meelte is free for community members and available across India, with active community hubs in Bengaluru, Gaya, and Ranchi. The Android app is available on the Google Play Store (package: `com.meelte.classico`).
+Meelte is free for community members and live as an Android app, with operational hubs in Bengaluru, Gaya, and Ranchi. The Android app is available on the Google Play Store (package: `com.meelte.classico`). The web app is in development.

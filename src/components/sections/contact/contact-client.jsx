@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { TOAST_COPY, TOAST_ID, notifyError } from "@/lib/toast-feedback";
+import { TOAST_COPY, TOAST_ID, notifyError, notifyInfo } from "@/lib/toast-feedback";
 import { Container } from "@/components/layout/container";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -37,6 +37,29 @@ const CONTACT_PHONE_DISPLAY = "+91 88845 24444";
 
 /** Validation order matches visual order, so focus lands on the first thing needing attention. */
 const FIELD_ORDER = ["name", "email", "city", "message"];
+
+/**
+ * Compose a mailto: link from the form values.
+ *
+ * There is no contact endpoint yet (AI_RULE.md §2.1), so the form opens the user's own
+ * mail client with the message pre-filled. That is a real delivery path; pretending the
+ * message was received is not.
+ */
+function getMailtoHref({ name, email, phone, city, topic, message }) {
+  const subject = encodeURIComponent(`[${topic}] ${name} — ${city}`);
+  const body = encodeURIComponent(
+    [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone || "—"}`,
+      `City: ${city}`,
+      `Topic: ${topic}`,
+      "",
+      message,
+    ].join("\n")
+  );
+  return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+}
 
 export function ContactClient() {
   const [formData, setFormData] = useState({
@@ -94,12 +117,18 @@ export function ContactClient() {
 
     setIsSubmitting(true);
 
-    // TODO(backend): replace this simulated submit with a POST to API_ENDPOINTS.CONTACT via
-    // src/services/ once NEXT_PUBLIC_MEELTE_API_BASE_URL is provisioned (AI_RULE.md §2.1).
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 800);
+    // No backend endpoint is provisioned yet (AI_RULE.md §2.1), so the form hands the
+    // message to the user's mail client instead of claiming it was delivered.
+    // See `getMailtoHref` below for the composed link.
+    window.location.href = getMailtoHref(formData);
+
+    notifyInfo(TOAST_COPY.contactHandoff, {
+      id: TOAST_ID.contact,
+      description: TOAST_COPY.contactHandoffDescription(SUPPORT_EMAIL),
+    });
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
   };
 
   const handleReset = () => {
@@ -259,7 +288,7 @@ export function ContactClient() {
               <Card className="p-6 sm:p-8 shadow-card flex flex-col">
                 {isSubmitted ? (
                   <div className="py-10 text-center flex flex-col items-center flex-1 justify-center">
-                    <div className="h-16 w-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 border border-emerald-200">
+                    <div className="h-16 w-16 rounded-full bg-success/10 text-success flex items-center justify-center mb-5 border border-success/30">
                       <CheckCircle2 className="h-8 w-8" aria-hidden="true" />
                     </div>
                     <h2
@@ -267,20 +296,35 @@ export function ContactClient() {
                       tabIndex={-1}
                       className="text-2xl font-bold text-foreground focus:outline-none"
                     >
-                      Message Received!
+                      Message ready to send
                     </h2>
                     <p className="mt-2 text-sm text-foreground-secondary max-w-md leading-relaxed">
-                      Thank you for getting in touch. A representative will review your message and respond to you at <span className="font-semibold text-foreground">{formData.email}</span> during our operating hours.
+                      Your email app should have opened with the message. Send it to{" "}
+                      <span className="font-semibold text-foreground">{SUPPORT_EMAIL}</span> and
+                      we&apos;ll reply during our operating hours. Nothing reaches us until you
+                      send it.
                     </p>
-                    <Button
-                      variant="primary"
-                      size="md"
-                      onClick={handleReset}
-                      className="mt-6 shadow-soft"
-                      aria-label="Send another message"
-                    >
-                      Send Another Message
-                    </Button>
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                      <Button
+                        as="a"
+                        href={getMailtoHref(formData)}
+                        variant="primary"
+                        size="md"
+                        className="shadow-soft"
+                        aria-label={`Open the message in your email app to send it to ${SUPPORT_EMAIL}`}
+                      >
+                        <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span>Open email app again</span>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="md"
+                        onClick={handleReset}
+                        aria-label="Write another message"
+                      >
+                        Write another message
+                      </Button>
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>

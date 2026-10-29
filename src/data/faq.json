@@ -1,0 +1,62 @@
+[
+  {
+    "id": "faq-1",
+    "question": "What is Meelte and how does the platform work?",
+    "answer": "Meelte is a hyper-local community and commerce platform built for Indian neighbourhoods. Instead of a global feed of distant posts, it surfaces nearby offers, shops, events, and services — sorted by distance from your location, with a \"Max distance\" filter that defaults to 60 km."
+  },
+  {
+    "id": "faq-2",
+    "question": "How does Meelte protect user location and data privacy?",
+    "answer": "Privacy is our foundational principle. Your location is used only to filter and display listings and community meetups near you. We never log, monetise, package, or sell user location coordinates or browsing history to third-party ad brokers."
+  },
+  {
+    "id": "faq-3",
+    "question": "How can local merchants list their business with zero commission?",
+    "answer": "Local shops, cafes, boutiques, clinics and service businesses can publish a time-boxed offer, or a shop catalogue of up to 100 products, and Meelte deducts no commission from what they earn. Customers see the price, the discount and the shop's location, then settle the purchase directly with the shop rather than through an aggregator middleman."
+  },
+  {
+    "id": "faq-4",
+    "question": "Is Meelte free for community members and event organizers?",
+    "answer": "Yes — browsing nearby listings, following shops, chatting with people you meet, and creating events are all free for community members, with no subscription or app fee. Event hosts can set their own joining cost in ₹, which attendees pay directly to the host rather than to Meelte."
+  },
+  {
+    "id": "faq-5",
+    "question": "In which cities is Meelte currently available?",
+    "answer": "Meelte is focused on operational hubs in Bengaluru, Gaya, and Ranchi, where local communities and storefronts are onboarded in person by our field team. We are actively expanding to additional cities across India."
+  },
+  {
+    "id": "faq-7",
+    "question": "Where can users download and access the Meelte App?",
+    "answer": "The official Meelte mobile app is available on the Google Play Store for Android (package: com.meelte.classico). A browser-based web experience is in development and will be announced on this site once it goes live."
+  },
+  {
+    "id": "faq-8",
+    "question": "What can a local business post — a single offer or the whole menu?",
+    "answer": "Both. A merchant can publish a single-product ad or a shop ad carrying up to 100 products, priced as an original and final price or as a flat or \"up to\" percentage discount. Photographing a menu or price list fills in the item names and prices automatically, product photos can be generated for items that were not shot, and every ad runs from 12:00 AM on its start date until 11:59 PM on its end date."
+  },
+  {
+    "id": "faq-9",
+    "question": "How does joining an event on Meelte work?",
+    "answer": "Every event lists its category, joining cost in ₹, start and end time, map location, and whether it is public or private. You send a \"Request to Join\" — alone or with a group, stating how many people are coming — and the host approves or rejects it, and can remove attendees later if needed."
+  },
+  {
+    "id": "faq-10",
+    "question": "Can I host my own event or meet-up on Meelte?",
+    "answer": "Yes. Individuals, clubs, and small organisers can create an event with a cover image, category, joining cost in ₹, start and end time, pinned location, and public or private visibility. You control attendance through join requests and group sizes, and any joining fee is collected by you, directly from attendees."
+  },
+  {
+    "id": "faq-11",
+    "question": "How do payments work on Meelte?",
+    "answer": "Meelte does not process payments. Purchases are settled directly with the shop, and event fees are settled directly with the host — in person or through their own preferred payment method. Meelte is a discovery and connection platform, not a payment processor, ticketing service, or escrow."
+  },
+  {
+    "id": "faq-12",
+    "question": "How do the referral coins and Amazon vouchers work?",
+    "answer": "Every new account starts with 30 coins, and you earn 30 more for each friend who joins with your referral code, with milestones at 10, 50, and 100 invites. Coins redeem as an Amazon voucher of ₹100 or ₹500 once your profile is complete, capped at ₹500 in total per user, and vouchers are emailed within 7 business days."
+  },
+  {
+    "id": "faq-13",
+    "question": "How does Meelte keep listings and conversations safe?",
+    "answer": "Everyone on Meelte must be 13 or older. Ads and comments pass through community moderation, every user can report content, and every user can block or unblock people from chat. Shops are onboarded in person by our field team rather than self-declared. Meelte does not verify the identity of individual users, so meet in public places and use your own judgement."
+  }
+]

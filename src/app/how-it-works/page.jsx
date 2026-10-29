@@ -15,26 +15,25 @@ import { HowItWorksHero } from "./_components/how-it-works-hero";
    Canonical URL set via buildPageMetadata.
 ───────────────────────────────────────────── */
 export const metadata = buildPageMetadata({
-  title: "How Meelte Works — Roles, Platform & App Experience",
+  title: "How Meelte Works — Offers, Events, Chat & Roles",
   description:
-    "Learn how Meelte works for residents, local merchants, event hosts, service professionals, and job seekers. Free to post in most cases, direct contact with no middlemen, and hyperlocal discovery in Bengaluru, Gaya & Ranchi.",
+    "See how Meelte works for residents, shops, and event hosts: time-boxed offers from nearby businesses, events you request to join, and one-to-one chat. Live in Bengaluru, Gaya and Ranchi.",
   path: "/how-it-works",
   keywords: [
     "how Meelte works",
     "Meelte platform explained",
     "hyperlocal discovery app India",
-    "local business listing India",
-    "how to list business on Meelte",
+    "local shop offers near me",
+    "list an offer on Meelte",
     "local merchant platform India",
     "Meelte for residents",
     "Meelte for merchants",
-    "Meelte for event organizers",
-    "Meelte for service professionals",
+    "Meelte for event hosts",
     "Meelte app walkthrough",
-    "location based deals India",
+    "location based offers India",
     "neighborhood discovery platform",
     "community platform Bengaluru",
-    "local jobs Gaya Ranchi",
+    "local events Gaya Ranchi",
   ],
 });
 
@@ -49,33 +48,33 @@ function getHowItWorksJsonLd() {
       {
         "@type": "HowTo",
         "@id": `${APP_URL}/how-it-works#howto`,
-        name: "How to Use Meelte — Step-by-Step for Residents & Merchants",
+        name: "How to Use Meelte — Step-by-Step for Residents & Shops",
         description:
-          "Meelte connects residents, local merchants, event hosts, service professionals, and job seekers in hyperlocal neighborhoods across Bengaluru, Gaya, and Ranchi.",
+          "Meelte shows nearby shop offers, local events and one-to-one chat in Bengaluru, Gaya, and Ranchi.",
         url: `${APP_URL}/how-it-works`,
         step: [
           {
             "@type": "HowToStep",
             name: "Download the Meelte App",
-            text: "Install the Meelte app from Google Play Store. Available for Android devices across India.",
+            text: "Install the Meelte app from the Google Play Store. The Android app is live; the web app is still in development.",
             url: `${APP_URL}/how-it-works#download`,
           },
           {
             "@type": "HowToStep",
-            name: "Set your neighborhood radius",
-            text: "Allow location access to discover what's nearby. Browse by distance with a default radius of up to 60 km and filter by category.",
+            name: "Set your maximum distance",
+            text: "Allow location access so the feed can be sorted by distance. The \"Max distance\" filter defaults to 60 km and you can narrow it.",
             url: `${APP_URL}/how-it-works#ecosystem`,
           },
           {
             "@type": "HowToStep",
-            name: "Discover what's nearby",
-            text: "Browse listings across categories like Food & Dining, Fashion, Services, Events, and Jobs. Find time-boxed offers and joinable events near you.",
+            name: "Browse offers and events nearby",
+            text: "See time-boxed offers from nearby shops and local events with their joining cost. Offers leave the feed when their end date passes.",
             url: `${APP_URL}/how-it-works#product-tour`,
           },
           {
             "@type": "HowToStep",
-            name: "Connect directly",
-            text: "Call or WhatsApp merchants and hosts directly from the app. Transactions happen offline — Meelte does not take payments or commissions.",
+            name: "Reach out directly",
+            text: "Get one-tap Google Maps directions to the shop or venue, follow shops for their next offer, and ask a host to join an event. Meelte does not take payments or commissions.",
             url: `${APP_URL}/how-it-works#product-tour`,
           },
         ],
@@ -85,42 +84,35 @@ function getHowItWorksJsonLd() {
         "@id": `${APP_URL}/how-it-works#roles`,
         name: "Who Meelte Is For",
         description:
-          "Meelte serves five distinct roles in the neighborhood ecosystem.",
+          "Meelte serves four roles in the neighbourhood ecosystem.",
         itemListElement: [
           {
             "@type": "ListItem",
             position: 1,
             name: "Everyday Residents",
             description:
-              "Discover local dining, fashion boutiques, services, and weekend events nearby. Find time-boxed deals and joinable events with directions to the shop.",
+              "Browse time-boxed offers from nearby shops and local events, sorted by distance, with directions to the shop or venue.",
           },
           {
             "@type": "ListItem",
             position: 2,
-            name: "Local Merchants & Shopkeepers",
+            name: "Shops & Service Businesses",
             description:
-              "Post time-boxed offers or a shop catalogue for free in most cases. In-person onboarding is available, with simple tools like photo-to-menu import and AI product images. Connect directly with nearby customers.",
+              "Post a single-product ad or a shop catalogue of up to 100 items, with a price or discount and a defined run of dates. Onboarded in person by the field team.",
           },
           {
             "@type": "ListItem",
             position: 3,
-            name: "Event Hosts & Community Clubs",
+            name: "Event Hosts & Clubs",
             description:
-              "Publish local events and manage RSVPs with approval controls and group sizes. Share links with neighbors and notify followers of updates.",
+              "Publish local events with a joining cost and approve attendees through join requests that state group size.",
           },
           {
             "@type": "ListItem",
             position: 4,
-            name: "Service Professionals",
+            name: "Neighbours & New Arrivals",
             description:
-              "Connect directly with neighborhood clients for local services. Reach people nearby without paying lead-generation fees or broker commissions.",
-          },
-          {
-            "@type": "ListItem",
-            position: 5,
-            name: "Employers & Local Job Seekers",
-            description:
-              "Post or find local jobs and connect directly. Focus on nearby opportunities with a short commute.",
+              "Add friends, follow shops and hosts, and talk one to one with text, documents, location sharing, and audio or video calls.",
           },
         ],
       },
@@ -177,7 +169,7 @@ export default function HowItWorksPage() {
         {/* ── HERO ── */}
         <HowItWorksHero />
 
-        {/* ── SECTION 1: The Meelte Ecosystem — WHO it's for (5 roles) ── */}
+        {/* ── SECTION 1: The Meelte Ecosystem — WHO it's for (4 roles) ── */}
         <EcosystemSection />
 
         {/* ── SECTION 2: Product Experience — HOW it works in the app ── */}

@@ -30,24 +30,30 @@ export const TOAST_ID = {
   contact: "contact-feedback",
   merchant: "merchant-feedback",
   newsletter: "newsletter-feedback",
-  discover: "discover-feedback",
 };
 
-/** Canonical user-facing copy. Keep every message honest about what actually happened. */
+/**
+ * Canonical user-facing copy. Keep every message honest about what actually happened.
+ *
+ * The merchant enquiry has no backend endpoint yet (AI_RULE.md §2.1), so the form hands
+ * the enquiry to the user's mail client. The copy says that instead of claiming the
+ * request was received.
+ */
 export const TOAST_COPY = {
   contactValidation: "Please fix the highlighted fields and try again.",
+  contactHandoff: "Opening your email app with the message.",
+  contactHandoffDescription: (email) =>
+    `Send it to ${email} — nothing is submitted until you do.`,
   merchantValidation:
     "Please add your business name and phone number so we can reach you.",
-  merchantSuccess: "Enquiry received! Our team will reach out within 24 hours.",
-  merchantSuccessDescription: (phone) =>
-    `We'll call ${phone} to set up your business listing.`,
+  merchantHandoff: "Opening your email app with the enquiry details.",
+  merchantHandoffDescription: (email) =>
+    `Send it to ${email} — nothing is submitted until you do.`,
   newsletterInvalidEmail: "Please enter a valid email address.",
   newsletterSuccess: "You're subscribed. Neighborhood updates are on the way.",
   newsletterAlreadySubscribed: "You're already on the neighborhood update list.",
   newsletterNotConnected: `Newsletter signup isn't connected yet. Email ${SUPPORT_EMAIL} and we'll add you manually.`,
   newsletterError: "Couldn't subscribe right now. Please try again.",
-  filtersReset: (count) =>
-    `Filters cleared — showing all ${count} verified offerings.`,
 };
 
 /**

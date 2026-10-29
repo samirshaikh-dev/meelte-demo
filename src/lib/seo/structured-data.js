@@ -21,7 +21,6 @@ import {
 import {
   TARGET_CITIES,
   ALL_COVERED_AREAS,
-  CATEGORIES,
   PILLARS,
 } from "../../constants/app-constants";
 
@@ -55,11 +54,7 @@ export const LONGTAIL_KEYWORDS = [
   "hyperlocal discovery app India",
   "find local food and dining nearby",
   "neighborhood fashion boutiques",
-  "trusted home services near me",
   "local wellness and fitness studios",
-  "post local jobs in India",
-  "find local jobs near me",
-  "free job posting for local businesses",
   "community-moderated local platform",
   "privacy-first community app",
   "location never sold or shared app",
@@ -72,15 +67,13 @@ export const LONGTAIL_KEYWORDS = [
 
 /**
  * Voice-search and conversational questions (AEO), framed around the problems
- * prospective community members, merchants, job seekers, and recruiters ask.
+ * prospective community members, merchants and event hosts ask.
  */
 export const VOICE_QUERIES = [
   "what is Meelte and how does it work",
   "how can I find local events happening near me this weekend",
   "where can I meet like-minded people after moving to a new city in India",
   "how can local merchants promote products and services on Meelte",
-  "how do I post a local job opening on Meelte",
-  "where can I find local jobs with direct resume submission",
   "how does Meelte protect user location and data privacy",
   "how do I organize a community meetup or neighborhood gathering on Meelte",
   "which app helps me discover local artisan food and fashion boutiques nearby",
@@ -93,8 +86,7 @@ export const VOICE_QUERIES = [
 export const INDUSTRIES_SERVED = [
   "Hyper-Local Commerce",
   "Community Building & Social Networking",
-  "Event Organization & Ticketing",
-  "Local Job Recruitment",
+  "Community Event Hosting",
   "SMB Local Marketing & Advertising",
   "Food & Beverage Discovery",
   "Retail & Local Boutiques",
@@ -107,72 +99,58 @@ export const INDUSTRIES_SERVED = [
  */
 export const MEELTE_SERVICES = [
   {
-    id: "local-discovery",
-    name: "Hyper-Local Discovery",
+    id: "local-offers",
+    name: "Nearby Shop Offers",
     category: "Discovery",
-    description: "Browse nearby dining, fashion boutiques, wellness clinics, trusted services, and events across 5 curated categories.",
-    url: toAbsUrl("/#categories"),
+    description:
+      "Browse time-boxed offers from nearby shops and service businesses, each with a price or discount and a fixed run of dates.",
+    url: toAbsUrl("/discover#offers"),
+  },
+  {
+    id: "local-events",
+    name: "Community Event Hosting",
+    category: "Events",
+    description:
+      "Residents, clubs and organisers publish local events with a joining cost, and approve attendees through join requests that state group size.",
+    url: toAbsUrl("/discover#events"),
   },
   {
     id: "community-connection",
-    name: "Neighborhood Community & Networking",
+    name: "Neighborhood Community & Chat",
     category: "Community",
-    description: "Connect with neighbors sharing language, cultural background, hobbies, and personal goals in a safe, privacy-respecting environment.",
-    url: toAbsUrl("/about#community"),
-  },
-  {
-    id: "event-publishing",
-    name: "Community Event Creation & Hosting",
-    category: "Events",
-    description: "Organize, publish, and drive attendance for neighborhood gatherings, weekend workshops, cultural festivals, and sports meetups.",
-    url: toAbsUrl("/#create"),
-  },
-  {
-    id: "merchant-growth",
-    name: "Grow with Meelte (SMB Local Marketing)",
-    category: "Commerce",
-    description: "Promote local products and services directly to nearby residents without prohibitive commission fees or advertising overhead.",
-    url: toAbsUrl("/merchant"),
-  },
-  {
-    id: "local-jobs-board",
-    name: "Local Jobs Board & HR Recruitment",
-    category: "Jobs",
-    description: "Streamlined local job listings where candidates apply with resume uploads and local employers manage applications.",
-    url: toAbsUrl("/jobs"),
+    description:
+      "Connect with people you meet locally through friends, follows, one-to-one chat, and audio or video calls in a privacy-respecting environment.",
+    url: toAbsUrl("/discover#people"),
   },
 ];
 
 /**
- * Reusable Offer nodes for Meelte platform services
+ * Platform service nodes for the Organisation's OfferCatalog.
+ *
+ * These were previously emitted as `Offer` nodes with `price: "0"` and
+ * `unitText: "Free Community Membership"`, asserting a price the business has not
+ * published (project-context.md §13, docs/target_customer.md §4.4). They are now plain
+ * `Service` nodes: they describe what Meelte does, and claim nothing about cost.
  */
-const PLATFORM_OFFERS = MEELTE_SERVICES.map((service) => ({
-  "@type": "Offer",
-  price: "0",
-  priceCurrency: "INR",
-  priceSpecification: {
-    "@type": "UnitPriceSpecification",
-    price: "0",
-    priceCurrency: "INR",
-    unitText: "Free Community Membership",
-  },
+const PLATFORM_SERVICE_NODES = MEELTE_SERVICES.map((service) => ({
+  "@type": "Service",
+  name: service.name,
+  serviceType: service.name,
+  category: service.category,
+  description: service.description,
   url: service.url,
-  availability: "https://schema.org/InStock",
-  itemOffered: {
-    "@type": "Service",
-    name: service.name,
-    serviceType: service.name,
-    category: service.category,
-    description: service.description,
-    url: service.url,
-    provider: {
-      "@id": `${APP_URL}#organization`,
-    },
-    areaServed: TARGET_CITIES.map((city) => ({
-      "@type": "AdministrativeArea",
-      name: `${city}, India`,
-    })),
+  provider: {
+    "@id": `${APP_URL}#organization`,
   },
+  // `TARGET_CITIES` currently holds the country token ("India"), while the site copy and
+  // the field-team onboarding narrative name Bengaluru, Gaya and Ranchi. Appending
+  // ", India" unconditionally produced the malformed value "India, India", so the
+  // qualifier is only added when the token is not already the country. See the note on
+  // TARGET_CITIES in src/constants/app-constants.js for the confirmed coverage model.
+  areaServed: TARGET_CITIES.map((city) => ({
+    "@type": city === "India" ? "Country" : "AdministrativeArea",
+    name: city === "India" || city.includes("India") ? city : `${city}, India`,
+  })),
 }));
 
 /**
@@ -193,14 +171,6 @@ export function getRootJsonLd() {
       keywords: LONGTAIL_KEYWORDS.join(", "),
       publisher: {
         "@id": `${APP_URL}#organization`,
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${APP_URL}/search?q={search_term_string}`,
-        },
-        "query-input": "required name=search_term_string",
       },
       speakable: {
         "@type": "SpeakableSpecification",
@@ -235,7 +205,7 @@ export function getRootJsonLd() {
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Meelte Platform Features & Services",
-        itemListElement: PLATFORM_OFFERS,
+        itemListElement: PLATFORM_SERVICE_NODES,
       },
       contactPoint: [
         {
@@ -270,7 +240,7 @@ export function getRootJsonLd() {
         availability: "https://schema.org/InStock",
       },
       description:
-        "Download Meelte on Android to discover nearby events, connect with local people, support neighborhood merchants, and explore verified local job listings.",
+        "Download Meelte on Android to see time-boxed offers from nearby shops, request to join local events, and chat with people you meet around you.",
       inLanguage: "en-IN",
       isAccessibleForFree: true,
       publisher: {
@@ -322,59 +292,6 @@ export function getFaqPageJsonLd(faqs = []) {
           text: faq.answer,
         },
       })),
-  };
-}
-
-/**
- * JobPosting Schema generator for Meelte's local jobs board (/jobs/[id]).
- */
-export function getJobPostingJsonLd(job) {
-  if (!job) return null;
-
-  const url = toAbsUrl(job.slug ? `/jobs/${job.slug}` : job.id ? `/jobs/${job.id}` : "/jobs");
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    title: job.title,
-    description: job.description,
-    datePosted: job.datePosted || new Date().toISOString().split("T")[0],
-    ...(job.validThrough && { validThrough: job.validThrough }),
-    employmentType: job.employmentType || "FULL_TIME",
-    hiringOrganization: {
-      "@type": "Organization",
-      name: job.hiringOrganization || SITE_NAME,
-      ...(job.companyWebsite && { sameAs: toAbsUrl(job.companyWebsite) }),
-      url: APP_URL,
-    },
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: job.city || "Bengaluru",
-        ...(job.state && { addressRegion: job.state }),
-        addressCountry: "IN",
-      },
-    },
-    ...(job.salaryMin && {
-      baseSalary: {
-        "@type": "MonetaryAmount",
-        currency: job.salaryCurrency || "INR",
-        value: {
-          "@type": "QuantitativeValue",
-          minValue: Number(job.salaryMin),
-          ...(job.salaryMax && { maxValue: Number(job.salaryMax) }),
-          unitText: job.salaryUnit || "MONTH",
-        },
-      },
-    }),
-    applicantLocationRequirements: {
-      "@type": "Country",
-      name: "IN",
-    },
-    url,
-    inLanguage: "en-IN",
-    directApply: true,
   };
 }
 
@@ -464,7 +381,7 @@ export function getLocalBusinessJsonLd(business) {
 }
 
 /**
- * CollectionPage + ItemList Schema for listings (Jobs, Events, Categories).
+ * CollectionPage + ItemList Schema for listings (offers, events, people).
  */
 export function getCollectionPageJsonLd({ name, description, path, items = [] } = {}) {
   if (!name || !path) return null;
@@ -585,7 +502,7 @@ export function getContactPageJsonLd() {
     name: `Contact ${SITE_NAME}`,
     url: toAbsUrl("/contact"),
     description:
-      "Get in touch with the Meelte team for community support, merchant onboarding, local event partnerships, and job posting inquiries.",
+      "Get in touch with the Meelte team for community support, merchant onboarding, and local event partnerships.",
     inLanguage: "en-IN",
     mainEntity: {
       "@type": "Organization",
@@ -661,7 +578,6 @@ const structuredData = {
   getRootJsonLd,
   getBreadcrumbsJsonLd,
   getFaqPageJsonLd,
-  getJobPostingJsonLd,
   getEventJsonLd,
   getLocalBusinessJsonLd,
   getCollectionPageJsonLd,

@@ -1,45 +1,53 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
+import Link from "next/link";
 import {
   Store,
   ArrowRight,
   Percent,
   Users,
-  ShieldCheck,
-  Sparkles,
   MapPin,
   CheckCircle2,
 } from "@/lib/icons";
-import { PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 
 const FOR_MERCHANTS_BREADCRUMBS = [
   { name: "Home", path: "/" },
   { name: "For Merchants" },
 ];
 
+/**
+ * Merchant hero.
+ *
+ * Rewritten because the previous version stacked unconfirmed promises: "Direct calls /
+ * Customers call you directly", "WhatsApp inquiries / No masked numbers", "Free to get
+ * started", "Community verification in 24-48 hours", and a "Start Free Onboarding" button.
+ * Merchant pricing is not published, the app has no verification programme, and
+ * direct phone/WhatsApp handling is not confirmed in the product code
+ * (project-context.md §13, docs/target_customer.md §4.4).
+ */
 const trustPills = [
   {
     id: 1,
     label: "0% Commission",
     icon: Percent,
-    ariaLabel: "Zero commission on orders and walk-ins",
+    ariaLabel: "No commission deducted from a sale",
   },
   {
     id: 2,
-    label: "Direct Customer Connect",
+    label: "In-Person Setup",
     icon: Users,
-    ariaLabel: "Connect directly with customers via phone and WhatsApp",
+    ariaLabel: "Shops are onboarded in person by the field team",
   },
   {
     id: 3,
-    label: "Privacy First",
-    icon: ShieldCheck,
-    ariaLabel: "Location never sold or shared",
+    label: "Real Local Hubs",
+    icon: MapPin,
+    ariaLabel: "Bengaluru, Gaya and Ranchi",
   },
 ];
 
@@ -115,9 +123,9 @@ function MerchantPreview() {
           </div>
           <div className="px-5 pt-4 space-y-2">
             {[
-              { title: "Direct calls", desc: "Customers call you directly" },
-              { title: "WhatsApp inquiries", desc: "No masked numbers" },
-              { title: "Zero commission", desc: "Keep 100% of earnings" },
+              { title: "Time-boxed offer", desc: "Price, discount and dates" },
+              { title: "Up to 100 products", desc: "One product or a full catalogue" },
+              { title: "0% commission", desc: "No cut of what you earn" },
             ].map((item) => (
               <div
                 key={item.title}
@@ -127,15 +135,15 @@ function MerchantPreview() {
                   <p className="text-sm font-semibold text-foreground">{item.title}</p>
                   <p className="text-xs text-foreground-secondary">{item.desc}</p>
                 </div>
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />
+                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
               </div>
             ))}
           </div>
           <div className="px-5 pt-5 pb-6">
             <div className="rounded-2xl bg-gradient-to-r from-primary via-primary-hover to-primary-royal px-4 py-3 text-white flex items-center justify-between shadow-[0_40px_80px_-40px_rgba(109,59,179,0.9)]">
               <div>
-                <p className="text-sm font-semibold">Free to get started</p>
-                <p className="text-xs text-white/80">Community verification in 24-48 hours</p>
+                <p className="text-sm font-semibold">Set up in person</p>
+                <p className="text-xs text-white/80">A field team member visits the shop</p>
               </div>
               <Percent className="h-5 w-5" aria-hidden="true" />
             </div>
@@ -232,7 +240,9 @@ export function ForMerchantsHero() {
               variants={fadeUpVariants}
               className="mt-5 max-w-xl text-lg sm:text-xl text-foreground-secondary leading-relaxed"
             >
-              List your shop, cafe, boutique, clinic, or service on Meelte and connect directly with nearby customers. No middleman fees. No masked numbers. Just more walk-ins.
+              Put your shop&apos;s offer in front of the people already nearby. Publish a single
+              product or a catalogue of up to 100, with a price, a discount and the dates it
+              runs.
             </motion.p>
 
             <motion.div
@@ -248,15 +258,13 @@ export function ForMerchantsHero() {
               >
                 <span className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-indigo-500 to-violet-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <Store className="h-5 w-5" aria-hidden="true" />
-                <span>Start Free Onboarding</span>
+                <span>Start an onboarding enquiry</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
               </Button>
 
               <Button
-                as="a"
-                href={PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                as={Link}
+                href="/how-it-works"
                 variant="outline"
                 size="lg"
                 className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
@@ -271,16 +279,16 @@ export function ForMerchantsHero() {
               className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-foreground-secondary lg:justify-start"
             >
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-                <span>Free community verification</span>
+                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
+                <span>Onboarded in person</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-                <span>Direct WhatsApp & calls</span>
+                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
+                <span>Up to 100 products per shop ad</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" />
-                <span>Serving Bengaluru, Gaya & Ranchi</span>
+                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
+                <span>Serving Bengaluru, Gaya &amp; Ranchi</span>
               </div>
             </motion.div>
           </motion.div>

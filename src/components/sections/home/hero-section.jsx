@@ -8,7 +8,6 @@ import {
   Navigation,
   MessageCircle,
   Tag,
-  Coffee,
   Users,
   Sparkles,
   Store,
@@ -18,23 +17,31 @@ import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
+/**
+ * Hero visuals.
+ *
+ * The floating cards and phone mock previously named invented businesses at invented
+ * distances ("Chai Corner - ₹40 / 200m away", "Sunday Yoga Meetup / 450m away"). No such
+ * listings exist, and the product's real default sort is 60 km, not metres. The cards now
+ * name the three real areas and the mock shows interface shape with generic labels only.
+ */
 const floatingCards = [
   {
     id: 1,
-    text: "Chai Corner - ₹40",
-    subtext: "200m away",
-    icon: Coffee,
-    emoji: "☕",
+    text: "Weekend offer",
+    subtext: "Price and end date",
+    icon: Tag,
+    emoji: "🏷️",
     className: "top-[8%] left-[6%] lg:left-[10%]",
     delay: 0.4,
     floatDuration: 6,
   },
   {
     id: 2,
-    text: "Sunday Yoga Meetup",
-    subtext: "450m away",
+    text: "Local event",
+    subtext: "Host approves who joins",
     icon: Users,
-    emoji: "🧘",
+    emoji: "🎉",
     className: "top-[22%] right-[4%] lg:right-[8%]",
     delay: 0.6,
     floatDuration: 7,
@@ -46,19 +53,19 @@ const trustPills = [
     id: 1,
     label: "Hyper-local (60km)",
     icon: MapPin,
-    ariaLabel: "Hyper-local within 60km radius",
+    ariaLabel: "Nearby listings sorted by distance, with a 60 km default",
   },
   {
     id: 2,
-    label: "Exclusive Discounts",
+    label: "Shop Offers",
     icon: Tag,
-    ariaLabel: "Exclusive local discounts and offers",
+    ariaLabel: "Time-boxed offers set by nearby shops",
   },
   {
     id: 3,
     label: "Direct Chat",
     icon: MessageCircle,
-    ariaLabel: "Direct chat with local businesses",
+    ariaLabel: "Chat one to one with people and shops you follow",
   },
 ];
 
@@ -173,7 +180,7 @@ function PhoneMockup() {
             <div className="rounded-2xl bg-white shadow-soft px-4 py-3 flex items-center justify-between">
               <div>
                 <p className="text-xs text-foreground-secondary">Discover nearby</p>
-                <p className="text-sm font-semibold text-foreground">Shops • Events • Services</p>
+                <p className="text-sm font-semibold text-foreground">Offers • Events • Chat</p>
               </div>
               <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-indigo-500 flex items-center justify-center shadow-[0_10px_40px_-12px_rgba(109,59,179,0.9)]">
                 <Navigation className="h-4 w-4 text-white" aria-hidden="true" />
@@ -182,9 +189,9 @@ function PhoneMockup() {
           </div>
           <div className="px-5 pt-4 space-y-2">
             {[
-              { title: "Chai Corner", tag: "Food • ₹40 • 200m away" },
-              { title: "Sunday Yoga Meetup", tag: "Events • 450m away" },
-              { title: "Local Grocery Store", tag: "Food • ₹120 • 650m away" },
+              { title: "Weekend shop offer", tag: "Price and end date shown" },
+              { title: "Local event", tag: "Joining cost set by the host" },
+              { title: "One-to-one chat", tag: "Text, location, audio and video" },
             ].map((item) => (
               <div
                 key={item.title}
@@ -352,7 +359,8 @@ export function HeroSection() {
               variants={fadeUpVariants}
               className="mt-5 max-w-xl text-lg sm:text-xl text-foreground-secondary leading-relaxed"
             >
-              Find local shops, exclusive offers, and community events right around the corner. The web app is coming soon—join us on mobile today.
+              Find time-boxed offers from shops near you and local events you can ask to
+              join. The web app is coming soon — the Android app is live on Google Play today.
             </motion.p>
 
             <motion.div
@@ -393,7 +401,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, type: "spring", stiffness: 110, damping: 18 }}
-            className="relative flex items-center justify-center"
+            className="relative flex flex-col items-center justify-center gap-14"
           >
             <div className="relative">
               <PhoneMockup />
@@ -401,6 +409,9 @@ export function HeroSection() {
                 <FloatingCard key={card.id} card={card} />
               ))}
             </div>
+            <p className="text-[11px] text-foreground-secondary text-center max-w-[260px] leading-relaxed">
+              Illustrative interface — sample content, not a real listing.
+            </p>
           </motion.div>
         </div>
       </Container>

@@ -7,12 +7,8 @@ import {
   MapPin,
   Users,
   CalendarDays,
-  Wrench,
-  Briefcase,
-  ShoppingBag,
   Store,
   UserPlus,
-  Sparkles,
 } from "@/lib/icons";
 import { PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
@@ -25,11 +21,20 @@ const HOW_IT_WORKS_BREADCRUMBS = [
   { name: "How It Works" },
 ];
 
+/**
+ * Hero cards.
+ *
+ * The previous set advertised "Local Jobs" and "Service Pros" as platform roles, and the
+ * phone mock below showed invented businesses at invented distances ("Chai Corner • 200m",
+ * "Weekend Badminton • 450m"). Neither is in the product (docs/target_customer.md §1, §5),
+ * so the cards now name the three real areas plus the privacy position, and the mock shows
+ * interface shape without any named listing.
+ */
 const floatingCards = [
   {
     id: 1,
-    text: "Local Merchants",
-    subtext: "Post offers for free",
+    text: "Local Shops",
+    subtext: "Post time-boxed offers",
     icon: Store,
     emoji: "🏪",
     className: "top-[8%] left-[6%] lg:left-[10%]",
@@ -39,7 +44,7 @@ const floatingCards = [
   {
     id: 2,
     text: "Community Events",
-    subtext: "Approve RSVPs",
+    subtext: "Host approves who joins",
     icon: CalendarDays,
     emoji: "🎉",
     className: "top-[22%] right-[4%] lg:right-[8%]",
@@ -48,20 +53,20 @@ const floatingCards = [
   },
   {
     id: 3,
-    text: "Service Pros",
-    subtext: "Connect directly",
-    icon: Wrench,
-    emoji: "🔧",
+    text: "Neighbours & Chat",
+    subtext: "1:1 chat and calls",
+    icon: Users,
+    emoji: "💬",
     className: "bottom-[28%] left-[2%] lg:left-[6%]",
     delay: 0.8,
     floatDuration: 6.5,
   },
   {
     id: 4,
-    text: "Local Jobs",
-    subtext: "Nearby opportunities",
-    icon: Briefcase,
-    emoji: "💼",
+    text: "Location Privacy",
+    subtext: "Never sold or shared",
+    icon: MapPin,
+    emoji: "🔒",
     className: "bottom-[14%] right-[8%] lg:right-[12%]",
     delay: 1.0,
     floatDuration: 7.5,
@@ -200,7 +205,7 @@ function PhoneMockup() {
             <div className="rounded-2xl bg-white shadow-soft px-4 py-3 flex items-center justify-between">
               <div>
                 <p className="text-xs text-foreground-secondary">Discover nearby</p>
-                <p className="text-sm font-semibold text-foreground">Offers • Events • Jobs</p>
+                <p className="text-sm font-semibold text-foreground">Offers • Events • Chat</p>
               </div>
               <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-indigo-500 flex items-center justify-center shadow-[0_10px_40px_-12px_rgba(109,59,179,0.9)]">
                 <ArrowRight className="h-4 w-4 text-white" aria-hidden="true" />
@@ -209,9 +214,9 @@ function PhoneMockup() {
           </div>
           <div className="px-5 pt-4 space-y-2">
             {[
-              { title: "Chai Corner", tag: "Food • 200m • Offer ends today" },
-              { title: "Weekend Badminton", tag: "Events • 450m • RSVP required" },
-              { title: "AC Repair Service", tag: "Services • 650m • Direct contact" },
+              { title: "Weekend shop offer", tag: "Price and end date shown" },
+              { title: "Local event", tag: "Ask to join with your group" },
+              { title: "One-to-one chat", tag: "Text, location, audio and video" },
             ].map((item) => (
               <div
                 key={item.title}
@@ -228,8 +233,8 @@ function PhoneMockup() {
           <div className="px-5 pt-5 pb-6">
             <div className="rounded-2xl bg-gradient-to-r from-primary via-indigo-500 to-fuchsia-400 px-4 py-3 text-white flex items-center justify-between shadow-[0_40px_80px_-40px_rgba(99,102,241,0.9)]">
               <div>
-                <p className="text-sm font-semibold">Connect directly</p>
-                <p className="text-xs text-white/80">Call or WhatsApp</p>
+                <p className="text-sm font-semibold">Ask the host to join</p>
+                <p className="text-xs text-white/80">Group size stated up front</p>
               </div>
               <Users className="h-5 w-5" aria-hidden="true" />
             </div>
@@ -381,7 +386,9 @@ export function HowItWorksHero() {
               variants={fadeUpVariants}
               className="mt-5 max-w-xl text-lg sm:text-xl text-foreground-secondary leading-relaxed"
             >
-              Discover time-boxed offers, joinable events, local services, and jobs nearby. Connect directly with merchants and hosts — transactions happen offline.
+              See time-boxed offers from nearby shops, local events you can ask to join, and
+              one-to-one chat with the people you meet. Purchases and event costs are settled
+              directly — Meelte does not take payments.
             </motion.p>
 
             <motion.div

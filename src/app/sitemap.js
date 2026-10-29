@@ -1,81 +1,37 @@
 import { APP_URL } from "../config/site";
-import { CATEGORIES } from "../constants/app-constants";
 
 // Stable release date for static pages to ensure search engine crawl trust & deterministic SSG
 const STABLE_RELEASE_DATE = "2026-08-01T00:00:00.000Z";
 
+/**
+ * XML sitemap.
+ *
+ * Only routes that actually exist are listed. Previous versions advertised
+ * /jobs, /merchant, /sitemap and five /category/{slug} pages — none of which are
+ * implemented — which sent crawlers to 404s (project-context.md §13 known issues).
+ */
 export default function sitemap() {
   const siteUrl = APP_URL || "https://meelte.com";
 
-  const staticPages = [
-    {
-      url: siteUrl,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: `${siteUrl}/discover`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "daily",
-      priority: 0.95,
-    },
-    {
-      url: `${siteUrl}/about`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/jobs`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/merchant`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${siteUrl}/careers`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/contact`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/privacy`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/terms`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/sitemap`,
-      lastModified: STABLE_RELEASE_DATE,
-      changeFrequency: "monthly",
-      priority: 0.3,
-    },
+  const routes = [
+    { path: "", changeFrequency: "weekly", priority: 1.0 },
+    { path: "/discover", changeFrequency: "weekly", priority: 0.95 },
+    { path: "/for-merchants", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/how-it-works", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/about", changeFrequency: "monthly", priority: 0.85 },
+    { path: "/signup", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/contact", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/faq", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/careers", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/support", changeFrequency: "monthly", priority: 0.5 },
+    { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const categoryPages = (CATEGORIES || []).map((category) => ({
-    url: `${siteUrl}/category/${category.slug}`,
+  return routes.map((route) => ({
+    url: `${siteUrl}${route.path}`,
     lastModified: STABLE_RELEASE_DATE,
-    changeFrequency: "weekly",
-    priority: 0.8,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
-
-  return [...staticPages, ...categoryPages];
 }

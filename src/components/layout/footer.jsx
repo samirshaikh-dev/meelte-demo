@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { QrCode, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "@/lib/icons";
+import { PLATFORM_AREAS } from "@/constants/app-constants";
 import { Container } from "./container";
 import { PLAY_STORE_URL, SOCIAL_LINKS } from "../../config/site";
 import { NewsletterForm } from "../footer/newsletter-form";
@@ -10,14 +11,21 @@ import { FooterColumn } from "../footer/footer-column";
 
 const CURRENT_YEAR = 2026;
 
-const DISCOVERY_LINKS = [
-  { label: "Food & Cafes", href: "/discover" },
-  { label: "Fashion & Boutiques", href: "/discover" },
-  { label: "Community & Events", href: "/discover" },
-  { label: "Home Services", href: "/discover" },
-  { label: "Health & Wellness", href: "/discover" },
-  { label: "Local Direct Jobs", href: "/jobs" },
-];
+/**
+ * Discovery shortcuts.
+ *
+ * Derived from PLATFORM_AREAS — the three capabilities that exist in the product
+ * (docs/target_customer.md §1) — so the footer can never drift from the /discover
+ * section headings, the CollectionPage ItemList, or the hero copy (AI_RULE.md §2.3).
+ *
+ * Each href targets a section id that <DiscoverAreas> actually renders, so the
+ * fragments resolve on the page instead of pointing at dead anchors.
+ */
+const DISCOVERY_LINKS = PLATFORM_AREAS.map((area) => ({
+  id: area.id,
+  label: area.name,
+  href: `/discover#${area.anchor}`,
+}));
 
 const COMPANY_LINKS = [
   { label: "About Us", href: "/about" },
@@ -26,8 +34,7 @@ const COMPANY_LINKS = [
   { label: "For Merchants", href: "/for-merchants" },
   { label: "Careers", href: "/careers" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Trust & Safety", href: "/#trust" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export function Footer() {
@@ -83,7 +90,7 @@ export function Footer() {
 
             <div className="inline-flex w-fit items-center gap-2 rounded-xl border border-primary/10 bg-surface-muted px-3 py-1.5 text-xs font-semibold text-primary">
               <ShieldCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-              <span>Location processed on-device • Never sold</span>
+              <span>Location never sold or shared</span>
             </div>
           </div>
 
@@ -91,13 +98,13 @@ export function Footer() {
             <FooterColumn title="Discovery">
               <ul className="flex flex-col gap-2" role="list">
                 {DISCOVERY_LINKS.map((item) => (
-                  <li key={item.label}>
-                    <a
+                  <li key={item.id}>
+                    <Link
                       href={item.href}
                       className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -141,6 +148,9 @@ export function Footer() {
                 </h3>
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   <StoreButton type="google" href={PLAY_STORE_URL} />
+                  {/* The iOS listing URL is still with the app developer. The owner has
+                      chosen to keep the button in place with href="#" until it arrives —
+                      swap it for the real App Store URL and delete this comment then. */}
                   <StoreButton type="apple" href="#" />
                 </div>
               </div>

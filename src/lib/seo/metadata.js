@@ -59,8 +59,6 @@ export const metadata = {
     "local businesses Bengaluru",
     "local community Gaya",
     "local events Ranchi",
-    "local jobs board India",
-    "local jobs Bengaluru",
     "neighborhood community network",
     "connect with neighbors",
     "privacy-first community app",
@@ -74,7 +72,7 @@ export const metadata = {
     "hyperlocal discovery India",
     "community events near me",
     "weekend events near me",
-    "find local jobs near me",
+    "local shop offers near me",
   ],
   authors: [{ name: SITE_NAME, url: APP_URL }],
   creator: SITE_NAME,
@@ -267,7 +265,7 @@ export function buildArticleMetadata({
 }
 
 /**
- * Build metadata for collection/listing pages (jobs, events, categories)
+ * Build metadata for collection/listing pages (events, offers, areas)
  */
 export function buildCollectionMetadata({
   title,

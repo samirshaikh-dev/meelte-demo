@@ -1,4 +1,1 @@
-export { DiscoverClient } from "./discover-client";
-export { DISCOVERY_CATEGORIES } from "./constants";
-
-
+export { DiscoverAreas } from "./discover-areas";

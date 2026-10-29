@@ -13,13 +13,13 @@ import { ForMerchantsHero } from "./_components/for-merchants-hero";
    Merchant-focused intent keywords.
 ───────────────────────────────────────────── */
 export const metadata = buildPageMetadata({
-  title: "List Your Business on Meelte — 0% Commission Local Store Listing",
+  title: "List Your Shop on Meelte — 0% Commission Local Offers",
   description:
-    "Grow your local business on Meelte with 0% commission. List your shop, cafe, boutique, clinic, or service for free. Direct calls & WhatsApp from nearby customers in Bengaluru, Gaya & Ranchi.",
+    "Promote your shop to nearby residents on Meelte with 0% commission. Publish a single offer or a catalogue of up to 100 items, with a price, a discount and a defined run of dates. Live in Bengaluru, Gaya & Ranchi.",
   path: "/for-merchants",
   keywords: [
     "list business on Meelte",
-    "free business listing India",
+    "local business listing India",
     "zero commission food delivery alternative",
     "promote local business",
     "hyperlocal business listing",
@@ -27,7 +27,6 @@ export const metadata = buildPageMetadata({
     "grow local store",
     "Meelte for merchants",
     "0% commission business platform",
-    "direct customer marketing India",
     "local business advertising Bengaluru",
     "neighborhood store promotion",
   ],
@@ -43,27 +42,27 @@ function getForMerchantsJsonLd() {
       {
         "@type": "HowTo",
         "@id": `${APP_URL}/for-merchants#howto`,
-        name: "How to List Your Business on Meelte — Free, 0% Commission",
+        name: "How to List Your Business on Meelte",
         description:
-          "Get your local store discovered by nearby customers with direct contact and zero commission fees.",
+          "Promote a local shop to nearby residents with a time-boxed offer and no commission deducted.",
         url: `${APP_URL}/for-merchants`,
         step: [
           {
             "@type": "HowToStep",
-            name: "Submit Quick Enquiry",
-            text: "Fill out the merchant enquiry form with your business name, category, phone number, and city.",
+            name: "Submit an enquiry",
+            text: "Send your business name, category, phone number, and city, or call the merchant desk directly.",
             url: `${APP_URL}/for-merchants#merchant-enquiry`,
           },
           {
             "@type": "HowToStep",
-            name: "Community Verification",
-            text: "Our local coordinator verifies your physical presence to maintain a trusted, spam-free directory.",
+            name: "Meet the field team",
+            text: "A member of Meelte's field team visits the shop in person and sets up the profile.",
             url: `${APP_URL}/for-merchants#merchant-enquiry`,
           },
           {
             "@type": "HowToStep",
-            name: "Storefront Goes Live",
-            text: "Your digital profile, contact details, and catalog become discoverable to nearby residents on the Meelte App.",
+            name: "Publish your first offer",
+            text: "Add a single product or a catalogue of up to 100 items with a price or discount and the dates it should run. It goes live at 12:00 AM on the start date.",
             url: `${APP_URL}/for-merchants#merchant-enquiry`,
           },
         ],
@@ -71,9 +70,9 @@ function getForMerchantsJsonLd() {
       {
         "@type": "Service",
         "@id": `${APP_URL}/for-merchants#service`,
-        name: "Meelte Merchant Onboarding — 0% Commission Local Business Listing",
+        name: "Meelte Merchant Onboarding — Local Business Promotion",
         description:
-          "Free business listing platform connecting local merchants directly with nearby customers. No commission cuts, direct phone and WhatsApp contact, hyperlocal discoverability.",
+          "Local business promotion for shops, cafes and service businesses: publish time-boxed offers to nearby residents. Meelte deducts no commission on a sale.",
         provider: {
           "@id": `${APP_URL}#organization`,
         },
@@ -82,13 +81,6 @@ function getForMerchantsJsonLd() {
           { "@type": "City", name: "Gaya" },
           { "@type": "City", name: "Ranchi" },
         ],
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "INR",
-          description: "Free listing with 0% commission on orders and walk-ins",
-          availability: "https://schema.org/InStock",
-        },
         serviceType: "Local Business Promotion",
       },
       {

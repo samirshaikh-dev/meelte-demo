@@ -69,7 +69,7 @@ export function NewsletterForm() {
       <div className="flex flex-col gap-1">
         <p className="text-sm font-semibold text-foreground">Get neighborhood updates</p>
         <p className="text-xs text-foreground-secondary">
-          New shops, events and jobs near you.
+          New shops, events and people near you.
         </p>
       </div>
 
