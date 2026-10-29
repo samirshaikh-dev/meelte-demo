@@ -23,8 +23,15 @@ import {
   ALL_COVERED_AREAS,
   PILLARS,
 } from "../../constants/app-constants";
+import { OG_IMAGE_PATH } from "./metadata";
 
 export const SAME_AS = SAME_AS_LINKS;
+
+/**
+ * Brand logo referenced by Organization / publisher nodes.
+ * Served from `src/app/icon.png` (512×512), which Next.js exposes at `/icon.png`.
+ */
+export const BRAND_LOGO_PATH = "/icon.png";
 
 function toAbsUrl(path = "") {
   if (!path) return APP_URL;
@@ -32,8 +39,8 @@ function toAbsUrl(path = "") {
   return `${APP_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-function toAbsImage(image = "/images/og-image.png") {
-  if (!image) return `${APP_URL}/images/og-image.png`;
+function toAbsImage(image = OG_IMAGE_PATH) {
+  if (!image) return `${APP_URL}${OG_IMAGE_PATH}`;
   if (image.startsWith("http://") || image.startsWith("https://")) return image;
   return `${APP_URL}${image.startsWith("/") ? image : `/${image}`}`;
 }
@@ -186,11 +193,11 @@ export function getRootJsonLd() {
       url: APP_URL,
       logo: {
         "@type": "ImageObject",
-        url: toAbsImage("/images/logo.svg"),
+        url: toAbsImage(BRAND_LOGO_PATH),
         width: 512,
         height: 512,
       },
-      image: toAbsImage("/images/og-image.png"),
+      image: toAbsImage(OG_IMAGE_PATH),
       email: SUPPORT_EMAIL,
       telephone: CONTACT_PHONE,
       slogan: APP_TAGLINE,
@@ -438,7 +445,7 @@ export function getArticleJsonLd(article = {}) {
       "@id": `${APP_URL}#organization`,
       logo: {
         "@type": "ImageObject",
-        url: toAbsImage("/images/logo.svg"),
+        url: toAbsImage(BRAND_LOGO_PATH),
       },
     },
     mainEntityOfPage: {
