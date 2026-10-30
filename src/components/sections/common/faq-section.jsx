@@ -24,12 +24,15 @@ export { FAQ_ITEMS };
  *   questions than the full FAQ.
  * @param {string} [description]
  *   Supporting line under the heading.
+ * @param {boolean} [showMerchantLink]
+ *   Whether to show the merchant desk link in the support footer.
  */
 export function FaqSection({
   items = FAQ_ITEMS,
   viewAllHref,
   title = "Clear, honest answers about Meelte.",
   description = "Everything you need to know about privacy, city coverage, merchant listings, events, payments, referrals, and app access.",
+  showMerchantLink = true,
 }) {
   const faqs = Array.isArray(items) && items.length > 0 ? items : FAQ_ITEMS;
   const firstFaqId = faqs[0]?.id;
@@ -110,12 +113,14 @@ export function FaqSection({
             >
               Contact Support →
             </a>
-            <Link
-              href="/for-merchants"
-              className="text-xs font-bold text-foreground bg-surface hover:bg-surface-subtle border border-border px-3.5 py-2 rounded-xl transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
-            >
-              Merchant desk
-            </Link>
+            {showMerchantLink && (
+              <Link
+                href="/for-merchants"
+                className="text-xs font-bold text-foreground bg-surface hover:bg-surface-subtle border border-border px-3.5 py-2 rounded-xl transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+              >
+                Merchant desk
+              </Link>
+            )}
           </div>
         </div>
       </Container>

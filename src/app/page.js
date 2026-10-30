@@ -3,21 +3,19 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import {
   HeroSection,
-  BusinessAcquisitionSection,
+  ProductExperienceSection,
   FinalConversionCTA,
 } from "@/components/sections/home";
-import { TrustCredibilitySection, FaqSection } from "@/components/sections/common";
+import { FaqSection } from "@/components/sections/common";
 import { FAQ_ITEMS } from "@/constants/faq-constants";
 import { getFaqPageJsonLd } from "@/lib/seo/structured-data";
 
 /**
- * Homepage FAQ teaser: a short subset of `src/data/faq.json` (the single copy
- * source). The full set stays on /faq, and the homepage FAQPage JSON-LD is
- * generated from exactly these same items so schema never claims content that
- * is not rendered here.
+ * The homepage FAQ stays resident-focused; merchant details live on
+ * /for-merchants. JSON-LD uses this exact subset so it matches the page.
  */
-const HOMEPAGE_FAQ_COUNT = 4;
-const HOMEPAGE_FAQS = FAQ_ITEMS.slice(0, HOMEPAGE_FAQ_COUNT);
+const HOMEPAGE_FAQ_IDS = new Set(["faq-1", "faq-2", "faq-5", "faq-7"]);
+const HOMEPAGE_FAQS = FAQ_ITEMS.filter((faq) => HOMEPAGE_FAQ_IDS.has(faq.id));
 
 export default function HomePage() {
   const faqJsonLd = getFaqPageJsonLd(HOMEPAGE_FAQS);
@@ -50,20 +48,17 @@ export default function HomePage() {
         {/* ── SECTION 2: High-Impact Hero with Interactive Community Pulse ── */}
         <HeroSection />
 
-        {/* ── SECTION 3: Dedicated Merchant & Business Acquisition ── */}
-        <BusinessAcquisitionSection />
+        {/* ── SECTION 3: Resident-focused product walkthrough ── */}
+        <ProductExperienceSection />
 
-        {/* ── SECTION 4: Trust, Credibility & Institutional Guarantees ── */}
-        <TrustCredibilitySection />
-
-        {/* ── SECTION 5: Homepage FAQ Teaser (first 4 questions, full set on /faq) ── */}
+        {/* ── SECTION 4: Resident-focused FAQ teaser ── */}
         <FaqSection items={HOMEPAGE_FAQS} viewAllHref="/faq" />
 
-        {/* ── SECTION 6: Conversion-Focused Final Dual Action ── */}
+        {/* ── SECTION 5: Resident and merchant next steps ── */}
         <FinalConversionCTA />
       </main>
 
-      {/* ── SECTION 7: Global Multi-Column Directory Footer ── */}
+      {/* ── Global multi-column directory footer ── */}
       <Footer />
     </div>
   );

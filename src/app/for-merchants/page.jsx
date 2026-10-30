@@ -2,11 +2,39 @@ import React from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { BusinessAcquisitionSection } from "@/components/sections/home";
-import { TrustCredibilitySection, FaqSection } from "@/components/sections/common";
-import { FinalConversionCTA } from "@/components/sections/home";
+import { FaqSection } from "@/components/sections/common";
+import { Container } from "@/components/layout/container";
+import { Camera, MapPin, Tag } from "@/lib/icons";
 import { buildPageMetadata } from "@/lib/seo/metadata";
+import { FAQ_ITEMS } from "@/constants/faq-constants";
+import { getFaqPageJsonLd } from "@/lib/seo/structured-data";
 import { APP_URL } from "@/config/site";
 import { ForMerchantsHero } from "./_components/for-merchants-hero";
+
+const MERCHANT_FAQ_IDS = new Set(["faq-3", "faq-5", "faq-8", "faq-11"]);
+const MERCHANT_FAQS = FAQ_ITEMS.filter((faq) => MERCHANT_FAQ_IDS.has(faq.id));
+const MERCHANT_FAQ_JSON_LD = getFaqPageJsonLd(MERCHANT_FAQS);
+
+const MERCHANT_CAPABILITIES = [
+  {
+    icon: Camera,
+    title: "Build a catalogue from a menu photo",
+    description:
+      "A shop ad can show up to 100 products. Photograph a menu or price list to import item names and prices, then review the details and add generated images for products you have not photographed.",
+  },
+  {
+    icon: Tag,
+    title: "Set a clear price and run period",
+    description:
+      "Publish a single-product offer or a shop catalogue. Choose original and final prices, a flat discount, or an up-to discount, then set the dates the ad should run.",
+  },
+  {
+    icon: MapPin,
+    title: "Help nearby residents find your shop",
+    description:
+      "Pin your shop location so residents can open directions in Google Maps. They can follow your shop and hear about updates to its offers.",
+  },
+];
 
 /* ─────────────────────────────────────────────
    SEO Metadata — per seo-engineer SKILL.md
@@ -33,7 +61,7 @@ export const metadata = buildPageMetadata({
 });
 
 /* ─────────────────────────────────────────────
-   JSON-LD — HowTo + Service + BreadcrumbList for AEO/GEO
+   JSON-LD — HowTo + Service + FAQPage + BreadcrumbList for AEO/GEO
 ───────────────────────────────────────────── */
 function getForMerchantsJsonLd() {
   return {
@@ -101,6 +129,16 @@ function getForMerchantsJsonLd() {
           },
         ],
       },
+      ...(MERCHANT_FAQ_JSON_LD
+        ? [
+            {
+              "@id": `${APP_URL}/for-merchants#faq`,
+              "@type": MERCHANT_FAQ_JSON_LD["@type"],
+              inLanguage: MERCHANT_FAQ_JSON_LD.inLanguage,
+              mainEntity: MERCHANT_FAQ_JSON_LD.mainEntity,
+            },
+          ]
+        : []),
     ],
   };
 }
@@ -131,19 +169,54 @@ export default function ForMerchantsPage() {
         {/* ── HERO ── */}
         <ForMerchantsHero />
 
-        {/* ── Business Acquisition & Comparison ── */}
+        <section className="border-y border-border/80 bg-canvas py-16 sm:py-24">
+          <Container>
+            <div className="mb-10 max-w-3xl sm:mb-14">
+              <p className="mb-3 text-xs font-bold uppercase tracking-wider text-primary">
+                What your shop can publish
+              </p>
+              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
+                Turn your products and offers into a clear local listing.
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-foreground-secondary sm:text-lg">
+                Meelte helps nearby residents discover your shop, understand the offer, and
+                get directions.
+              </p>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-3">
+              {MERCHANT_CAPABILITIES.map(({ icon: Icon, title, description }) => (
+                <article
+                  key={title}
+                  className="rounded-3xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
+                >
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-lg font-bold tracking-tight text-foreground">
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground-secondary">
+                    {description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        {/* ── Merchant onboarding ── */}
         <div id="merchant-enquiry">
           <BusinessAcquisitionSection />
         </div>
 
-        {/* ── Trust & Credibility ── */}
-        <TrustCredibilitySection />
-
-        {/* ── FAQ ── */}
-        <FaqSection />
-
-        {/* ── Conversion CTA ── */}
-        <FinalConversionCTA />
+        {/* ── Merchant-specific FAQ ── */}
+        <FaqSection
+          items={MERCHANT_FAQS}
+          title="Questions about listing your business?"
+          description="Find out what you can publish, where in-person onboarding is available, and how purchases work."
+          showMerchantLink={false}
+        />
       </main>
 
       {/* ── Global Footer ── */}

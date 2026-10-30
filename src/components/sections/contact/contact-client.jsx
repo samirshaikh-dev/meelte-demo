@@ -6,20 +6,17 @@ import { Container } from "@/components/layout/container";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Send,
-  CheckCircle2,
-  ExternalLink,
-  ShieldCheck,
   Building2,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  ShieldCheck,
 } from "@/lib/icons";
-import {
-  SUPPORT_EMAIL,
-  CONTACT_PHONE,
-} from "@/config/site";
+import { CONTACT_PHONE, SUPPORT_EMAIL } from "@/config/site";
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Pratistha,+Ward+No.+14,+LIC+Gali,+Upadhyay+Bigha,+Sujata+Bypass,+Rajapur,+Bodh+Gaya,+Bihar+824231";
@@ -34,17 +31,11 @@ const TOPICS = [
 
 const CITIES = ["Bodh Gaya", "Gaya", "Bengaluru", "Ranchi", "Other City in India"];
 const CONTACT_PHONE_DISPLAY = "+91 88845 24444";
-
-/** Validation order matches visual order, so focus lands on the first thing needing attention. */
+const CONTACT_PHONE_HREF = CONTACT_PHONE.replace(/[^\d+]/g, "");
 const FIELD_ORDER = ["name", "email", "city", "message"];
+const FIELD_CLASS =
+  "block w-full rounded-xl border bg-surface px-3.5 py-3 text-sm text-foreground placeholder:text-foreground-secondary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2";
 
-/**
- * Compose a mailto: link from the form values.
- *
- * There is no contact endpoint yet (AI_RULE.md §2.1), so the form opens the user's own
- * mail client with the message pre-filled. That is a real delivery path; pretending the
- * message was received is not.
- */
 function getMailtoHref({ name, email, phone, city, topic, message }) {
   const subject = encodeURIComponent(`[${topic}] ${name} — ${city}`);
   const body = encodeURIComponent(
@@ -61,6 +52,14 @@ function getMailtoHref({ name, email, phone, city, topic, message }) {
   return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
 }
 
+function RequiredMark() {
+  return (
+    <span aria-hidden="true" className="text-error">
+      {" "}*
+    </span>
+  );
+}
+
 export function ContactClient() {
   const [formData, setFormData] = useState({
     name: "",
@@ -70,23 +69,33 @@ export function ContactClient() {
     topic: "General Inquiry",
     message: "",
   });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const successHeadingRef = useRef(null);
 
-  // The form is replaced by the confirmation panel, so the previously focused submit button
-  // disappears. Move focus to the confirmation heading so keyboard and screen reader users are
-  // told the submission succeeded (single announcement — no duplicate success toast).
   useEffect(() => {
     if (isSubmitted) {
       successHeadingRef.current?.focus();
     }
   }, [isSubmitted]);
 
+  const updateField = (field, value) => {
+    setFormData((current) => ({ ...current, [field]: value }));
+    if (errors[field]) {
+      setErrors((current) => ({ ...current, [field]: "" }));
+    }
+  };
+
+  const getFieldClass = (field) =>
+    `${FIELD_CLASS} ${
+      errors[field]
+        ? "border-error focus-visible:border-error"
+        : "border-foreground-secondary/60 focus-visible:border-primary"
+    }`;
+
   const validate = () => {
     const newErrors = {};
+
     if (!formData.name.trim()) newErrors.name = "Please enter your full name.";
     if (!formData.email.trim()) {
       newErrors.email = "Please enter your email address.";
@@ -95,17 +104,15 @@ export function ContactClient() {
     }
     if (!formData.city) newErrors.city = "Please select your city or region.";
     if (!formData.message.trim()) newErrors.message = "Please enter your message.";
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0 ? null : newErrors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    // Validation errors announce once via the toast live region, then move focus to the
-    // first invalid field (accessibility-engineer: announce + focus, never announce silently).
     const nextErrors = validate();
-
     if (nextErrors) {
       notifyError(TOAST_COPY.contactValidation, { id: TOAST_ID.contact });
       const firstInvalidField = FIELD_ORDER.find((field) => nextErrors[field]);
@@ -115,19 +122,11 @@ export function ContactClient() {
       return;
     }
 
-    setIsSubmitting(true);
-
-    // No backend endpoint is provisioned yet (AI_RULE.md §2.1), so the form hands the
-    // message to the user's mail client instead of claiming it was delivered.
-    // See `getMailtoHref` below for the composed link.
     window.location.href = getMailtoHref(formData);
-
     notifyInfo(TOAST_COPY.contactHandoff, {
       id: TOAST_ID.contact,
       description: TOAST_COPY.contactHandoffDescription(SUPPORT_EMAIL),
     });
-
-    setIsSubmitting(false);
     setIsSubmitted(true);
   };
 
@@ -142,378 +141,347 @@ export function ContactClient() {
     });
     setErrors({});
     setIsSubmitted(false);
-    // The success panel is replaced by the form, so re-anchor focus on the first field.
     setTimeout(() => document.getElementById("name")?.focus(), 0);
   };
 
   return (
-    <div className="pb-10 sm:pb-14">
-      {/* Main Content: Info & Interactive Form */}
-      <section className="pt-0 pb-6 sm:pb-8">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-[0.4fr_0.6fr] gap-6 lg:gap-8 items-start">
-            {/* Left Column: Customer Support, Registered Office, Operating Hours, Privacy Note */}
-            <div className="flex flex-col gap-4">
-              {/* Customer Support Card */}
-              <Card className="p-5 sm:p-6 shadow-soft border-primary/20">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-surface-muted text-primary flex items-center justify-center border border-primary/20">
-                    <Mail className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <h2 className="text-lg sm:text-xl font-bold text-foreground">
-                      Customer Support
-                    </h2>
-                    <span className="text-xs text-primary font-medium">Quick Assistance</span>
-                  </div>
+    <section id="contact-form" className="py-8 sm:py-12 lg:py-16">
+      <Container className="max-w-6xl">
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(17rem,0.75fr)] lg:gap-8">
+          <Card className="p-5 shadow-card sm:p-8 lg:p-9">
+            {isSubmitted ? (
+              <div className="flex min-h-[26rem] flex-col items-center justify-center py-10 text-center">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-success/30 bg-success/10 text-success">
+                  <CheckCircle2 className="h-7 w-7" aria-hidden="true" />
                 </div>
-
-                <div className="space-y-2 text-sm text-foreground-secondary">
-                  <div className="flex items-center gap-2">
-                    <span className="text-foreground font-medium">Email:</span>
-                    <a
-                      href={`mailto:${SUPPORT_EMAIL}`}
-                      className="text-primary hover:underline font-semibold"
-                      aria-label={`Email ${SUPPORT_EMAIL}`}
-                    >
-                      {SUPPORT_EMAIL}
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-foreground font-medium">Phone:</span>
-                    <a
-                      href={`tel:${CONTACT_PHONE_DISPLAY.replace(/[^+\d]/g, "")}`}
-                      className="text-foreground hover:text-primary transition-colors font-semibold"
-                      aria-label={`Call ${CONTACT_PHONE_DISPLAY}`}
-                    >
-                      {CONTACT_PHONE_DISPLAY}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-border/80 flex items-center gap-3">
-                  <Button
-                    as="a"
+                <h2
+                  ref={successHeadingRef}
+                  tabIndex={-1}
+                  className="rounded-sm text-2xl font-bold tracking-tight text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-4"
+                >
+                  Your message is ready
+                </h2>
+                <p className="mt-3 max-w-lg text-sm leading-relaxed text-foreground-secondary">
+                  Your email app should have opened with a prepared message. Review
+                  it and press send to reach{" "}
+                  <a
                     href={`mailto:${SUPPORT_EMAIL}`}
-                    variant="primary"
-                    size="sm"
-                    className="flex-1 shadow-2xs justify-center"
-                    aria-label="Email customer support"
+                    className="font-semibold text-primary underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
                   >
-                    <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                    <span>Email us</span>
-                  </Button>
+                    {SUPPORT_EMAIL}
+                  </a>
+                  . Nothing is sent until you do.
+                </p>
+                <div className="mt-7 flex flex-wrap justify-center gap-3">
                   <Button
                     as="a"
-                    href={`tel:${CONTACT_PHONE_DISPLAY.replace(/[^+\d]/g, "")}`}
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 justify-center"
-                    aria-label="Call customer support"
+                    href={getMailtoHref(formData)}
+                    variant="primary"
+                    size="md"
                   >
-                    <Phone className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                    <span>Call us</span>
+                    <Mail className="h-4 w-4" aria-hidden="true" />
+                    Open email app again
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="md"
+                    onClick={handleReset}
+                  >
+                    Write another message
                   </Button>
                 </div>
-              </Card>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+                <div className="border-b border-border/80 pb-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">
+                    Send a message
+                  </p>
+                  <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                    Tell us what you need
+                  </h2>
+                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-foreground-secondary">
+                    Share a few details and we&apos;ll prepare an email for you to
+                    review and send.
+                  </p>
+                </div>
 
-              {/* Registered Office Card */}
-              <Card className="p-5 sm:p-6 shadow-soft">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-xl bg-surface-muted text-primary flex items-center justify-center border border-primary/20">
-                    <Building2 className="h-5 w-5" aria-hidden="true" />
+                <div>
+                  <label
+                    htmlFor="topic"
+                    className="mb-1.5 block text-sm font-semibold text-foreground"
+                  >
+                    What is this about?
+                    <RequiredMark />
+                  </label>
+                  <select
+                    id="topic"
+                    value={formData.topic}
+                    onChange={(event) => updateField("topic", event.target.value)}
+                    className={`${FIELD_CLASS} border-foreground-secondary/60 focus-visible:border-primary`}
+                    required
+                  >
+                    {TOPICS.map((topic) => (
+                      <option key={topic} value={topic}>
+                        {topic}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="mb-1.5 block text-sm font-semibold text-foreground"
+                    >
+                      Full name
+                      <RequiredMark />
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      autoComplete="name"
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={(event) => updateField("name", event.target.value)}
+                      className={getFieldClass("name")}
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? "name-error" : undefined}
+                      required
+                    />
+                    {errors.name && (
+                      <p id="name-error" className="mt-1.5 text-sm text-error">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
                   <div>
-                    <h2 className="text-lg sm:text-xl font-bold text-foreground">
-                      Registered Office
-                    </h2>
-                    <span className="text-xs text-foreground-secondary">Official Headquarters</span>
-                  </div>
-                </div>
-
-                <div className="text-sm text-foreground-secondary leading-relaxed space-y-1">
-                  <p className="font-bold text-foreground">Meelte Private Limited</p>
-                  <p>Pratistha, Ward No. 14</p>
-                  <p>LIC Gali, Upadhyay Bigha</p>
-                  <p>Sujata Bypass, Rajapur</p>
-                  <p>Bodh Gaya, Bihar – 824231, India</p>
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-border/80">
-                  <Button
-                    as="a"
-                    href={GOOGLE_MAPS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="outline"
-                    size="sm"
-                    className="w-full justify-center gap-1.5"
-                    aria-label="Open registered office location in Google Maps"
-                  >
-                    <MapPin className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-                    <span>Open in Maps</span>
-                    <ExternalLink className="h-3 w-3 text-foreground-muted" aria-hidden="true" />
-                  </Button>
-                </div>
-              </Card>
-
-              {/* Operating Hours Card */}
-              <Card className="p-5 sm:p-6 shadow-soft">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="h-10 w-10 rounded-xl bg-surface-muted text-primary flex items-center justify-center border border-primary/20">
-                    <Clock className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <h2 className="text-lg sm:text-xl font-bold text-foreground">
-                    Operating Hours
-                  </h2>
-                </div>
-
-                <ul className="text-sm text-foreground-secondary space-y-1">
-                  <li><span className="text-foreground font-semibold">Monday – Friday</span></li>
-                  <li><span className="text-foreground font-semibold">9:00 AM – 6:00 PM (IST)</span></li>
-                </ul>
-              </Card>
-
-              {/* Privacy Note */}
-              <div className="flex items-start gap-3 px-4 py-3 rounded-xl bg-surface-muted/60 text-xs sm:text-sm text-[#4B5563] border border-primary/10">
-                <ShieldCheck className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                <span>
-                  Your inquiry is used only for customer support. We never share your contact details with third parties or advertisers.
-                </span>
-              </div>
-            </div>
-
-            {/* Right Column: Send a Message Form */}
-            <div>
-              <Card className="p-6 sm:p-8 shadow-card flex flex-col">
-                {isSubmitted ? (
-                  <div className="py-10 text-center flex flex-col items-center flex-1 justify-center">
-                    <div className="h-16 w-16 rounded-full bg-success/10 text-success flex items-center justify-center mb-5 border border-success/30">
-                      <CheckCircle2 className="h-8 w-8" aria-hidden="true" />
-                    </div>
-                    <h2
-                      ref={successHeadingRef}
-                      tabIndex={-1}
-                      className="text-2xl font-bold text-foreground focus:outline-none"
+                    <label
+                      htmlFor="email"
+                      className="mb-1.5 block text-sm font-semibold text-foreground"
                     >
-                      Message ready to send
-                    </h2>
-                    <p className="mt-2 text-sm text-foreground-secondary max-w-md leading-relaxed">
-                      Your email app should have opened with the message. Send it to{" "}
-                      <span className="font-semibold text-foreground">{SUPPORT_EMAIL}</span> and
-                      we&apos;ll reply during our operating hours. Nothing reaches us until you
-                      send it.
-                    </p>
-                    <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                      <Button
-                        as="a"
-                        href={getMailtoHref(formData)}
-                        variant="primary"
-                        size="md"
-                        className="shadow-soft"
-                        aria-label={`Open the message in your email app to send it to ${SUPPORT_EMAIL}`}
-                      >
-                        <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                        <span>Open email app again</span>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="md"
-                        onClick={handleReset}
-                        aria-label="Write another message"
-                      >
-                        Write another message
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
-                    <div>
-                      <h2 className="text-xl sm:text-2xl font-bold text-foreground">
-                        Send a Message
-                      </h2>
-                      <p className="mt-1 text-sm text-foreground-secondary">
-                        Fill out the form below and we will respond as soon as possible.
+                      Email address
+                      <RequiredMark />
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="you@example.com"
+                      value={formData.email}
+                      onChange={(event) => updateField("email", event.target.value)}
+                      className={getFieldClass("email")}
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "email-error" : undefined}
+                      required
+                    />
+                    {errors.email && (
+                      <p id="email-error" className="mt-1.5 text-sm text-error">
+                        {errors.email}
                       </p>
-                    </div>
+                    )}
+                  </div>
+                </div>
 
-                    {/* Topic / Category Selection */}
-                    <div>
-                      <label htmlFor="topic" className="block text-xs font-semibold text-foreground mb-1.5">
-                        Inquiry Topic <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        id="topic"
-                        value={formData.topic}
-                        onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-surface text-foreground text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:border-primary/60 transition-all"
-                        aria-label="Inquiry topic"
-                      >
-                        {TOPICS.map((topic) => (
-                          <option key={topic} value={topic}>
-                            {topic}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Name & Email Fields */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-xs font-semibold text-foreground mb-1.5">
-                          Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          id="name"
-                          type="text"
-                          placeholder="Your Name"
-                          value={formData.name}
-                          onChange={(e) => {
-                            setFormData({ ...formData, name: e.target.value });
-                            if (errors.name) setErrors({ ...errors, name: "" });
-                          }}
-                          className={`w-full px-3.5 py-2.5 rounded-xl border bg-surface text-foreground text-sm placeholder:text-foreground-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 transition-all ${
-                            errors.name ? "border-error focus-visible:border-error" : "border-border focus-visible:border-primary/60"
-                          }`}
-                          aria-invalid={errors.name ? "true" : "false"}
-                          aria-describedby={errors.name ? "name-error" : undefined}
-                        />
-                        {errors.name && (
-                          <p id="name-error" className="mt-1 text-xs text-error">
-                            {errors.name}
-                          </p>
-                        )}
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-xs font-semibold text-foreground mb-1.5">
-                          Email Address <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          id="email"
-                          type="email"
-                          placeholder="you@example.com"
-                          value={formData.email}
-                          onChange={(e) => {
-                            setFormData({ ...formData, email: e.target.value });
-                            if (errors.email) setErrors({ ...errors, email: "" });
-                          }}
-                          className={`w-full px-3.5 py-2.5 rounded-xl border bg-surface text-foreground text-sm placeholder:text-foreground-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 transition-all ${
-                            errors.email ? "border-error focus-visible:border-error" : "border-border focus-visible:border-primary/60"
-                          }`}
-                          aria-invalid={errors.email ? "true" : "false"}
-                          aria-describedby={errors.email ? "email-error" : undefined}
-                        />
-                        {errors.email && (
-                          <p id="email-error" className="mt-1 text-xs text-error">
-                            {errors.email}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Phone & City */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="phone" className="block text-xs font-semibold text-foreground mb-1.5">
-                          Phone Number <span className="text-foreground-muted font-normal">(Optional)</span>
-                        </label>
-                        <input
-                          id="phone"
-                          type="tel"
-                          placeholder="+91 98765 43210"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-surface text-foreground text-sm placeholder:text-foreground-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:border-primary/60 transition-all"
-                          aria-label="Phone number (optional)"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="city" className="block text-xs font-semibold text-foreground mb-1.5">
-                          City / Region <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          id="city"
-                          value={formData.city}
-                          onChange={(e) => {
-                            setFormData({ ...formData, city: e.target.value });
-                            if (errors.city) setErrors({ ...errors, city: "" });
-                          }}
-                          className={`w-full px-3.5 py-2.5 rounded-xl border bg-surface text-foreground text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 transition-all ${
-                            errors.city ? "border-error focus-visible:border-error" : "border-border focus-visible:border-primary/60"
-                          }`}
-                          aria-invalid={errors.city ? "true" : "false"}
-                          aria-describedby={errors.city ? "city-error" : undefined}
-                          required
-                        >
-                          <option value="" disabled>
-                            Select your city
-                          </option>
-                          {CITIES.map((city) => (
-                            <option key={city} value={city}>
-                              {city}
-                            </option>
-                          ))}
-                        </select>
-                        {errors.city && (
-                          <p id="city-error" className="mt-1 text-xs text-error">
-                            {errors.city}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Message Area */}
-                    <div>
-                      <label htmlFor="message" className="block text-xs font-semibold text-foreground mb-1.5">
-                        Your Message <span className="text-red-500">*</span>
-                      </label>
-                      <textarea
-                        id="message"
-                        rows={4}
-                        placeholder="Write your message here..."
-                        value={formData.message}
-                        onChange={(e) => {
-                          setFormData({ ...formData, message: e.target.value });
-                          if (errors.message) setErrors({ ...errors, message: "" });
-                        }}
-                        className={`w-full px-3.5 py-2.5 rounded-xl border bg-surface text-foreground text-sm placeholder:text-foreground-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 transition-all resize-y ${
-                          errors.message ? "border-error focus-visible:border-error" : "border-border focus-visible:border-primary/60"
-                        }`}
-                        aria-invalid={errors.message ? "true" : "false"}
-                        aria-describedby={errors.message ? "message-error" : undefined}
-                      />
-                      {errors.message && (
-                        <p id="message-error" className="mt-1 text-xs text-error">
-                          {errors.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      size="lg"
-                      disabled={isSubmitting}
-                      className="mt-2 w-full justify-center shadow-soft"
-                      aria-label="Submit contact message"
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="mb-1.5 block text-sm font-semibold text-foreground"
                     >
-                      {isSubmitting ? (
-                        <span>Sending message...</span>
-                      ) : (
-                        <>
-                          <Send className="h-4 w-4" aria-hidden="true" />
-                          <span>Submit Message</span>
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                )}
-              </Card>
+                      Phone number{" "}
+                      <span className="font-normal text-foreground-secondary">
+                        (optional)
+                      </span>
+                    </label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder="+91 98765 43210"
+                      value={formData.phone}
+                      onChange={(event) => updateField("phone", event.target.value)}
+                      className={`${FIELD_CLASS} border-foreground-secondary/60 focus-visible:border-primary`}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="city"
+                      className="mb-1.5 block text-sm font-semibold text-foreground"
+                    >
+                      City or region
+                      <RequiredMark />
+                    </label>
+                    <select
+                      id="city"
+                      value={formData.city}
+                      onChange={(event) => updateField("city", event.target.value)}
+                      className={getFieldClass("city")}
+                      aria-invalid={Boolean(errors.city)}
+                      aria-describedby={errors.city ? "city-error" : undefined}
+                      required
+                    >
+                      <option value="" disabled>
+                        Select your city
+                      </option>
+                      {CITIES.map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.city && (
+                      <p id="city-error" className="mt-1.5 text-sm text-error">
+                        {errors.city}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="mb-1.5 block text-sm font-semibold text-foreground"
+                  >
+                    Your message
+                    <RequiredMark />
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    placeholder="How can we help?"
+                    value={formData.message}
+                    onChange={(event) => updateField("message", event.target.value)}
+                    className={`${getFieldClass("message")} min-h-32 resize-y`}
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                    required
+                  />
+                  {errors.message && (
+                    <p id="message-error" className="mt-1.5 text-sm text-error">
+                      {errors.message}
+                    </p>
+                  )}
+                </div>
+
+                <p className="text-xs leading-relaxed text-foreground-secondary">
+                  The form opens a prepared email in your email app. Review it
+                  there and press send; it isn&apos;t sent automatically.
+                </p>
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full justify-center sm:w-auto sm:self-start"
+                >
+                  <Send className="h-4 w-4" aria-hidden="true" />
+                  Continue to email
+                </Button>
+              </form>
+            )}
+          </Card>
+
+          <aside className="flex flex-col gap-5" aria-label="Other ways to contact Meelte">
+            <section
+              aria-labelledby="direct-contact-heading"
+              className="rounded-2xl bg-primary p-6 text-white shadow-card sm:p-7"
+            >
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/90">
+                Prefer a direct route?
+              </p>
+              <h2
+                id="direct-contact-heading"
+                className="mt-2 text-2xl font-bold tracking-tight"
+              >
+                Contact support
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-white">
+                For app help, account questions, privacy requests, or general
+                enquiries.
+              </p>
+
+              <div className="mt-6 space-y-4">
+                <a
+                  href={`mailto:${SUPPORT_EMAIL}`}
+                  className="flex min-w-0 items-center gap-3 rounded-xl border border-white/25 bg-white/10 p-3 text-sm font-semibold text-white underline-offset-4 hover:bg-white/15 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                >
+                  <Mail className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  <span className="break-all">{SUPPORT_EMAIL}</span>
+                </a>
+                <a
+                  href={`tel:${CONTACT_PHONE_HREF}`}
+                  className="flex items-center gap-3 rounded-xl border border-white/25 bg-white/10 p-3 text-sm font-semibold text-white underline-offset-4 hover:bg-white/15 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                >
+                  <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
+                  <span>{CONTACT_PHONE_DISPLAY}</span>
+                </a>
+              </div>
+
+              <div className="mt-6 border-t border-white/25 pt-5">
+                <div className="flex items-center gap-2 text-sm font-semibold">
+                  <Clock className="h-4 w-4" aria-hidden="true" />
+                  Support hours
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-white">
+                  Monday–Friday, 9:00 AM–6:00 PM IST
+                </p>
+              </div>
+            </section>
+
+            <Card className="p-5 sm:p-6">
+              <div className="flex items-start gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-surface-muted text-primary">
+                  <Building2 className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <h2 className="text-lg font-bold text-foreground">
+                    Registered office
+                  </h2>
+                  <address className="mt-2 text-sm not-italic leading-relaxed text-foreground-secondary">
+                    <span className="font-semibold text-foreground">
+                      Meelte Private Limited
+                    </span>
+                    <br />
+                    Pratistha, Ward No. 14, LIC Gali, Upadhyay Bigha,
+                    <br />
+                    Sujata Bypass, Rajapur, Bodh Gaya,
+                    <br />
+                    Bihar 824231, India
+                  </address>
+                </div>
+              </div>
+              <Button
+                as="a"
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                size="md"
+                className="mt-5 w-full justify-center"
+                aria-label="Open Meelte's registered office in Google Maps"
+              >
+                <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
+                View office in Maps
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              </Button>
+            </Card>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-primary/10 bg-surface-muted/70 p-4 text-sm leading-relaxed text-foreground-secondary">
+              <ShieldCheck
+                className="mt-0.5 h-5 w-5 shrink-0 text-primary"
+                aria-hidden="true"
+              />
+              <p>
+                Contact details are used for customer support and aren&apos;t
+                shared with third parties or advertisers.
+              </p>
             </div>
-          </div>
-        </Container>
-      </section>
-    </div>
+          </aside>
+        </div>
+      </Container>
+    </section>
   );
 }
 
