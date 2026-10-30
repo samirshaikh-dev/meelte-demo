@@ -138,7 +138,7 @@ export function FinalConversionCTA() {
             <div className="mt-8 pt-6 border-t border-border/70 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Button
                 as={Link}
-                href="/for-merchants"
+                href="/signup"
                 variant="primary"
                 size="lg"
                 className="shadow-soft font-bold justify-center"

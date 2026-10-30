@@ -9,15 +9,19 @@ import {
   YouTubeIcon,
 } from "@/lib/icons";
 import { PLATFORM_AREAS } from "@/constants/app-constants";
+import { SOCIAL_LINKS } from "@/config/site";
 import { Container } from "./container";
-import { SOCIAL_LINKS } from "../../config/site";
 import { NewsletterForm } from "../footer/newsletter-form";
 import { FooterColumn } from "../footer/footer-column";
 
 const CURRENT_YEAR = 2026;
 
+/** One link style for every footer column, so hover and focus never drift. */
+const FOOTER_LINK_CLASS =
+  "inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2";
+
 /**
- * Discovery shortcuts.
+ * "In the app" shortcuts.
  *
  * Derived from PLATFORM_AREAS — the three capabilities that exist in the product
  * (docs/target_customer.md §1) — so the footer can never drift from the /discover
@@ -26,20 +30,43 @@ const CURRENT_YEAR = 2026;
  * Each href targets a section id that <DiscoverAreas> actually renders, so the
  * fragments resolve on the page instead of pointing at dead anchors.
  */
-const DISCOVERY_LINKS = PLATFORM_AREAS.map((area) => ({
-  id: area.id,
+const IN_APP_LINKS = PLATFORM_AREAS.map((area) => ({
   label: area.name,
   href: `/discover#${area.anchor}`,
 }));
 
-const COMPANY_LINKS = [
-  { label: "About Us", href: "/about" },
-  { label: "Discover", href: "/discover" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "For Merchants", href: "/for-merchants" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact Us", href: "/contact" },
-  { label: "FAQ", href: "/faq" },
+/**
+ * The three footer link columns, in reading order.
+ *
+ * Every href points at a route that exists (project-context.md §10 item 1 & 4);
+ * `title` doubles as the column heading and the accessible name of its <nav>.
+ */
+const FOOTER_SECTIONS = [
+  {
+    id: "product",
+    title: "Product",
+    links: [
+      { label: "Discover", href: "/discover" },
+      { label: "How it works", href: "/how-it-works" },
+      { label: "For shops", href: "/for-merchants" },
+      { label: "Support", href: "/support" },
+    ],
+  },
+  {
+    id: "in-the-app",
+    title: "In the app",
+    links: IN_APP_LINKS,
+  },
+  {
+    id: "company",
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Careers", href: "/careers" },
+      { label: "Contact", href: "/contact" },
+      { label: "FAQ", href: "/faq" },
+    ],
+  },
 ];
 
 export function Footer() {
@@ -65,16 +92,13 @@ export function Footer() {
       </div>
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 gap-10 pb-10 pt-10 sm:grid-cols-2 sm:gap-12 sm:pt-12 lg:grid-cols-12 lg:gap-12 lg:pt-14">
-          <div className="flex flex-col gap-4 sm:col-span-2 lg:col-span-4">
-
-
+        <div className="grid grid-cols-1 gap-10 pb-10 pt-10 sm:grid-cols-2 sm:gap-12 sm:pt-12 lg:grid-cols-12 lg:gap-8 lg:pt-14">
+          <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-3">
             <p className="max-w-sm text-sm leading-relaxed text-foreground-secondary">
               The hyperlocal community platform connecting neighbors with local businesses and opportunities.
               <br />
               Built for everyday discovery across India.
             </p>
-
 
             <div className="inline-flex w-fit items-center gap-2 rounded-xl border border-primary/10 bg-surface-muted px-3 py-1.5 text-xs font-semibold text-primary">
               <ShieldCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
@@ -82,57 +106,25 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="sm:col-span-1 lg:col-span-2">
-            <nav aria-label="Discovery">
-              <FooterColumn title="Discovery">
-                <ul className="flex flex-col gap-2" role="list">
-                  {DISCOVERY_LINKS.map((item) => (
-                    <li key={item.id}>
-                      <Link
-                        href={item.href}
-                        className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </FooterColumn>
-            </nav>
-          </div>
-
-          <div className="sm:col-span-1 lg:col-span-2">
-            <nav aria-label="Company">
-              <FooterColumn title="Company">
-                <ul className="flex flex-col gap-2" role="list">
-                  {COMPANY_LINKS.map((item) => {
-                    const isInternal = item.href.startsWith("/");
-                    return (
-                      <li key={item.label}>
-                        {isInternal ? (
-                          <Link
-                            href={item.href}
-                            className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                          >
-                            {item.label}
-                          </Link>
-                        ) : (
-                          <a
-                            href={item.href}
-                            className="inline-block rounded py-0.5 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-                          >
-                            {item.label}
-                          </a>
-                        )}
+          {FOOTER_SECTIONS.map((section) => (
+            <div key={section.id} className="sm:col-span-1 lg:col-span-2">
+              <nav aria-label={section.title}>
+                <FooterColumn title={section.title}>
+                  <ul className="flex flex-col gap-2" role="list">
+                    {section.links.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className={FOOTER_LINK_CLASS}>
+                          {link.label}
+                        </Link>
                       </li>
-                    );
-                  })}
-                </ul>
-              </FooterColumn>
-            </nav>
-          </div>
+                    ))}
+                  </ul>
+                </FooterColumn>
+              </nav>
+            </div>
+          ))}
 
-          <div className="sm:col-span-2 lg:col-span-4">
+          <div className="sm:col-span-1 lg:col-span-3">
             <NewsletterForm />
           </div>
         </div>

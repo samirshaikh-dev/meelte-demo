@@ -57,13 +57,13 @@ function toAbsoluteImage(image = OG_IMAGE_PATH) {
 export const metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: `${SITE_NAME} — Hyper-Local Community, Events & Business Discovery`,
+    default: `${SITE_NAME} — Hyperlocal Community, Events & Business Discovery`,
     template: `%s | ${SITE_NAME}`,
   },
   description: APP_DESCRIPTION,
   keywords: [
     "Meelte",
-    "hyper-local community platform",
+    "hyperlocal community platform",
     "local community app",
     "discover local events",
     "local business promotion",

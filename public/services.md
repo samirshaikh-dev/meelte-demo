@@ -1,6 +1,6 @@
 # Meelte — Services & Feature Directory
 
-> Clean markdown summary of what residents, businesses and event hosts can do on Meelte — the hyper-local community platform for India.
+> Clean markdown summary of what residents, businesses and event hosts can do on Meelte — the hyperlocal community platform for India.
 
 Official Website: https://meelte.com
 Contact: support@meelte.com

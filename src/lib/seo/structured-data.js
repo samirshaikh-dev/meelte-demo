@@ -50,7 +50,7 @@ function toAbsImage(image = OG_IMAGE_PATH) {
  * Strengthens GEO (Generative Engine Optimization) entity relationships and AI answer engine citations.
  */
 export const LONGTAIL_KEYWORDS = [
-  "hyper-local community platform",
+  "hyperlocal community platform",
   "community app for local neighborhoods",
   "discover local events in India",
   "neighborhood meetups and gatherings",
@@ -91,7 +91,7 @@ export const VOICE_QUERIES = [
  * Industries and domains Meelte bridges
  */
 export const INDUSTRIES_SERVED = [
-  "Hyper-Local Commerce",
+  "Hyperlocal Commerce",
   "Community Building & Social Networking",
   "Community Event Hosting",
   "SMB Local Marketing & Advertising",
@@ -102,7 +102,7 @@ export const INDUSTRIES_SERVED = [
 ];
 
 /**
- * Core Hyper-Local Services offered by Meelte
+ * Core Hyperlocal Services offered by Meelte
  */
 export const MEELTE_SERVICES = [
   {

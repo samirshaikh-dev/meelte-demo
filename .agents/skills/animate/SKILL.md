@@ -1,3 +1,8 @@
+---
+name: animate
+description: "Use when adding, reviewing, or tuning interface animation, motion systems, transitions, or motion performance."
+---
+
 > **Additional context needed**: performance constraints.
 
 Use motion to explain state, relationship, and hierarchy, or to create one authored moment the surface has earned. Decoration without purpose is animation debt.

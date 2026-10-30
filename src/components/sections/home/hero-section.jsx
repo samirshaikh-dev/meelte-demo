@@ -22,7 +22,7 @@ import { motion } from "framer-motion";
 const trustPills = [
   {
     id: 1,
-    label: "Hyper-local ",
+    label: "Hyperlocal",
     icon: MapPin,
     ariaLabel: "Nearby listings sorted by distance, with a 60 km default",
   },
@@ -198,8 +198,9 @@ export function HeroSection() {
               variants={fadeUpVariants}
               className="mt-5 max-w-xl text-lg sm:text-xl text-foreground-secondary leading-relaxed"
             >
-              Find time-boxed offers from shops near you and local events you can ask to
-              join. The web app is coming soon — the Android app is live on Google Play today.
+              Meelte is the hyperlocal app for Indian neighbourhoods. See time-boxed shop
+              offers, request to join local events, and talk to people you meet — sorted by
+              distance, not by a global feed.
             </motion.p>
 
             <motion.div

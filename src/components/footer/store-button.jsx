@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils";
  *
  * Two presentations of the same two links, so the URLs, labels and icons stay in one place:
  *
- * - `variant="badge"` (default) — the dark, two-line store badge used in the footer, where
- *   the official badge shape is the expected convention and there is room for it.
+ * - `variant="badge"` (default) — the dark, two-line store badge, currently used only inside
+ *   the `MobileNav` drawer where the official badge shape is the expected convention, there
+ *   is room for it, and it is the only download surface below `lg`.
  * - `variant="brand"` — a compact single-line pill for the navbar. The navbar is a 64/80px
- *   bar on a white surface, so the black badge reads as a heavy block that competes with the
+ *   bar on a white `surface`, so the black badge reads as a heavy block that competes with the
  *   brand. This variant is token-led instead: Play Store is the filled primary because the
  *   Android app is genuinely live, and App Store is a quiet outlined secondary because the
  *   iOS listing does not exist yet. Hierarchy therefore reflects reality rather than size.

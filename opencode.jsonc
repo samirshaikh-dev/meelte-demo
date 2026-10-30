@@ -1,0 +1,56 @@
+// Meelte website — opencode project configuration.
+// JSONC: comments and trailing commas are allowed.
+// Full reference: https://opencode.ai/config.json
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Pin models explicitly (uncomment to override the global default).
+  // "model": "anthropic/claude-sonnet-4-6",
+  // "small_model": "groq/llama-3.3-70b-versatile",
+
+  // Always inject project context and rules so the mandatory pre-implementation
+  // protocol (load .agents/skills before any code change) is in effect.
+  "instructions": ["project-context.md", "AI_RULE.md", "meelte-context.md"],
+
+  // Register the 16 discipline skills (ui-ux, frontend, accessibility, animation,
+  // ai, output-judgement, backend, database, security, devops, performance, seo,
+  // seo-strategy, keyword-research, personal-seo) as native opencode skills.
+  // Each lives in .agents/skills/<skill-id>/SKILL.md and is scanned recursively.
+  // V2 expects an array of sources; `.agents/skills` is auto-discovered too, so
+  // this entry only makes the path explicit.
+  "skills": [".agents/skills"],
+
+  // Custom agents: OpenCode reads Markdown agents from `.opencode/agents/<name>.md`
+  // or inline under `agents`. The shared role agents in this repo live in
+  // `.github/agents/*.agent.md` (GitHub Copilot format) and are not discovered by
+  // OpenCode — mirror one into `.opencode/agents/` if it should be a subagent.
+  // "agents": {},
+
+  // Convenience commands aligned with the repo's npm scripts.
+  "command": {
+    "lint": {
+      "description": "Run ESLint verification",
+      "template": "Run `npm run lint` and fix any errors or warnings this command reports."
+    },
+    "build": {
+      "description": "Run production build (webpack)",
+      "template": "Run `npm run build` and fix any errors this command reports."
+    }
+  },
+
+  // Fail-open, AI-friendly permission defaults: keep secrets safe, allow git.
+  "permission": {
+    "bash": {
+      "npm *": "allow",
+      "git status*": "allow",
+      "git log*": "allow",
+      "git diff*": "allow",
+      "ls*": "allow",
+      "dir*": "allow",
+      "*": "allow"
+    },
+    "external_directory": {
+      "*": "ask"
+    }
+  }
+}

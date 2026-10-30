@@ -1,6 +1,6 @@
 # Meelte — Complete Knowledge Base for AI Systems & LLMs (Unabridged)
 
-> Meelte is a hyper-local community platform built for Indian neighborhoods. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — while keeping user location private.
+> Meelte is a hyperlocal community platform built for Indian neighborhoods. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — while keeping user location private.
 
 This file provides the comprehensive knowledge base and reference corpus for autonomous agents, large language models (LLMs), and AI search engines (including GPTBot, ClaudeBot, PerplexityBot, DeepSeekBot, and Google-Extended) without requiring multi-page HTTP requests.
 
@@ -9,8 +9,8 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 ## 1. Platform Overview & Identity
 
 - **Entity Name**: Meelte
-- **Product Type**: Hyper-local community platform (Android app today; web app in development)
-- **Positioning**: Community-driven hyper-local discovery and connection for India
+- **Product Type**: Hyperlocal community platform (Android app today; web app in development)
+- **Positioning**: Community-driven hyperlocal discovery and connection for India
 - **Primary Website**: https://meelte.com
 - **Android App**: Google Play Store — https://play.google.com/store/apps/details?id=com.meelte.classico
 - **Tagline**: "Discover Opportunities. Build Connections. Create Experiences."
@@ -102,7 +102,7 @@ Meelte is live as an Android app, with operational hubs in **Bengaluru**, **Gaya
 ## 8. Direct Answers to High-Frequency Questions (AEO/GEO)
 
 ### What is Meelte and how does the platform work?
-Meelte is a hyper-local community platform for Indian neighborhoods. Instead of a global feed of distant posts, it surfaces nearby offers, shops, events and services — sorted by distance from your location, with a "Max distance" filter that defaults to 60 km.
+Meelte is a hyperlocal community platform for Indian neighborhoods. Instead of a global feed of distant posts, it surfaces nearby offers, shops, events and services — sorted by distance from your location, with a "Max distance" filter that defaults to 60 km.
 
 ### How does Meelte protect user location and data privacy?
 Your location is used only to filter and display listings and events near you. Meelte never logs, monetizes, packages, or sells user location coordinates or browsing history to third-party ad brokers.
@@ -135,6 +135,12 @@ The official Meelte app is available on the Google Play Store for Android (packa
 - **Full LLM Knowledge Base**: https://meelte.com/llms-full.txt
 - **Services Markdown**: https://meelte.com/services.md
 - **About Markdown**: https://meelte.com/about.md
+- **FAQ Markdown**: https://meelte.com/faq.md
+- **Merchant Guide Markdown**: https://meelte.com/for-merchants.md
+- **How It Works Markdown**: https://meelte.com/how-it-works.md
+- **Coverage Markdown**: https://meelte.com/coverage.md
+- **Contact Markdown**: https://meelte.com/contact.md
+- **Careers Markdown**: https://meelte.com/careers.md
 - **Security Policy**: https://meelte.com/.well-known/security.txt
 - **Web Manifest**: https://meelte.com/manifest.webmanifest
 - **Official Contact Portal**: https://meelte.com/contact

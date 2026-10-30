@@ -1,6 +1,6 @@
 # Meelte
 
-> Meelte is a hyper-local community platform for India. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — without selling or sharing user location.
+> Meelte is a hyperlocal community platform for India. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — without selling or sharing user location.
 
 Meelte is available as an Android app on Google Play. The web app is in development and is not live. The app sorts everything by distance from the user, with a "Max distance" filter that defaults to 60 km. Meelte does not sell goods, run events, take payments or broker transactions: purchases are settled directly with the shop, and any event cost is settled directly with the host.
 
@@ -40,3 +40,17 @@ Meelte is available as an Android app on Google Play. The web app is in developm
 - Meelte does not operate a jobs board.
 - Meelte does not verify the identity of individual users. Shops are signed up in person by Meelte's field team.
 - Merchant pricing is not published.
+
+## Machine-Readable Endpoints
+
+- [llms.txt](https://meelte.com/llms.txt): Curated index of Meelte's machine-readable endpoints.
+- [llms-full.txt](https://meelte.com/llms-full.txt): Complete, unabridged Meelte knowledge base.
+- [about.md](https://meelte.com/about.md): Mission, coverage and privacy commitment.
+- [services.md](https://meelte.com/services.md): Feature directory for residents, businesses and hosts.
+- [faq.md](https://meelte.com/faq.md): Every frequent question with a direct, quotable answer.
+- [for-merchants.md](https://meelte.com/for-merchants.md): Merchant onboarding guide.
+- [how-it-works.md](https://meelte.com/how-it-works.md): Step-by-step walkthrough for residents, hosts and shopkeepers.
+- [coverage.md](https://meelte.com/coverage.md): Coverage model and the three in-person onboarding hubs.
+- [contact.md](https://meelte.com/contact.md): Support, merchant and careers contacts.
+- [careers.md](https://meelte.com/careers.md): Working at Meelte.
+- [security.txt](https://meelte.com/.well-known/security.txt): Security contact and disclosure policy.

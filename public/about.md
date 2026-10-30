@@ -1,6 +1,6 @@
 # About Meelte
 
-> Meelte is a hyper-local community platform built for Indian neighborhoods. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — without ever selling or sharing user location.
+> Meelte is a hyperlocal community platform built for Indian neighborhoods. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — without ever selling or sharing user location.
 
 Official Website: https://meelte.com/about
 Contact: support@meelte.com
@@ -9,7 +9,7 @@ Phone: +91-8884524444
 ---
 
 ## Who We Are
-Meelte is a community-driven, hyper-local platform for India. It brings what is happening close to where you live into one place: time-boxed offers from independent shops, local events you can ask to join, and the people and businesses you follow. Meelte is free for community members and is available as an Android app on the Google Play Store. The web app is still in development and is not live yet.
+Meelte is a community-driven, hyperlocal platform for India. It brings what is happening close to where you live into one place: time-boxed offers from independent shops, local events you can ask to join, and the people and businesses you follow. Meelte is free for community members and is available as an Android app on the Google Play Store. The web app is still in development and is not live yet.
 
 ## Our Mission
 Meelte exists to make local life easier, more connected, and more rewarding. We replace overwhelming global feeds and expensive, untargeted advertising with a focused platform where neighbours genuinely connect, local businesses reach nearby customers directly, and opportunities close to home are never missed.

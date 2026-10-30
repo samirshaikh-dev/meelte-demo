@@ -14,7 +14,7 @@ import {
 export const APP_NAME = "Meelte";
 export const SITE_NAME = "Meelte";
 export const APP_TAGLINE = "Discover Opportunities. Build Connections. Create Experiences.";
-export const APP_DESCRIPTION = "Meelte is a hyper-local community platform connecting residents with nearby offers, events and people across India.";
+export const APP_DESCRIPTION = "Meelte is a hyperlocal community platform connecting residents with nearby offers, events and people across India.";
 export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL;
 export const API_BASE_URL = process.env.NEXT_PUBLIC_MEELTE_API_BASE_URL;
 export const SUPPORT_EMAIL = "support@meelte.com";
