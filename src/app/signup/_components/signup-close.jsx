@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Download } from "@/lib/icons";
-import { PLAY_STORE_URL } from "@/config/site";
+import { Apple, ArrowRight, Download, Play } from "@/lib/icons";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 
@@ -56,8 +56,21 @@ export function SignupClose() {
               size="lg"
               className="justify-center font-bold"
             >
-              <Download className="h-5 w-5" aria-hidden="true" />
+              <Play className="h-5 w-5 fill-current" aria-hidden="true" />
               <span>Get it on Google Play</span>
+            </Button>
+
+            <Button
+              as="a"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="ghost"
+              size="lg"
+              className="justify-center font-semibold text-white hover:bg-white/10 hover:text-white focus-visible:ring-white/70"
+            >
+              <Apple className="h-5 w-5 fill-current" aria-hidden="true" />
+              <span>Download for iPhone</span>
             </Button>
 
             <Button

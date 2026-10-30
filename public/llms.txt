@@ -1,14 +1,14 @@
 # Meelte
 
-> Meelte is a hyperlocal community platform for India. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — without selling or sharing user location.
+> Meelte is a hyperlocal community platform for India, with time-boxed offers from nearby shops, local events, and community connections.
 
-Meelte is available as an Android app on Google Play. The web app is in development and is not live. The app sorts everything by distance from the user, with a "Max distance" filter that defaults to 60 km. Meelte does not sell goods, run events, take payments or broker transactions: purchases are settled directly with the shop, and any event cost is settled directly with the host.
+Meelte is available as an Android app on Google Play. The web app is in development and is not live. The app sorts ads and events by distance from the user, with a "Max distance" filter that defaults to 60 km. Nearby listings depend on configured city zones. Meelte does not sell goods, run events, take payments or broker transactions: purchases are settled directly with the shop, and any event cost is settled directly with the host.
 
 - Official Website: https://meelte.com
 - Contact: support@meelte.com
 - Phone: +91-8884524444
 - Languages: English, Hindi, Kannada
-- Coverage: India — operational hubs in Bengaluru, Gaya and Ranchi
+- In-person shop onboarding: Bengaluru, Gaya and Ranchi; nearby listings depend on configured city zones
 - Android package: com.meelte.classico
 
 ---
@@ -21,10 +21,10 @@ Meelte is available as an Android app on Google Play. The web app is in developm
 - [How It Works](https://meelte.com/how-it-works): What residents, merchants, event hosts and organisers can do, step by step.
 - [For Merchants](https://meelte.com/for-merchants): Local business promotion and how shops are onboarded in person.
 - [Sign Up](https://meelte.com/signup): How to get started, including the current app availability.
-- [FAQ](https://meelte.com/faq): Direct answers about privacy, events, merchants and coverage.
+- [FAQ](https://meelte.com/faq): Direct answers about the Android app, local offers, events, merchant listings, payments, privacy, safety, referrals and availability.
 - [Careers](https://meelte.com/careers): Working at Meelte.
-- [Support](https://meelte.com/support): Support desk email and phone, 9AM–6PM IST.
-- [Contact](https://meelte.com/contact): Support, merchant onboarding and event partnership enquiries.
+- [Support](https://meelte.com/support): Support desk email and phone.
+- [Contact](https://meelte.com/contact): Support, merchant onboarding and general enquiries.
 - [Privacy Policy](https://meelte.com/privacy): How Meelte handles location and personal data.
 - [Terms of Service](https://meelte.com/terms): Platform terms and usage conditions.
 
@@ -49,7 +49,7 @@ Meelte is available as an Android app on Google Play. The web app is in developm
 - [faq.md](https://meelte.com/faq.md): Every frequently asked question with a direct, quotable answer — platform, offers, events, payments, privacy, rewards and coverage.
 - [for-merchants.md](https://meelte.com/for-merchants.md): Merchant onboarding guide — what a shop can publish, how in-person setup works, what it costs, and what Meelte does not provide.
 - [how-it-works.md](https://meelte.com/how-it-works.md): Step-by-step walkthrough for residents, event hosts and shopkeepers.
-- [coverage.md](https://meelte.com/coverage.md): Coverage model — pan-India platform, the three in-person onboarding hubs, and availability by platform.
+- [coverage.md](https://meelte.com/coverage.md): Coverage model — Android app availability, the three in-person onboarding hubs, and city-zone-dependent listings.
 - [contact.md](https://meelte.com/contact.md): Support, merchant and careers contacts, operating hours, and the registered office.
 - [careers.md](https://meelte.com/careers.md): Working at Meelte, current hiring status, values and benefits.
 - [security.txt](https://meelte.com/.well-known/security.txt): Security contact and vulnerability disclosure policy.

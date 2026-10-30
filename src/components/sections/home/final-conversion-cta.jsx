@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Download, ArrowRight } from "@/lib/icons";
-import { PLAY_STORE_URL } from "@/config/site";
+import { Apple, ArrowRight, Download, Play } from "@/lib/icons";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 
@@ -30,23 +30,35 @@ export function FinalConversionCTA() {
               with people around you.
             </p>
 
-            <Button
-              as="a"
-              href={PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="accent"
-              size="lg"
-              className="mt-8 min-h-14 w-full justify-center px-7 text-base font-bold shadow-card hover:shadow-card sm:w-auto sm:px-10"
-            >
-              <Download className="h-5 w-5" aria-hidden="true" />
-              <span>Download Meelte on Google Play</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <Button
+                as="a"
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="accent"
+                size="lg"
+                className="min-h-14 w-full justify-center px-7 text-base font-bold shadow-card hover:shadow-card sm:w-auto sm:px-10"
+              >
+                <Play className="h-5 w-5 fill-current" aria-hidden="true" />
+                <span>Get it on Google Play</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
 
-            <p className="mt-4 text-sm text-white/90">
-              Available for Android. The web app is in development.
-            </p>
+              <Button
+                as="a"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                size="lg"
+                className="min-h-14 w-full justify-center border border-white/30 bg-white/10 px-7 text-base font-bold text-white shadow-card hover:bg-white/15 hover:shadow-card sm:w-auto sm:px-10"
+              >
+                <Apple className="h-5 w-5 fill-current" aria-hidden="true" />
+                <span>Download for iPhone</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            </div>
 
             <p className="mt-8 border-t border-white/20 pt-6 text-sm text-white/90">
               A local business?{" "}

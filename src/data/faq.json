@@ -2,61 +2,111 @@
   {
     "id": "faq-1",
     "question": "What is Meelte and how does the platform work?",
-    "answer": "Meelte is a hyperlocal community and commerce platform built for Indian neighbourhoods. Instead of a global feed of distant posts, it surfaces nearby offers, shops, events, and services — sorted by distance from your location, with a \"Max distance\" filter that defaults to 60 km."
+    "answer": "Meelte is a hyperlocal community app for discovering offers from nearby shops, local events, and people you connect with in your community. The app uses your location to sort nearby ads and events by distance."
   },
   {
     "id": "faq-2",
     "question": "How does Meelte protect user location and data privacy?",
-    "answer": "Privacy is our foundational principle. Your location is used only to filter and display listings and community meetups near you. We never log, monetise, package, or sell user location coordinates or browsing history to third-party ad brokers."
+    "answer": "Meelte uses location to sort nearby listings and determine which configured city zone applies. Meelte states that it does not sell or share user location with advertisers. Read the Privacy Policy for details about personal data."
   },
   {
     "id": "faq-3",
-    "question": "How can local merchants list their business with zero commission?",
-    "answer": "Local shops, cafes, boutiques, clinics and service businesses can publish a time-boxed offer, or a shop catalogue of up to 100 products, and Meelte deducts no commission from what they earn. Customers see the price, the discount and the shop's location, then settle the purchase directly with the shop rather than through an aggregator middleman."
+    "question": "How can a local business list on Meelte, and what does it cost?",
+    "answer": "Local shops and service businesses can enquire through the merchant page and are onboarded in person by Meelte's field team. Merchant pricing is not published on the website, so contact the team for current terms."
   },
   {
     "id": "faq-4",
-    "question": "Is Meelte free for community members and event organizers?",
-    "answer": "Yes — browsing nearby listings, following shops, chatting with people you meet, and creating events are all free for community members, with no subscription or app fee. Event hosts can set their own joining cost in ₹, which attendees pay directly to the host rather than to Meelte."
+    "question": "Does Meelte charge community members or take event fees?",
+    "answer": "Meelte's current documented model has no paid subscription or in-app purchases. Event hosts set any joining cost themselves, and attendees settle it directly with the host; Meelte does not process event payments. Merchant pricing is separate and is not published."
   },
   {
     "id": "faq-5",
-    "question": "In which cities is Meelte currently available?",
-    "answer": "Meelte is focused on operational hubs in Bengaluru, Gaya, and Ranchi, where local communities and storefronts are onboarded in person by our field team. We are actively expanding to additional cities across India."
+    "question": "Where is Meelte available?",
+    "answer": "The Meelte Android app is available on Google Play. Meelte's field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones, so availability can vary by area."
   },
   {
     "id": "faq-7",
-    "question": "Where can users download and access the Meelte App?",
-    "answer": "The official Meelte mobile app is available on the Google Play Store for Android (package: com.meelte.classico). A browser-based web experience is in development and will be announced on this site once it goes live."
+    "question": "Where can I download the Meelte app?",
+    "answer": "The official Meelte app is available for Android on Google Play. The website does not currently list an iOS download, and the browser-based web app is still in development."
   },
   {
     "id": "faq-8",
-    "question": "What can a local business post — a single offer or the whole menu?",
-    "answer": "Both. A merchant can publish a single-product ad or a shop ad carrying up to 100 products, priced as an original and final price or as a flat or \"up to\" percentage discount. Photographing a menu or price list fills in the item names and prices automatically, product photos can be generated for items that were not shot, and every ad runs from 12:00 AM on its start date until 11:59 PM on its end date."
+    "question": "What can a local business post on Meelte?",
+    "answer": "A business can publish a single-product ad or a shop catalogue of up to 100 products. Listings can show original and final prices or a flat or up-to percentage discount. A merchant can photograph a menu or price list to import item names and prices, then review the details and add product images."
   },
   {
     "id": "faq-9",
-    "question": "How does joining an event on Meelte work?",
-    "answer": "Every event lists its category, joining cost in ₹, start and end time, map location, and whether it is public or private. You send a \"Request to Join\" — alone or with a group, stating how many people are coming — and the host approves or rejects it, and can remove attendees later if needed."
+    "question": "How do I request to join an event on Meelte?",
+    "answer": "Open an event to check its time, map location, visibility, and any joining cost. Send a Request to Join for yourself or a group and state the group size. The event host approves or rejects the request and can remove attendees later."
   },
   {
     "id": "faq-10",
-    "question": "Can I host my own event or meet-up on Meelte?",
-    "answer": "Yes. Individuals, clubs, and small organisers can create an event with a cover image, category, joining cost in ₹, start and end time, pinned location, and public or private visibility. You control attendance through join requests and group sizes, and any joining fee is collected by you, directly from attendees."
+    "question": "Can I create and host a local event on Meelte?",
+    "answer": "Yes. Individuals, clubs, and small organisers can create events with a category, cover image, time, map location, and public or private visibility. Hosts review join requests and decide who attends. Any joining fee is set and collected by the host, not Meelte."
   },
   {
     "id": "faq-11",
-    "question": "How do payments work on Meelte?",
-    "answer": "Meelte does not process payments. Purchases are settled directly with the shop, and event fees are settled directly with the host — in person or through their own preferred payment method. Meelte is a discovery and connection platform, not a payment processor, ticketing service, or escrow."
+    "question": "Does Meelte process payments or sell event tickets?",
+    "answer": "No. Meelte does not sell goods, run events, process payments, or sell tickets. Customers settle purchases directly with shops, and event attendees settle any joining cost directly with the host."
   },
   {
     "id": "faq-12",
-    "question": "How do the referral coins and Amazon vouchers work?",
-    "answer": "Every new account starts with 30 coins, and you earn 30 more for each friend who joins with your referral code, with milestones at 10, 50, and 100 invites. Coins redeem as an Amazon voucher of ₹100 or ₹500 once your profile is complete, capped at ₹500 in total per user, and vouchers are emailed within 7 business days."
+    "question": "How do Meelte referral coins and Amazon vouchers work?",
+    "answer": "The referral programme awards coins for eligible sign-ups through a referral code. The current programme details describe a 30-coin sign-up bonus, 30 coins per referral, and milestones at 10, 50, and 100 referrals. Once a profile is complete, coins can be redeemed for a ₹100 or ₹500 Amazon voucher, subject to a ₹500 lifetime redemption cap; vouchers are sent by email within seven business days."
   },
   {
     "id": "faq-13",
-    "question": "How does Meelte keep listings and conversations safe?",
-    "answer": "Everyone on Meelte must be 13 or older. Ads and comments pass through community moderation, every user can report content, and every user can block or unblock people from chat. Shops are onboarded in person by our field team rather than self-declared. Meelte does not verify the identity of individual users, so meet in public places and use your own judgement."
+    "question": "How does Meelte handle safety, reports, and user verification?",
+    "answer": "Meelte is for people aged 13 and older. Users can report content and block people in chat, and ads and comments are subject to moderation. Meelte does not verify the identity or background of individual users; use your judgement when meeting people."
+  },
+  {
+    "id": "faq-14",
+    "question": "How far away can I find offers and events on Meelte?",
+    "answer": "The app sorts ads and events by distance from your location. Its Max distance filter defaults to 60 km and can be narrowed to focus on closer listings."
+  },
+  {
+    "id": "faq-15",
+    "question": "How long does a local shop offer stay active?",
+    "answer": "A shop ad runs from 12:00 AM on its start date through 11:59 PM on its end date. After the end date, it is no longer an active offer."
+  },
+  {
+    "id": "faq-16",
+    "question": "Can I follow a shop on Meelte to hear about updates?",
+    "answer": "Yes. You can follow an advertiser, and followers may receive notifications when that advertiser updates a public ad or event."
+  },
+  {
+    "id": "faq-17",
+    "question": "Can I use Meelte on an iPhone or in a web browser?",
+    "answer": "The currently published app download is for Android on Google Play. Meelte does not currently list an iOS download, and the browser-based web app is in development rather than available for browsing listings."
+  },
+  {
+    "id": "faq-18",
+    "question": "Which languages does Meelte support?",
+    "answer": "Meelte lists English, Hindi, and Kannada among its supported languages."
+  },
+  {
+    "id": "faq-19",
+    "question": "Can I discover and chat with people on Meelte?",
+    "answer": "Meelte supports friends, follows, and one-to-one chat with people you connect with through the app; voice and video calls are also available. The broader Discover People feature is still rolling out, so Meelte does not promise that every user can browse a directory of strangers."
+  },
+  {
+    "id": "faq-20",
+    "question": "How can I report content or block someone on Meelte?",
+    "answer": "Use the report controls in the app to report content or a user. You can also block or unblock people from chat. These tools support reporting and blocking; they are not a guarantee that every interaction is risk-free."
+  },
+  {
+    "id": "faq-21",
+    "question": "Are shops or users verified on Meelte?",
+    "answer": "Meelte does not offer a consumer-facing identity or background verification programme for users. Shops are onboarded in person by the field team, but that onboarding should not be treated as a verification badge or guarantee."
+  },
+  {
+    "id": "faq-22",
+    "question": "Can merchants see views, reach, or footfall analytics?",
+    "answer": "Meelte does not currently provide merchants with an analytics dashboard for reach, views, or footfall."
+  },
+  {
+    "id": "faq-23",
+    "question": "How do I contact Meelte support?",
+    "answer": "Email support@meelte.com for app help, account questions, privacy requests, or general enquiries. You can also use the Contact page to find the support phone number and other contact options."
   }
 ]

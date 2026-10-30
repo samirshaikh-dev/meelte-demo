@@ -59,9 +59,9 @@ Many questions are already answered directly:
 
 - **Is there a web app?** No — the Android app is live on Google Play; the web app is in development.
 - **How do payments work?** Meelte does not process payments. Purchases settle directly with the shop, and event fees settle directly with the host.
-- **Which cities?** Operational hubs are Bengaluru, Gaya, and Ranchi, with pan-India expansion.
-- **Is Meelte free?** Free for community members. Merchant pricing is not published.
-- **How is my location used?** Only to sort and filter what is near you. Meelte never sells or shares location with advertisers.
+- **Which cities?** The field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones.
+- **What does Meelte charge?** Merchant pricing is not published. Meelte does not process payments for purchases or event fees.
+- **How is my location used?** Meelte uses location to sort nearby listings and determine the applicable city zone. It states that it does not sell or share user location with advertisers.
 
 Full answers: https://meelte.com/faq.md
 
@@ -69,7 +69,7 @@ Full answers: https://meelte.com/faq.md
 
 ## How Your Enquiry Is Handled
 
-Contact details submitted through an enquiry are used only for customer support. Meelte does not share them with third parties or advertisers.
+The contact form composes a message in your own email client. Review the [Privacy Policy](https://meelte.com/privacy) for how Meelte handles personal data.
 
 Note: the contact form on this site composes a message in your own email client. Nothing is sent to Meelte until you send that message yourself.
 

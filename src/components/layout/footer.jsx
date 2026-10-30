@@ -48,8 +48,7 @@ const FOOTER_SECTIONS = [
     links: [
       { label: "Discover", href: "/discover" },
       { label: "How it works", href: "/how-it-works" },
-      { label: "For shops", href: "/for-merchants" },
-      { label: "Support", href: "/support" },
+      { label: "For Merchant", href: "/for-merchants" },
     ],
   },
   {
@@ -96,7 +95,6 @@ export function Footer() {
           <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-3">
             <p className="max-w-sm text-sm leading-relaxed text-foreground-secondary">
               The hyperlocal community platform connecting neighbors with local businesses and opportunities.
-              <br />
               Built for everyday discovery across India.
             </p>
 

@@ -25,8 +25,8 @@ const DISCOVER_BREADCRUMBS = [
  *
  * Drawn from `src/data/faq.json`, the single copy source. A first-time discover
  * visitor asks five things before installing: where it works, how to get the app,
- * how joining works, who handles payment, and whether it is safe. The rest of the
- * 12 questions stay on /faq, linked from the section footer. Filtering (rather
+ * how joining works, who handles payment, and whether it is safe. The full answer
+ * set stays on /faq, linked from the section footer. Filtering (rather
  * than a hand-written copy of the answers) keeps the accordion and the FAQPage
  * schema identical.
  */

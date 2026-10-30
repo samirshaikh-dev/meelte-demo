@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
+  Apple,
   Sparkles,
   Compass,
   Users,
@@ -23,10 +24,11 @@ import {
   CalendarDays,
   ShoppingBag,
   Zap,
+  Play,
 } from "@/lib/icons";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { getAboutPageJsonLd, getBreadcrumbsJsonLd } from "@/lib/seo/structured-data";
-import { PLAY_STORE_URL } from "@/config/site";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 
 export const metadata = buildPageMetadata({
   title: "About Meelte — Why We Built Meelte",
@@ -191,8 +193,20 @@ export default function AboutPage() {
                 size="lg"
                 className="shadow-card"
               >
-                <Download className="h-4 w-4" aria-hidden="true" />
-                <span>Get the Meelte App</span>
+                <Play className="h-4 w-4 fill-current" aria-hidden="true" />
+                <span>Get it on Google Play</span>
+              </Button>
+              <Button
+                as="a"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                size="lg"
+                className="shadow-card"
+              >
+                <Apple className="h-4 w-4 fill-current" aria-hidden="true" />
+                <span>Download for iPhone</span>
               </Button>
               <Button as={Link} href="/discover" variant="outline" size="lg">
                 <Compass className="h-4 w-4 text-primary" aria-hidden="true" />
@@ -477,8 +491,20 @@ export default function AboutPage() {
                   size="lg"
                   className="shadow-soft"
                 >
-                  <Download className="h-4 w-4" aria-hidden="true" />
-                  <span>Get Meelte on Google Play</span>
+                  <Play className="h-4 w-4 fill-current" aria-hidden="true" />
+                  <span>Get it on Google Play</span>
+                </Button>
+                <Button
+                  as="a"
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outline"
+                  size="lg"
+                  className="shadow-soft"
+                >
+                  <Apple className="h-4 w-4 fill-current" aria-hidden="true" />
+                  <span>Download for iPhone</span>
                 </Button>
                 <Button as={Link} href="/contact" variant="outline" size="lg">
                   <span>Contact Our Team</span>

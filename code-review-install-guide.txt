@@ -1,0 +1,317 @@
+# Code Review Graph — What is it?
+
+Open source
+
+AI developer tool
+
+MIT License
+
+Code Review Graph is an AI-powered codebase intelligence tool that helps AI coding assistants understand large projects without repeatedly reading the entire codebase.
+
+GitHub: [tirth8205/code-review-graph](https://github.com/tirth8205/code-review-graph?utm_source=chatgpt.com)
+
+## 1. What problem does it solve?
+
+Imagine you're working on your Meelte Next.js project.
+
+You ask Cursor:
+
+> Find why the footer component is breaking and identify other components that might be affected.
+
+Without Code Review Graph:
+
+- AI searches through files.
+- Reads multiple components.
+- Tries to understand imports and dependencies.
+- May miss indirect dependencies.
+- Consumes more context tokens.
+
+With Code Review Graph:
+
+- Builds a structural map of your codebase.
+- Understands imports, functions, classes and dependencies.
+- Identifies affected components.
+- Gives AI relevant code context.
+
+Think of it as a searchable dependency brain for your project.
+
+## 2. How does it work?
+
+[GitNexus：零服务器代码知识图谱引擎，Graph RAG 让 AI 真正读懂代码 - 苏米客](https://images.openai.com/static-rsc-4/5ipHVaUtEjx_8MSPU7gbQweOhTAvbFYTTj_7XiHHSlGNhQiNUsZQvycECEfqM7ecdj2xycruWqCN2nwh8p7vLyCeMxma4QI0Prvv7eOnsNOKXy8V7vYhIYxWju-ntxzw44CuFggr9A6S0U4V3NAvO64OWHiQJ42rWnbiAtVIfgo?purpose=inline)
+
+[xmsumi.com](https://www.xmsumi.com/detail/3137?utm_source=chatgpt.com)
+
+1. Parse: Tree-sitter analyzes your source code.
+2. Build graph: Creates relationships between functions, classes, imports and tests.
+3. Store: Saves the graph locally in SQLite.
+4. Analyze: Identifies dependencies and potential impact of code changes.
+5. Connect: Exposes relevant information to AI coding assistants through MCP.
+
+## 3. Installation on Windows
+
+Open PowerShell:
+
+```
+pipx install code-review-graph
+```
+
+Then navigate to your project:
+
+```
+cd path\to\your\meelte-project
+```
+
+Install AI tool integrations:
+
+```
+code-review-graph install
+```
+
+Or configure Cursor specifically:
+
+```
+code-review-graph install --platform cursor
+```
+
+Build your codebase graph:
+
+```
+code-review-graph build
+```
+
+Restart Cursor after installation.
+
+## 4. Important commands
+
+| Command          | Purpose                        |
+| ---------------- | ------------------------------ |
+| `build`          | Build codebase graph           |
+| `update`         | Update changed files           |
+| `status`         | Show graph statistics          |
+| `watch`          | Watch file changes             |
+| `visualize`      | Visualize codebase graph       |
+| `dead-code`      | Find potentially unused code   |
+| `wiki`           | Generate project documentation |
+| `detect-changes` | Analyze changes and risks      |
+| `forget`         | Remove parsed files from graph |
+
+Example:
+
+```
+code-review-graph status
+code-review-graph visualize
+code-review-graph dead-code
+code-review-graph detect-changes --brief
+```
+
+## 5. Code Review Graph vs Graphify
+
+Since you were also exploring Graphify, here's the distinction:
+
+| Feature                    | Code Review Graph     | Graphify                    |
+| -------------------------- | --------------------- | --------------------------- |
+| Main purpose               | Codebase intelligence | Knowledge graph             |
+| Code dependencies          | Yes                   | Not its primary focus       |
+| Impact analysis            | Yes                   | Not its primary focus       |
+| Dead-code detection        | Yes                   | Not its primary focus       |
+| AI integration             | MCP                   | AI-oriented graph workflows |
+| Architecture understanding | Yes                   | Yes, depending on workflow  |
+
+## 6. My recommendation
+
+For your development workflow, particularly Meelte:
+
+Worth trying
+
+I'd use Code Review Graph for:
+
+- Understanding unfamiliar codebases.
+- Finding dependencies before refactoring.
+- Reviewing changes before committing.
+- Finding potentially unused functions.
+- Understanding backend execution flows.
+- Giving Cursor better context when debugging.
+
+One important distinction: It doesn't replace Cursor or your AI coding model. It supplies additional structural context so the AI can make better-informed decisions.
+
+You can also explore its [official CLI documentation](https://github.com/tirth8205/code-review-graph?utm_source=chatgpt.com#usage) for the complete command reference.
+
+Now that Code Review Graph is installed and its CLI works, the next step is to connect it to your AI coding agent.
+
+Your goal is to make Cursor and other AI agents access the same codebase knowledge graph, so they can understand dependencies, inspect code relationships, and analyze changes without rebuilding that understanding from scratch.
+
+There are two ways to use it:
+
+1. CLI: You manually run commands in PowerShell.
+2. MCP integration: Your AI agent calls Code Review Graph tools directly while working on your project.
+
+I recommend setting up both.
+
+## 1. Connect Cursor to Code Review Graph
+
+From your current Meelte project directory, run:
+
+```
+python -m code_review_graph install --platform cursor
+```
+
+This integration should automatically:
+
+- Create/update Cursor's MCP configuration at `.cursor/mcp.json`.
+- Register Code Review Graph as an MCP server.
+- Add graph-aware project instructions.
+- Install supported workflow skills and hooks.
+
+The official installer handles the configuration for you.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://github.com\&sz=32)
+
+GitHub+1
+
+
+
+If you want to inspect what the installer supports first:
+
+```
+python -m code_review_graph install --help
+```
+
+## 2. Restart Cursor and verify MCP
+
+1. Close Cursor completely.
+2. Reopen your Meelte project.
+3. Open Cursor Settings.
+4. Navigate to Tools & MCP.
+5. Find `code-review-graph`.
+6. Check that the MCP server is connected and its tools are available.
+
+[Setting Up MCP Servers for Your AI Agent Stack (2026) | Bytewaves](https://images.openai.com/static-rsc-4/wl_j7r_rl6lNd93nge0o_EFZ3vRnhyXeSeoC35WRId_hMbVR8gn-xCFqUo3_gswDPBikml-kQIazkVnQYLWeJg3rfTNJn0WjQ6GNXpgUmluaoJSvBSKvKqzlWsMFh5tuJZX4b1raTh--p2Z75jdxh4pmDFsnbMJcSEM7uxGnKJU?purpose=inline)
+
+[bytewaves.news](https://bytewaves.news/tutorials/setting-up-mcp-servers-ai-agent-stack-2026/?utm_source=chatgpt.com)
+
+If it is connected, your AI agent can call the graph tools directly.
+
+## 3. Give your AI agent instructions
+
+After connecting, try this prompt in Cursor Agent:
+
+Use Code Review Graph as your primary codebase intelligence tool.
+
+Before making changes:
+
+1. Inspect the existing codebase graph.
+2. Understand the architecture, modules, dependencies, and execution flows relevant to the task.
+3. Identify affected components and dependencies before modifying files.
+4. Use graph-based context to avoid unnecessary repository-wide exploration.
+
+When making changes:
+
+1. Consider the impact on dependent components.
+2. Identify potentially affected tests.
+3. Follow the existing architecture and coding conventions.
+4. Avoid unnecessary refactoring.
+
+After making changes:
+
+1. Update the code graph if needed.
+2. Analyze the change impact and potential regressions.
+3. Report affected files, dependencies, and testing recommendations.
+
+Do not assume the graph contains up-to-date information. Check its status when necessary.
+
+## 4. Use Code Review Graph directly from CLI
+
+You can run these commands whenever you need them.
+
+| Command          | What it does                        |
+| ---------------- | ----------------------------------- |
+| `build`          | Rebuild entire graph                |
+| `update`         | Update only changed files           |
+| `status`         | Check graph health/statistics       |
+| `visualize`      | Open graph visualization            |
+| `wiki`           | Generate architecture documentation |
+| `detect-changes` | Analyze change impact               |
+| `watch`          | Automatically monitor file changes  |
+
+Your Windows commands:
+
+```
+# Update graph
+python -m code_review_graph update
+
+# Check graph
+python -m code_review_graph status
+
+# Analyze recent changes
+python -m code_review_graph detect-changes --brief
+
+# Watch project changes
+python -m code_review_graph watch
+```
+
+The graph is stored locally in `.code-review-graph/`. Incremental updates help keep it synchronized.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://github.com\&sz=32)
+
+GitHub+1
+
+
+
+## 5. Connect other AI agents
+
+The installer supports multiple platforms, not just Cursor.
+
+| AI agent       | Platform argument |
+| -------------- | ----------------- |
+| Cursor         | `cursor`          |
+| Claude Code    | `claude-code`     |
+| Windsurf       | `windsurf`        |
+| GitHub Copilot | `copilot`         |
+| Gemini CLI     | `gemini-cli`      |
+| OpenCode       | `opencode`        |
+| Codex          | `codex`           |
+
+For example:
+
+```
+python -m code_review_graph install --platform claude-code
+```
+
+You can configure multiple supported agents to use the same repository graph.&#x20;
+
+[image](https://www.google.com/s2/favicons?domain=https://github.com\&sz=32)
+
+GitHub
+
+
+
+## My recommended Meelte workflow
+
+## Development workflow
+
+1. Build graph
+
+   `python -m code_review_graph build`
+2. Connect Cursor MCP
+
+   `python -m code_review_graph install --platform cursor`
+3. AI understands architecture
+
+   Agent accesses graph context through MCP.
+4. Develop features
+
+   Agent checks dependencies before modifying code.
+5. Review changes
+
+   `python -m code_review_graph detect-changes --brief`
+6. Keep graph updated
+
+   `python -m code_review_graph update`
+
+Let's do this step by step. First execute:
+
+```
+python -m code_review_graph install --platform cursor
+```
+
+Send me the complete output. I'll help verify the MCP configuration and make sure Cursor Agent can actually access the graph tools.

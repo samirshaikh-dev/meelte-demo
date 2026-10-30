@@ -1,6 +1,6 @@
 # Meelte Coverage & Availability
 
-> Meelte is a hyperlocal community platform built for India. It is live as an Android app on Google Play, its field team currently onboards shops in person in Bengaluru, Gaya, and Ranchi, and the platform is expanding to additional cities across the country. The web app is in development and is not live.
+> Meelte is a hyperlocal community platform for India. Its Android app is available on Google Play, and the field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones. The web app is in development and is not live.
 
 Canonical pages: https://meelte.com/discover · https://meelte.com/for-merchants
 Official Website: https://meelte.com
@@ -15,10 +15,11 @@ Meelte is built for **India**. Coverage has two layers, and the difference matte
 
 | Layer | Scope | What it means |
 | :--- | :--- | :--- |
-| **Platform coverage** | Pan-India | The Android app is distributed nationally through Google Play and the product is designed for Indian neighbourhoods. |
-| **In-person onboarding hubs** | Bengaluru, Gaya, Ranchi | The only cities where Meelte's field team currently signs up shops in person. |
+| **App availability** | Google Play | The Android app is available on Google Play. |
+| **In-person onboarding hubs** | Bengaluru, Gaya, Ranchi | The cities where Meelte's field team currently onboards shops in person. |
+| **Nearby listings** | Configured city zones | Which offers and events appear depends on the city zones configured for the app. |
 
-Meelte is actively expanding to additional cities. This page is updated as that changes.
+The three onboarding hubs describe where the field team currently works; they do not establish that nearby listings are available throughout those cities or elsewhere.
 
 ---
 
@@ -36,9 +37,9 @@ Meelte's registered office is in **Bodh Gaya, Bihar – 824231, India**. The off
 
 ## What "Operational Hub" Means
 
-An operational hub is a city where Meelte staff work with local storefronts face to face: visiting the shop, setting up the profile, and helping publish the first offer. It is **not** a walled city zone and it is **not** a claim that listings are unavailable elsewhere — it describes where in-person merchant onboarding happens today.
+An operational hub is a city where Meelte staff work with local storefronts face to face: visiting the shop, setting up the profile, and helping publish the first offer. It describes where in-person merchant onboarding happens; listing availability depends on configured city zones.
 
-If you are a resident outside these three cities, the app still installs and works; how much nearby content you see depends on which city zone is active around you.
+The Android app is available on Google Play. The amount of nearby content a user sees depends on which city zones are configured.
 
 ---
 

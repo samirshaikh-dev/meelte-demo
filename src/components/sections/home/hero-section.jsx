@@ -2,7 +2,6 @@
 
 import {
   ArrowRight,
-  Download,
   MapPin,
   MessageCircle,
   Tag,
@@ -10,7 +9,6 @@ import {
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
-import { PLAY_STORE_URL } from "@/config/site";
 import { motion } from "framer-motion";
 
 /**
@@ -205,36 +203,7 @@ export function HeroSection() {
               distance, not by a global feed.
             </motion.p>
 
-            <motion.div
-              variants={fadeUpVariants}
-              className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap"
-            >
-              <Button
-                as="a"
-                href={PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="primary"
-                size="lg"
-                className="group w-full rounded-2xl px-8 font-semibold sm:w-auto"
-              >
-                <Download className="h-4 w-4" aria-hidden="true" />
-                <span>Download for Android</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-              </Button>
-
-              <Button
-                as="a"
-                href="/for-merchants"
-                variant="outline"
-                size="lg"
-                className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-all duration-200 hover:-translate-y-[2px] hover:scale-[1.02] hover:shadow-soft sm:w-auto"
-              >
-                <Store className="h-4 w-4" aria-hidden="true" />
-                <span>For local businesses</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-              </Button>
-            </motion.div>
+           
           </motion.div>
         </div>
       </Container>

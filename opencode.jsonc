@@ -35,6 +35,10 @@
     "build": {
       "description": "Run production build (webpack)",
       "template": "Run `npm run build` and fix any errors this command reports."
+    },
+    "code-review-graph": {
+      "description": "Inspect/update the Code Review Graph codebase intelligence",
+      "template": "Run `python -m code_review_graph status` to check graph health, `python -m code_review_graph update` to refresh changed files, or `python -m code_review_graph build` to rebuild the graph. See code-review-install-guide.txt."
     }
   },
 

@@ -24,7 +24,7 @@ export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com
 // Placeholder until the app developer supplies the iOS listing URL. Kept as "#" so the
 // App Store button can ship in the navbar and footer without pointing at a wrong listing;
 // replace this one value and both surfaces update (project-context.md §10 item 9).
-export const APP_STORE_URL = "#";
+export const APP_STORE_URL = "https://apps.apple.com/ng/app/meelte/id6792304887";
 export const APPLE_LOGO_URL = "https://meelte.com/apple-touch-icon.png";
 export const TWITTER_HANDLE = "@meelteapp";
 export const BING_SITE_VERIFICATION = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || "";

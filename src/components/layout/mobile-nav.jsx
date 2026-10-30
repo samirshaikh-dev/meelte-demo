@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   Menu,
@@ -32,9 +33,18 @@ const COMPANY_ITEMS = [
 ];
 
 export function MobileNav() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [productExpanded, setProductExpanded] = useState(false);
   const [companyExpanded, setCompanyExpanded] = useState(false);
+  const isProductActive = PRODUCT_ITEMS.some(
+    (item) => pathname === item.href || pathname?.startsWith(`${item.href}/`)
+  );
+  const isCompanyActive = COMPANY_ITEMS.some(
+    (item) => pathname === item.href || pathname?.startsWith(`${item.href}/`)
+  );
+  const isForMerchantsActive =
+    pathname === "/for-merchants" || pathname?.startsWith("/for-merchants/");
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -42,7 +52,7 @@ export function MobileNav() {
         <button
           type="button"
           aria-label="Open navigation menu"
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-foreground shadow-2xs transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/80 bg-surface text-foreground shadow-soft transition-colors hover:border-primary/20 hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface lg:hidden"
         >
           <Menu className="h-5 w-5 text-foreground" aria-hidden="true" />
         </button>
@@ -52,10 +62,10 @@ export function MobileNav() {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs transition-opacity data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
         <Dialog.Content
           aria-describedby="mobile-nav-description"
-          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-xs flex-col bg-surface p-6 shadow-2xl transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-200 focus:outline-none"
+          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-xs flex-col border-l border-border/80 bg-surface p-6 shadow-card transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-200 focus:outline-none"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-4 border-b border-border">
+          <div className="flex items-center justify-between border-b border-border/80 pb-5">
             <Link
               href="/"
               onClick={() => setOpen(false)}
@@ -83,7 +93,7 @@ export function MobileNav() {
               <button
                 type="button"
                 aria-label="Close navigation menu"
-                className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground-secondary hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                className="flex h-11 w-11 items-center justify-center rounded-xl text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -95,13 +105,17 @@ export function MobileNav() {
           </p>
 
           {/* Navigation Links */}
-          <nav className="mt-4 flex flex-col gap-1 flex-1 overflow-y-auto pr-1">
+          <nav className="mt-5 flex flex-1 flex-col gap-1 overflow-y-auto pr-1">
             {/* Product Accordion */}
             <div className="flex flex-col">
               <button
                 type="button"
                 onClick={() => setProductExpanded(!productExpanded)}
-                className="flex items-center justify-between p-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-surface-muted transition-colors"
+                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
+                  isProductActive
+                    ? "bg-surface-muted/80 text-primary"
+                    : "text-foreground hover:bg-surface-muted"
+                }`}
                 aria-expanded={productExpanded}
               >
                 <span>Product</span>
@@ -114,18 +128,29 @@ export function MobileNav() {
                 <div className="flex flex-col gap-1 ml-2 mt-1">
                   {PRODUCT_ITEMS.map((item) => {
                     const Icon = item.icon;
+                    const isActive =
+                      pathname === item.href || pathname?.startsWith(`${item.href}/`);
                     return (
                       <Link
                         key={item.href}
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className="flex items-start gap-3 p-2 rounded-xl text-sm font-medium text-foreground hover:bg-surface-muted hover:text-primary transition-colors group"
+                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
+                          isActive
+                            ? "bg-surface-muted text-primary"
+                            : "text-foreground hover:bg-surface-muted hover:text-primary"
+                        }`}
+                        aria-current={isActive ? "page" : undefined}
                       >
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                          isActive
+                            ? "bg-primary/10"
+                            : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                        }`}>
                           <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                         </div>
                         <div className="flex flex-col min-w-0 flex-1">
-                          <span className="font-semibold text-foreground group-hover:text-primary">{item.label}</span>
+                          <span className={`font-semibold ${isActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>{item.label}</span>
                           <span className="text-[10px] text-foreground-secondary">{item.note}</span>
                         </div>
                       </Link>
@@ -139,9 +164,18 @@ export function MobileNav() {
             <Link
               href="/for-merchants"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 p-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-surface-muted hover:text-primary transition-colors group"
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
+                isForMerchantsActive
+                  ? "bg-surface-muted/80 text-primary"
+                  : "text-foreground hover:bg-surface-muted hover:text-primary"
+              }`}
+              aria-current={isForMerchantsActive ? "page" : undefined}
             >
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                isForMerchantsActive
+                  ? "bg-primary/10"
+                  : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+              }`}>
                 <Store className="h-4 w-4" aria-hidden="true" />
               </div>
               <span>For Merchants</span>
@@ -152,7 +186,11 @@ export function MobileNav() {
               <button
                 type="button"
                 onClick={() => setCompanyExpanded(!companyExpanded)}
-                className="flex items-center justify-between p-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-surface-muted transition-colors"
+                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
+                  isCompanyActive
+                    ? "bg-surface-muted/80 text-primary"
+                    : "text-foreground hover:bg-surface-muted"
+                }`}
                 aria-expanded={companyExpanded}
               >
                 <span>Company</span>
@@ -165,18 +203,29 @@ export function MobileNav() {
                 <div className="flex flex-col gap-1 ml-2 mt-1">
                   {COMPANY_ITEMS.map((item) => {
                     const Icon = item.icon;
+                    const isActive =
+                      pathname === item.href || pathname?.startsWith(`${item.href}/`);
                     return (
                       <Link
                         key={item.href}
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className="flex items-start gap-3 p-2 rounded-xl text-sm font-medium text-foreground hover:bg-surface-muted hover:text-primary transition-colors group"
+                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
+                          isActive
+                            ? "bg-surface-muted text-primary"
+                            : "text-foreground hover:bg-surface-muted hover:text-primary"
+                        }`}
+                        aria-current={isActive ? "page" : undefined}
                       >
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                          isActive
+                            ? "bg-primary/10"
+                            : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                        }`}>
                           <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                         </div>
                         <div className="flex flex-col min-w-0 flex-1">
-                          <span className="font-semibold text-foreground group-hover:text-primary">{item.label}</span>
+                          <span className={`font-semibold ${isActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>{item.label}</span>
                           <span className="text-[10px] text-foreground-secondary">{item.note}</span>
                         </div>
                       </Link>
@@ -189,7 +238,7 @@ export function MobileNav() {
 
           {/* Bottom actions — the drawer is now the only compact download surface
               below `lg`, so it carries both stores instead of a single app button. */}
-          <div className="pt-4 border-t border-border mt-auto flex flex-col gap-2.5">
+          <div className="mt-auto flex flex-col gap-2.5 border-t border-border/80 pt-5">
             <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground-secondary">
               Get the app
             </span>

@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Compass, Home, Search, ArrowRight, MapPin } from "@/lib/icons";
+import { Apple, Compass, Home, Search, ArrowRight, MapPin, Play } from "@/lib/icons";
 import { Container } from "../components/layout/container.jsx";
 import { Button } from "../components/ui/button.jsx";
 import { Card } from "../components/ui/card.jsx";
-import { PLAY_STORE_URL } from "@/config/site";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
@@ -89,7 +89,21 @@ export default function NotFound() {
                 size="md"
                 className="shadow-soft hover:shadow-md transition-shadow inline-flex items-center gap-2 shrink-0 self-start sm:self-center"
               >
-                <span>Get the Meelte App</span>
+                <Play className="h-4 w-4 fill-current" aria-hidden="true" />
+                <span>Get it on Google Play</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Button>
+              <Button
+                as="a"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                size="md"
+                className="shadow-soft hover:shadow-md transition-shadow inline-flex items-center gap-2 shrink-0 self-start sm:self-center"
+              >
+                <Apple className="h-4 w-4 fill-current" aria-hidden="true" />
+                <span>Download for iPhone</span>
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             </div>

@@ -1,13 +1,15 @@
 "use client";
 
 import {
+  Apple,
   Download,
   ArrowRight,
   MapPin,
+  Play,
   Users,
   UserPlus,
 } from "@/lib/icons";
-import { PLAY_STORE_URL } from "@/config/site";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -231,8 +233,22 @@ export function HowItWorksHero() {
               >
                 <span className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-indigo-500 to-violet-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <span className="absolute inset-x-0 -top-10 h-16 bg-white/20 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
-                <Download className="h-5 w-5 transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true" />
-                <span>Get the Meelte App</span>
+                <Play className="h-5 w-5 shrink-0 self-center fill-current transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true" />
+                <span className="leading-none">Get it on Google Play</span>
+              </Button>
+
+              <Button
+                as="a"
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                size="lg"
+                className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
+              >
+                <Apple className="h-5 w-5 shrink-0 self-center fill-current" aria-hidden="true" />
+                <span className="leading-none">Download for iPhone</span>
+                <ArrowRight className="h-4 w-4 shrink-0 self-center transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
               </Button>
 
               <Button
@@ -242,8 +258,8 @@ export function HowItWorksHero() {
                 size="lg"
                 className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
               >
-                <span>See Who It&apos;s For</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+                <span className="leading-none">See Who It&apos;s For</span>
+                <ArrowRight className="h-4 w-4 shrink-0 self-center transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
               </Button>
             </motion.div>
           </motion.div>

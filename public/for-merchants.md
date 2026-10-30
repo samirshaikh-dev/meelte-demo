@@ -1,6 +1,6 @@
 # List Your Shop on Meelte — Merchant Guide
 
-> Meelte gives independent shops, restaurants, clinics, and service businesses a way to reach nearby residents with time-boxed offers, with no commission deducted from a sale and no digital marketing team required. Shops are onboarded in person by Meelte's field team.
+> Meelte gives independent shops, restaurants, clinics, and service businesses a way to publish time-boxed offers for nearby residents. Shops are onboarded in person by Meelte's field team. Merchant pricing is not published.
 
 Canonical page: https://meelte.com/for-merchants
 Merchant desk: support@meelte.com
@@ -17,7 +17,7 @@ Last reviewed: October 2026
 - Clinics, fitness studios, and wellness centres promoting a time-boxed offer.
 - Boutiques and apparel retailers that want to show a catalogue rather than a single item.
 
-Meelte is not a delivery marketplace, a payments provider, or an advertising auction. It is a local discovery surface.
+Meelte is a local discovery platform, not a delivery marketplace or payments provider.
 
 ---
 
@@ -43,11 +43,9 @@ Onboarding is deliberately in person. Meelte's defensible advantage is a field t
 
 ---
 
-## What It Costs
+## Merchant Pricing
 
-- Meelte **deducts no commission** from what a merchant earns. The customer sees the price and pays the shop directly.
-- There is **no delivery middleman** between the shop and the customer, and no aggregator taking a cut of the sale.
-- **Merchant pricing is not published** on this site. Any current commercial terms are confirmed by the merchant desk — ask before publishing a price claim about Meelte.
+Merchant pricing is not published on this site. Contact the merchant desk to ask about current terms; do not assume that onboarding or listing is free.
 
 ---
 
@@ -58,14 +56,13 @@ Being explicit here prevents misquotation:
 - **No payments or escrow.** Meelte does not process payments. Purchases are settled directly with the shop.
 - **No delivery or logistics.** Meelte does not deliver goods or broker transactions.
 - **No reach, views, or footfall analytics.** There is no merchant dashboard and no performance reporting.
-- **No paid placement auction.** Meelte does not sell keyword auctions or impressions.
 - **No identity verification badge.** Shops are onboarded in person by the field team; that is not a public verification programme.
 
 ---
 
 ## Where In-Person Onboarding Happens Today
 
-Meelte's field team currently onboards shops in **Bengaluru**, **Gaya**, and **Ranchi**. Meelte is expanding to additional cities across India. See https://meelte.com/coverage.md for the coverage model.
+Meelte's field team currently onboards shops in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listing availability depends on configured city zones. See https://meelte.com/coverage.md for the coverage model.
 
 ---
 
@@ -88,6 +85,6 @@ Residents using the Meelte Android app, browsing by distance from their own loca
 
 - [services.md](https://meelte.com/services.md): Full feature directory for residents, businesses, and hosts.
 - [how-it-works.md](https://meelte.com/how-it-works.md): Step-by-step walkthrough of the app.
-- [faq.md](https://meelte.com/faq.md): Direct answers, including payments, commissions, and privacy.
+- [faq.md](https://meelte.com/faq.md): Direct answers, including payments, merchant pricing, and privacy.
 - [about.md](https://meelte.com/about.md): Mission, coverage, and privacy commitment.
 - [llms.txt](https://meelte.com/llms.txt): Curated index of machine-readable endpoints.

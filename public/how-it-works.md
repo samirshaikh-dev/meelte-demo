@@ -14,9 +14,9 @@ Last reviewed: October 2026
 Meelte serves four roles in the neighbourhood ecosystem:
 
 1. **Everyday residents** — browse time-boxed offers from nearby shops and local events, sorted by distance, with directions to the shop or venue.
-2. **Shops and service businesses** — publish a single offer or a catalogue of up to 100 products to nearby residents, with no commission deducted on a sale.
+2. **Shops and service businesses** — publish a single offer or a catalogue of up to 100 products for nearby residents.
 3. **Event hosts and clubs** — publish public or private events with a joining cost, and control the guest list through join requests.
-4. **Neighbours and new arrivals** — follow the shops and hosts they like, and talk one to one with people they met locally.
+4. **Neighbours and new arrivals** — follow shops and hosts and talk one to one with people they connect with in the app. The broader Discover People feature is still rolling out.
 
 ---
 
@@ -25,7 +25,7 @@ Meelte serves four roles in the neighbourhood ecosystem:
 1. **Download the Meelte app.** Install it from the Google Play Store. The Android app is live; the web app is still in development.
 2. **Set your maximum distance.** Allow location access so the feed can be sorted by distance. The "Max distance" filter defaults to 60 km and can be narrowed.
 3. **Browse offers and events nearby.** See time-boxed offers from nearby shops and local events with their joining cost. Offers leave the feed when their end date passes.
-4. **Reach out directly.** Get one-tap Google Maps directions to the shop or venue, follow shops for their next offer, and ask a host to join an event. Meelte does not take payments or commissions.
+4. **Take the next step.** Get one-tap Google Maps directions to a shop or venue, follow shops for updates, or ask a host to join an event. Meelte does not process purchases or event payments; any payment is settled directly with the shop or host.
 
 ---
 

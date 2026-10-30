@@ -3,15 +3,17 @@
 import React from "react";
 import Link from "next/link";
 import {
+  Apple,
   Sparkles,
   Compass,
   Download,
   ArrowRight,
+  Play,
   Users,
   MapPin,
   ShieldCheck,
 } from "@/lib/icons";
-import { PLAY_STORE_URL } from "@/config/site";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -130,8 +132,21 @@ export function AboutHero() {
               size="lg"
               className="group w-full sm:w-auto rounded-2xl px-8 shadow-[0_30px_70px_-30px_rgba(109,59,179,0.9)]"
             >
-              <Download className="h-5 w-5" aria-hidden="true" />
-              <span>Get the Meelte App</span>
+              <Play className="h-5 w-5 fill-current" aria-hidden="true" />
+              <span>Get it on Google Play</span>
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+            </Button>
+            <Button
+              as="a"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              size="lg"
+              className="group w-full sm:w-auto rounded-2xl px-8"
+            >
+              <Apple className="h-5 w-5 fill-current" aria-hidden="true" />
+              <span>Download for iPhone</span>
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Button>
             <Button as={Link} href="/discover" variant="outline" size="lg" className="w-full sm:w-auto rounded-2xl px-8">

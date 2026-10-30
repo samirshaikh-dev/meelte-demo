@@ -15,17 +15,19 @@ import { SUPPORT_EMAIL } from "@/config/site";
 import faqData from "@/data/faq.json";
 
 export const metadata = buildPageMetadata({
-  title: "FAQs | Meelte",
+  title: "App, Offers & Events FAQ",
   description:
-    "Find answers to common questions about Meelte, the hyperlocal community platform for discovering local businesses, events, and opportunities in India.",
+    "Answers about the Meelte Android app, nearby shop offers, community events, merchant listings, payments, privacy, safety, and current availability.",
   path: "/faq",
   keywords: [
     "Meelte FAQ",
-    "Meelte questions",
-    "Meelte support",
-    "hyperlocal app FAQ",
-    "Meelte merchants",
-    "Meelte app",
+    "Meelte app FAQs",
+    "hyperlocal community app India",
+    "local offers app",
+    "local events app India",
+    "Meelte Android app",
+    "Meelte merchant listings",
+    "Meelte privacy and payments",
   ],
 });
 
@@ -79,15 +81,16 @@ export default function FaqPage() {
             </Badge>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.15]">
-              Clear, honest answers about{" "}
+              Meelte app FAQs:{" "}
               <span className="bg-gradient-to-r from-primary via-primary-hover to-accent bg-clip-text text-transparent">
-                Meelte
+                offers, events, and more
               </span>
             </h1>
 
             <p className="mt-5 text-lg sm:text-2xl font-medium text-foreground-secondary leading-relaxed max-w-2xl">
-              Everything you need to know about privacy, city coverage, merchant
-              listings, events, payments, referrals, and app access.
+              Meelte is an Android app for discovering offers from nearby shops,
+              local events, and community connections. Find direct answers about
+              availability, merchant listings, payments, privacy, and safety.
             </p>
           </Container>
         </section>

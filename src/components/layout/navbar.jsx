@@ -87,8 +87,8 @@ export function Navbar() {
   const isForMerchantsActive = pathname === "/for-merchants" || pathname?.startsWith("/for-merchants/");
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/90 backdrop-blur-md transition-all duration-200">
-      <Container className="flex h-16 sm:h-20 items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/95 shadow-soft backdrop-blur-md transition-colors duration-200">
+      <Container className="flex h-16 sm:h-18 items-center justify-between gap-4">
         {/* Left: Brand Identity */}
         <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <Link
@@ -117,7 +117,7 @@ export function Navbar() {
 
         {/* Center: Desktop Navigation Links */}
         <nav
-          className="hidden lg:flex items-center gap-1.5 lg:gap-2 flex-1 justify-center"
+          className="hidden lg:flex flex-1 items-center justify-center gap-1"
           aria-label="Main Navigation"
         >
           {/* Product Dropdown */}
@@ -129,9 +129,9 @@ export function Navbar() {
                 setCompanyOpen(false);
               }}
               onMouseEnter={() => setProductOpen(true)}
-              className={`relative inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-150 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
                 isProductActive || productOpen
-                  ? "text-primary"
+                  ? "bg-surface-muted/80 text-primary"
                   : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
               }`}
               aria-expanded={productOpen}
@@ -145,13 +145,13 @@ export function Navbar() {
                 aria-hidden="true"
               />
               {(isProductActive || productOpen) && (
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-8 bg-primary rounded-full" aria-hidden="true" />
+                <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
               )}
             </button>
 
             {productOpen && (
               <div
-                className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-72 rounded-xl bg-surface shadow-lg border border-border/80 p-2 z-50"
+                className="absolute left-1/2 top-full z-50 mt-2 w-72 -translate-x-1/2 rounded-2xl border border-border/80 bg-surface p-2.5 shadow-card"
                 onMouseEnter={() => setProductOpen(true)}
                 onMouseLeave={() => setProductOpen(false)}
               >
@@ -163,10 +163,10 @@ export function Navbar() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setProductOpen(false)}
-                        className={`flex flex-col gap-0.5 px-3 py-2.5 rounded-lg transition-colors ${
+                        className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
                           isActive
                             ? "bg-surface-muted"
-                            : "hover:bg-surface-muted"
+                            : "hover:bg-surface-muted focus-visible:bg-surface-muted"
                         }`}
                         aria-current={isActive ? "page" : undefined}
                       >
@@ -185,16 +185,16 @@ export function Navbar() {
           {/* For Merchants - Direct Link */}
           <Link
             href="/for-merchants"
-            className={`relative inline-flex items-center px-3 py-2 text-sm font-medium transition-colors duration-150 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+            className={`relative inline-flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
               isForMerchantsActive
-                ? "text-primary"
+                ? "bg-surface-muted/80 text-primary"
                 : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
             }`}
             aria-current={isForMerchantsActive ? "page" : undefined}
           >
             <span>For Merchants</span>
             {isForMerchantsActive && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-8 bg-primary rounded-full" aria-hidden="true" />
+              <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
             )}
           </Link>
 
@@ -207,9 +207,9 @@ export function Navbar() {
                 setProductOpen(false);
               }}
               onMouseEnter={() => setCompanyOpen(true)}
-              className={`relative inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-150 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
                 isCompanyActive || companyOpen
-                  ? "text-primary"
+                  ? "bg-surface-muted/80 text-primary"
                   : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
               }`}
               aria-expanded={companyOpen}
@@ -223,13 +223,13 @@ export function Navbar() {
                 aria-hidden="true"
               />
               {(isCompanyActive || companyOpen) && (
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-8 bg-primary rounded-full" aria-hidden="true" />
+                <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
               )}
             </button>
 
             {companyOpen && (
               <div
-                className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-64 rounded-xl bg-surface shadow-lg border border-border/80 p-2 z-50"
+                className="absolute left-1/2 top-full z-50 mt-2 w-64 -translate-x-1/2 rounded-2xl border border-border/80 bg-surface p-2.5 shadow-card"
                 onMouseEnter={() => setCompanyOpen(true)}
                 onMouseLeave={() => setCompanyOpen(false)}
               >
@@ -241,10 +241,10 @@ export function Navbar() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setCompanyOpen(false)}
-                        className={`flex flex-col gap-0.5 px-3 py-2.5 rounded-lg transition-colors ${
+                        className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
                           isActive
                             ? "bg-surface-muted"
-                            : "hover:bg-surface-muted"
+                            : "hover:bg-surface-muted focus-visible:bg-surface-muted"
                         }`}
                         aria-current={isActive ? "page" : undefined}
                       >

@@ -16,23 +16,19 @@ import {
   Send,
   ShieldCheck,
 } from "@/lib/icons";
+import {
+  CONTACT_FIELD_LIMITS,
+  MAX_MAILTO_LENGTH,
+  validateContactForm,
+} from "@/validation/contacts/contact-validation";
 import { CONTACT_PHONE, SUPPORT_EMAIL } from "@/config/site";
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Pratistha,+Ward+No.+14,+LIC+Gali,+Upadhyay+Bigha,+Sujata+Bypass,+Rajapur,+Bodh+Gaya,+Bihar+824231";
 
-const TOPICS = [
-  "General Inquiry",
-  "Merchant/Business Onboarding",
-  "Community Support & Feedback",
-  "Event Partnerships & Meetups",
-  "Careers & Hiring",
-];
-
-const CITIES = ["Bodh Gaya", "Gaya", "Bengaluru", "Ranchi", "Other City in India"];
 const CONTACT_PHONE_DISPLAY = "+91 88845 24444";
 const CONTACT_PHONE_HREF = CONTACT_PHONE.replace(/[^\d+]/g, "");
-const FIELD_ORDER = ["name", "email", "city", "message"];
+const FIELD_ORDER = ["topic", "name", "email", "phone", "city", "message"];
 const FIELD_CLASS =
   "block w-full rounded-xl border bg-surface px-3.5 py-3 text-sm text-foreground placeholder:text-foreground-secondary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2";
 
@@ -66,7 +62,7 @@ export function ContactClient() {
     email: "",
     phone: "",
     city: "",
-    topic: "General Inquiry",
+    topic: "",
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -93,27 +89,16 @@ export function ContactClient() {
         : "border-foreground-secondary/60 focus-visible:border-primary"
     }`;
 
-  const validate = () => {
-    const newErrors = {};
-
-    if (!formData.name.trim()) newErrors.name = "Please enter your full name.";
-    if (!formData.email.trim()) {
-      newErrors.email = "Please enter your email address.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      newErrors.email = "Please enter a valid email address.";
-    }
-    if (!formData.city) newErrors.city = "Please select your city or region.";
-    if (!formData.message.trim()) newErrors.message = "Please enter your message.";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0 ? null : newErrors;
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const nextErrors = validate();
-    if (nextErrors) {
+    const { values, errors: nextErrors } = validateContactForm(formData);
+    if (Object.keys(nextErrors).length === 0 && getMailtoHref(values).length > MAX_MAILTO_LENGTH) {
+      nextErrors.message = "Please shorten your message before continuing.";
+    }
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
       notifyError(TOAST_COPY.contactValidation, { id: TOAST_ID.contact });
       const firstInvalidField = FIELD_ORDER.find((field) => nextErrors[field]);
       if (firstInvalidField) {
@@ -122,7 +107,8 @@ export function ContactClient() {
       return;
     }
 
-    window.location.href = getMailtoHref(formData);
+    setFormData(values);
+    window.location.href = getMailtoHref(values);
     notifyInfo(TOAST_COPY.contactHandoff, {
       id: TOAST_ID.contact,
       description: TOAST_COPY.contactHandoffDescription(SUPPORT_EMAIL),
@@ -136,7 +122,7 @@ export function ContactClient() {
       email: "",
       phone: "",
       city: "",
-      topic: "General Inquiry",
+      topic: "",
       message: "",
     });
     setErrors({});
@@ -214,19 +200,23 @@ export function ContactClient() {
                     What is this about?
                     <RequiredMark />
                   </label>
-                  <select
+                  <input
                     id="topic"
+                    type="text"
                     value={formData.topic}
                     onChange={(event) => updateField("topic", event.target.value)}
-                    className={`${FIELD_CLASS} border-foreground-secondary/60 focus-visible:border-primary`}
+                    maxLength={CONTACT_FIELD_LIMITS.topic}
+                    placeholder="e.g. General inquiry"
+                    className={getFieldClass("topic")}
+                    aria-invalid={Boolean(errors.topic)}
+                    aria-describedby={errors.topic ? "topic-error" : undefined}
                     required
-                  >
-                    {TOPICS.map((topic) => (
-                      <option key={topic} value={topic}>
-                        {topic}
-                      </option>
-                    ))}
-                  </select>
+                  />
+                  {errors.topic && (
+                    <p id="topic-error" className="mt-1.5 text-sm text-error">
+                      {errors.topic}
+                    </p>
+                  )}
                 </div>
 
                 <div className="grid gap-5 sm:grid-cols-2">
@@ -245,6 +235,7 @@ export function ContactClient() {
                       placeholder="Your name"
                       value={formData.name}
                       onChange={(event) => updateField("name", event.target.value)}
+                      maxLength={CONTACT_FIELD_LIMITS.name}
                       className={getFieldClass("name")}
                       aria-invalid={Boolean(errors.name)}
                       aria-describedby={errors.name ? "name-error" : undefined}
@@ -271,6 +262,7 @@ export function ContactClient() {
                       placeholder="you@example.com"
                       value={formData.email}
                       onChange={(event) => updateField("email", event.target.value)}
+                      maxLength={CONTACT_FIELD_LIMITS.email}
                       className={getFieldClass("email")}
                       aria-invalid={Boolean(errors.email)}
                       aria-describedby={errors.email ? "email-error" : undefined}
@@ -302,8 +294,16 @@ export function ContactClient() {
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(event) => updateField("phone", event.target.value)}
-                      className={`${FIELD_CLASS} border-foreground-secondary/60 focus-visible:border-primary`}
+                      maxLength={CONTACT_FIELD_LIMITS.phone}
+                      className={getFieldClass("phone")}
+                      aria-invalid={Boolean(errors.phone)}
+                      aria-describedby={errors.phone ? "phone-error" : undefined}
                     />
+                    {errors.phone && (
+                      <p id="phone-error" className="mt-1.5 text-sm text-error">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label
@@ -313,24 +313,19 @@ export function ContactClient() {
                       City or region
                       <RequiredMark />
                     </label>
-                    <select
+                    <input
                       id="city"
+                      type="text"
+                      autoComplete="address-level2"
                       value={formData.city}
                       onChange={(event) => updateField("city", event.target.value)}
+                      maxLength={CONTACT_FIELD_LIMITS.city}
+                      placeholder="e.g. Bengaluru"
                       className={getFieldClass("city")}
                       aria-invalid={Boolean(errors.city)}
                       aria-describedby={errors.city ? "city-error" : undefined}
                       required
-                    >
-                      <option value="" disabled>
-                        Select your city
-                      </option>
-                      {CITIES.map((city) => (
-                        <option key={city} value={city}>
-                          {city}
-                        </option>
-                      ))}
-                    </select>
+                    />
                     {errors.city && (
                       <p id="city-error" className="mt-1.5 text-sm text-error">
                         {errors.city}
@@ -353,6 +348,7 @@ export function ContactClient() {
                     placeholder="How can we help?"
                     value={formData.message}
                     onChange={(event) => updateField("message", event.target.value)}
+                    maxLength={CONTACT_FIELD_LIMITS.message}
                     className={`${getFieldClass("message")} min-h-32 resize-y`}
                     aria-invalid={Boolean(errors.message)}
                     aria-describedby={errors.message ? "message-error" : undefined}
@@ -377,7 +373,7 @@ export function ContactClient() {
                   className="w-full justify-center sm:w-auto sm:self-start"
                 >
                   <Send className="h-4 w-4" aria-hidden="true" />
-                  Continue to email
+                  Submit
                 </Button>
               </form>
             )}

@@ -215,23 +215,6 @@ export function ForMerchantsHero() {
               </Button>
             </motion.div>
 
-            <motion.div
-              variants={fadeUpVariants}
-              className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-foreground-secondary"
-            >
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
-                <span>Onboarded in person</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
-                <span>Up to 100 products per shop ad</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
-                <span>Serving Bengaluru, Gaya &amp; Ranchi</span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </Container>

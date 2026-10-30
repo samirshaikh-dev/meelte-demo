@@ -19,7 +19,6 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 - **Phone**: +91-8884524444
 - **Languages**: English, Hindi, Kannada (en-IN)
 - **Coverage**: India (operational hubs in Bengaluru, Gaya, and Ranchi)
-- **Membership**: Free for community members
 - **Social Profiles**:
   - Instagram: https://www.instagram.com/meelte.official
   - Facebook: https://www.facebook.com/meelTe
@@ -77,7 +76,7 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 ## 5. Product Pillars
 
 - **Discover**: Explore nearby offers from local shops and service businesses, sorted by distance rather than by a global feed.
-- **Connect**: Find and meet people who share your language, culture, interests, and hobbies in your neighborhood.
+- **Connect**: Use friends, follows, one-to-one chat, and calls to stay connected with people you meet through the app. The broader Discover People feature is still rolling out.
 - **Create**: Organize, publish, and host community events, interest clubs, and neighborhood gatherings.
 - **Grow**: Promote your local business, showcase products, and connect directly with nearby customers.
 
@@ -85,14 +84,14 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 
 ## 6. Coverage & Availability
 
-Meelte is live as an Android app, with operational hubs in **Bengaluru**, **Gaya**, and **Ranchi**, where shops are signed up in person by Meelte's field team. The web app is in development and is not available yet.
+Meelte is live as an Android app, with in-person shop onboarding in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listing availability depends on configured city zones. The web app is in development and is not available yet.
 
 ---
 
 ## 7. Privacy, Safety & Trust
 
 - **Privacy First**: Your location is used to sort nearby listings by distance and to decide which nearby city zone applies.
-- **No Location Monetization**: Meelte never logs, monetizes, packages, or sells user location coordinates or browsing history to third-party ad brokers.
+- **No Location Monetization**: Meelte uses location to sort nearby listings and determine the applicable city zone. Meelte states that it does not sell or share user location with advertisers.
 - **Community Moderated**: Ads, comments and events pass through community moderation, and every user can report content or block another user.
 - **Age Requirement**: Everyone on Meelte must be 13 or older.
 - **Made for India**: The platform, content, and languages are designed for Indian neighborhoods.
@@ -105,13 +104,13 @@ Meelte is live as an Android app, with operational hubs in **Bengaluru**, **Gaya
 Meelte is a hyperlocal community platform for Indian neighborhoods. Instead of a global feed of distant posts, it surfaces nearby offers, shops, events and services — sorted by distance from your location, with a "Max distance" filter that defaults to 60 km.
 
 ### How does Meelte protect user location and data privacy?
-Your location is used only to filter and display listings and events near you. Meelte never logs, monetizes, packages, or sells user location coordinates or browsing history to third-party ad brokers.
+Meelte uses location to sort nearby listings and determine which configured city zone applies. Meelte states that it does not sell or share user location with advertisers. Read the Privacy Policy for details about personal data.
 
 ### How do local merchants use Meelte?
 Local shops and service businesses are onboarded in person by Meelte's field team. They can publish a single-product ad or a shop ad with up to 100 products, photograph a menu to fill in item names and prices, and generate product images for items that were not photographed. Merchant pricing is not published.
 
-### Is Meelte free for community members and event organizers?
-Yes. Browsing nearby offers, following shops, chatting with people you meet, and creating events are free for community members, with no subscription or app fee. Event hosts can set their own joining cost in ₹, which attendees pay directly to the host rather than to Meelte.
+### Does Meelte charge community members or take event fees?
+Meelte's current documented model has no paid subscription or in-app purchases. Event hosts set any joining cost themselves, and attendees settle it directly with the host; Meelte does not process event payments. Merchant pricing is separate and is not published.
 
 ### How does joining an event work?
 Every event lists its category, joining cost in ₹, start and end time, map location, and whether it is public or private. You send a "Request to Join" — alone or with a group, stating how many people are coming — and the host approves or rejects it, and can remove attendees later.
@@ -119,11 +118,28 @@ Every event lists its category, joining cost in ₹, start and end time, map loc
 ### How do payments work on Meelte?
 Meelte does not process payments. Purchases are settled directly with the shop, and event fees are settled directly with the host. Meelte is a discovery and connection platform, not a payment processor, ticketing service, or escrow.
 
-### In which cities is Meelte currently available?
-Meelte is focused on operational hubs in Bengaluru, Gaya, and Ranchi, where local communities and storefronts are onboarded in person by the field team.
+### Where does Meelte onboard shops, and where are listings available?
+Meelte's field team currently onboards shops in Bengaluru, Gaya, and Ranchi. The Android app is available on Google Play, while nearby listing availability depends on configured city zones.
 
 ### Where can users download and access the Meelte app?
-The official Meelte app is available on the Google Play Store for Android (package: com.meelte.classico). A browser-based web experience is in development and will be announced once it is live.
+The official Meelte app is available for Android on Google Play. The website does not currently list an iOS download, and the browser-based web app is still in development.
+
+### How far away can I find offers and events on Meelte?
+The app sorts ads and events by distance from your location. Its Max distance filter defaults to 60 km and can be narrowed to focus on closer listings.
+
+### How long does a local shop offer stay active?
+A shop ad runs from 12:00 AM on its start date through 11:59 PM on its end date. After the end date, it is no longer an active offer.
+
+### Can I follow a shop on Meelte to hear about updates?
+Yes. You can follow an advertiser, and followers may receive notifications when that advertiser updates a public ad or event.
+
+### Can merchants see views, reach, or footfall analytics?
+Meelte does not currently provide merchants with an analytics dashboard for reach, views, or footfall.
+
+### How can I report content or block someone on Meelte?
+Use the report controls in the app to report content or a user. You can also block or unblock people from chat. These tools support reporting and blocking; they are not a guarantee that every interaction is risk-free.
+
+For the complete current question set, see https://meelte.com/faq and https://meelte.com/faq.md.
 
 ---
 

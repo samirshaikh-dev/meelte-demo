@@ -1,6 +1,6 @@
 # Meelte — Services & Feature Directory
 
-> Clean markdown summary of what residents, businesses and event hosts can do on Meelte — the hyperlocal community platform for India.
+> A summary of what residents, businesses, and event hosts can do on Meelte, a hyperlocal community platform for India.
 
 Official Website: https://meelte.com
 Contact: support@meelte.com
@@ -39,9 +39,9 @@ Contact: support@meelte.com
 
 - No in-app payments, ticketing or escrow. Purchases are settled directly with the shop, and event costs are settled directly with the host.
 - No jobs board.
-- No identity or background verification of individual users.
+- No identity or background verification of individual users. In-person shop onboarding is not a verification badge.
 
 ---
 
 ## Availability
-Meelte is free for community members and live as an Android app, with operational hubs in Bengaluru, Gaya, and Ranchi. The Android app is available on the Google Play Store (package: `com.meelte.classico`). The web app is in development.
+The Android app is available on Google Play (package: `com.meelte.classico`); the web app is in development. The field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones. Merchant pricing is not published.
