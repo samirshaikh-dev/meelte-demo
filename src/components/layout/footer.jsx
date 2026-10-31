@@ -187,7 +187,7 @@ export function Footer() {
 
         <div className="pt-4 pb-8 sm:pb-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-foreground-secondary border-t border-border/60">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span>&copy; {CURRENT_YEAR} Meelte Technologies. All rights reserved.</span>
+            <span>&copy; {CURRENT_YEAR} Meelte Private Limited. All rights reserved.</span>
             <span className="text-foreground-muted">•</span>
             <span>Made for India</span>
           </div>
@@ -199,14 +199,12 @@ export function Footer() {
             >
               Privacy Policy
             </Link>
-            <span className="text-foreground-muted">•</span>
             <Link
               href="/terms"
               className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
             >
               Terms & Conditions
             </Link>
-            <span className="text-foreground-muted">•</span>
             <Link
               href="/support"
               className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"

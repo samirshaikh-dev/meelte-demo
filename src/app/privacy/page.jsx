@@ -280,7 +280,7 @@ export default function PrivacyPolicyPage() {
                   Meelte Private Limited
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-foreground-secondary">📧</span>
+                  <Mail className="h-4 w-4 shrink-0 text-foreground-secondary" aria-hidden="true" />
                   <a
                     href="mailto:support@meelte.com"
                     className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
@@ -289,7 +289,7 @@ export default function PrivacyPolicyPage() {
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-foreground-secondary">📞</span>
+                  <Phone className="h-4 w-4 shrink-0 text-foreground-secondary" aria-hidden="true" />
                   <a
                     href="tel:+918884524444"
                     className="text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
@@ -298,9 +298,9 @@ export default function PrivacyPolicyPage() {
                   </a>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="text-foreground-secondary">📍</span>
+                  <MapPin className="h-4 w-4 shrink-0 text-foreground-secondary mt-0.5" aria-hidden="true" />
                   <span className="text-foreground-secondary">
-                    Pratistha, Ward No. 14, LIC Gali, Upadhyay Bigha, Sujata Bypass, Rajapur, Bodh Gaya, Bihar – 824231, India
+                    Pratistha, Ward No. 14, LIC Gali, Upadhyay Bigha, Sujata Bypass, Rajapur, Bodh Gaya, Bihar 824231, India
                   </span>
                 </div>
               </div>

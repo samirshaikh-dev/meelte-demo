@@ -78,14 +78,11 @@ export function BusinessAcquisitionSection() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="rounded-3xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="max-w-xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-accent block mb-2">
-                Merchant onboarding
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                Ready to list your local shop?
-              </h3>
+            <div className="rounded-3xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="max-w-xl">
+                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                  Ready to list your local shop?
+                </h3>
               <p className="mt-2 text-sm sm:text-base text-white/90 leading-relaxed">
                 Ask the merchant desk about getting your shop set up and publishing its first offer.
               </p>

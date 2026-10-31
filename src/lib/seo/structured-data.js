@@ -501,16 +501,32 @@ export function getWebPageJsonLd({ name, description, path, speakableSelectors =
 
 /**
  * ContactPage Schema for /contact.
+ *
+ * `description` is passed in from `CONTACT_DESCRIPTION` so the structured data and
+ * the meta description are one string. The previous hardcoded value ("community
+ * support, merchant onboarding, and local event partnerships") appeared nowhere on
+ * the page, which is the drift AI_RULE.md §2.3 exists to prevent.
+ *
+ * The page is a `ContactPage` about the organisation, so the node carries `@id`,
+ * `isPartOf` (the root `WebSite`) and `about` (`Organization`) the same way
+ * `/about` does. `mainEntity` keeps the contactable properties — email, telephone,
+ * URL — alongside the `@id` reference, because a crawler reading this page alone
+ * should still be able to resolve the support address; the full Organization node
+ * comes from the root graph in layout.js.
  */
-export function getContactPageJsonLd() {
+export function getContactPageJsonLd({ description } = {}) {
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
+    "@id": `${APP_URL}/contact#webpage`,
     name: `Contact ${SITE_NAME}`,
     url: toAbsUrl("/contact"),
     description:
-      "Get in touch with the Meelte team for community support, merchant onboarding, and local event partnerships.",
+      description ||
+      `Contact ${SITE_NAME} for app support, merchant onboarding, event partnerships or feedback.`,
     inLanguage: "en-IN",
+    isPartOf: { "@id": `${APP_URL}#website` },
+    about: { "@id": `${APP_URL}#organization` },
     mainEntity: {
       "@type": "Organization",
       name: SITE_NAME,
@@ -524,16 +540,31 @@ export function getContactPageJsonLd() {
 
 /**
  * AboutPage Schema for /about.
+ *
+ * `name` matches the visible `<h1>` ("About Meelte") and `description` is the same
+ * string as the page's meta description, so the structured data cannot claim more
+ * than the page says. The previous values ("Our Mission & Community Story",
+ * "local information overload and urban isolation") appeared nowhere on the page —
+ * they came from the internal problem statement in project-context.md §2 — which
+ * violates AI_RULE.md §2.3.
+ *
+ * `AboutPage` with `mainEntity → Organization` is the correct type for a company
+ * about page; the Organization node itself comes from the root graph in layout.js,
+ * so it is referenced by `@id` rather than repeated.
  */
-export function getAboutPageJsonLd() {
+export function getAboutPageJsonLd({ description } = {}) {
   return {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: `About ${SITE_NAME} — Our Mission & Community Story`,
+    "@id": `${APP_URL}/about#webpage`,
+    name: `About ${SITE_NAME}`,
     url: toAbsUrl("/about"),
     description:
-      "Learn how Meelte was created to overcome local information overload and urban isolation by connecting neighbors, local events, and neighborhood businesses.",
+      description ||
+      `${SITE_NAME} is a hyperlocal community app for India: nearby shop offers, local events you can ask to join, and the people you follow.`,
     inLanguage: "en-IN",
+    isPartOf: { "@id": `${APP_URL}#website` },
+    about: { "@id": `${APP_URL}#organization` },
     mainEntity: {
       "@id": `${APP_URL}#organization`,
     },

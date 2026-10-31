@@ -98,10 +98,10 @@ export function HowItWorksHero() {
     <section className="relative pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
       {/* Gradient mesh background */}
       <div className="absolute inset-0 -z-20" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#f5f3ff_0%,_#f8f5ff_35%,_#ffffff_100%)]" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[620px] bg-[radial-gradient(ellipse_at_top,_rgba(124,58,237,0.18)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute top-20 -left-40 w-[420px] h-[420px] bg-[radial-gradient(circle,_rgba(244,114,182,0.16)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[520px] h-[520px] bg-[radial-gradient(circle,_rgba(99,102,241,0.14)_0%,_transparent_72%)] blur-3xl" />
+        <div className="absolute inset-0 bg-[var(--orb-glow-canvas)]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[620px] bg-[var(--orb-glow-violet)]" />
+        <div className="absolute top-20 -left-40 w-[420px] h-[420px] bg-[var(--orb-glow-fuchsia)]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[520px] h-[520px] bg-[var(--orb-glow-indigo)]" />
       </div>
 
       {/* Map-style background */}
@@ -134,9 +134,11 @@ export function HowItWorksHero() {
             <circle cx="720" cy="640" r="2.4" />
           </g>
         </svg>
-        <div className="absolute top-[18%] left-[12%] hidden lg:flex items-center gap-1 text-[10px] text-primary/60">
-          <MapPin className="h-3 w-3" aria-hidden="true" />
-          <span>Bengaluru • Gaya • Ranchi</span>
+        <div className="absolute top-[18%] left-[12%] hidden lg:flex flex-col items-start gap-0.5 text-[10px] text-primary/60">
+          <MapPin className="h-3 w-3 mb-0.5" aria-hidden="true" />
+          <span>Bengaluru</span>
+          <span>Gaya</span>
+          <span>Ranchi</span>
         </div>
       </div>
 
@@ -149,7 +151,7 @@ export function HowItWorksHero() {
             className="flex flex-col items-center text-center"
           >
             <motion.div variants={fadeUpVariants} className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur px-2.5 py-1 shadow-soft ring-1 ring-white/70">
+              <div className="flex items-center gap-1.5 rounded-full bg-white/80 px-2.5 py-1 shadow-soft ring-1 ring-white/70">
                 {trustPills.map((pill) => {
                   const Icon = pill.icon;
                   return (
@@ -178,7 +180,7 @@ export function HowItWorksHero() {
               <span className="text-foreground">How Meelte</span>
               <br />
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-primary via-indigo-500 to-violet-500 bg-clip-text text-transparent">
+                <span className="text-primary">
                   brings neighbors together
                 </span>
                 <svg
@@ -215,7 +217,7 @@ export function HowItWorksHero() {
             >
               See time-boxed offers from nearby shops, local events you can ask to join, and
               one-to-one chat with the people you meet. Purchases and event costs are settled
-              directly — Meelte does not take payments.
+              directly. Meelte does not take payments.
             </motion.p>
 
             <motion.div
@@ -229,9 +231,9 @@ export function HowItWorksHero() {
                 rel="noopener noreferrer"
                 variant="primary"
                 size="lg"
-                className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-[0_30px_70px_-30px_rgba(109,59,179,0.9)] transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] focus-visible:scale-[1.01] sm:w-auto"
+                className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-orb-primary transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] focus-visible:scale-[1.01] sm:w-auto"
               >
-                <span className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-indigo-500 to-violet-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
+                <span className="absolute inset-0 -z-10 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <span className="absolute inset-x-0 -top-10 h-16 bg-white/20 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <Play className="h-5 w-5 shrink-0 self-center fill-current transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true" />
                 <span className="leading-none">Get it on Google Play</span>
@@ -244,7 +246,7 @@ export function HowItWorksHero() {
                 rel="noopener noreferrer"
                 variant="outline"
                 size="lg"
-                className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
+                className="group w-full rounded-2xl px-8 font-medium transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto"
               >
                 <Apple className="h-5 w-5 shrink-0 self-center fill-current" aria-hidden="true" />
                 <span className="leading-none">Download for iPhone</span>
@@ -256,7 +258,7 @@ export function HowItWorksHero() {
                 href="#ecosystem"
                 variant="outline"
                 size="lg"
-                className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
+                className="group w-full rounded-2xl px-8 font-medium transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto"
               >
                 <span className="leading-none">See Who It&apos;s For</span>
                 <ArrowRight className="h-4 w-4 shrink-0 self-center transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />

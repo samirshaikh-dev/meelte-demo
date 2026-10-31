@@ -9,7 +9,7 @@ export const Card = React.forwardRef(
         className={cn(
           "bg-surface rounded-2xl border border-border/80 shadow-soft text-foreground",
           hoverable &&
-            "transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-card hover:border-primary/30",
+            "transition-transform, transition-colors, transition-shadow duration-200 ease-out hover:-translate-y-0.5 hover:shadow-card hover:border-primary/30",
           className
         )}
         {...props}

@@ -82,15 +82,14 @@ export default function FaqPage() {
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.15]">
               Meelte app FAQs:{" "}
-              <span className="bg-gradient-to-r from-primary via-primary-hover to-accent bg-clip-text text-transparent">
+              <span className="text-primary">
                 offers, events, and more
               </span>
             </h1>
 
             <p className="mt-5 text-lg sm:text-2xl font-medium text-foreground-secondary leading-relaxed max-w-2xl">
-              Meelte is an Android app for discovering offers from nearby shops,
-              local events, and community connections. Find direct answers about
-              availability, merchant listings, payments, privacy, and safety.
+              Meelte is an Android app for discovering offers from nearby shops, local events,
+              and community connections.
             </p>
           </Container>
         </section>
@@ -107,10 +106,10 @@ export default function FaqPage() {
                 <Accordion.Item
                   key={faq.id}
                   value={faq.id}
-                  className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-all data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
+                  className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-colors, transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
                 >
                   <Accordion.Header className="flex">
-                    <Accordion.Trigger className="flex flex-1 items-center justify-between p-5 sm:p-6 text-left font-bold text-base sm:text-lg text-foreground hover:text-primary transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group">
+                    <Accordion.Trigger className="flex flex-1 items-center justify-between p-5 sm:p-6 text-left font-bold text-base sm:text-lg text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group">
                       <span className="pr-4">{faq.question}</span>
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                         <ChevronDown

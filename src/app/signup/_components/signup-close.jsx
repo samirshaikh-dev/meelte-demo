@@ -30,7 +30,7 @@ export function SignupClose() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"
+        className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-white/10"
       />
 
       <Container className="relative py-14 sm:py-20">

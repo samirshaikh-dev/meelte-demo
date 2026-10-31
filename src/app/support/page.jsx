@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
+import { User, MessageCircle, Mail } from "@/lib/icons";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbsJsonLd } from "@/lib/seo/structured-data";
 import { SUPPORT_EMAIL } from "@/config/site";
@@ -77,11 +78,15 @@ export default function SupportPage() {
 
               {/* Central support agent icon */}
               <div className="relative z-10 flex flex-col items-center gap-1">
-                <div className="text-7xl sm:text-8xl">🧑‍💻</div>
+                <User className="h-10 w-10 text-primary" aria-hidden="true" />
                 <div className="flex items-center gap-1.5 mt-1">
                   {/* Notification dots */}
-                  <div className="w-6 h-6 rounded-lg bg-red-400 text-white text-[10px] flex items-center justify-center font-bold shadow">✉</div>
-                  <div className="w-6 h-6 rounded-lg bg-primary text-white text-[10px] flex items-center justify-center shadow">💬</div>
+                  <div className="w-6 h-6 rounded-lg bg-red-400 text-white text-[10px] flex items-center justify-center font-bold shadow">
+                    <Mail className="h-3 w-3" aria-hidden="true" />
+                  </div>
+                  <div className="w-6 h-6 rounded-lg bg-primary text-white text-[10px] flex items-center justify-center shadow">
+                    <MessageCircle className="h-3 w-3" aria-hidden="true" />
+                  </div>
                 </div>
               </div>
 
@@ -101,7 +106,7 @@ export default function SupportPage() {
 
             {/* Availability */}
             <p className="text-sm sm:text-base text-foreground-secondary">
-              Our team is here from 9AM–6PM IST, Monday–Friday
+              Our team is here from 9AM to 6PM IST, Monday to Friday
             </p>
 
             {/* Primary CTA — matches the reference's "Send email" pill button */}

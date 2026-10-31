@@ -3,7 +3,7 @@
 @theme {
   /* Brand Primary */
   --color-primary: #6D3BB3;
-  --color-primary-foreground: #FFFFFF;
+  --color-primary-foreground: #F0E6FA;
   --color-primary-hover: #5B2E91;
   --color-primary-dark: #5B2E91;
   --color-primary-light: #7A45C4;
@@ -17,9 +17,18 @@
 
   /* Surfaces & Canvas (Violet-tinted soft community canvas) */
   --color-canvas: #F8F5FF;
-  --color-surface: #FFFFFF;
+  --color-surface: #FCFBFE;
   --color-surface-subtle: #FAF8FF;
   --color-surface-muted: #F3EEFF;
+
+  /* Toast status surfaces (lifted out of raw literals into tokens) */
+  --color-success-bg: #f1f9f2;
+  --color-success-border: #cde9d1;
+  --color-error-bg: #fdf2f2;
+  --color-error-border: #f6d3d3;
+  --color-info-border: #e2d6fa;
+  --color-warning-bg: #fff8ec;
+  --color-warning-border: #f7e2bc;
 
   /* High Contrast Text */
   --color-foreground: #1F1F28;
@@ -41,6 +50,17 @@
   --shadow-soft: 0 1px 2px rgba(31, 31, 40, 0.02), 0 6px 24px -6px rgba(109, 59, 179, 0.08);
   --shadow-card: 0 1px 1px rgba(31, 31, 40, 0.01), 0 8px 40px -12px rgba(109, 59, 179, 0.12);
   --shadow-card-hover: 0 12px 36px -8px rgba(109, 59, 179, 0.16);
+  --shadow-orb-primary: 0 30px 70px -30px rgba(109, 59, 179, 0.9);
+  --shadow-orb-primary-light: 0 10px 40px -12px rgba(109, 59, 179, 0.55);
+  --shadow-orb-primary-hover: 0 16px 50px -14px rgba(109, 59, 179, 0.8);
+
+  /* Decorative orbs (lifted out of raw literals) */
+  --orb-glow-canvas: radial-gradient(circle_at_top, #f5f3ff 0%, #f8f5ff 35%, #ffffff 100%);
+  --orb-glow-accent: radial-gradient(ellipse_at_top, rgba(245, 158, 11, 0.16) 0%, transparent 70%);
+  --orb-glow-primary: radial-gradient(circle, rgba(109, 59, 179, 0.16) 0%, transparent 70%);
+  --orb-glow-indigo: radial-gradient(circle, rgba(99, 102, 241, 0.14) 0%, transparent 72%);
+  --orb-glow-fuchsia: radial-gradient(circle, rgba(244, 114, 182, 0.16) 0%, transparent 70%);
+  --orb-glow-violet: radial-gradient(ellipse_at_top, rgba(124, 58, 237, 0.18) 0%, transparent 70%);
 
   /* Radii */
   --radius-card: 1rem;
@@ -70,26 +90,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+html {
+  scrollbar-color: var(--color-primary) var(--color-surface-subtle);
+}
+
 /* Radix Accordion Keyframes & Animations */
 @keyframes accordion-down {
   from {
-    height: 0;
+    transform: scaleY(0);
     opacity: 0;
+    transform-origin: top;
   }
   to {
-    height: var(--radix-accordion-content-height);
+    transform: scaleY(1);
     opacity: 1;
   }
 }
 
 @keyframes accordion-up {
   from {
-    height: var(--radix-accordion-content-height);
+    transform: scaleY(1);
     opacity: 1;
   }
   to {
-    height: 0;
+    transform: scaleY(0);
     opacity: 0;
+    transform-origin: top;
   }
 }
 
@@ -145,20 +176,20 @@ html [data-sonner-toaster][data-sonner-theme="light"] {
   --normal-text: var(--color-foreground);
 
   /* Soft tints instead of the library's raw status palette */
-  --success-bg: #f1f9f2;
-  --success-border: #cde9d1;
+  --success-bg: var(--color-success-bg);
+  --success-border: var(--color-success-border);
   --success-text: var(--color-success);
 
-  --error-bg: #fdf2f2;
-  --error-border: #f6d3d3;
+  --error-bg: var(--color-error-bg);
+  --error-border: var(--color-error-border);
   --error-text: var(--color-error);
 
   --info-bg: var(--color-surface-muted);
-  --info-border: #e2d6fa;
+  --info-border: var(--color-info-border);
   --info-text: var(--color-primary);
 
-  --warning-bg: #fff8ec;
-  --warning-border: #f7e2bc;
+  --warning-bg: var(--color-warning-bg);
+  --warning-border: var(--color-warning-border);
   --warning-text: var(--color-warning);
 }
 

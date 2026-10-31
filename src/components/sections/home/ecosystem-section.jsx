@@ -35,7 +35,7 @@ const ECOSYSTEM_ROLES = [
     title: "Everyday Residents",
     subtitle: "See what is on near you",
     icon: Compass,
-    badge: "Residents",
+    badge: "residents",
     color: "bg-primary text-white",
     lightBg: "bg-primary/5 border-primary/20",
     description:
@@ -56,7 +56,7 @@ const ECOSYSTEM_ROLES = [
     title: "Shops & Service Businesses",
     subtitle: "Reach the people already nearby",
     icon: Store,
-    badge: "Merchants",
+    badge: "merchants",
     color: "bg-accent text-accent-foreground",
     lightBg: "bg-accent/5 border-accent/20",
     description:
@@ -77,7 +77,7 @@ const ECOSYSTEM_ROLES = [
     title: "Event Hosts & Clubs",
     subtitle: "Keep control of the guest list",
     icon: CalendarDays,
-    badge: "Hosts",
+    badge: "hosts",
     color: "bg-primary-dark text-white",
     lightBg: "bg-primary/5 border-primary/20",
     description:
@@ -98,7 +98,7 @@ const ECOSYSTEM_ROLES = [
     title: "Neighbours & New Arrivals",
     subtitle: "Stay in touch with people you meet",
     icon: Users,
-    badge: "Community",
+    badge: "community",
     color: "bg-primary-royal text-white",
     lightBg: "bg-primary/5 border-primary/20",
     description:
@@ -142,7 +142,7 @@ export function EcosystemSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Role Navigation Switcher (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col gap-2.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-foreground-secondary mb-1 px-1">
+            <span className="text-xs font-bold text-foreground-secondary mb-1 px-1">
               Select a role to see how it works:
             </span>
 
@@ -156,7 +156,7 @@ export function EcosystemSection() {
                   type="button"
                   onClick={() => setActiveRoleId(role.id)}
                   aria-pressed={isSelected}
-                  className={`flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl text-left transition-all duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                  className={`flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl text-left transition-colors duration-200 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
                     isSelected
                       ? "bg-surface-subtle border-primary/40 shadow-soft"
                       : "bg-canvas/60 border-border/70 hover:bg-surface hover:border-border"
@@ -174,7 +174,7 @@ export function EcosystemSection() {
                       <h3 className={`font-bold text-sm ${isSelected ? "text-primary" : "text-foreground"}`}>
                         {role.title}
                       </h3>
-                      <span className="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-surface border border-border text-foreground-secondary">
+                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-surface border border-border text-foreground-secondary">
                         {role.badge}
                       </span>
                     </div>
@@ -189,7 +189,7 @@ export function EcosystemSection() {
 
           {/* Right: Active Role Deep-Dive Display (7 Cols) */}
           <div className="lg:col-span-7">
-            <div className={`p-6 sm:p-8 rounded-3xl border bg-surface shadow-card transition-all ${activeRole.lightBg}`}>
+            <div className={`p-6 sm:p-8 rounded-3xl border bg-surface shadow-card transition-colors ${activeRole.lightBg}`}>
               <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-border/80">
                 <div className="flex items-center gap-3">
                   <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${activeRole.color} shadow-soft`}>
@@ -216,7 +216,7 @@ export function EcosystemSection() {
 
               {/* Key Benefits List */}
               <div className="mt-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-foreground-secondary block mb-3">
+                <span className="text-xs font-bold text-foreground-secondary block mb-3">
                   What this role gets:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">

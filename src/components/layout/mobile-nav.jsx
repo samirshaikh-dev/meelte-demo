@@ -77,7 +77,7 @@ export function MobileNav() {
                 alt="Meelte"
                 width={40}
                 height={40}
-                className="h-9 w-9 shrink-0 rounded-xl object-contain shadow-soft group-hover:scale-105 transition-transform duration-200"
+                className="h-9 w-9 shrink-0 rounded-xl object-contain shadow-soft transition-transform duration-200"
               />
               <Image
                 src="/only_meelte.png"
@@ -239,7 +239,7 @@ export function MobileNav() {
           {/* Bottom actions — the drawer is now the only compact download surface
               below `lg`, so it carries both stores instead of a single app button. */}
           <div className="mt-auto flex flex-col gap-2.5 border-t border-border/80 pt-5">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground-secondary">
+            <span className="text-[11px] font-semibold text-foreground-secondary">
               Get the app
             </span>
             <StoreButton type="google" href={PLAY_STORE_URL} />

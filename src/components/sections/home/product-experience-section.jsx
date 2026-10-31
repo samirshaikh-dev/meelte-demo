@@ -26,7 +26,7 @@ const EXPERIENCES = [
     screenContent: (
       <div className="flex flex-col gap-3">
         <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-foreground-secondary">
+          <p className="text-xs font-semibold text-foreground-secondary">
             Ad format
           </p>
           <p className="mt-1 font-bold text-foreground">
@@ -68,7 +68,7 @@ const EXPERIENCES = [
     screenContent: (
       <div className="flex flex-col gap-3">
         <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-foreground-secondary">
+          <p className="text-xs font-semibold text-foreground-secondary">
             Event details
           </p>
           <div className="mt-3 flex flex-col gap-3">
@@ -116,7 +116,7 @@ const EXPERIENCES = [
     screenContent: (
       <div className="flex flex-col gap-3">
         <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-foreground-secondary">
+          <p className="text-xs font-semibold text-foreground-secondary">
             Chat supports
           </p>
           <ul className="mt-3 flex flex-col gap-2.5">
@@ -157,7 +157,7 @@ const EXPERIENCES = [
     screenContent: (
       <div className="flex flex-col gap-3">
         <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-foreground-secondary">
+          <p className="text-xs font-semibold text-foreground-secondary">
             Used for
           </p>
           <div className="mt-3 flex flex-col gap-3">
@@ -289,9 +289,6 @@ export function ProductExperienceSection() {
               <div className="min-h-[400px] rounded-[1.5rem] border border-border/80 bg-canvas p-4 sm:p-5">
                 <div className="mb-4 flex items-center justify-between gap-3 border-b border-border/80 pb-3">
                   <div className="min-w-0">
-                    <p className="text-xs font-bold uppercase tracking-wide text-primary">
-                      {activeExperience.screenBadge}
-                    </p>
                     <h3
                       id="product-experience-preview-heading"
                       className="mt-0.5 font-extrabold leading-tight text-foreground"
@@ -312,7 +309,7 @@ export function ProductExperienceSection() {
             </div>
 
             <p className="max-w-sm text-center text-sm leading-relaxed text-foreground-secondary">
-              Conceptual preview only — not a live listing or a screenshot of the app.
+              Conceptual preview only. Not a live listing or a screenshot of the app.
             </p>
             <p className="sr-only" aria-live="polite" aria-atomic="true">
               Preview updated: {activeExperience.label}. {activeExperience.announcement}

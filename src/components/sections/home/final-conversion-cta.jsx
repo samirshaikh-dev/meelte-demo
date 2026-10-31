@@ -19,9 +19,6 @@ export function FinalConversionCTA() {
           />
 
           <div className="relative mx-auto max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-wider text-white/90">
-              The app is ready
-            </p>
             <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
               Start exploring your neighborhood.
             </h2>

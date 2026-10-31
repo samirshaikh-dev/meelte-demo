@@ -28,13 +28,13 @@ export default function NotFound() {
     <section className="relative min-h-[calc(100vh-140px)] flex items-center bg-canvas overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-canvas to-canvas" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute top-20 right-1/4 h-[300px] w-[300px] rounded-full bg-accent/5 blur-3xl" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-primary/5" />
+        <div className="absolute top-20 right-1/4 h-[300px] w-[300px] rounded-full bg-accent/5" />
       </div>
       <Container className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto w-full text-center">
           <div className="relative mb-5">
-            <span className="inline-block text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-extrabold tracking-tighter bg-gradient-to-br from-primary via-primary-hover to-primary-royal bg-clip-text text-transparent leading-none drop-shadow-sm">
+            <span className="inline-block text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-extrabold tracking-tighter text-primary leading-none drop-shadow-sm">
               404
             </span>
             <div className="absolute inset-x-0 -bottom-5 mx-auto h-1 w-24 bg-gradient-to-r from-transparent via-primary/40 to-transparent rounded-full" />
@@ -77,7 +77,7 @@ export default function NotFound() {
                 </h2>
                 <p className="text-sm sm:text-base text-foreground-secondary leading-relaxed">
                   Meelte connects you with local businesses, community events, and
-                  opportunities right in your neighborhood — all in one place.
+                  opportunities right in your neighborhood, all within the app.
                 </p>
               </div>
               <Button

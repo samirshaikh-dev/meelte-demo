@@ -125,7 +125,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Section 5 */}
             <section className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground overflow-wrap break-word min-w-0">
                 5. Event Creator Responsibilities
               </h2>
               <p>Event creators are solely responsible for:</p>

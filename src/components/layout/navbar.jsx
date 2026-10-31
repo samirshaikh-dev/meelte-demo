@@ -101,7 +101,7 @@ export function Navbar() {
               alt="Meelte"
               width={40}
               height={40}
-              className="h-10 w-10 shrink-0 rounded-xl object-contain shadow-soft group-hover:scale-105 transition-transform duration-200"
+              className="h-10 w-10 shrink-0 rounded-xl object-contain shadow-soft transition-transform duration-200"
             />
             <Image
               src="/only_meelte.png"

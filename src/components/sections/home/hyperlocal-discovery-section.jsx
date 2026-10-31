@@ -64,7 +64,7 @@ export function HyperlocalDiscoverySection() {
         {/* Capabilities + Next Steps */}
         <div className="mt-8 flex flex-col gap-5 border-t border-border/70 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <ul role="list" className="flex flex-wrap items-center gap-2">
-            <li className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
+            <li className="text-xs font-semibold text-foreground-secondary">
               In the app
             </li>
             {PLATFORM_AREAS.map((area) => (

@@ -82,18 +82,13 @@ export function StoreButton({ type = "google", href, className, variant = "badge
       {...linkProps}
       className={cn(
         BASE_CLASSES,
-        "relative h-[44px] w-full items-center gap-2.5 rounded-xl bg-black px-3 text-white shadow-[0_10px_40px_-12px_rgba(109,59,179,0.55)] hover:-translate-y-0.5 hover:shadow-[0_16px_50px_-14px_rgba(109,59,179,0.8)]",
+        "relative h-[44px] w-full items-center gap-2.5 rounded-xl bg-black px-3 text-white shadow-orb-primary-light hover:-translate-y-0.5 hover:shadow-orb-primary-hover",
         className
       )}
     >
       <Icon className="h-5 w-5 shrink-0 fill-white" aria-hidden="true" />
       <span className="flex min-w-0 flex-col leading-none">
-        <span
-          className={cn(
-            "whitespace-nowrap text-[8px] uppercase text-white/80",
-            meta.eyebrowClass
-          )}
-        >
+        <span className="whitespace-nowrap text-[8px] text-white/80">
           {meta.eyebrow}
         </span>
         <span className="mt-0.5 text-sm font-semibold leading-none">

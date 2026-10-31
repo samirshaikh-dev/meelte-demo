@@ -46,9 +46,8 @@ export function DiscoverHero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            Meelte is a nearby-first feed: time-boxed offers from local shops, events you
-            can ask to join, and chat with the people and shops you follow. Everything is
-            sorted by distance instead of an endless global timeline.
+            Meelte is a nearby-first feed: offers from local shops, events you
+            can join, and chat with people you follow.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

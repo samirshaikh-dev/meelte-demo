@@ -87,11 +87,11 @@ export function HeroSection() {
   return (
     <section className="relative pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
       {/* Gradient mesh background */}
-      <div className="absolute inset-0 -z-20" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#f5f3ff_0%,_#f8f5ff_35%,_#ffffff_100%)]" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[620px] bg-[radial-gradient(ellipse_at_top,_rgba(124,58,237,0.18)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute top-20 -left-40 w-[420px] h-[420px] bg-[radial-gradient(circle,_rgba(244,114,182,0.16)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[520px] h-[520px] bg-[radial-gradient(circle,_rgba(99,102,241,0.14)_0%,_transparent_72%)] blur-3xl" />
+        <div className="absolute inset-0 -z-20" aria-hidden="true">
+        <div className="absolute inset-0 bg-[var(--orb-glow-canvas)]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[620px] bg-[var(--orb-glow-violet)]" />
+        <div className="absolute top-20 -left-40 w-[420px] h-[420px] bg-[var(--orb-glow-fuchsia)]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[520px] h-[520px] bg-[var(--orb-glow-indigo)]" />
       </div>
 
       {/* Map-style background */}
@@ -139,7 +139,7 @@ export function HeroSection() {
             className="flex flex-col items-center text-center"
           >
             <motion.div variants={fadeUpVariants} className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur px-2.5 py-1 shadow-soft ring-1 ring-white/70">
+              <div className="flex items-center gap-1.5 rounded-full bg-white/80 px-2.5 py-1 shadow-soft ring-1 ring-white/70">
                 {trustPills.map((pill) => {
                   const Icon = pill.icon;
                   return (
@@ -163,7 +163,7 @@ export function HeroSection() {
             >
               <span className="text-foreground">Discover what’s happening </span>
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-primary via-indigo-500 to-violet-500 bg-clip-text text-transparent">
+                <span className="text-primary">
                   near you.
                 </span>
                 <svg
@@ -199,8 +199,8 @@ export function HeroSection() {
               className="mt-5 max-w-xl text-lg sm:text-xl text-foreground-secondary leading-relaxed"
             >
               Meelte is the hyperlocal app for Indian neighbourhoods. See time-boxed shop
-              offers, request to join local events, and talk to people you meet — sorted by
-              distance, not by a global feed.
+              offers, request to join local events, and talk to people you meet. Results are
+              sorted by distance, not by a global feed.
             </motion.p>
 
            

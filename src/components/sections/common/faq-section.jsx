@@ -65,10 +65,10 @@ export function FaqSection({
             <Accordion.Item
               key={faq.id}
               value={faq.id}
-              className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-all data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
+              className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-colors, transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
             >
               <Accordion.Header className="flex">
-                <Accordion.Trigger className="flex flex-1 items-center justify-between p-5 sm:p-6 text-left font-bold text-base sm:text-lg text-foreground hover:text-primary transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group">
+                <Accordion.Trigger className="flex flex-1 items-center justify-between p-5 sm:p-6 text-left font-bold text-base sm:text-lg text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group">
                   <span className="pr-4">{faq.question}</span>
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                     <ChevronDown
@@ -111,7 +111,7 @@ export function FaqSection({
               href={`mailto:${SUPPORT_EMAIL}?subject=Meelte%20Inquiry`}
               className="rounded text-xs font-bold text-primary hover:underline px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
-              Contact Support →
+              Contact our team
             </a>
             {showMerchantLink && (
               <Link

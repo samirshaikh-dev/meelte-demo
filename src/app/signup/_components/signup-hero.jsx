@@ -56,10 +56,9 @@ export function SignupHero() {
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
-              Meelte is a nearby-first app: time-boxed offers from local shops,
-              events you can ask to join, and one-to-one chat with the people you
-              meet. Signing up happens inside the Android app — there is no account
-              to create on this website.
+              Meelte is a nearby-first app: offers from local shops, events you can join,
+              and one-to-one chat with the people you meet. Signing up happens inside
+              the Android app. There is no account to create on this website.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -108,10 +107,6 @@ export function SignupHero() {
           {/* Right — availability, stated plainly */}
           <div className="lg:col-span-5">
             <div className="rounded-3xl border border-primary/15 bg-surface p-6 shadow-card lg:sticky lg:top-24 lg:p-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
-                Availability
-              </p>
-
               <h2 className="mt-3 text-2xl font-bold leading-tight tracking-tight text-foreground">
                 Where you can join today
               </h2>

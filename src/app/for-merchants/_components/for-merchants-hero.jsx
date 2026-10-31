@@ -102,10 +102,10 @@ export function ForMerchantsHero() {
     <section className="relative pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
       {/* Gradient mesh background */}
       <div className="absolute inset-0 -z-20" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#f5f3ff_0%,_#f8f5ff_35%,_#ffffff_100%)]" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[620px] bg-[radial-gradient(ellipse_at_top,_rgba(245,158,11,0.16)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute top-20 -left-40 w-[420px] h-[420px] bg-[radial-gradient(circle,_rgba(109,59,179,0.16)_0%,_transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[520px] h-[520px] bg-[radial-gradient(circle,_rgba(99,102,241,0.14)_0%,_transparent_72%)] blur-3xl" />
+        <div className="absolute inset-0 bg-[var(--orb-glow-canvas)]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[620px] bg-[var(--orb-glow-accent)]" />
+        <div className="absolute top-20 -left-40 w-[420px] h-[420px] bg-[var(--orb-glow-primary)]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[520px] h-[520px] bg-[var(--orb-glow-indigo)]" />
       </div>
 
       <Container>
@@ -117,7 +117,7 @@ export function ForMerchantsHero() {
             className="flex flex-col items-center text-center"
           >
             <motion.div variants={fadeUpVariants} className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 rounded-full bg-white/80 backdrop-blur px-2.5 py-1 shadow-soft ring-1 ring-white/70">
+              <div className="flex items-center gap-1.5 rounded-full bg-white/80 px-2.5 py-1 shadow-soft ring-1 ring-white/70">
                 {trustPills.map((pill) => {
                   const Icon = pill.icon;
                   return (
@@ -146,7 +146,7 @@ export function ForMerchantsHero() {
               <span className="text-foreground">Grow your local business</span>
               <br />
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-primary via-indigo-500 to-violet-500 bg-clip-text text-transparent">
+                <span className="text-primary">
                   with zero commission
                 </span>
                 <svg
@@ -195,9 +195,9 @@ export function ForMerchantsHero() {
                 href="#merchant-enquiry"
                 variant="primary"
                 size="lg"
-                className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-[0_30px_70px_-30px_rgba(109,59,179,0.9)] transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] focus-visible:scale-[1.01] sm:w-auto"
+                className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-orb-primary transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] focus-visible:scale-[1.01] sm:w-auto"
               >
-                <span className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-indigo-500 to-violet-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
+                <span className="absolute inset-0 -z-10 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <Store className="h-5 w-5" aria-hidden="true" />
                 <span>Start an onboarding enquiry</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
@@ -208,7 +208,7 @@ export function ForMerchantsHero() {
                 href="/how-it-works"
                 variant="outline"
                 size="lg"
-                className="group w-full rounded-2xl px-8 font-medium backdrop-blur transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto"
+                className="group w-full rounded-2xl px-8 font-medium transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto"
               >
                 <span>See How It Works</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />

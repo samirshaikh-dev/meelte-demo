@@ -62,9 +62,9 @@ export function SignupReferral() {
                   aria-hidden="true"
                 />
                 <span>
-                  Vouchers are emailed within 7 business days. Coins and vouchers
-                  are handled inside the app — this website does not track or redeem
-                  them.
+                Vouchers are emailed within 7 business days. Coins and vouchers
+                are handled inside the app. This website does not track or redeem
+                them.
                 </span>
               </p>
             </div>

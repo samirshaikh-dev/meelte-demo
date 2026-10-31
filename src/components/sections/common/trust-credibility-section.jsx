@@ -73,15 +73,12 @@ export function TrustCredibilitySection() {
               <Reveal
                 key={item.title}
                 delay={0.05 + idx * 0.06}
-                className="p-6 rounded-3xl bg-canvas border border-border/80 shadow-2xs flex flex-col justify-between hover:border-primary/30 transition-all hover:shadow-soft hover:-translate-y-[2px]"
+                className="p-6 rounded-3xl bg-canvas border border-border/80 shadow-2xs flex flex-col justify-between transition-transform, transition-colors, transition-shadow hover:border-primary/30 hover:shadow-soft hover:-translate-y-[2px]"
               >
                 <div>
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary mb-4 shadow-2xs">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-primary block mb-1">
-                    {item.guarantee}
-                  </span>
                   <h3 className="font-bold text-base sm:text-lg text-foreground tracking-tight">
                     {item.title}
                   </h3>
@@ -99,8 +96,8 @@ export function TrustCredibilitySection() {
         <Reveal delay={0.08}>
           <div className="p-8 sm:p-10 rounded-3xl bg-canvas border border-border/90 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div className="max-w-xl">
-              <span className="text-xs font-bold text-primary uppercase tracking-wider block mb-1">
-                Transparent Operations
+              <span className="text-xs font-bold text-primary block mb-1">
+                Transparent operations
               </span>
               <h4 className="text-xl sm:text-2xl font-bold text-foreground tracking-tight">
                 A company built for local India, based in Bengaluru.
@@ -113,14 +110,14 @@ export function TrustCredibilitySection() {
             <div className="flex flex-col gap-3 shrink-0 w-full sm:w-auto sm:flex-row lg:flex-col">
               <a
                 href={`mailto:${SUPPORT_EMAIL}`}
-                className="inline-flex items-center gap-2 rounded-2xl bg-surface border border-border/80 shadow-2xs px-5 py-4 text-xs font-semibold text-primary hover:border-primary/30 hover:shadow-soft transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2 rounded-2xl bg-surface border border-border/80 shadow-2xs px-5 py-4 text-xs font-semibold text-primary hover:border-primary/30 hover:shadow-soft transition-colors, transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
               >
                 <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{SUPPORT_EMAIL}</span>
               </a>
               <a
                 href={`mailto:${HR_EMAIL}`}
-                className="inline-flex items-center gap-2 rounded-2xl bg-surface border border-border/80 shadow-2xs px-5 py-4 text-xs font-semibold text-primary hover:border-primary/30 hover:shadow-soft transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
+                className="inline-flex items-center gap-2 rounded-2xl bg-surface border border-border/80 shadow-2xs px-5 py-4 text-xs font-semibold text-primary hover:border-primary/30 hover:shadow-soft transition-colors, transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
               >
                 <Building2 className="h-4 w-4 shrink-0" aria-hidden="true" />
                 <span>{HR_EMAIL}</span>

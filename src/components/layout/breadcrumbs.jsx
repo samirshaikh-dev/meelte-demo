@@ -22,6 +22,10 @@ export function Breadcrumbs({ items = [], className, listClassName }) {
   return (
     <nav aria-label="Breadcrumb" className={className}>
       <ol
+        // `role="list"` is explicit because Tailwind preflight sets
+        // `list-style: none`, and WebKit drops list semantics for a list with no
+        // marker — VoiceOver then reads the trail as loose text (finding S5).
+        role="list"
         className={cn(
           "flex flex-wrap items-center gap-1.5 text-xs text-foreground-secondary",
           listClassName
@@ -32,7 +36,7 @@ export function Breadcrumbs({ items = [], className, listClassName }) {
           return (
             <React.Fragment key={`${item.name}-${index}`}>
               {index > 0 && (
-                <li aria-hidden="true" className="text-foreground-muted">
+                <li aria-hidden="true" className="text-foreground-secondary/50">
                   /
                 </li>
               )}
@@ -45,7 +49,7 @@ export function Breadcrumbs({ items = [], className, listClassName }) {
                 ) : (
                   <Link
                     href={item.path}
-                    className="font-medium transition-colors hover:text-primary"
+                    className="rounded font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
                   >
                     {item.name}
                   </Link>

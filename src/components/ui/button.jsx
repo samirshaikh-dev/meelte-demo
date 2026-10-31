@@ -51,9 +51,12 @@ export const Button = React.forwardRef(
         disabled={isButton ? disabled : undefined}
         aria-disabled={disabled ? "true" : undefined}
         className={cn(
-          "inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out select-none",
+          "inline-flex items-center justify-center font-semibold transition-colors transition-transform duration-200 ease-out select-none",
           "hover:-translate-y-[1px] active:translate-y-0",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2",
+          // `ring-primary/70` composites to ≈3.6:1 against light surfaces. The previous
+          // `/40` measured ≈1.96:1, below the 3:1 focus-indicator requirement in
+          // WCAG 1.4.11; this matches the value already used by `store-button.jsx`.
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2",
           "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:translate-y-0 disabled:shadow-none",
           buttonVariants[variant] || buttonVariants.primary,
           buttonSizes[size] || buttonSizes.md,
