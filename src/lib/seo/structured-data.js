@@ -16,6 +16,7 @@ import {
   HR_EMAIL,
   CONTACT_PHONE,
   PLAY_STORE_URL,
+  APP_STORE_URL,
   SAME_AS_LINKS,
 } from "../../config/site";
 import {
@@ -236,10 +237,13 @@ export function getRootJsonLd() {
       "@type": "MobileApplication",
       "@id": `${APP_URL}#mobileapp`,
       name: "Meelte: Local Community & Events",
-      operatingSystem: "Android, iOS, Web",
+      operatingSystem: "Android, iOS",
       applicationCategory: "CommunityApplication",
       installUrl: PLAY_STORE_URL,
       downloadUrl: PLAY_STORE_URL,
+      // Both live listings point at the same app, so neither platform is favoured in
+      // the entity graph (`operatingSystem` above still names both).
+      sameAs: [PLAY_STORE_URL, APP_STORE_URL],
       offers: {
         "@type": "Offer",
         price: "0",
@@ -247,7 +251,7 @@ export function getRootJsonLd() {
         availability: "https://schema.org/InStock",
       },
       description:
-        "Download Meelte on Android to see time-boxed offers from nearby shops, request to join local events, and chat with people you meet around you.",
+        "Download Meelte on Android or iPhone to see time-boxed offers from nearby shops, request to join local events, and chat with people you meet around you.",
       inLanguage: "en-IN",
       isAccessibleForFree: true,
       publisher: {

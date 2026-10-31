@@ -14,7 +14,7 @@
 - **Product Type:** Community-driven hyper-local discovery, connection, and commerce platform.
 - **Core Value Proposition:** *"Discover Opportunities. Build Connections. Create Experiences. Grow Local."*
 - **Primary Geographic Focus:** India, with operational hubs in **Bengaluru, Gaya, and Ranchi** and an active pan-India expansion narrative.
-- **Product Availability:** The **Android app is live on Google Play** (`com.meelte.classico`). The **web app is "coming soon"** — never imply the full web app already exists.
+- **Product Availability:** The app is **live on Google Play** (`com.meelte.classico`) **and the App Store** (`id6792304887`), and both listings are promoted together everywhere the app is offered. The **web app is "coming soon"** — never imply the full web app already exists.
 - **Platform Ecosystem:** Flutter mobile app + dedicated external backend (Firebase / Cloud APIs) + this **Next.js visual + technical SEO marketing website**.
 - **Website Goal:** Explain the platform honestly, build brand credibility, and drive clear conversion paths for residents and merchants without claiming more than the product evidence supports.
 - **Current Goal (Oct 2026):** stabilize the marketing site, close route/link parity gaps, confirm the remaining business claims and legal sign-off, and wire the live form endpoints only after the backend is actually ready.
@@ -216,7 +216,7 @@ nextjs-website/
 | :--- | :--- | :--- |
 | `/` | Homepage: resident-first hero, product walkthrough, FAQ teaser, dual-audience CTA | FAQPage |
 | `/about` | Mission, story, vision, why Meelte | AboutPage + BreadcrumbList |
-| `/how-it-works` | Product roles, walkthrough, trust, FAQ | HowTo + ItemList + BreadcrumbList |
+| `/how-it-works` | Resident path, three roles, honest limits, FAQ | HowTo + ItemList + FAQPage + BreadcrumbList |
 | `/for-merchants` | Merchant landing, onboarding, FAQ, inquiry CTA | HowTo + Service + FAQPage + BreadcrumbList |
 | `/discover` | Capability explainer: offers / events / people | CollectionPage + FAQPage + BreadcrumbList |
 | `/faq` | FAQ page over `src/data/faq.json` | FAQPage + BreadcrumbList |
@@ -281,6 +281,7 @@ nextjs-website/
 - **Broken `/case-studies` navigation:** still present in some nav config and should be removed or replaced with a real route.
 - **OG script alias mismatch:** documentation mentions `npm run og:image`, but the package scripts do not currently define it. Use the direct Node command instead.
 - **Unverified merchant claims:** pricing, fees, and “0% commission” language must be treated as pending business confirmation.
+- **iOS availability — resolved:** both listings are live, so the site promotes Google Play and the App Store together (`PLAY_STORE_URL` / `APP_STORE_URL` in `src/config/site.js`). The stale `"#"` placeholder comment was removed, `APP_STORE_URL` was added to `SAME_AS_LINKS`, and `faq-5` / `faq-7` / `faq-17` now name both stores. `/how-it-works` still renders a five-question teaser (`faq-1/5/9/11/19`) for scope, not because of the old conflict. Keep the `APP_STORE_URL` storefront path under review: the URL uses the `/ng/` storefront.
 - **Root layout shell rule:** every page must import and render the required shell pieces itself; the root layout is not a page wrapper.
 - **Static-only marketing site:** do not assume a browser-based app is live; the site should consistently frame the web surface as a landing and marketing layer for the mobile app.
 - **Dependency drift:** some form-related packages are installed but not currently used in the live flow; remove or adopt as appropriate.

@@ -97,7 +97,8 @@ export function DiscoverHero() {
           </div>
 
           <p className="mt-5 text-sm text-foreground-secondary">
-            The Android app is live on Google Play. The web app is still in development.
+            Meelte is live on Google Play and the App Store. The web app is still
+            in development.
           </p>
 
           <nav aria-label="On this page" className="mt-7 border-t border-border/70 pt-5">

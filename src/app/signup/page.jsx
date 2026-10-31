@@ -26,7 +26,7 @@ const SIGNUP_FAQS = FAQ_ITEMS.filter((faq) => SIGNUP_FAQ_IDS.includes(faq.id));
 export const metadata = buildPageMetadata({
   title: "Get the Meelte App — Sign Up & Refer Friends",
   description:
-    "Meelte for Android is live on Google Play: time-boxed offers from local shops, local events you can request to join, and one-to-one chat. Refer friends for coins and Amazon vouchers. The web app is still in development.",
+    "Meelte is live on Google Play and the App Store: time-boxed local offers, events you can join, and one-to-one chat. The web app is still in development.",
   path: "/signup",
   keywords: [
     "Meelte sign up",
@@ -43,10 +43,10 @@ export const metadata = buildPageMetadata({
 /**
  * /signup is a signpost, not a form.
  *
- * Meelte creates accounts inside the Android app (App Store listing is not
- * published, and the web app is still in development), so this page cannot and
+ * Meelte creates accounts inside the mobile app (both store listings are live and
+ * the web app is still in development), so this page cannot and
  * must not render a sign-up form. It answers "how do I join", "what do I get"
- * and "what does it cost me" in that order, then hands over to Google Play:
+ * and "what does it cost me" in that order, then hands over to the store listings:
  *   1. SignupHero      what the app is and where joining is possible today
  *   2. SignupAreas     the three capabilities, generated from PLATFORM_AREAS
  *   3. SignupSteps     install → allow location → find something nearby

@@ -8,7 +8,6 @@ import {
   Store,
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 /**

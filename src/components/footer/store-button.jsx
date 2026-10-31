@@ -13,9 +13,9 @@ import { cn } from "@/lib/utils";
  *   is room for it, and it is the only download surface below `lg`.
  * - `variant="brand"` — a compact single-line pill for the navbar. The navbar is a 64/80px
  *   bar on a white `surface`, so the black badge reads as a heavy block that competes with the
- *   brand. This variant is token-led instead: Play Store is the filled primary because the
- *   Android app is genuinely live, and App Store is a quiet outlined secondary because the
- *   iOS listing does not exist yet. Hierarchy therefore reflects reality rather than size.
+ *   brand. This variant is token-led instead: both listings are live, so Google Play stays the
+ *   filled primary (it is the larger install base for this app) and the App Store is the
+ *   outlined secondary that sits beside it in every header viewport.
  */
 const STORE_META = {
   google: {

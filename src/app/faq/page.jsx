@@ -15,17 +15,18 @@ import { SUPPORT_EMAIL } from "@/config/site";
 import faqData from "@/data/faq.json";
 
 export const metadata = buildPageMetadata({
-  title: "App, Offers & Events FAQ",
+  title: "Meelte App FAQ: Downloads, Offers & Events",
   description:
-    "Answers about the Meelte Android app, nearby shop offers, community events, merchant listings, payments, privacy, safety, and current availability.",
+    "Answers about the Meelte app on Google Play and the App Store: nearby shop offers, local events, merchant listings, payments, privacy and availability.",
   path: "/faq",
   keywords: [
     "Meelte FAQ",
     "Meelte app FAQs",
+    "Meelte app download",
+    "Meelte iPhone app",
     "hyperlocal community app India",
     "local offers app",
     "local events app India",
-    "Meelte Android app",
     "Meelte merchant listings",
     "Meelte privacy and payments",
   ],
@@ -88,8 +89,8 @@ export default function FaqPage() {
             </h1>
 
             <p className="mt-5 text-lg sm:text-2xl font-medium text-foreground-secondary leading-relaxed max-w-2xl">
-              Meelte is an Android app for discovering offers from nearby shops, local events,
-              and community connections.
+              Meelte is a mobile app for Android and iPhone, built for discovering offers
+              from nearby shops, local events, and community connections.
             </p>
           </Container>
         </section>
@@ -106,7 +107,7 @@ export default function FaqPage() {
                 <Accordion.Item
                   key={faq.id}
                   value={faq.id}
-                  className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-colors, transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
+                  className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
                 >
                   <Accordion.Header className="flex">
                     <Accordion.Trigger className="flex flex-1 items-center justify-between p-5 sm:p-6 text-left font-bold text-base sm:text-lg text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group">
@@ -119,7 +120,13 @@ export default function FaqPage() {
                       </div>
                     </Accordion.Trigger>
                   </Accordion.Header>
-                  <Accordion.Content className="overflow-hidden px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base text-foreground-secondary leading-relaxed data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  {/* `forceMount` keeps every answer in the prerendered HTML so the
+                      FAQPage markup above matches crawlable page text (Radix still
+                      applies `hidden` to collapsed panels after hydration). */}
+                  <Accordion.Content
+                    forceMount
+                    className="overflow-hidden px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base text-foreground-secondary leading-relaxed data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up"
+                  >
                     <div className="pt-2 border-t border-border/40">
                       <p>{faq.answer}</p>
                     </div>

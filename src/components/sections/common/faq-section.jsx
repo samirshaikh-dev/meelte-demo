@@ -38,7 +38,11 @@ export function FaqSection({
   const firstFaqId = faqs[0]?.id;
 
   return (
-    <section id="faq" className="py-16 sm:py-24 bg-surface scroll-mt-20 border-b border-border/80">
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className="py-16 sm:py-24 bg-surface scroll-mt-20 border-b border-border/80"
+    >
       <Container className="max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -46,7 +50,10 @@ export function FaqSection({
             <HelpCircle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
             <span>Frequently Asked Questions</span>
           </Badge>
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight">
+          <h2
+            id="faq-heading"
+            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight"
+          >
             {title}
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
@@ -65,7 +72,7 @@ export function FaqSection({
             <Accordion.Item
               key={faq.id}
               value={faq.id}
-              className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-colors, transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
+              className="rounded-3xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-colors transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
             >
               <Accordion.Header className="flex">
                 <Accordion.Trigger className="flex flex-1 items-center justify-between p-5 sm:p-6 text-left font-bold text-base sm:text-lg text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 group">
@@ -78,7 +85,17 @@ export function FaqSection({
                   </div>
                 </Accordion.Trigger>
               </Accordion.Header>
-              <Accordion.Content className="overflow-hidden px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base text-foreground-secondary leading-relaxed data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+              {/*
+                `forceMount` keeps every answer in the prerendered HTML (Radix still
+                sets `hidden` while collapsed). Without it, closed answers exist only
+                after hydration, so the FAQPage JSON-LD on /, /discover,
+                /how-it-works and /for-merchants would declare answers that a
+                non-JS crawler cannot see.
+              */}
+              <Accordion.Content
+                forceMount
+                className="overflow-hidden px-5 sm:px-6 pb-5 sm:pb-6 text-sm sm:text-base text-foreground-secondary leading-relaxed data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up"
+              >
                 <div className="pt-2 border-t border-border/40">
                   <p>{faq.answer}</p>
                 </div>

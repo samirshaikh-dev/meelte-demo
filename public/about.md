@@ -9,7 +9,7 @@ Phone: +91-8884524444
 ---
 
 ## Who We Are
-Meelte is a community-driven, hyperlocal platform for India. It brings what is happening close to where you live into one place: time-boxed offers from independent shops, local events you can ask to join, and the people and businesses you follow. The Android app is available on Google Play. The web app is still in development and is not live yet.
+Meelte is a community-driven, hyperlocal platform for India. It brings what is happening close to where you live into one place: time-boxed offers from independent shops, local events you can ask to join, and the people and businesses you follow. The app is published on Google Play for Android and on the App Store for iPhone. The web app is still in development and is not live yet.
 
 ## Our Mission
 Meelte aims to make local discovery and connection easier. The platform focuses on nearby offers, local events, and community connections rather than a global feed.
@@ -28,7 +28,7 @@ Meelte aims to make local discovery and connection easier. The platform focuses 
 - **Grow your business**: Publish time-boxed offers for nearby residents. People can interact with offers in the app.
 
 ## Coverage & Availability
-Meelte is live as an Android app, with in-person shop onboarding in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listings depend on configured city zones. The web app is in development and is not live.
+Meelte is live as an app on Google Play for Android and on the App Store for iPhone, with in-person shop onboarding in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listings depend on configured city zones. The web app is in development and is not live.
 
 ## Our Privacy Commitment
 Meelte uses location to sort nearby listings and determine which configured city zone applies. Meelte states that it does not sell or share user location with advertisers. See the [Privacy Policy](https://meelte.com/privacy) for details about personal data.
@@ -42,3 +42,4 @@ Meelte does not sell goods, run events, take payments or broker transactions. Pu
 - Phone: +91-8884524444
 - Social: Instagram, Facebook, Twitter/X, LinkedIn, YouTube
 - Android App: https://play.google.com/store/apps/details?id=com.meelte.classico
+- iOS App: https://apps.apple.com/ng/app/meelte/id6792304887

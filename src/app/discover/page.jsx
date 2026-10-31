@@ -34,9 +34,9 @@ const DISCOVER_FAQ_IDS = ["faq-5", "faq-7", "faq-9", "faq-11", "faq-13"];
 const DISCOVER_FAQS = FAQ_ITEMS.filter((faq) => DISCOVER_FAQ_IDS.includes(faq.id));
 
 export const metadata = buildPageMetadata({
-  title: "What's Nearby: Local Offers, Events & People | Meelte",
+  title: "What's Nearby: Local Offers, Events & People",
   description:
-    "Time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat — sorted by distance. Android app live; web app coming soon.",
+    "Nearby shop offers, local events you can join, and one-to-one chat, sorted by distance. Live on Google Play and the App Store; web app coming soon.",
   path: "/discover",
   keywords: [
     "hyperlocal discovery app",

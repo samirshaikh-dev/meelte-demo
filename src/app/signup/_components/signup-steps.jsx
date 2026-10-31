@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 const STEPS = [
   {
     title: "Install the app",
-    body: "Download Meelte for Android from Google Play. The web app is not live yet.",
+    body: "Download Meelte from Google Play or the App Store. The web app is not live yet.",
   },
   {
     title: "Turn on location",
@@ -49,7 +49,7 @@ export function SignupSteps() {
           </h2>
 
           <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
-            Three steps, and the first one happens on Google Play.
+            Three steps, and the first one happens in an app store.
           </p>
         </div>
 

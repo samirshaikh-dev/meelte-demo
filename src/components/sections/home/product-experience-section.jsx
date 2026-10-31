@@ -210,8 +210,8 @@ export function ProductExperienceSection() {
             What you can do in the app.
           </h2>
           <p className="mt-3.5 text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            Explore four capabilities available today. The Android app is live on Google Play;
-            the web app is still in development.
+            Explore four capabilities available today. Meelte is live on Google Play
+            and the App Store; the web app is still in development.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 # Meelte FAQ — App, Local Offers, Events and Support
 
-> Meelte is a hyperlocal community app for discovering offers from nearby shops, local events, and people you connect with in your community. This page gives direct answers about the Android app, availability, merchant listings, payments, privacy, and safety.
+> Meelte is a hyperlocal community app for discovering offers from nearby shops, local events, and people you connect with in your community. This page gives direct answers about the Meelte app for Android and iPhone, availability, merchant listings, payments, privacy, and safety.
 
 Canonical page: https://meelte.com/faq
 Official Website: https://meelte.com
@@ -11,7 +11,7 @@ Last reviewed: October 2026
 ## At a Glance
 
 - **What it is**: A hyperlocal community app for local shop offers, events, and community connections.
-- **Android app**: Available on Google Play. The browser-based web app is in development; the website does not currently list an iOS download.
+- **App availability**: Published on Google Play for Android and on the App Store for iPhone. The browser-based web app is still in development.
 - **Merchant onboarding**: The field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones.
 - **Payments**: Meelte does not process purchases or event fees. Customers pay shops directly, and attendees settle any joining cost with the event host.
 - **Privacy**: Meelte uses location to sort nearby listings and determine the applicable city zone; it states that location is not sold or shared with advertisers.
@@ -38,11 +38,11 @@ Meelte's current documented model has no paid subscription or in-app purchases. 
 
 ### Where is Meelte available?
 
-The Meelte Android app is available on Google Play. Meelte's field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones, so availability can vary by area.
+The Meelte app is published on Google Play for Android and on the App Store for iPhone. Meelte's field team currently onboards shops in Bengaluru, Gaya, and Ranchi, and nearby listings depend on configured city zones, so availability can vary by area.
 
 ### Where can I download the Meelte app?
 
-The official Meelte app is available for Android on Google Play. The website does not currently list an iOS download, and the browser-based web app is still in development.
+The official Meelte app is published on Google Play for Android and on the App Store for iPhone. The browser-based web app is still in development.
 
 ### What can a local business post on Meelte?
 
@@ -82,7 +82,7 @@ Yes. You can follow an advertiser, and followers may receive notifications when 
 
 ### Can I use Meelte on an iPhone or in a web browser?
 
-The currently published app download is for Android on Google Play. Meelte does not currently list an iOS download, and the browser-based web app is in development rather than available for browsing listings.
+Yes. Meelte is published on Google Play for Android and on the App Store for iPhone, while the browser-based web app is still in development and does not yet show listings in a browser.
 
 ### Which languages does Meelte support?
 

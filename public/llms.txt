@@ -2,7 +2,7 @@
 
 > Meelte is a hyperlocal community platform for India, with time-boxed offers from nearby shops, local events, and community connections.
 
-Meelte is available as an Android app on Google Play. The web app is in development and is not live. The app sorts ads and events by distance from the user, with a "Max distance" filter that defaults to 60 km. Nearby listings depend on configured city zones. Meelte does not sell goods, run events, take payments or broker transactions: purchases are settled directly with the shop, and any event cost is settled directly with the host.
+Meelte is available as a mobile app on Google Play for Android and on the App Store for iPhone. The web app is in development and is not live. The app sorts ads and events by distance from the user, with a "Max distance" filter that defaults to 60 km. Nearby listings depend on configured city zones. Meelte does not sell goods, run events, take payments or broker transactions: purchases are settled directly with the shop, and any event cost is settled directly with the host.
 
 - Official Website: https://meelte.com
 - Contact: support@meelte.com
@@ -15,13 +15,13 @@ Meelte is available as an Android app on Google Play. The web app is in developm
 
 ## Core Pages
 
-- [Home](https://meelte.com/): Platform overview, the Discover / Connect / Create / Grow pillars, and the Android app download.
+- [Home](https://meelte.com/): Platform overview, the Discover / Connect / Create / Grow pillars, and the app downloads.
 - [Discover](https://meelte.com/discover): The three things the app does — local offers, local events, and people & chat.
 - [About](https://meelte.com/about): Meelte's origin story, mission, and the local problems the platform was built to solve.
-- [How It Works](https://meelte.com/how-it-works): What residents, merchants, event hosts and organisers can do, step by step.
+- [How It Works](https://meelte.com/how-it-works): How a resident gets from install to a nearby offer, who posts on the platform, and what it deliberately does not do.
 - [For Merchants](https://meelte.com/for-merchants): Local business promotion and how shops are onboarded in person.
 - [Sign Up](https://meelte.com/signup): How to get started, including the current app availability.
-- [FAQ](https://meelte.com/faq): Direct answers about the Android app, local offers, events, merchant listings, payments, privacy, safety, referrals and availability.
+- [FAQ](https://meelte.com/faq): Direct answers about the app for Android and iPhone, local offers, events, merchant listings, payments, privacy, safety, referrals and availability.
 - [Careers](https://meelte.com/careers): Working at Meelte.
 - [Support](https://meelte.com/support): Support desk email and phone.
 - [Contact](https://meelte.com/contact): Support, merchant onboarding and general enquiries.
@@ -49,7 +49,7 @@ Meelte is available as an Android app on Google Play. The web app is in developm
 - [faq.md](https://meelte.com/faq.md): Every frequently asked question with a direct, quotable answer — platform, offers, events, payments, privacy, rewards and coverage.
 - [for-merchants.md](https://meelte.com/for-merchants.md): Merchant onboarding guide — what a shop can publish, how in-person setup works, what it costs, and what Meelte does not provide.
 - [how-it-works.md](https://meelte.com/how-it-works.md): Step-by-step walkthrough for residents, event hosts and shopkeepers.
-- [coverage.md](https://meelte.com/coverage.md): Coverage model — Android app availability, the three in-person onboarding hubs, and city-zone-dependent listings.
+- [coverage.md](https://meelte.com/coverage.md): Coverage model — app availability on Google Play and the App Store, the three in-person onboarding hubs, and city-zone-dependent listings.
 - [contact.md](https://meelte.com/contact.md): Support, merchant and careers contacts, operating hours, and the registered office.
 - [careers.md](https://meelte.com/careers.md): Working at Meelte, current hiring status, values and benefits.
 - [security.txt](https://meelte.com/.well-known/security.txt): Security contact and vulnerability disclosure policy.

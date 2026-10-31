@@ -1,6 +1,5 @@
 import React from "react";
-import { Download, ArrowRight } from "@/lib/icons";
-import { PLAY_STORE_URL } from "@/config/site";
+import { Download } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,7 @@ import { Button } from "@/components/ui/button";
 const STEPS = [
   {
     title: "Download the app",
-    body: "Meelte for Android is on Google Play. The web app is still in development.",
+    body: "Meelte is on Google Play and the App Store. The web app is still in development.",
   },
   {
     title: "Turn on location",

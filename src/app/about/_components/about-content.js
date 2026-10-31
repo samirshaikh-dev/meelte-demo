@@ -29,7 +29,7 @@ export const ABOUT_BREADCRUMBS = [
  * docs/target_customer.md and the page copy itself.
  */
 export const ABOUT_DESCRIPTION =
-  "Meelte is a hyperlocal community app for India: nearby shop offers, local events you can join, and the people you follow. Android app on Google Play.";
+  "Meelte is a hyperlocal community app for India: nearby shop offers, local events you can join, and the people you follow. Live on Google Play and the App Store.";
 
 /**
  * In-page anchors. The `id` values must stay in step with the sections rendered by

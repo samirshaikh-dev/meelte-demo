@@ -44,4 +44,4 @@ Contact: support@meelte.com
 ---
 
 ## Availability
-The Android app is available on Google Play (package: `com.meelte.classico`); the web app is in development. The field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones. Merchant pricing is not published.
+The app is published on Google Play (package: `com.meelte.classico`) and on the App Store for iPhone; the web app is in development. The field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones. Merchant pricing is not published.

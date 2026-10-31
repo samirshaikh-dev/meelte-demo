@@ -6,7 +6,11 @@ import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 
 /**
- * The homepage's primary conversion is a direct Google Play download.
+ * The shared bottom conversion block.
+ *
+ * Both live listings are promoted together — Google Play as the accent primary and
+ * the App Store as the outlined secondary — per the site rule that the app is never
+ * offered on only one platform (URLs come from `src/config/site.js`).
  */
 export function FinalConversionCTA() {
   return (

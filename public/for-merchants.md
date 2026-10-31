@@ -68,7 +68,7 @@ Meelte's field team currently onboards shops in **Bengaluru**, **Gaya**, and **R
 
 ## Who Sees a Merchant's Offer
 
-Residents using the Meelte Android app, browsing by distance from their own location. The "Max distance" filter defaults to 60 km and can be narrowed, so an offer is shown to people near the shop rather than to a national audience. Viewers can like, comment, share, get directions, and follow the shop.
+Residents using the Meelte app, browsing by distance from their own location. The "Max distance" filter defaults to 60 km and can be narrowed, so an offer is shown to people near the shop rather than to a national audience. Viewers can like, comment, share, get directions, and follow the shop.
 
 ---
 

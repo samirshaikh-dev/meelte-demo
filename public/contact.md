@@ -50,6 +50,7 @@ The office is a contact address. In-person shop onboarding happens in Bengaluru,
 - LinkedIn: https://www.linkedin.com/company/meelte/
 - YouTube: https://www.youtube.com/@meelte
 - Google Play: https://play.google.com/store/apps/details?id=com.meelte.classico
+- App Store: https://apps.apple.com/ng/app/meelte/id6792304887
 
 ---
 
@@ -57,7 +58,7 @@ The office is a contact address. In-person shop onboarding happens in Bengaluru,
 
 Many questions are already answered directly:
 
-- **Is there a web app?** No — the Android app is live on Google Play; the web app is in development.
+- **Is there a web app?** No — the app is published on Google Play for Android and on the App Store for iPhone; the web app is in development.
 - **How do payments work?** Meelte does not process payments. Purchases settle directly with the shop, and event fees settle directly with the host.
 - **Which cities?** The field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones.
 - **What does Meelte charge?** Merchant pricing is not published. Meelte does not process payments for purchases or event fees.

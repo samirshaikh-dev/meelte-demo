@@ -9,10 +9,11 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 ## 1. Platform Overview & Identity
 
 - **Entity Name**: Meelte
-- **Product Type**: Hyperlocal community platform (Android app today; web app in development)
+- **Product Type**: Hyperlocal community platform (Android and iOS apps today; web app in development)
 - **Positioning**: Community-driven hyperlocal discovery and connection for India
 - **Primary Website**: https://meelte.com
 - **Android App**: Google Play Store — https://play.google.com/store/apps/details?id=com.meelte.classico
+- **iOS App**: App Store — https://apps.apple.com/ng/app/meelte/id6792304887
 - **Tagline**: "Discover Opportunities. Build Connections. Create Experiences."
 - **Official Contact Email**: support@meelte.com
 - **Recruitment Email**: hr@meelte.com
@@ -32,7 +33,7 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 ## 2. Platform & Technology
 
 - **Marketing Website**: Next.js 16 (App Router) with React 19, Tailwind CSS v4 design tokens, and static rendering.
-- **Mobile App**: Android app distributed via the Google Play Store (`com.meelte.classico`). The web app is in development and is not live.
+- **Mobile App**: Android app on the Google Play Store (`com.meelte.classico`) and iOS app on the App Store. The web app is in development and is not live.
 - **Dynamic Data**: Served by a dedicated external backend; the marketing site performs read and lead-capture operations only.
 - **Search & Discovery Standards**: JSON-LD schemas (Organization, WebSite, MobileApplication, FAQPage, BreadcrumbList, Service, CollectionPage), Open Graph protocol, canonical tags, automated XML sitemap, robots directives, and AEO-optimized direct answers.
 
@@ -84,7 +85,7 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 
 ## 6. Coverage & Availability
 
-Meelte is live as an Android app, with in-person shop onboarding in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listing availability depends on configured city zones. The web app is in development and is not available yet.
+Meelte is live as an app on Google Play for Android and on the App Store for iPhone, with in-person shop onboarding in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listing availability depends on configured city zones. The web app is in development and is not available yet.
 
 ---
 
@@ -119,10 +120,10 @@ Every event lists its category, joining cost in ₹, start and end time, map loc
 Meelte does not process payments. Purchases are settled directly with the shop, and event fees are settled directly with the host. Meelte is a discovery and connection platform, not a payment processor, ticketing service, or escrow.
 
 ### Where does Meelte onboard shops, and where are listings available?
-Meelte's field team currently onboards shops in Bengaluru, Gaya, and Ranchi. The Android app is available on Google Play, while nearby listing availability depends on configured city zones.
+Meelte's field team currently onboards shops in Bengaluru, Gaya, and Ranchi. The app is published on Google Play for Android and on the App Store for iPhone, while nearby listing availability depends on configured city zones.
 
 ### Where can users download and access the Meelte app?
-The official Meelte app is available for Android on Google Play. The website does not currently list an iOS download, and the browser-based web app is still in development.
+The official Meelte app is published on Google Play for Android and on the App Store for iPhone. The browser-based web app is still in development.
 
 ### How far away can I find offers and events on Meelte?
 The app sorts ads and events by distance from your location. Its Max distance filter defaults to 60 km and can be narrowed to focus on closer listings.
@@ -161,3 +162,4 @@ For the complete current question set, see https://meelte.com/faq and https://me
 - **Web Manifest**: https://meelte.com/manifest.webmanifest
 - **Official Contact Portal**: https://meelte.com/contact
 - **Android App Listing**: https://play.google.com/store/apps/details?id=com.meelte.classico
+- **iOS App Listing**: https://apps.apple.com/ng/app/meelte/id6792304887

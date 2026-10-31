@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 /**
  * Closing band for /signup.
  *
- * One primary action (install on Android) and one secondary action (read the
- * FAQ), then the merchant path for the shop owner who landed here by mistake.
+ * One primary action (install on Google Play) and one secondary action (the App
+ * Store listing), then the merchant path for the shop owner who landed here by
+ * mistake. Both stores are always promoted together.
  * The three hubs named in the footer line are the only cities where the field
  * team onboards merchants in person (OPERATIONAL_HUBS, confirmed Oct 2026) —
  * the sentence must not be widened to "across India".
@@ -43,7 +44,7 @@ export function SignupClose() {
           </h2>
 
           <p className="mt-3 text-base leading-relaxed text-white/90">
-            Download Meelte on Android and see what is happening around you today.
+            Download Meelte on Android or iPhone and see what is happening around you today.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
