@@ -10,22 +10,7 @@ import { Badge } from "@/components/ui/badge";
  *
  * Each card answers "what does this role actually do in the app?" and points at
  * the page that covers that role in full, so /how-it-works explains the mechanics
- * and the dedicated pages carry the detail. Nothing here is a capability the
- * product does not ship:
- *
- * - Shops: single-product ad or a catalogue of up to 100 items, a price or
- *   discount, a defined run of dates, and in-person onboarding by the field team
- *   (docs/target_customer.md §5, faq-8).
- * - Hosts: event date, time, location, visibility and joining cost, with
- *   approval-based join requests carrying group size (faq-9, faq-10).
- * - Neighbours: friends, follows, 1:1 chat with documents and location, plus
- *   voice/video calls — while Discover People is still rolling out (faq-19).
- *
- * Deliberately absent: merchant pricing, "verified business" wording, and any
- * reach or performance claim (meelte-context.md claim guardrails).
- *
- * `id="roles"` is the anchor for this section; the `ItemList` in `page.jsx` mirrors
- * these three cards and links each role at the page that covers it in full.
+ * and the dedicated pages carry the detail.
  */
 const ROLES = [
   {
@@ -58,7 +43,7 @@ export function HowItWorksRoles() {
     <section
       id="roles"
       aria-labelledby="how-it-works-roles-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-surface py-16 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-canvas py-16 sm:py-20"
     >
       <Container>
         <div className="max-w-2xl">
@@ -79,15 +64,15 @@ export function HowItWorksRoles() {
           </p>
         </div>
 
-        <ul role="list" className="mt-10 grid gap-4 sm:mt-12 lg:grid-cols-3">
+        <ul role="list" className="mt-10 grid gap-5 sm:mt-12 lg:grid-cols-3">
           {ROLES.map((role) => {
             const Icon = role.icon;
             return (
               <li
                 key={role.id}
-                className="flex flex-col rounded-3xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
+                className="flex flex-col rounded-2xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-muted text-primary">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
 

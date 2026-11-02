@@ -57,7 +57,7 @@ export function SignupSteps() {
           {STEPS.map((step, index) => (
             <li
               key={step.title}
-              className="rounded-3xl border border-border/80 bg-surface p-6 sm:p-7"
+              className="rounded-2xl border border-border/80 bg-surface p-6 sm:p-7"
             >
               <span
                 aria-hidden="true"

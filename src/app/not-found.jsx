@@ -28,8 +28,6 @@ export default function NotFound() {
     <section className="relative min-h-[calc(100vh-140px)] flex items-center bg-canvas overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-canvas to-canvas" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-primary/5" />
-        <div className="absolute top-20 right-1/4 h-[300px] w-[300px] rounded-full bg-accent/5" />
       </div>
       <Container className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto w-full text-center">
@@ -49,23 +47,32 @@ export default function NotFound() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12">
-            <Button asChild size="lg" className="shadow-card hover:shadow-lg transition-shadow">
-              <Link href="/" className="inline-flex items-center gap-2">
-                <Home className="h-4 w-4" aria-hidden="true" />
-                <span>Go to Homepage</span>
-              </Link>
+            <Button
+              as={Link}
+              href="/"
+              size="lg"
+              className="shadow-card"
+            >
+              <Home className="h-4 w-4" aria-hidden="true" />
+              <span>Go to Homepage</span>
             </Button>
-            <Button asChild variant="secondary" size="lg" className="hover:shadow-md transition-shadow">
-              <Link href="/discover" className="inline-flex items-center gap-2">
-                <Compass className="h-4 w-4" aria-hidden="true" />
-                <span>Explore Nearby</span>
-              </Link>
+            <Button
+              as={Link}
+              href="/discover"
+              variant="secondary"
+              size="lg"
+            >
+              <Compass className="h-4 w-4" aria-hidden="true" />
+              <span>Explore Nearby</span>
             </Button>
-            <Button asChild variant="outline" size="lg" className="hover:shadow-md transition-shadow">
-              <Link href="/contact" className="inline-flex items-center gap-2">
-                <span>Contact Us</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
+            <Button
+              as={Link}
+              href="/contact"
+              variant="outline"
+              size="lg"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
 

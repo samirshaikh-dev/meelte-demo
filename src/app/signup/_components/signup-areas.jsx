@@ -56,7 +56,7 @@ export function SignupAreas() {
             return (
               <li
                 key={area.id}
-                className="flex flex-col rounded-3xl border border-border/80 bg-canvas p-6 transition-shadow duration-200 hover:shadow-card sm:p-7"
+                className="flex flex-col rounded-2xl border border-border/80 bg-canvas p-6 transition-shadow duration-200 hover:shadow-card sm:p-7"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
                   <Icon className="h-5 w-5" aria-hidden="true" />

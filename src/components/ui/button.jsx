@@ -20,13 +20,13 @@ const buttonSizes = {
   sm: "h-10 px-4 text-xs rounded-lg gap-1.5",
   md: "h-11 px-5 text-sm rounded-xl gap-2",
   lg: "h-12 px-6 text-base rounded-xl gap-2.5",
-  pill: "h-11 px-6 text-sm rounded-full gap-2",
-  pillLg: "h-13 px-8 text-base rounded-full gap-2.5",
   icon: "h-10 w-10 p-0 rounded-xl justify-center",
 };
 
 /**
  * Reusable Accessible Button component supporting standard Meelte brand variants & sizes.
+ * Conforms to AVOID.md §6: consistent rounded-xl hierarchy, stable interaction feedback,
+ * and high-contrast WCAG 2.2 AA compliant focus rings.
  */
 export const Button = React.forwardRef(
   (
@@ -51,13 +51,9 @@ export const Button = React.forwardRef(
         disabled={isButton ? disabled : undefined}
         aria-disabled={disabled ? "true" : undefined}
         className={cn(
-          "inline-flex items-center justify-center font-semibold transition-colors transition-transform duration-200 ease-out select-none",
-          "hover:-translate-y-[1px] active:translate-y-0",
-          // `ring-primary/70` composites to ≈3.6:1 against light surfaces. The previous
-          // `/40` measured ≈1.96:1, below the 3:1 focus-indicator requirement in
-          // WCAG 1.4.11; this matches the value already used by `store-button.jsx`.
+          "inline-flex items-center justify-center font-semibold transition-colors duration-150 ease-out select-none",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2",
-          "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:translate-y-0 disabled:shadow-none",
+          "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:shadow-none",
           buttonVariants[variant] || buttonVariants.primary,
           buttonSizes[size] || buttonSizes.md,
           className

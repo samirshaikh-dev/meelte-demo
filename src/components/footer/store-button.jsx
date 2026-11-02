@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Apple, Play } from "@/lib/icons";
 import { PLAY_STORE_URL, APP_STORE_URL } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -82,7 +82,7 @@ export function StoreButton({ type = "google", href, className, variant = "badge
       {...linkProps}
       className={cn(
         BASE_CLASSES,
-        "relative h-[44px] w-full items-center gap-2.5 rounded-xl bg-black px-3 text-white shadow-orb-primary-light hover:-translate-y-0.5 hover:shadow-orb-primary-hover",
+        "relative h-[44px] w-full items-center gap-2.5 rounded-xl bg-black px-3 text-white shadow-soft hover:shadow-card",
         className
       )}
     >

@@ -24,32 +24,32 @@ const EXPERIENCES = [
     screenTitle: "Offer details",
     screenSubtitle: "Distance filter · default 60 km",
     screenContent: (
-      <div className="flex flex-col gap-3">
-        <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold text-foreground-secondary">
-            Ad format
+      <div className="flex flex-col gap-4">
+        <div className="border-b border-border/70 pb-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
+            Format options
           </p>
           <p className="mt-1 font-bold text-foreground">
-            One product or a shop catalogue
+            Single product or catalogue (up to 100 items)
           </p>
           <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
-            Shop catalogues can include up to 100 products.
+            Photographed menus or price lists can be digitized with AI photo import.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-2xl border border-border/80 bg-surface p-3">
-            <p className="text-sm font-semibold text-foreground">Price or discount</p>
-            <p className="mt-1 text-xs text-foreground-secondary">Set by the shop</p>
+        <div className="grid grid-cols-2 gap-3 py-1">
+          <div>
+            <p className="text-xs font-semibold text-foreground-secondary">Price &amp; Discount</p>
+            <p className="mt-0.5 text-sm font-semibold text-foreground">₹ or % set by merchant</p>
           </div>
-          <div className="rounded-2xl border border-border/80 bg-surface p-3">
-            <p className="text-sm font-semibold text-foreground">Date range</p>
-            <p className="mt-1 text-xs text-foreground-secondary">Start and end dates</p>
+          <div>
+            <p className="text-xs font-semibold text-foreground-secondary">Active Window</p>
+            <p className="mt-0.5 text-sm font-semibold text-foreground">Defined start &amp; end dates</p>
           </div>
         </div>
 
-        <div className="rounded-xl border border-primary/20 bg-surface-muted px-4 py-3 text-center text-sm font-semibold text-primary">
-          Get directions · Google Maps
+        <div className="rounded-xl border border-primary/20 bg-surface-muted px-4 py-2.5 text-center text-sm font-semibold text-primary">
+          One-tap directions via Google Maps
         </div>
       </div>
     ),
@@ -66,39 +66,33 @@ const EXPERIENCES = [
     screenTitle: "Request to Join",
     screenSubtitle: "The host manages attendance",
     screenContent: (
-      <div className="flex flex-col gap-3">
-        <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold text-foreground-secondary">
-            Event details
+      <div className="flex flex-col gap-4">
+        <div className="border-b border-border/70 pb-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
+            Attendance control
           </p>
-          <div className="mt-3 flex flex-col gap-3">
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-sm font-medium text-foreground">Visibility</span>
-              <span className="text-right text-sm text-foreground-secondary">
-                Public or private
-              </span>
-            </div>
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-sm font-medium text-foreground">Joining cost</span>
-              <span className="text-right text-sm text-foreground-secondary">
-                Set by the host
-              </span>
-            </div>
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-sm font-medium text-foreground">Group size</span>
-              <span className="text-right text-sm text-foreground-secondary">
-                Included in your request
-              </span>
-            </div>
+          <p className="mt-1 font-bold text-foreground">
+            Request to Join with group size
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+            Hosts review, approve, reject, or remove attendees. Any fee settles directly.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 py-1">
+          <div>
+            <p className="text-xs font-semibold text-foreground-secondary">Visibility</p>
+            <p className="mt-0.5 text-sm font-semibold text-foreground">Public or private</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-foreground-secondary">Joining Cost</p>
+            <p className="mt-0.5 text-sm font-semibold text-foreground">Settled directly with host</p>
           </div>
         </div>
 
-        <div className="rounded-xl border border-primary/20 bg-surface-muted px-4 py-3 text-center text-sm font-semibold text-primary">
-          Request to Join
+        <div className="rounded-xl border border-primary/20 bg-surface-muted px-4 py-2.5 text-center text-sm font-semibold text-primary">
+          Follower notifications on event updates
         </div>
-        <p className="px-1 text-sm leading-relaxed text-foreground-secondary">
-          The host can approve, reject, or remove attendees. Any event fee is paid directly to the host.
-        </p>
       </div>
     ),
   },
@@ -114,31 +108,35 @@ const EXPERIENCES = [
     screenTitle: "One-to-one chat",
     screenSubtitle: "Friends and follows",
     screenContent: (
-      <div className="flex flex-col gap-3">
-        <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold text-foreground-secondary">
-            Chat supports
+      <div className="flex flex-col gap-4">
+        <div className="border-b border-border/70 pb-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
+            Conversations
           </p>
-          <ul className="mt-3 flex flex-col gap-2.5">
-            {["Text and emoji", "Documents and location", "Voice and video calls"].map(
-              (feature) => (
-                <li
-                  key={feature}
-                  className="flex items-center gap-2.5 text-sm font-medium text-foreground"
-                >
-                  <span
-                    className="h-2 w-2 shrink-0 rounded-full bg-primary"
-                    aria-hidden="true"
-                  />
-                  {feature}
-                </li>
-              ),
-            )}
-          </ul>
+          <p className="mt-1 font-bold text-foreground">
+            Direct 1:1 chat &amp; calls
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+            Connect with friends, event hosts, and followed local creators.
+          </p>
         </div>
 
-        <div className="rounded-xl border border-primary/20 bg-surface-muted px-4 py-3 text-center text-sm font-semibold text-primary">
-          Block and report tools
+        <ul className="flex flex-col gap-2 py-1">
+          {["Text, emoji & media sharing", "Live & picked location sharing", "Audio & video calls"].map(
+            (feature) => (
+              <li
+                key={feature}
+                className="flex items-center gap-2 text-sm font-medium text-foreground"
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                {feature}
+              </li>
+            ),
+          )}
+        </ul>
+
+        <div className="rounded-xl border border-primary/20 bg-surface-muted px-4 py-2.5 text-center text-sm font-semibold text-primary">
+          Integrated block and report safety tools
         </div>
       </div>
     ),
@@ -155,34 +153,32 @@ const EXPERIENCES = [
     screenTitle: "Location use",
     screenSubtitle: "What location supports",
     screenContent: (
-      <div className="flex flex-col gap-3">
-        <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-xs font-semibold text-foreground-secondary">
-            Used for
+      <div className="flex flex-col gap-4">
+        <div className="border-b border-border/70 pb-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
+            Data respect
           </p>
-          <div className="mt-3 flex flex-col gap-3">
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-sm font-medium text-foreground">Distance sorting</span>
-              <span className="text-right text-sm text-foreground-secondary">
-                Ads and events
-              </span>
-            </div>
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-sm font-medium text-foreground">City-zone check</span>
-              <span className="text-right text-sm text-foreground-secondary">
-                Configured ad zones
-              </span>
-            </div>
+          <p className="mt-1 font-bold text-foreground">
+            Location sorting without tracking
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+            Location is used solely for nearby distance sorting and ad city zones.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 py-1">
+          <div>
+            <p className="text-xs font-semibold text-foreground-secondary">History</p>
+            <p className="mt-0.5 text-sm font-semibold text-foreground">No movement tracking</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-foreground-secondary">Data Brokers</p>
+            <p className="mt-0.5 text-sm font-semibold text-foreground">Never sold or shared</p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-border/80 bg-surface p-4">
-          <p className="text-sm font-semibold text-foreground">
-            Location is not sold to ad brokers
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
-            Meelte does not build movement histories.
-          </p>
+        <div className="rounded-xl border border-primary/20 bg-surface-muted px-4 py-2.5 text-center text-sm font-semibold text-primary">
+          In-app and web account deletion options
         </div>
       </div>
     ),
@@ -216,6 +212,7 @@ export function ProductExperienceSection() {
         </div>
 
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-12">
+          {/* Navigation group */}
           <div
             role="group"
             aria-label="Choose a product capability"
@@ -233,7 +230,7 @@ export function ProductExperienceSection() {
                   aria-pressed={isSelected}
                   aria-controls="product-experience-preview"
                   aria-describedby={`${experience.id}-description`}
-                  className={`rounded-2xl border p-4 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 sm:p-5 ${
+                  className={`rounded-2xl border p-4 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 sm:p-5 ${
                     isSelected
                       ? "border-primary/40 bg-surface shadow-soft"
                       : "border-border/80 bg-surface hover:border-primary/30 hover:bg-surface-subtle"
@@ -275,41 +272,39 @@ export function ProductExperienceSection() {
             })}
           </div>
 
-          <div className="flex flex-col items-center gap-3">
+          {/* Clean preview panel */}
+          <div className="flex flex-col items-center gap-3 w-full">
             <div
               id="product-experience-preview"
               role="region"
               aria-labelledby="product-experience-preview-heading"
-              className="w-full max-w-[360px] rounded-[2rem] border border-primary/20 bg-foreground p-2.5 shadow-card sm:p-3"
+              className="w-full max-w-md rounded-2xl border border-border/80 bg-surface p-6 sm:p-7 shadow-soft"
             >
-              <div className="flex justify-center py-2" aria-hidden="true">
-                <span className="h-1 w-12 rounded-full bg-surface/60" />
-              </div>
-
-              <div className="min-h-[400px] rounded-[1.5rem] border border-border/80 bg-canvas p-4 sm:p-5">
-                <div className="mb-4 flex items-center justify-between gap-3 border-b border-border/80 pb-3">
-                  <div className="min-w-0">
-                    <h3
-                      id="product-experience-preview-heading"
-                      className="mt-0.5 font-extrabold leading-tight text-foreground"
-                    >
-                      {activeExperience.screenTitle}
-                    </h3>
-                    <p className="mt-1 text-sm leading-snug text-foreground-secondary">
-                      {activeExperience.screenSubtitle}
-                    </p>
-                  </div>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
-                    <ActiveIcon className="h-5 w-5" aria-hidden="true" />
+              <div className="mb-5 flex items-center justify-between gap-3 border-b border-border/70 pb-4">
+                <div className="min-w-0">
+                  <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                    {activeExperience.screenBadge}
                   </span>
+                  <h3
+                    id="product-experience-preview-heading"
+                    className="mt-0.5 text-xl font-bold leading-tight text-foreground"
+                  >
+                    {activeExperience.screenTitle}
+                  </h3>
+                  <p className="mt-1 text-sm text-foreground-secondary">
+                    {activeExperience.screenSubtitle}
+                  </p>
                 </div>
-
-                {activeExperience.screenContent}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                  <ActiveIcon className="h-5 w-5" aria-hidden="true" />
+                </span>
               </div>
+
+              {activeExperience.screenContent}
             </div>
 
-            <p className="max-w-sm text-center text-sm leading-relaxed text-foreground-secondary">
-              Conceptual preview only. Not a live listing or a screenshot of the app.
+            <p className="max-w-sm text-center text-xs leading-relaxed text-foreground-secondary">
+              Conceptual preview of in-app capabilities. Results in the app are sorted by distance.
             </p>
             <p className="sr-only" aria-live="polite" aria-atomic="true">
               Preview updated: {activeExperience.label}. {activeExperience.announcement}

@@ -16,7 +16,7 @@ export function FinalConversionCTA() {
   return (
     <section className="py-16 sm:py-24 bg-canvas">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal px-6 py-12 text-center text-white shadow-card sm:px-10 sm:py-16">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal px-6 py-12 text-center text-white shadow-card sm:px-10 sm:py-16">
           <div
             className="pointer-events-none absolute -right-16 -top-16 h-60 w-60 rounded-full bg-white/10 blur-2xl"
             aria-hidden="true"

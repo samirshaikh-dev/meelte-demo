@@ -50,17 +50,6 @@
   --shadow-soft: 0 1px 2px rgba(31, 31, 40, 0.02), 0 6px 24px -6px rgba(109, 59, 179, 0.08);
   --shadow-card: 0 1px 1px rgba(31, 31, 40, 0.01), 0 8px 40px -12px rgba(109, 59, 179, 0.12);
   --shadow-card-hover: 0 12px 36px -8px rgba(109, 59, 179, 0.16);
-  --shadow-orb-primary: 0 30px 70px -30px rgba(109, 59, 179, 0.9);
-  --shadow-orb-primary-light: 0 10px 40px -12px rgba(109, 59, 179, 0.55);
-  --shadow-orb-primary-hover: 0 16px 50px -14px rgba(109, 59, 179, 0.8);
-
-  /* Decorative orbs (lifted out of raw literals) */
-  --orb-glow-canvas: radial-gradient(circle_at_top, #f5f3ff 0%, #f8f5ff 35%, #ffffff 100%);
-  --orb-glow-accent: radial-gradient(ellipse_at_top, rgba(245, 158, 11, 0.16) 0%, transparent 70%);
-  --orb-glow-primary: radial-gradient(circle, rgba(109, 59, 179, 0.16) 0%, transparent 70%);
-  --orb-glow-indigo: radial-gradient(circle, rgba(99, 102, 241, 0.14) 0%, transparent 72%);
-  --orb-glow-fuchsia: radial-gradient(circle, rgba(244, 114, 182, 0.16) 0%, transparent 70%);
-  --orb-glow-violet: radial-gradient(ellipse_at_top, rgba(124, 58, 237, 0.18) 0%, transparent 70%);
 
   /* Radii */
   --radius-card: 1rem;

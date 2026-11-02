@@ -28,7 +28,7 @@ export const metadata = buildPageMetadata({
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-surface text-foreground selection:bg-primary/20 selection:text-primary">
+    <div className="flex min-h-screen flex-col bg-canvas text-foreground selection:bg-primary/20 selection:text-primary">
       {/* Breadcrumb Structured Data */}
       <script
         type="application/ld+json"

@@ -3,9 +3,9 @@ import { cn } from "../../lib/utils";
 
 const badgeVariants = {
   primary: "bg-surface-muted text-primary border-primary/20",
-  accent: "bg-amber-50 text-amber-900 border-amber-200/80",
+  accent: "bg-accent/15 text-accent-foreground border-accent/40",
   neutral: "bg-surface text-foreground-secondary border-border",
-  success: "bg-emerald-50 text-emerald-800 border-emerald-200/80",
+  success: "bg-success-bg text-success border-success-border",
   outline: "bg-transparent text-foreground-secondary border-border",
 };
 
@@ -16,6 +16,7 @@ const badgeSizes = {
 
 /**
  * Reusable Badge / Tag pill component.
+ * Maps strictly to design tokens defined in globals.css per AVOID.md & docs/Design.md.
  */
 export function Badge({
   className,
@@ -27,7 +28,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border transition-colors",
+        "inline-flex items-center rounded-full border transition-colors select-none",
         badgeVariants[variant] || badgeVariants.primary,
         badgeSizes[size] || badgeSizes.md,
         className

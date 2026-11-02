@@ -8,7 +8,6 @@ import {
   Percent,
   Users,
   MapPin,
-  CheckCircle2,
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -23,15 +22,8 @@ const FOR_MERCHANTS_BREADCRUMBS = [
 /**
  * Merchant hero.
  *
- * Rewritten because the previous version stacked unconfirmed promises: "Direct calls /
- * Customers call you directly", "WhatsApp inquiries / No masked numbers", "Free to get
- * started", "Community verification in 24-48 hours", and a "Start Free Onboarding" button.
- * Merchant pricing is not published, the app has no verification programme, and
- * direct phone/WhatsApp handling is not confirmed in the product code
- * (project-context.md §13, docs/target_customer.md §4.4).
- *
- * The illustrative storefront phone preview was removed with the other hero mocks; the
- * hero now states the merchant value in copy instead of a simulated screen.
+ * Clean, intentional and grounded in product evidence (AVOID.md & docs/target_customer.md).
+ * No decorative sparkles, AI-generated floating blobs, or exaggerated button animations.
  */
 const trustPills = [
   {
@@ -59,54 +51,32 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
 
 const fadeUpVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
-      stiffness: 120,
-      damping: 18,
+      duration: 0.35,
+      ease: "easeOut",
     },
   },
 };
 
-function SparkleAccent() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path
-        d="M14 3L15.854 10.146L23 12L15.854 13.854L14 21L12.146 13.854L5 12L12.146 10.146L14 3Z"
-        fill="url(#sparkle-gradient-merchant)"
-      />
-      <circle cx="20" cy="8" r="1.2" fill="rgba(245,158,11,0.95)" />
-      <circle cx="9" cy="19" r="1" fill="rgba(109,59,179,0.9)" />
-      <defs>
-        <linearGradient id="sparkle-gradient-merchant" x1="5" y1="3" x2="23" y2="21" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#F59E0B" />
-          <stop offset="1" stopColor="#F4B740" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-}
-
 export function ForMerchantsHero() {
   return (
-    <section className="relative pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
-      {/* Gradient mesh background */}
-      <div className="absolute inset-0 -z-20" aria-hidden="true">
-        <div className="absolute inset-0 bg-[var(--orb-glow-canvas)]" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1200px] h-[620px] bg-[var(--orb-glow-accent)]" />
-        <div className="absolute top-20 -left-40 w-[420px] h-[420px] bg-[var(--orb-glow-primary)]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[520px] h-[520px] bg-[var(--orb-glow-indigo)]" />
-      </div>
+    <section className="relative overflow-hidden pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-24 border-b border-border/80 bg-canvas">
+      {/* Subtle brand wash */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent/10 via-canvas to-canvas"
+        aria-hidden="true"
+      />
 
       <Container>
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -117,13 +87,13 @@ export function ForMerchantsHero() {
             className="flex flex-col items-center text-center"
           >
             <motion.div variants={fadeUpVariants} className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 rounded-full bg-white/80 px-2.5 py-1 shadow-soft ring-1 ring-white/70">
+              <div className="flex items-center gap-1.5 rounded-full bg-surface px-3 py-1 shadow-soft ring-1 ring-border/80">
                 {trustPills.map((pill) => {
                   const Icon = pill.icon;
                   return (
                     <span
                       key={pill.id}
-                      className="flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold text-primary"
+                      className="flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-semibold text-primary"
                       aria-label={pill.ariaLabel}
                       title={pill.ariaLabel}
                     >
@@ -141,14 +111,12 @@ export function ForMerchantsHero() {
 
             <motion.h1
               variants={fadeUpVariants}
-              className="mt-4 text-[2.8rem] sm:text-6xl lg:text-[4.25rem] font-black tracking-tight leading-[1.02]"
+              className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl lg:leading-[1.08]"
             >
               <span className="text-foreground">Grow your local business</span>
               <br />
-              <span className="relative inline-block">
-                <span className="text-primary">
-                  with zero commission
-                </span>
+              <span className="relative inline-block text-primary">
+                with zero commission
                 <svg
                   className="absolute -bottom-2 left-0 w-full hidden sm:block"
                   viewBox="0 0 320 12"
@@ -158,28 +126,18 @@ export function ForMerchantsHero() {
                 >
                   <path
                     d="M 4 8 C 40 4, 120 2, 200 6 C 250 8, 300 6, 316 4"
-                    stroke="url(#underline-gradient-merchant)"
-                    strokeWidth="6"
+                    stroke="#6D3BB3"
+                    strokeWidth="5"
                     strokeLinecap="round"
-                    opacity="0.9"
+                    opacity="0.85"
                   />
-                  <defs>
-                    <linearGradient id="underline-gradient-merchant" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="rgba(245,158,11,0.95)" />
-                      <stop offset="60%" stopColor="rgba(109,59,179,0.9)" />
-                      <stop offset="100%" stopColor="rgba(124,58,237,0.9)" />
-                    </linearGradient>
-                  </defs>
                 </svg>
-                <span className="absolute -top-4 -right-6 hidden lg:inline-flex" aria-hidden="true">
-                  <SparkleAccent />
-                </span>
               </span>
             </motion.h1>
 
             <motion.p
               variants={fadeUpVariants}
-              className="mt-5 max-w-xl text-lg sm:text-xl text-foreground-secondary leading-relaxed"
+              className="mt-5 max-w-xl text-base sm:text-lg text-foreground-secondary leading-relaxed"
             >
               Put your shop&apos;s offer in front of the people already nearby. Publish a single
               product or a catalogue of up to 100, with a price, a discount and the dates it
@@ -195,12 +153,11 @@ export function ForMerchantsHero() {
                 href="#merchant-enquiry"
                 variant="primary"
                 size="lg"
-                className="group relative w-full overflow-hidden rounded-2xl px-8 font-semibold shadow-orb-primary transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01] focus-visible:scale-[1.01] sm:w-auto"
+                className="w-full justify-center px-8 font-semibold shadow-card sm:w-auto"
               >
-                <span className="absolute inset-0 -z-10 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                 <Store className="h-5 w-5" aria-hidden="true" />
                 <span>Start an onboarding enquiry</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
 
               <Button
@@ -208,10 +165,9 @@ export function ForMerchantsHero() {
                 href="/how-it-works"
                 variant="outline"
                 size="lg"
-                className="group w-full rounded-2xl px-8 font-medium transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto"
+                className="w-full justify-center px-6 font-medium sm:w-auto"
               >
-                <span>See How It Works</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+                <span>See how it works</span>
               </Button>
             </motion.div>
 

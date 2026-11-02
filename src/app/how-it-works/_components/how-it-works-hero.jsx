@@ -55,11 +55,7 @@ export function HowItWorksHero() {
     <section className="relative overflow-hidden border-b border-border/80 bg-canvas">
       {/* Soft brand wash. Purely decorative, no motion, sits behind the content. */}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[var(--orb-glow-canvas)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -top-40 right-[-10%] -z-10 h-[420px] w-[520px] bg-[var(--orb-glow-violet)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-canvas to-canvas"
         aria-hidden="true"
       />
 

@@ -126,7 +126,7 @@ export function SignupHero() {
 
           {/* Right — availability, stated plainly */}
           <div className="lg:col-span-5">
-            <div className="rounded-3xl border border-primary/15 bg-surface p-6 shadow-card lg:sticky lg:top-24 lg:p-8">
+            <div className="rounded-2xl border border-primary/15 bg-surface p-6 shadow-card lg:sticky lg:top-24 lg:p-8">
               <h2 className="mt-3 text-2xl font-bold leading-tight tracking-tight text-foreground">
                 Where you can join today
               </h2>

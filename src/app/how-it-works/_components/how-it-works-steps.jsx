@@ -10,15 +10,6 @@ import { Badge } from "@/components/ui/badge";
  * Every step maps to a journey documented in docs/target_customer.md §4 (persona
  * "Riya"): install, sign in, allow location so the feed sorts by distance, open a
  * dated offer or request to join an event, then settle with the shop or host.
- * Product facts used here: the sign-in methods, the "Max distance" default of
- * 60 km, price/discount/date fields on an ad, and the Google Maps directions action.
- *
- * Deliberately absent: the sign-up coin bonus, per-city zone behaviour, and any
- * claim that Meelte handles payments or bookings.
- *
- * `id="residents"` is the anchor for this section, and `RESIDENT_STEPS` is
- * exported so the `HowTo` node in `page.jsx` quotes the same titles and bodies
- * the page renders instead of paraphrasing them.
  */
 export const RESIDENT_STEPS = [
   {
@@ -64,24 +55,26 @@ export function HowItWorksSteps() {
           </p>
         </div>
 
-        <ol role="list" className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2">
+        <ol role="list" className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2">
           {RESIDENT_STEPS.map((step, index) => (
             <li
               key={step.title}
-              className="rounded-3xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
+              className="flex items-start gap-4 rounded-2xl border border-border/80 bg-surface p-6 shadow-soft"
             >
               <span
                 aria-hidden="true"
-                className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-muted text-sm font-black text-primary"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-sm font-bold text-primary"
               >
-                {index + 1}
+                {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
-                {step.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">
-                {step.body}
-              </p>
+              <div>
+                <h3 className="text-lg font-bold tracking-tight text-foreground">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">
+                  {step.body}
+                </p>
+              </div>
             </li>
           ))}
         </ol>

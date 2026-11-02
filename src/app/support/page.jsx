@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { User, MessageCircle, Mail } from "@/lib/icons";
+import { Clock, Headphones, Mail, Phone } from "@/lib/icons";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbsJsonLd } from "@/lib/seo/structured-data";
 import { SUPPORT_EMAIL } from "@/config/site";
@@ -29,7 +29,7 @@ export const metadata = buildPageMetadata({
 
 export default function SupportPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-surface text-foreground selection:bg-primary/20 selection:text-primary">
+    <div className="flex min-h-screen flex-col bg-canvas text-foreground selection:bg-primary/20 selection:text-primary">
       {/* Breadcrumb Structured Data */}
       <script
         type="application/ld+json"
@@ -49,10 +49,10 @@ export default function SupportPage() {
       {/* Global Navbar */}
       <Navbar />
 
-      {/* Centered Support Hero — full flex height like the reference image */}
+      {/* Centered Support Hero */}
       <main
         id="main-content"
-        className="flex-1 flex items-center justify-center py-16 sm:py-24"
+        className="flex-1 flex items-center justify-center py-14 sm:py-20"
       >
         <Container className="max-w-2xl">
           <div className="flex flex-col items-center text-center gap-6">
@@ -61,73 +61,82 @@ export default function SupportPage() {
               listClassName="justify-center"
             />
 
-            {/* Support Illustration */}
-            <div className="relative flex items-center justify-center w-56 h-56 sm:w-72 sm:h-72 select-none" aria-hidden="true">
-              {/* Soft background blob */}
-              <div className="absolute inset-0 rounded-full bg-blue-50" />
+            {/* Clean, authentic support badge */}
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-surface-muted text-primary shadow-soft ring-1 ring-border/80">
+              <Headphones className="h-8 w-8" aria-hidden="true" />
+            </div>
 
-              {/* Decorative message bubbles */}
-              <div className="absolute top-6 right-8 flex flex-col gap-1">
-                <div className="w-20 h-3 rounded-full bg-primary/30" />
-                <div className="w-14 h-3 rounded-full bg-primary/20" />
-                <div className="w-16 h-3 rounded-full bg-primary/25" />
-              </div>
-              <div className="absolute top-10 left-6 w-8 h-8 rounded-xl bg-white border border-border shadow-soft flex items-center justify-center text-foreground-muted text-xs font-bold">
-                ···
-              </div>
+            {/* Heading */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
+              Get in touch with Meelte support
+            </h1>
 
-              {/* Central support agent icon */}
-              <div className="relative z-10 flex flex-col items-center gap-1">
-                <User className="h-10 w-10 text-primary" aria-hidden="true" />
-                <div className="flex items-center gap-1.5 mt-1">
-                  {/* Notification dots */}
-                  <div className="w-6 h-6 rounded-lg bg-red-400 text-white text-[10px] flex items-center justify-center font-bold shadow">
-                    <Mail className="h-3 w-3" aria-hidden="true" />
-                  </div>
-                  <div className="w-6 h-6 rounded-lg bg-primary text-white text-[10px] flex items-center justify-center shadow">
-                    <MessageCircle className="h-3 w-3" aria-hidden="true" />
+            {/* Support details card */}
+            <div className="w-full mt-2 rounded-2xl border border-border/80 bg-surface p-6 sm:p-7 shadow-soft text-left">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="flex items-start gap-3.5">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                    <Clock className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold text-foreground-secondary uppercase tracking-wider">
+                      Support Hours
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-foreground">
+                      9:00 AM – 6:00 PM IST
+                    </p>
+                    <p className="text-xs text-foreground-secondary">
+                      Monday to Friday
+                    </p>
                   </div>
                 </div>
-              </div>
 
-              {/* Decorative reply bubble on the right */}
-              <div className="absolute bottom-12 right-4 bg-primary rounded-2xl rounded-br-none px-3 py-1.5 shadow-soft">
-                <div className="flex flex-col gap-1">
-                  <div className="w-16 h-2 rounded-full bg-white/70" />
-                  <div className="w-10 h-2 rounded-full bg-white/50" />
+                <div className="flex items-start gap-3.5">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                    <Phone className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold text-foreground-secondary uppercase tracking-wider">
+                      Direct Helpline
+                    </p>
+                    <a
+                      href="tel:+918884524444"
+                      className="mt-1 block text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded"
+                    >
+                      +91-8884524444
+                    </a>
+                    <p className="text-xs text-foreground-secondary">
+                      Toll-free within India
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Heading */}
-            <h1 className="text-2xl sm:text-4xl font-bold text-foreground leading-tight tracking-tight">
-              Get in touch with our customer-friendly support team
-            </h1>
+            {/* Primary Action */}
+            <div className="mt-2 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+              <Button
+                as="a"
+                href={`mailto:${SUPPORT_EMAIL}`}
+                variant="primary"
+                size="lg"
+                className="w-full sm:w-auto px-8 font-semibold shadow-card"
+              >
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                <span>Email Support Team</span>
+              </Button>
 
-            {/* Availability */}
-            <p className="text-sm sm:text-base text-foreground-secondary">
-              Our team is here from 9AM to 6PM IST, Monday to Friday
-            </p>
-
-            {/* Primary CTA — matches the reference's "Send email" pill button */}
-            <Button
-              as="a"
-              href={`mailto:${SUPPORT_EMAIL}`}
-              variant="primary"
-              size="pill"
-              className="mt-2 shadow-soft px-8"
-            >
-              Send email
-            </Button>
-
-            {/* Secondary: phone */}
-            <a
-              href="tel:+918884524444"
-              className="text-sm text-foreground-secondary hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
-            >
-              Or call us at{" "}
-              <span className="font-semibold text-foreground">+91-8884524444</span>
-            </a>
+              <Button
+                as="a"
+                href="tel:+918884524444"
+                variant="outline"
+                size="lg"
+                className="w-full sm:w-auto px-6 font-medium"
+              >
+                <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
+                <span>Call Helpline</span>
+              </Button>
+            </div>
           </div>
         </Container>
       </main>
@@ -137,4 +146,3 @@ export default function SupportPage() {
     </div>
   );
 }
-

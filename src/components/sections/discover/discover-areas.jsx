@@ -58,7 +58,7 @@ export function DiscoverAreas() {
                 key={area.id}
                 id={area.anchor}
                 aria-labelledby={`${area.anchor}-heading`}
-                className="flex flex-col rounded-3xl border border-border/80 bg-surface p-6 shadow-soft transition-shadow hover:shadow-card sm:p-7 scroll-mt-24"
+                className="flex flex-col rounded-2xl border border-border/80 bg-surface p-6 shadow-soft transition-shadow hover:shadow-card sm:p-7 scroll-mt-24"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
                   <Icon className="h-5 w-5" aria-hidden="true" />

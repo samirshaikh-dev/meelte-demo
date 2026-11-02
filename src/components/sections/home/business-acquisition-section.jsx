@@ -58,8 +58,8 @@ export function BusinessAcquisitionSection() {
             {ONBOARDING_STEPS.map((step, idx) => (
               <Reveal
                 key={step.number}
-                delay={0.08 + idx * 0.08}
-                className="p-6 rounded-3xl bg-surface border border-border/80 shadow-soft flex flex-col justify-between transition-transform duration-300 hover:-translate-y-[2px] hover:shadow-card"
+                delay={0.05 + idx * 0.05}
+                className="p-6 rounded-2xl bg-surface border border-border/80 shadow-soft flex flex-col justify-between transition-shadow hover:shadow-card"
               >
                 <div>
                   <span className="text-2xl font-black text-primary/40 block mb-3">
@@ -77,12 +77,12 @@ export function BusinessAcquisitionSection() {
           </div>
         </div>
 
-        <Reveal delay={0.1}>
-            <div className="rounded-3xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="max-w-xl">
-                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                  Ready to list your local shop?
-                </h3>
+        <Reveal delay={0.08}>
+          <div className="rounded-2xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="max-w-xl">
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Ready to list your local shop?
+              </h3>
               <p className="mt-2 text-sm sm:text-base text-white/90 leading-relaxed">
                 Ask the merchant desk about getting your shop set up and publishing its first offer.
               </p>
@@ -94,7 +94,7 @@ export function BusinessAcquisitionSection() {
                 href={`mailto:${SUPPORT_EMAIL}?subject=Merchant%20Partnership%20Enquiry`}
                 variant="accent"
                 size="lg"
-                className="w-full font-bold shadow-soft text-accent-foreground hover:-translate-y-[2px] hover:scale-[1.02] sm:w-auto"
+                className="w-full font-bold shadow-card text-accent-foreground sm:w-auto px-7"
               >
                 <Store className="h-4 w-4" aria-hidden="true" />
                 <span>Start a merchant enquiry</span>

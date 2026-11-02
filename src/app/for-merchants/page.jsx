@@ -185,7 +185,7 @@ export default function ForMerchantsPage() {
               {MERCHANT_CAPABILITIES.map(({ icon: Icon, title, description }) => (
                 <article
                   key={title}
-                  className="rounded-3xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
+                  className="rounded-2xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
                 >
                   <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
                     <Icon className="h-5 w-5" aria-hidden="true" />

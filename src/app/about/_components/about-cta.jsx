@@ -37,7 +37,7 @@ export function AboutCta() {
       className="scroll-mt-20 bg-canvas py-14 sm:py-20"
     >
       <Container>
-        <div className="rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-6 shadow-card sm:p-10">
+        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-6 shadow-card sm:p-10">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-x-12">
             <div className="lg:col-span-7">
               <Badge variant="primary" className="mb-4">

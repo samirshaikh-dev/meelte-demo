@@ -47,7 +47,7 @@ export function SignupReferral() {
           </h2>
         </div>
 
-        <div className="mt-10 rounded-3xl border border-primary/20 bg-canvas p-6 shadow-soft sm:mt-12 sm:p-8">
+        <div className="mt-10 rounded-2xl border border-primary/20 bg-canvas p-6 shadow-soft sm:mt-12 sm:p-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
             <div>
               <p className="text-base leading-relaxed text-foreground-secondary">
