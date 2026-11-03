@@ -273,8 +273,8 @@ export function MobileNav() {
             <span className="text-[11px] font-semibold text-foreground-secondary">
               Get the app
             </span>
-            <StoreButton type="google" href={PLAY_STORE_URL} />
-            <StoreButton type="apple" href={APP_STORE_URL} />
+            <StoreButton type="google" href={PLAY_STORE_URL} variant="brand" />
+            <StoreButton type="apple" href={APP_STORE_URL} variant="brand" />
           </div>
         </Dialog.Content>
       </Dialog.Portal>

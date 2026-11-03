@@ -192,12 +192,16 @@ export default function FaqPage() {
                               </Accordion.Trigger>
                             </Accordion.Header>
                             {/* Keep answers in prerendered HTML so the FAQPage schema
-                                continues to match the content available to crawlers. */}
+                                continues to match the content available to crawlers.
+                                `.faq-panel` (globals.css) owns the open/closed state. */}
                             <Accordion.Content
                               forceMount
-                              className="overflow-hidden text-sm leading-relaxed text-foreground-secondary data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up sm:text-base"
+                              className="faq-panel text-sm leading-relaxed text-foreground-secondary sm:text-base"
                             >
-                              <p className="pb-4 pr-2 sm:pb-5 sm:pr-12">{faq.answer}</p>
+                              {/* Padding-free clipped grid item; padding stays inside it. */}
+                              <div>
+                                <p className="pb-4 pr-2 sm:pb-5 sm:pr-12">{faq.answer}</p>
+                              </div>
                             </Accordion.Content>
                           </Accordion.Item>
                         ))}

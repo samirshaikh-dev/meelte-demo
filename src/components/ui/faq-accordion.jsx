@@ -7,8 +7,10 @@ import { cn } from "@/lib/utils";
 
 /**
  * Reusable FAQ Accordion UI Primitive.
- * Built on Radix Accordion with `forceMount` on Content to guarantee
- * all answers exist in static prerendered HTML for SEO/AEO crawlability.
+ * Built on Radix Accordion with `forceMount` on Content so every answer stays
+ * in the static prerendered HTML for SEO/AEO crawlability. Because `forceMount`
+ * disables Radix's own `hidden` toggle, the open/closed presentation lives in
+ * the shared `.faq-panel` rules in `globals.css`, keyed off `data-state`.
  *
  * @param {Object} props
  * @param {Array<{ id: string; question: string; answer: string }>} props.items
@@ -48,10 +50,16 @@ export function FaqAccordion({ items, defaultValue, className }) {
           </Accordion.Header>
           <Accordion.Content
             forceMount
-            className="overflow-hidden px-4.5 pb-4 sm:px-5 sm:pb-4.5 text-sm sm:text-base text-foreground-secondary leading-relaxed data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up"
+            className="faq-panel text-sm sm:text-base text-foreground-secondary leading-relaxed"
           >
-            <div className="pt-2 border-t border-border/40">
-              <p>{faq.answer}</p>
+            {/* Padding-free clipped grid item; the padding lives one level in so a
+                collapsed panel measures exactly 0px. */}
+            <div>
+              <div className="px-4.5 pb-4 sm:px-5 sm:pb-4.5">
+                <div className="pt-2 border-t border-border/40">
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
             </div>
           </Accordion.Content>
         </Accordion.Item>

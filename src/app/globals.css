@@ -88,39 +88,41 @@ html {
   scrollbar-color: var(--color-primary) var(--color-surface-subtle);
 }
 
-/* Radix Accordion Keyframes & Animations */
-@keyframes accordion-down {
-  from {
-    transform: scaleY(0);
-    opacity: 0;
-    transform-origin: top;
-  }
-
-  to {
-    transform: scaleY(1);
-    opacity: 1;
-  }
+/* FAQ accordion panel
+   Radix keeps every answer mounted (`forceMount`) so the FAQ text is present in
+   the prerendered HTML for crawlers, which means Radix cannot use its own
+   `hidden` toggle. The open/closed state is therefore expressed in CSS from
+   Radix's `data-state`:
+   - `grid-template-rows: 0fr -> 1fr` animates the answer's real height, so the
+     panel never clips text or jumps at the end of the transition.
+   - `visibility` is delayed on collapse so the closing animation stays visible,
+     then removes the panel from the accessibility tree and the tab order.
+   - Padding belongs on an inner element, never on the animated grid track, so a
+     collapsed panel measures exactly 0px. */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.18s ease-in,
+    opacity 0.14s ease-in,
+    visibility 0s linear 0.18s;
 }
 
-@keyframes accordion-up {
-  from {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-
-  to {
-    transform: scaleY(0);
-    opacity: 0;
-    transform-origin: top;
-  }
+.faq-panel[data-state="open"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 0.22s ease-out,
+    opacity 0.18s ease-out,
+    visibility 0s linear 0s;
 }
 
-.animate-accordion-down {
-  animation: accordion-down 0.22s ease-out;
-}
-
-.animate-accordion-up {
-  animation: accordion-up 0.18s ease-in;
+.faq-panel > * {
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Accessible focus ring standard across interactive controls */
@@ -146,6 +148,11 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .faq-panel,
+  .faq-panel[data-state="open"] {
+    transition-delay: 0s;
   }
 }
 
