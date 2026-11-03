@@ -16,6 +16,8 @@ import {
   ChevronDown,
   Briefcase,
   FileText,
+  Tag,
+  CalendarDays,
 } from "../../lib/icons";
 import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
 import { StoreButton } from "./store-button";
@@ -41,6 +43,8 @@ export function MobileNav() {
   const isCompanyActive = COMPANY_ITEMS.some(
     (item) => pathname === item.href || pathname?.startsWith(`${item.href}/`)
   );
+  const isAdsActive = pathname === "/ads" || pathname?.startsWith("/ads/");
+  const isEventsActive = pathname === "/events" || pathname?.startsWith("/events/");
   const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
 
   return (
@@ -153,6 +157,44 @@ export function MobileNav() {
                 </div>
               )}
             </div>
+
+            {/* Ads - Direct Link */}
+            <Link
+              href="/ads"
+              onClick={() => setOpen(false)}
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isAdsActive
+                ? "bg-surface-muted/80 text-primary"
+                : "text-foreground hover:bg-surface-muted hover:text-primary"
+                }`}
+              aria-current={isAdsActive ? "page" : undefined}
+            >
+              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isAdsActive
+                ? "bg-primary/10"
+                : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                }`}>
+                <Tag className="h-4 w-4" aria-hidden="true" />
+              </div>
+              <span>Ads</span>
+            </Link>
+
+            {/* Events - Direct Link */}
+            <Link
+              href="/events"
+              onClick={() => setOpen(false)}
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isEventsActive
+                ? "bg-surface-muted/80 text-primary"
+                : "text-foreground hover:bg-surface-muted hover:text-primary"
+                }`}
+              aria-current={isEventsActive ? "page" : undefined}
+            >
+              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isEventsActive
+                ? "bg-primary/10"
+                : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                }`}>
+                <CalendarDays className="h-4 w-4" aria-hidden="true" />
+              </div>
+              <span>Events</span>
+            </Link>
 
             {/* Careers - Direct Link */}
             <Link

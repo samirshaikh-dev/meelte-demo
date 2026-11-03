@@ -21,6 +21,7 @@ export default async function sitemap() {
     { path: "/for-merchants", changeFrequency: "weekly", priority: 0.9 },
     { path: "/how-it-works", changeFrequency: "monthly", priority: 0.9 },
     { path: "/ads", changeFrequency: "hourly", priority: 0.8 },
+    { path: "/events", changeFrequency: "hourly", priority: 0.8 },
     { path: "/about", changeFrequency: "monthly", priority: 0.85 },
     { path: "/signup", changeFrequency: "monthly", priority: 0.8 },
     { path: "/contact", changeFrequency: "monthly", priority: 0.8 },

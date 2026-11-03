@@ -86,6 +86,8 @@ export function Navbar() {
   const isCompanyActive = COMPANY_LINKS.some(
     (link) => pathname === link.href || pathname?.startsWith(`${link.href}/`)
   );
+  const isAdsActive = pathname === "/ads" || pathname?.startsWith("/ads/");
+  const isEventsActive = pathname === "/events" || pathname?.startsWith("/events/");
   const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
 
   return (
@@ -183,6 +185,38 @@ export function Navbar() {
               </div>
             )}
           </div>
+
+          {/* Ads - Direct Link */}
+          <Link
+            href="/ads"
+            onMouseEnter={() => handleMouseEnter(null)}
+            className={`relative inline-flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isAdsActive
+              ? "bg-surface-muted/80 text-primary"
+              : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
+              }`}
+            aria-current={isAdsActive ? "page" : undefined}
+          >
+            <span>Ads</span>
+            {isAdsActive && (
+              <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
+            )}
+          </Link>
+
+          {/* Events - Direct Link */}
+          <Link
+            href="/events"
+            onMouseEnter={() => handleMouseEnter(null)}
+            className={`relative inline-flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isEventsActive
+              ? "bg-surface-muted/80 text-primary"
+              : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
+              }`}
+            aria-current={isEventsActive ? "page" : undefined}
+          >
+            <span>Events</span>
+            {isEventsActive && (
+              <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
+            )}
+          </Link>
 
           {/* Careers - Direct Link */}
           <Link
