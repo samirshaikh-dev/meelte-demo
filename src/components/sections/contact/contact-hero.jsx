@@ -1,10 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Clock, Mail, Phone, Sparkles } from "@/lib/icons";
+import { ArrowRight, Mail, Phone, Store } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   CONTACT_BREADCRUMBS,
   CONTACT_CHANNELS,
@@ -12,80 +10,125 @@ import {
   CONTACT_HERO,
 } from "./contact-content";
 
-
 export function ContactHero() {
   return (
-    <section className="relative overflow-hidden border-b border-border/80 pt-8 pb-10 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16">
+    <section className="relative overflow-hidden border-b border-border/80 bg-canvas pt-8 pb-10 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16">
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-canvas to-canvas"
       />
 
       <Container>
-        <Breadcrumbs items={CONTACT_BREADCRUMBS} className="mb-3.5 sm:mb-4" />
+        {/* Centered Brand Breadcrumbs & Header */}
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <Breadcrumbs
+            items={CONTACT_BREADCRUMBS}
+            className="mb-3.5 sm:mb-4"
+            listClassName="justify-center"
+          />
 
-        <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-x-12">
-          <div className="lg:col-span-7">
-
-            <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              {CONTACT_HERO.titleLead}{" "}
-              <span className="text-primary">
-                {CONTACT_HERO.titleAccent}
-              </span>
-            </h1>
-
-            <p className="mt-3.5 sm:mt-4 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
-              {CONTACT_HERO.lead}
-            </p>
-
+          <div className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface px-3.5 py-1.5 shadow-soft mb-3 sm:mb-4">
+            <span className="flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+            <span className="text-xs font-semibold text-foreground">
+              Contact &amp; Support
+            </span>
+            <span className="text-border" aria-hidden="true">·</span>
+            <span className="text-xs font-medium text-foreground-secondary">
+              Real Humans • Real Help
+            </span>
           </div>
 
-          <div className="lg:col-span-5">
-            <section
-              aria-labelledby="direct-contact-heading"
-              className="rounded-2xl bg-primary p-6 text-white shadow-card sm:p-7"
-            >
-              <h2
-                id="direct-contact-heading"
-                className="mt-2 text-2xl font-bold tracking-tight"
-              >
-                {CONTACT_DIRECT.title}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-white">
-                {CONTACT_DIRECT.body}
-              </p>
+          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            {CONTACT_HERO.titleLead}{" "}
+            <span className="text-primary">{CONTACT_HERO.titleAccent}</span>
+          </h1>
 
-              <ul role="list" className="mt-6 space-y-3">
-                <li>
-                  <a
-                    href={CONTACT_CHANNELS.emailHref}
-                    className="flex min-w-0 items-center gap-3 rounded-xl border border-white/25 bg-white/10 p-3 text-sm font-semibold text-white underline-offset-4 transition-colors hover:bg-white/15 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-                  >
-                    <Mail className="h-5 w-5 shrink-0" aria-hidden="true" />
-                    <span className="break-all">{CONTACT_CHANNELS.email}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={CONTACT_CHANNELS.phoneHref}
-                    className="flex items-center gap-3 rounded-xl border border-white/25 bg-white/10 p-3 text-sm font-semibold text-white underline-offset-4 transition-colors hover:bg-white/15 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-                  >
-                    <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
-                    <span>{CONTACT_CHANNELS.phoneDisplay}</span>
-                  </a>
-                </li>
-              </ul>
+          <p className="mt-3.5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
+            {CONTACT_HERO.lead}
+          </p>
+        </div>
 
-              <div className="mt-6 border-t border-white/25 pt-5">
-                <p className="flex items-center gap-2 text-sm font-semibold">
-                  <Clock className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  {CONTACT_DIRECT.hoursLabel}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-white">
-                  {CONTACT_DIRECT.hours}
-                </p>
+        {/* 3 Quick Contact Channel Cards Grid */}
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
+          {/* Channel 1: Customer Support */}
+          <div className="flex flex-col justify-between rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft transition-all hover:border-primary/40 hover:shadow-card">
+            <div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                <Mail className="h-5 w-5" aria-hidden="true" />
               </div>
-            </section>
+              <h2 className="mt-4 text-base sm:text-lg font-bold text-foreground">
+                Customer Support
+              </h2>
+              <p className="mt-1 text-xs sm:text-sm text-foreground-secondary leading-relaxed">
+                For app help, account inquiries, or general feedback.
+              </p>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border/70">
+              <a
+                href={CONTACT_CHANNELS.emailHref}
+                className="text-sm font-bold text-primary hover:underline inline-flex items-center gap-1.5 break-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded"
+              >
+                <span>{CONTACT_CHANNELS.email}</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              </a>
+              <span className="mt-1.5 block text-xs text-foreground-secondary font-medium">
+                {CONTACT_DIRECT.hours}
+              </span>
+            </div>
+          </div>
+
+          {/* Channel 2: Direct Helpline */}
+          <div className="flex flex-col justify-between rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft transition-all hover:border-primary/40 hover:shadow-card">
+            <div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                <Phone className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <h2 className="mt-4 text-base sm:text-lg font-bold text-foreground">
+                Direct Helpline
+              </h2>
+              <p className="mt-1 text-xs sm:text-sm text-foreground-secondary leading-relaxed">
+                Direct telephonic support for urgent account or listing questions.
+              </p>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border/70">
+              <a
+                href={CONTACT_CHANNELS.phoneHref}
+                className="text-sm font-bold text-primary hover:underline inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded"
+              >
+                <span>{CONTACT_CHANNELS.phoneDisplay}</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              </a>
+              <span className="mt-1.5 block text-xs text-foreground-secondary font-medium">
+                Mon–Fri, 9:00 AM – 6:00 PM IST
+              </span>
+            </div>
+          </div>
+
+          {/* Channel 3: Merchant Onboarding */}
+          <div className="flex flex-col justify-between rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft transition-all hover:border-primary/40 hover:shadow-card sm:col-span-2 lg:col-span-1">
+            <div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                <Store className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <h2 className="mt-4 text-base sm:text-lg font-bold text-foreground">
+                Merchant Desk
+              </h2>
+              <p className="mt-1 text-xs sm:text-sm text-foreground-secondary leading-relaxed">
+                In-person shop onboarding and 0% commission local promotions.
+              </p>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border/70">
+              <Link
+                href="/for-merchants"
+                className="text-sm font-bold text-primary hover:underline inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded"
+              >
+                <span>Explore merchant guide</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              </Link>
+              <span className="mt-1.5 block text-xs text-foreground-secondary font-medium">
+                In-person visits across active city zones
+              </span>
+            </div>
           </div>
         </div>
       </Container>

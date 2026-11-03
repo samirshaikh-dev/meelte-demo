@@ -47,7 +47,7 @@ import { CONTACT_FIELDS, CONTACT_FORM } from "./contact-content";
 const FIELD_ORDER = ["topic", "name", "email", "phone", "city", "message"];
 
 const FIELD_BASE =
-  "block w-full rounded-xl border bg-surface px-3.5 py-3 text-sm text-foreground placeholder:text-foreground-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2";
+  "block w-full rounded-xl border bg-canvas/40 px-3.5 py-2.5 text-sm text-foreground placeholder:text-foreground-secondary/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-1 focus-visible:bg-surface";
 
 const FIELD_BY_ID = Object.fromEntries(
   CONTACT_FIELDS.map((field) => [field.id, field])
@@ -102,8 +102,8 @@ function ContactField({ id, value, error, onChange }) {
     className: cn(
       FIELD_BASE,
       error
-        ? "border-error focus-visible:border-error"
-        : "border-foreground-secondary/70 focus-visible:border-primary",
+        ? "border-error focus-visible:border-error bg-error/5"
+        : "border-border/90 hover:border-foreground-secondary/60 focus-visible:border-primary",
       isTextarea && "min-h-32 resize-y"
     ),
   };
@@ -211,7 +211,7 @@ export function ContactForm() {
   return (
     <Card
       id="contact-form"
-      className="scroll-mt-24 p-5 shadow-card sm:p-8 lg:p-9"
+      className="scroll-mt-24 rounded-2xl border border-border/80 bg-surface p-6 shadow-soft sm:p-8"
     >
       {isSubmitted ? (
         <div className="flex min-h-[26rem] flex-col items-center justify-center py-10 text-center">

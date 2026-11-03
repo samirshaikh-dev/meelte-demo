@@ -90,11 +90,15 @@ export default function ContactPage() {
       <main id="main-content" tabIndex={-1} className="flex-1">
         <ContactHero />
 
-        <section className="py-8 sm:py-12 lg:py-14">
+        <section className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14">
           <Container>
-            <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(17rem,0.75fr)] lg:gap-8">
-              <ContactForm />
-              <ContactDetails />
+            <div className="grid items-start gap-8 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <ContactForm />
+              </div>
+              <div className="lg:col-span-5">
+                <ContactDetails />
+              </div>
             </div>
           </Container>
         </section>
