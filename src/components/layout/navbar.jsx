@@ -99,14 +99,14 @@ export function Navbar() {
             aria-label="meelTe Home"
           >
             <Image
-              src="/icon_only_meelTe.png"
+              src="/icon_only_meelte.png"
               alt="meelTe"
               width={40}
               height={40}
               className="h-10 w-10 shrink-0 rounded-xl object-contain shadow-soft transition-transform duration-200"
             />
             <Image
-              src="/only_meelTe.png"
+              src="/only_meelte.png"
               alt="meelTe wordmark"
               width={110}
               height={32}
