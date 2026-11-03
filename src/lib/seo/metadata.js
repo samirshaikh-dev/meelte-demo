@@ -51,7 +51,7 @@ function toAbsoluteImage(image = OG_IMAGE_PATH) {
 }
 
 /**
- * Root site metadata configuration for Next.js App Router (src/app/layout.jsx)
+ * Root site metadata configuration for Next.js App Router (src/app/layout.js)
  * @type {import('next').Metadata}
  */
 export const metadata = {

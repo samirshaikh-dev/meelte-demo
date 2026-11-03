@@ -1,6 +1,8 @@
-// Newsletter subscription client for the dedicated external meelTe backend.
-// Architecture rule (AI_RULE.md §2.1): no local `app/api/**` routes. This site talks to the
-// external backend only, so every request is issued from the browser against API_BASE_URL.
+// Newsletter subscription client for the external meelTe API layer.
+// Architecture rule (AI_RULE.md §2.1): no local databases and no `app/api/**` route handlers.
+// Managed services (Supabase/Firebase) are reached server-side only, so this browser request
+// goes to the external API at API_BASE_URL. Whether that layer is retired alongside the admin
+// CMS is plan.md decision D3.
 
 import { API_BASE_URL, API_ENDPOINTS } from "./api_constants";
 

@@ -112,7 +112,7 @@ export const meelTe_SERVICES = [
     category: "Discovery",
     description:
       "Browse time-boxed offers from nearby shops and service businesses, each with a price or discount and a fixed run of dates.",
-    url: toAbsUrl("/discover#offers"),
+    url: toAbsUrl("/for-merchants"),
   },
   {
     id: "local-events",
@@ -120,7 +120,7 @@ export const meelTe_SERVICES = [
     category: "Events",
     description:
       "Residents, clubs and organisers publish local events with a joining cost, and approve attendees through join requests that state group size.",
-    url: toAbsUrl("/discover#events"),
+    url: toAbsUrl("/how-it-works#roles"),
   },
   {
     id: "community-connection",
@@ -128,7 +128,7 @@ export const meelTe_SERVICES = [
     category: "Community",
     description:
       "Connect with people you meet locally through friends, follows, one-to-one chat, and audio or video calls in a privacy-respecting environment.",
-    url: toAbsUrl("/discover#people"),
+    url: toAbsUrl("/how-it-works#roles"),
   },
 ];
 

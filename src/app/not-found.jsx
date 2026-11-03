@@ -58,12 +58,12 @@ export default function NotFound() {
             </Button>
             <Button
               as={Link}
-              href="/discover"
+              href="/how-it-works"
               variant="secondary"
               size="lg"
             >
               <Compass className="h-4 w-4" aria-hidden="true" />
-              <span>Explore Nearby</span>
+              <span>How It Works</span>
             </Button>
             <Button
               as={Link}

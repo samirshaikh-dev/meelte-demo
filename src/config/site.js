@@ -19,6 +19,7 @@ export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL;
 export const API_BASE_URL = process.env.NEXT_PUBLIC_meelTe_API_BASE_URL;
 export const SUPPORT_EMAIL = "support@meelTe.com";
 export const HR_EMAIL = "hr@meelTe.com";
+export const CAREERS_EMAIL = HR_EMAIL;
 export const CONTACT_PHONE = "+91-8884524444";
 export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.meelTe.classico&pcampaignid=web_share";
 // Live App Store listing. Both store URLs are promoted together everywhere the app is

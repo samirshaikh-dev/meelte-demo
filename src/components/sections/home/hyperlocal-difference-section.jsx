@@ -56,31 +56,22 @@ export function HyperlocalDifferenceSection() {
           <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
             Built for neighbourhoods, not endless scrolling.
           </h2>
-          <p className="mt-3.5 text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            Local opportunities shouldn&apos;t get lost in WhatsApp forwards or expired window posters. Here is how meelTe approaches proximity differently.
-          </p>
         </div>
 
         {/* Editorial Layout with Subtle Dividers (AVOID.md §2: Open layouts instead of nested card spam) */}
         <div className="mt-12 divide-y divide-border/80 border-t border-b border-border/80">
           {DIFFERENCES.map((item) => {
-            const Icon = item.icon;
+            // const Icon = item.icon;
             return (
               <div
                 key={item.id}
                 className="grid grid-cols-1 py-8 sm:py-10 lg:grid-cols-12 lg:gap-8 items-start"
               >
                 {/* Column 1: Number & Icon */}
-                <div className="flex items-center gap-4 lg:col-span-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
-                    <Icon className="h-6 w-6" aria-hidden="true" />
-                  </div>
+                <div className="flex items-center gap-4 lg:col-span-4">   
                   <div>
-                    <span className="text-xs font-bold tracking-wider uppercase text-primary">
+                    <h3 className="text-xs font-bold tracking-wider uppercase text-foreground-secondary">
                       {item.badge}
-                    </span>
-                    <h3 className="mt-0.5 text-lg sm:text-xl font-bold text-foreground">
-                      {item.title}
                     </h3>
                   </div>
                 </div>
@@ -96,28 +87,6 @@ export function HyperlocalDifferenceSection() {
           })}
         </div>
 
-        {/* Supporting Anchor Links */}
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-xs sm:text-sm text-foreground-secondary">
-            Connecting local residents and independent shops across Indian neighbourhoods.
-          </p>
-          <div className="flex items-center gap-5">
-            <Link
-              href="/discover"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 rounded"
-            >
-              <span>Explore discovery categories</span>
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </Link>
-            <Link
-              href="/for-merchants"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground-secondary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 rounded"
-            >
-              <span>Merchant onboarding</span>
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
       </Container>
     </section>
   );

@@ -15,7 +15,6 @@ export default function sitemap() {
 
   const routes = [
     { path: "", changeFrequency: "weekly", priority: 1.0 },
-    { path: "/discover", changeFrequency: "weekly", priority: 0.95 },
     { path: "/for-merchants", changeFrequency: "weekly", priority: 0.9 },
     { path: "/how-it-works", changeFrequency: "monthly", priority: 0.9 },
     { path: "/about", changeFrequency: "monthly", priority: 0.85 },

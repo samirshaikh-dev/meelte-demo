@@ -29,7 +29,7 @@ export function HyperlocalDiscoverySection() {
             {PLATFORM_AREAS.map((area) => (
               <li key={area.id}>
                 <Link
-                  href={`/discover#${area.anchor}`}
+                  href={`/how-it-works#roles`}
                   className="inline-block rounded-lg border border-border/70 bg-surface-muted px-2.5 py-1 text-xs font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
                 >
                   {area.name}
@@ -40,7 +40,7 @@ export function HyperlocalDiscoverySection() {
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link
-              href="/discover"
+              href="/how-it-works"
               className="inline-flex items-center gap-1.5 rounded text-sm font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               <span>Browse what is nearby</span>

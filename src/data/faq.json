@@ -27,7 +27,7 @@
   {
     "id": "faq-7",
     "question": "Where can I download the meelTe app?",
-    "answer": "The official meelTe app is published on Google Play for Android and on the App Store for iPhone. The browser-based web app is still in development."
+    "answer": "The official meelTe app is published on Google Play for Android and on the App Store for iPhone."
   },
   {
     "id": "faq-8",
@@ -76,8 +76,8 @@
   },
   {
     "id": "faq-17",
-    "question": "Can I use meelTe on an iPhone or in a web browser?",
-    "answer": "Yes. meelTe is published on Google Play for Android and on the App Store for iPhone, while the browser-based web app is still in development and does not yet show listings in a browser."
+    "question": "Can I use meelTe on an iPhone?",
+    "answer": "Yes. The official meelTe app is published on Google Play for Android and on the App Store for iPhone."
   },
   {
     "id": "faq-18",

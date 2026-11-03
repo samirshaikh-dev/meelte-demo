@@ -43,8 +43,8 @@ const AUDIENCES = {
         highlight: "One-tap Google Maps directions",
       },
     ],
-    ctaText: "Explore discovery features",
-    ctaHref: "/discover",
+    ctaText: "See how it works",
+    ctaHref: "/how-it-works",
   },
   merchants: {
     id: "merchants",
@@ -91,9 +91,6 @@ export function HomeJourneySection() {
             <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
               Predictable, low-effort from day one.
             </h2>
-            <p className="mt-3 text-base text-foreground-secondary leading-relaxed sm:text-lg">
-              Whether you are looking for this weekend&apos;s best deals or listing your neighbourhood shop, getting started is straightforward.
-            </p>
           </div>
 
           {/* Accessible Role Switcher */}
@@ -166,28 +163,6 @@ export function HomeJourneySection() {
             ))}
           </div>
 
-          {/* Action Footer for the Selected Pathway */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-border/80 bg-surface-subtle p-5 sm:p-6">
-            <div className="text-center sm:text-left">
-              <span className="text-xs font-semibold text-foreground-secondary block">
-                Want more details on {current.label.toLowerCase()}?
-              </span>
-              <span className="text-sm font-bold text-foreground">
-                Read our dedicated walkthrough with complete parameters and limits.
-              </span>
-            </div>
-
-            <Button
-              as={Link}
-              href={current.ctaHref}
-              variant="outline"
-              size="md"
-              className="shrink-0 font-semibold"
-            >
-              <span>{current.ctaText}</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-          </div>
         </div>
       </Container>
     </section>

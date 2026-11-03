@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { ChevronDown } from "../../lib/icons";
 import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
 import { Container } from "./container";
-import { StoreButton } from "../footer/store-button";
+import { StoreButton } from "./store-button";
 import { MobileNav } from "./mobile-nav";
 
 const PRODUCT_LINKS = [
@@ -17,15 +17,10 @@ const PRODUCT_LINKS = [
     description: "Roles, app experience & platform flow",
   },
   {
-    label: "Discover Nearby",
-    href: "/discover",
-    description: "Find local shops, events & services",
+    label: "For Merchants",
+    href: "/for-merchants",
+    description: "Promote your shop & local offers",
   },
-  // {
-  //   label: "Case Studies",
-  //   href: "/case-studies",
-  //   description: "See how local shops grow with meelTe",
-  // },
 ];
 
 const COMPANY_LINKS = [
@@ -33,11 +28,6 @@ const COMPANY_LINKS = [
     label: "About Us",
     href: "/about",
     description: "Our mission, pillars & story",
-  },
-  {
-    label: "Careers",
-    href: "/careers",
-    description: "Join the meelTe team",
   },
   {
     label: "Contact Us",
@@ -48,25 +38,36 @@ const COMPANY_LINKS = [
 
 export function Navbar() {
   const pathname = usePathname();
-  const [productOpen, setProductOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'product' | 'company' | null
   const productRef = useRef(null);
   const companyRef = useRef(null);
+  const timeoutRef = useRef(null);
+
+  const handleMouseEnter = (menu) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveDropdown(menu);
+  };
+
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (productRef.current && !productRef.current.contains(event.target)) {
-        setProductOpen(false);
-      }
-      if (companyRef.current && !companyRef.current.contains(event.target)) {
-        setCompanyOpen(false);
+      if (
+        productRef.current && !productRef.current.contains(event.target) &&
+        companyRef.current && !companyRef.current.contains(event.target)
+      ) {
+        setActiveDropdown(null);
       }
     };
 
     const handleEscape = (event) => {
       if (event.key === "Escape") {
-        setProductOpen(false);
-        setCompanyOpen(false);
+        setActiveDropdown(null);
       }
     };
 
@@ -75,6 +76,7 @@ export function Navbar() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
@@ -84,7 +86,7 @@ export function Navbar() {
   const isCompanyActive = COMPANY_LINKS.some(
     (link) => pathname === link.href || pathname?.startsWith(`${link.href}/`)
   );
-  const isForMerchantsActive = pathname === "/for-merchants" || pathname?.startsWith("/for-merchants/");
+  const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/95 shadow-soft backdrop-blur-md transition-colors duration-200">
@@ -121,37 +123,40 @@ export function Navbar() {
           aria-label="Main Navigation"
         >
           {/* Product Dropdown */}
-          <div className="relative" ref={productRef}>
+          <div
+            className="relative"
+            ref={productRef}
+            onMouseEnter={() => handleMouseEnter("product")}
+            onMouseLeave={handleMouseLeave}
+          >
             <button
               type="button"
               onClick={() => {
-                setProductOpen(!productOpen);
-                setCompanyOpen(false);
+                setActiveDropdown(activeDropdown === "product" ? null : "product");
               }}
-              onMouseEnter={() => setProductOpen(true)}
-              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isProductActive || productOpen
+              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isProductActive || activeDropdown === "product"
                 ? "bg-surface-muted/80 text-primary"
                 : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
                 }`}
-              aria-expanded={productOpen}
+              aria-expanded={activeDropdown === "product"}
               aria-haspopup="true"
             >
               <span>Product</span>
               <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-200 ${productOpen ? "rotate-180" : ""
+                className={`h-3.5 w-3.5 transition-transform duration-200 ${activeDropdown === "product" ? "rotate-180" : ""
                   }`}
                 aria-hidden="true"
               />
-              {(isProductActive || productOpen) && (
+              {(isProductActive || activeDropdown === "product") && (
                 <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
               )}
             </button>
 
-            {productOpen && (
+            {activeDropdown === "product" && (
               <div
-                className="absolute left-1/2 top-full z-50 mt-2 w-72 -translate-x-1/2 rounded-2xl border border-border/80 bg-surface p-2.5 shadow-card"
-                onMouseEnter={() => setProductOpen(true)}
-                onMouseLeave={() => setProductOpen(false)}
+                className="absolute left-0 top-full z-50 mt-2 w-72 rounded-2xl border border-border/80 bg-surface p-2.5 shadow-card"
+                onMouseEnter={() => handleMouseEnter("product")}
+                onMouseLeave={handleMouseLeave}
               >
                 <div className="flex flex-col">
                   {PRODUCT_LINKS.map((link) => {
@@ -160,7 +165,7 @@ export function Navbar() {
                       <Link
                         key={link.href}
                         href={link.href}
-                        onClick={() => setProductOpen(false)}
+                        onClick={() => setActiveDropdown(null)}
                         className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
                           ? "bg-surface-muted"
                           : "hover:bg-surface-muted focus-visible:bg-surface-muted"
@@ -179,53 +184,57 @@ export function Navbar() {
             )}
           </div>
 
-          {/* For Merchants - Direct Link */}
+          {/* Careers - Direct Link */}
           <Link
-            href="/for-merchants"
-            className={`relative inline-flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isForMerchantsActive
+            href="/careers"
+            onMouseEnter={() => handleMouseEnter(null)}
+            className={`relative inline-flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isCareersActive
               ? "bg-surface-muted/80 text-primary"
               : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
               }`}
-            aria-current={isForMerchantsActive ? "page" : undefined}
+            aria-current={isCareersActive ? "page" : undefined}
           >
-            <span>For Merchants</span>
-            {isForMerchantsActive && (
+            <span>Careers</span>
+            {isCareersActive && (
               <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
             )}
           </Link>
 
           {/* Company Dropdown */}
-          <div className="relative" ref={companyRef}>
+          <div
+            className="relative"
+            ref={companyRef}
+            onMouseEnter={() => handleMouseEnter("company")}
+            onMouseLeave={handleMouseLeave}
+          >
             <button
               type="button"
               onClick={() => {
-                setCompanyOpen(!companyOpen);
-                setProductOpen(false);
+                setActiveDropdown(activeDropdown === "company" ? null : "company");
               }}
-              onMouseEnter={() => setCompanyOpen(true)}
-              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isCompanyActive || companyOpen
+              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isCompanyActive || activeDropdown === "company"
                 ? "bg-surface-muted/80 text-primary"
                 : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
                 }`}
-              aria-expanded={companyOpen}
+              aria-expanded={activeDropdown === "company"}
               aria-haspopup="true"
             >
               <span>Company</span>
               <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-200 ${companyOpen ? "rotate-180" : ""
+                className={`h-3.5 w-3.5 transition-transform duration-200 ${activeDropdown === "company" ? "rotate-180" : ""
                   }`}
                 aria-hidden="true"
               />
-              {(isCompanyActive || companyOpen) && (
+              {(isCompanyActive || activeDropdown === "company") && (
                 <span className="absolute bottom-0 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-primary" aria-hidden="true" />
               )}
             </button>
 
-            {companyOpen && (
+            {activeDropdown === "company" && (
               <div
-                className="absolute left-1/2 top-full z-50 mt-2 w-64 -translate-x-1/2 rounded-2xl border border-border/80 bg-surface p-2.5 shadow-card"
-                onMouseEnter={() => setCompanyOpen(true)}
-                onMouseLeave={() => setCompanyOpen(false)}
+                className="absolute right-0 top-full z-50 mt-2 w-64 rounded-2xl border border-border/80 bg-surface p-2.5 shadow-card"
+                onMouseEnter={() => handleMouseEnter("company")}
+                onMouseLeave={handleMouseLeave}
               >
                 <div className="flex flex-col">
                   {COMPANY_LINKS.map((link) => {
@@ -234,7 +243,7 @@ export function Navbar() {
                       <Link
                         key={link.href}
                         href={link.href}
-                        onClick={() => setCompanyOpen(false)}
+                        onClick={() => setActiveDropdown(null)}
                         className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
                           ? "bg-surface-muted"
                           : "hover:bg-surface-muted focus-visible:bg-surface-muted"
@@ -253,11 +262,7 @@ export function Navbar() {
             )}
           </div>
         </nav>
-
-        {/* Right: store downloads above `lg`, hamburger drawer below it.
-            The two downloads live in the navbar only from `lg` up; every smaller
-            breakpoint gets them inside the MobileNav drawer, which is now the single
-            place a compact CTA is offered. */}
+        
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <div className="hidden lg:flex items-center gap-2">
             <StoreButton type="google" href={PLAY_STORE_URL} variant="brand" />

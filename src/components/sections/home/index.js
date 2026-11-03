@@ -6,3 +6,5 @@ export { TrustBoundariesSection } from "./trust-boundaries-section";
 export { BusinessAcquisitionSection } from "./business-acquisition-section";
 export { FinalConversionCTA } from "./final-conversion-cta";
 export { HyperlocalDiscoverySection } from "./hyperlocal-discovery-section";
+export { HomeFaq, HOMEPAGE_FAQS, getHomeFaqJsonLd } from "./home-faq";
+

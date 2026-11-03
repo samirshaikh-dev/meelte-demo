@@ -11,8 +11,8 @@ import {
 import { PLATFORM_AREAS } from "@/constants/app-constants";
 import { SOCIAL_LINKS } from "@/config/site";
 import { Container } from "./container";
-import { NewsletterForm } from "../footer/newsletter-form";
-import { FooterColumn } from "../footer/footer-column";
+import { NewsletterForm } from "./newsletter-form";
+import { FooterColumn } from "./footer-column";
 
 const CURRENT_YEAR = 2026;
 
@@ -24,7 +24,7 @@ const FOOTER_LINK_CLASS =
  * "In the app" shortcuts.
  *
  * Derived from PLATFORM_AREAS — the three capabilities that exist in the product
- * (docs/target_customer.md §1) — so the footer can never drift from the /discover
+ * (docs/target_customer.md §1) — so the footer can never drift from the /how-it-works
  * section headings, the CollectionPage ItemList, or the hero copy (AI_RULE.md §2.3).
  *
  * Each href targets a section id that <DiscoverAreas> actually renders, so the
@@ -32,7 +32,7 @@ const FOOTER_LINK_CLASS =
  */
 const IN_APP_LINKS = PLATFORM_AREAS.map((area) => ({
   label: area.name,
-  href: `/discover#${area.anchor}`,
+  href: `/how-it-works#roles`,
 }));
 
 /**
@@ -46,7 +46,6 @@ const FOOTER_SECTIONS = [
     id: "product",
     title: "Product",
     links: [
-      { label: "Discover", href: "/discover" },
       { label: "How it works", href: "/how-it-works" },
       { label: "For Merchant", href: "/for-merchants" },
     ],

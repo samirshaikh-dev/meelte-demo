@@ -18,17 +18,15 @@ import {
   FileText,
 } from "../../lib/icons";
 import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
-import { StoreButton } from "../footer/store-button";
+import { StoreButton } from "./store-button";
 
 const PRODUCT_ITEMS = [
   { label: "How It Works", href: "/how-it-works", icon: Lightbulb, note: "Roles, app experience & platform flow" },
-  { label: "Discover Nearby", href: "/discover", icon: Compass, note: "Find local shops, events & services" },
-  // { label: "Case Studies", href: "/case-studies", icon: FileText, note: "See how local shops grow with meelTe" },
+  { label: "For Merchants", href: "/for-merchants", icon: Store, note: "Promote your shop & local offers" },
 ];
 
 const COMPANY_ITEMS = [
   { label: "About Us", href: "/about", icon: Users, note: "Our mission, pillars & story" },
-  { label: "Careers", href: "/careers", icon: Briefcase, note: "Join the meelTe team" },
   { label: "Contact Us", href: "/contact", icon: Mail, note: "Support, partnerships & queries" },
 ];
 
@@ -43,8 +41,7 @@ export function MobileNav() {
   const isCompanyActive = COMPANY_ITEMS.some(
     (item) => pathname === item.href || pathname?.startsWith(`${item.href}/`)
   );
-  const isForMerchantsActive =
-    pathname === "/for-merchants" || pathname?.startsWith("/for-merchants/");
+  const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -157,23 +154,23 @@ export function MobileNav() {
               )}
             </div>
 
-            {/* For Merchants - Direct Link */}
+            {/* Careers - Direct Link */}
             <Link
-              href="/for-merchants"
+              href="/careers"
               onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isForMerchantsActive
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isCareersActive
                 ? "bg-surface-muted/80 text-primary"
                 : "text-foreground hover:bg-surface-muted hover:text-primary"
                 }`}
-              aria-current={isForMerchantsActive ? "page" : undefined}
+              aria-current={isCareersActive ? "page" : undefined}
             >
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isForMerchantsActive
+              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isCareersActive
                 ? "bg-primary/10"
                 : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
                 }`}>
-                <Store className="h-4 w-4" aria-hidden="true" />
+                <Briefcase className="h-4 w-4" aria-hidden="true" />
               </div>
-              <span>For Merchants</span>
+              <span>Careers</span>
             </Link>
 
             {/* Company Accordion */}

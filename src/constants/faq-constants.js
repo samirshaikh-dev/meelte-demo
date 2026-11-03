@@ -1,20 +1,14 @@
 /**
  * meelTe — Frequently Asked Questions (FAQ) Data
  *
- * Single source of truth for every FAQ surface on the site:
- * - `src/data/faq.json` holds the content (imported by the dedicated `/faq` page,
- *   which emits its own FAQPage JSON-LD).
- * - This module re-exports the same list for shared consumers: the home page's
- *   JSON-LD graph (`src/app/page.js`) and the `FaqSection` accordion rendered on
- *   `/`, `/discover`, `/how-it-works`, and `/for-merchants`.
- *
- * Edit `src/data/faq.json` only — never duplicate the copy here, or the two
- * surfaces will drift apart.
- *
- * Copy rules for every entry (see `meelTe-context.md` §3 "Claim guardrails"):
- * - Only describe capabilities that exist in the product (`docs/target_customer.md` §1).
- * - Never state a number, rating, customer count, or verification process that is not evidenced.
- * - The mobile app is live; the web app is "coming soon" — never imply otherwise.
+ * Master directory data source:
+ * - `src/data/faq.json` holds the complete FAQ catalog (imported by the dedicated
+ *   `/faq` page with interactive category filtering, search, and full FAQPage JSON-LD).
+ * - Individual marketing pages (`/`, `/for-merchants`, `/how-it-works`, `/signup`)
+ *   use dedicated, page-specific FAQ sections colocated in their respective component directories
+ *   (`HomeFaq`, `MerchantFaq`, `HowItWorksFaq`, `SignupFaq`), each paired with a matching
+ *   Schema.org FAQPage generator.
+ * - This module re-exports the master list for global consumers and backwards-compatible wrappers.
  */
 
 import faqData from "@/data/faq.json";

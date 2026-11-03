@@ -60,9 +60,6 @@ export function TrustBoundariesSection() {
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
             Trust is built on what we refuse to do.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            We believe transparent limits inspire more confidence than grand promises. Here is exactly how meelTe protects residents, merchants, and event organisers.
-          </p>
         </div>
 
         {/* 4 Trust Blocks (AVOID.md: Clean, balanced, non-bloated) */}
