@@ -41,21 +41,21 @@ const MERCHANT_CAPABILITIES = [
    Merchant-focused intent keywords.
 ───────────────────────────────────────────── */
 export const metadata = buildPageMetadata({
-  title: "List Your Shop on Meelte — 0% Commission Local Offers",
+  title: "List Your Shop on meelTe — 0% Commission Local Offers",
   description:
-    "Promote your shop to nearby residents on Meelte with 0% commission. Publish a single offer or a catalogue of up to 100 items, with a price, a discount and a defined run of dates. Live in Bengaluru, Gaya & Ranchi.",
+    "Promote your shop to nearby residents on meelTe with 0% commission. Publish a single offer or a catalogue of up to 100 items, with a price, a discount and a defined run of dates. Designed for Indian neighbourhoods.",
   path: "/for-merchants",
   keywords: [
-    "list business on Meelte",
+    "list business on meelTe",
     "local business listing India",
     "zero commission food delivery alternative",
     "promote local business",
     "hyperlocal business listing",
     "shop listing near me",
     "grow local store",
-    "Meelte for merchants",
+    "meelTe for merchants",
     "0% commission business platform",
-    "local business advertising Bengaluru",
+    "local business advertising India",
     "neighborhood store promotion",
   ],
 });
@@ -70,7 +70,7 @@ function getForMerchantsJsonLd() {
       {
         "@type": "HowTo",
         "@id": `${APP_URL}/for-merchants#howto`,
-        name: "How to List Your Business on Meelte",
+        name: "How to List Your Business on meelTe",
         description:
           "Promote a local shop to nearby residents with a time-boxed offer and no commission deducted.",
         url: `${APP_URL}/for-merchants`,
@@ -84,7 +84,7 @@ function getForMerchantsJsonLd() {
           {
             "@type": "HowToStep",
             name: "Meet the field team",
-            text: "A member of Meelte's field team visits the shop in person and sets up the profile.",
+            text: "A member of meelTe's field team visits the shop in person and sets up the profile.",
             url: `${APP_URL}/for-merchants#merchant-enquiry`,
           },
           {
@@ -98,17 +98,16 @@ function getForMerchantsJsonLd() {
       {
         "@type": "Service",
         "@id": `${APP_URL}/for-merchants#service`,
-        name: "Meelte Merchant Onboarding — Local Business Promotion",
+        name: "meelTe Merchant Onboarding — Local Business Promotion",
         description:
-          "Local business promotion for shops, cafes and service businesses: publish time-boxed offers to nearby residents. Meelte deducts no commission on a sale.",
+          "Local business promotion for shops, cafes and service businesses: publish time-boxed offers to nearby residents. meelTe deducts no commission on a sale.",
         provider: {
           "@id": `${APP_URL}#organization`,
         },
-        areaServed: [
-          { "@type": "City", name: "Bengaluru" },
-          { "@type": "City", name: "Gaya" },
-          { "@type": "City", name: "Ranchi" },
-        ],
+        areaServed: {
+          "@type": "Country",
+          name: "India",
+        },
         serviceType: "Local Business Promotion",
       },
       {
@@ -131,13 +130,13 @@ function getForMerchantsJsonLd() {
       },
       ...(MERCHANT_FAQ_JSON_LD
         ? [
-            {
-              "@id": `${APP_URL}/for-merchants#faq`,
-              "@type": MERCHANT_FAQ_JSON_LD["@type"],
-              inLanguage: MERCHANT_FAQ_JSON_LD.inLanguage,
-              mainEntity: MERCHANT_FAQ_JSON_LD.mainEntity,
-            },
-          ]
+          {
+            "@id": `${APP_URL}/for-merchants#faq`,
+            "@type": MERCHANT_FAQ_JSON_LD["@type"],
+            inLanguage: MERCHANT_FAQ_JSON_LD.inLanguage,
+            mainEntity: MERCHANT_FAQ_JSON_LD.mainEntity,
+          },
+        ]
         : []),
     ],
   };
@@ -176,7 +175,7 @@ export default function ForMerchantsPage() {
                 Turn your products and offers into a clear local listing.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-foreground-secondary sm:text-lg">
-                Meelte helps nearby residents discover your shop, understand the offer, and
+                meelTe helps nearby residents discover your shop, understand the offer, and
                 get directions.
               </p>
             </div>

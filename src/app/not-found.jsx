@@ -7,9 +7,9 @@ import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
-  title: "Page Not Found | Meelte",
+  title: "Page Not Found | meelTe",
   description:
-    "The page you are looking for does not exist or has been moved. Discover local opportunities, events, and businesses near you with Meelte.",
+    "The page you are looking for does not exist or has been moved. Discover local opportunities, events, and businesses near you with meelTe.",
   path: "/404",
   robots: {
     index: false,
@@ -76,14 +76,14 @@ export default function NotFound() {
             </Button>
           </div>
 
-      <Card className="mx-auto w-full max-w-3xl p-5 sm:p-6 text-left shadow-soft border-primary/15 bg-gradient-to-br from-surface to-surface-subtle hover:shadow-card transition-shadow">
+          <Card className="mx-auto w-full max-w-3xl p-5 sm:p-6 text-left shadow-soft border-primary/15 bg-gradient-to-br from-surface to-surface-subtle hover:shadow-card transition-shadow">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
               <div className="flex-1 min-w-0">
                 <h2 className="text-lg font-bold text-foreground mb-1.5">
                   Find what matters near you
                 </h2>
                 <p className="text-sm sm:text-base text-foreground-secondary leading-relaxed">
-                  Meelte connects you with local businesses, community events, and
+                  meelTe connects you with local businesses, community events, and
                   opportunities right in your neighborhood, all within the app.
                 </p>
               </div>

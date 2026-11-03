@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
         </MotionProvider>
         {/*
           Single toast surface for the whole app.
-          Visual tokens (surface, border, radius, status colours) are mapped to the Meelte
+          Visual tokens (surface, border, radius, status colours) are mapped to the meelTe
           design system in app/globals.css — sonner's injected CSS is unlayered, so Tailwind
           utilities cannot reliably override it. See the "Sonner toast tokens" block there.
           Accessibility: sonner renders its own polite live region; containerAriaLabel names it.

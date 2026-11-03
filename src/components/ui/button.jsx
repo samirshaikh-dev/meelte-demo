@@ -24,7 +24,7 @@ const buttonSizes = {
 };
 
 /**
- * Reusable Accessible Button component supporting standard Meelte brand variants & sizes.
+ * Reusable Accessible Button component supporting standard meelTe brand variants & sizes.
  * Conforms to AVOID.md §6: consistent rounded-xl hierarchy, stable interaction feedback,
  * and high-contrast WCAG 2.2 AA compliant focus rings.
  */

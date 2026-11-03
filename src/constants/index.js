@@ -1,5 +1,5 @@
 /**
- * Meelte — Constants Index
+ * meelTe — Constants Index
  * Re-exports all application and service constants.
  */
 

@@ -19,20 +19,20 @@ import { HowItWorksRoles } from "./_components/how-it-works-roles";
 import { HowItWorksBoundaries } from "./_components/how-it-works-boundaries";
 
 export const metadata = buildPageMetadata({
-  title: "How Meelte Works — Nearby Offers, Events & Chat",
+  title: "How meelTe Works — Nearby Offers, Events & Chat",
   description:
-    "How Meelte works: install the app on Android or iOS, allow location, then browse time-boxed shop offers and local events sorted by distance.",
+    "How meelTe works: install the app on Android or iOS, allow location, then browse time-boxed shop offers and local events sorted by distance.",
   path: "/how-it-works",
   keywords: [
-    "how Meelte works",
-    "Meelte platform explained",
+    "how meelTe works",
+    "meelTe platform explained",
     "hyperlocal discovery app India",
     "local shop offers near me",
     "local events near me",
     "location based offers India",
-    "Meelte for merchants",
-    "Meelte for event hosts",
-    "Meelte app walkthrough",
+    "meelTe for merchants",
+    "meelTe for event hosts",
+    "meelTe app walkthrough",
     "neighborhood discovery platform",
   ],
 });
@@ -60,7 +60,7 @@ const ROLE_ITEMS = [
   {
     name: "Shops & service businesses",
     description:
-      "Post one product or a catalogue of up to 100 with a price or discount and the dates the offer runs. Onboarded in person by the Meelte field team.",
+      "Post one product or a catalogue of up to 100 with a price or discount and the dates the offer runs. Onboarded in person by the meelTe field team.",
     path: "/for-merchants",
   },
   {
@@ -94,7 +94,7 @@ function getHowItWorksJsonLd() {
       {
         "@type": "HowTo",
         "@id": `${APP_URL}/how-it-works#howto`,
-        name: "How Meelte works for a resident",
+        name: "How meelTe works for a resident",
         description:
           "Install the app on Android or iOS, allow location so listings sort by distance, browse time-boxed shop offers and local events, then settle directly with the shop or host.",
         url: `${APP_URL}/how-it-works`,
@@ -109,7 +109,7 @@ function getHowItWorksJsonLd() {
       {
         "@type": "ItemList",
         "@id": `${APP_URL}/how-it-works#roles`,
-        name: "Who uses Meelte",
+        name: "Who uses meelTe",
         description:
           "The three sides of the platform: shops and service businesses, event hosts and clubs, and neighbours and new arrivals.",
         numberOfItems: ROLE_ITEMS.length,
@@ -130,7 +130,7 @@ function getHowItWorksJsonLd() {
 /**
  * /how-it-works explains the product mechanics, then sets the honest limits.
  *
- *   1. HowItWorksHero        what Meelte is, in one paragraph, plus the one action
+ *   1. HowItWorksHero        what meelTe is, in one paragraph, plus the one action
  *   2. HowItWorksSteps       the four steps a resident actually goes through
  *   3. HowItWorksRoles       shops, hosts and neighbours, each linked outward
  *   4. HowItWorksBoundaries  what the platform does not do, and where location fits
@@ -171,7 +171,7 @@ export default function HowItWorksPage() {
           items={HOW_IT_WORKS_FAQS}
           viewAllHref="/faq"
           title="How the platform actually behaves."
-          description="What Meelte is, where it runs, how a join request works, who handles the money, and how the social side works today."
+          description="What meelTe is, where it runs, how a join request works, who handles the money, and how the social side works today."
         />
         <FinalConversionCTA />
       </main>

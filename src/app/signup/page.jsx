@@ -24,18 +24,18 @@ const SIGNUP_FAQ_IDS = ["faq-7", "faq-4", "faq-5", "faq-13"];
 const SIGNUP_FAQS = FAQ_ITEMS.filter((faq) => SIGNUP_FAQ_IDS.includes(faq.id));
 
 export const metadata = buildPageMetadata({
-  title: "Get the Meelte App — Sign Up & Refer Friends",
+  title: "Get the meelTe App — Sign Up & Refer Friends",
   description:
-    "Meelte is live on Google Play and the App Store: time-boxed local offers, events you can join, and one-to-one chat. The web app is still in development.",
+    "meelTe is live on Google Play and the App Store: time-boxed local offers, events you can join, and one-to-one chat. The web app is still in development.",
   path: "/signup",
   keywords: [
-    "Meelte sign up",
-    "Meelte app download",
+    "meelTe sign up",
+    "meelTe app download",
     "hyperlocal community app India",
     "discover local offers nearby",
     "local events near me",
     "connect with neighbors",
-    "Meelte referral program",
+    "meelTe referral program",
     "Amazon voucher referral",
   ],
 });
@@ -43,7 +43,7 @@ export const metadata = buildPageMetadata({
 /**
  * /signup is a signpost, not a form.
  *
- * Meelte creates accounts inside the mobile app (both store listings are live and
+ * meelTe creates accounts inside the mobile app (both store listings are live and
  * the web app is still in development), so this page cannot and
  * must not render a sign-up form. It answers "how do I join", "what do I get"
  * and "what does it cost me" in that order, then hands over to the store listings:
@@ -100,7 +100,7 @@ export default function SignupPage() {
           items={SIGNUP_FAQS}
           viewAllHref="/faq"
           title="Before you install."
-          description="How to get the app, what it costs, where Meelte works today, and how safety is handled."
+          description="How to get the app, what it costs, where meelTe works today, and how safety is handled."
         />
         <SignupClose />
       </main>

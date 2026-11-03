@@ -1,5 +1,5 @@
 /**
- * Meelte — SEO Utilities Index
+ * meelTe — SEO Utilities Index
  * Re-exports metadata and structured data helpers.
  */
 

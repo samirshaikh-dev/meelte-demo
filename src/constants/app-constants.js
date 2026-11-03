@@ -1,42 +1,7 @@
-/**
- * Meelte — Application Domain Constants
- * Static catalogs, focus regions, brand color tokens, and product pillars.
- * Guided by docs/target_customer.md and docs/Design.md.
- */
-
-/**
- * Coverage model — confirmed by the business (Oct 2026).
- *
- * Meelte is expanding to the whole of India. Today, three cities are actually being
- * worked by field executives: **Bengaluru**, **Gaya** and **Ranchi**. Those are the only
- * places where in-person shop onboarding happens, so that is what the page copy and
- * `areaServed` naming describe.
- *
- * The constants stay at country level on purpose: `areaServed` should not imply that a
- * resident of, say, Chennai is onboarded in person today. Do not swap these to a city
- * list without also revisiting the "onboarded in person by our field team" copy.
- */
 export const TARGET_CITIES = ["India"];
 
 export const ALL_COVERED_AREAS = ["India (Pan-India)"];
 
-/** The three cities where the field team currently onboards shops in person. */
-export const OPERATIONAL_HUBS = ["Bengaluru", "Gaya", "Ranchi"];
-
-/**
- * The three areas of the Meelte product that actually exist today.
- *
- * Sourced from docs/target_customer.md §1 ("Core capabilities found in the code"):
- * local offers (ads), local events, and the social layer. Meelte's shop and event
- * records each carry their own category field, but the set of category values is
- * defined in the Flutter app repository and is not audited here — so the website
- * must not publish its own "N kinds of nearby business" taxonomy. Earlier versions
- * of this file did exactly that (Food/Fashion/Events/Services/Health) and the claim
- * had no product evidence.
- *
- * `anchor` must match the section id rendered on /discover so the footer links,
- * the on-page anchors, and the CollectionPage JSON-LD all resolve.
- */
 export const PLATFORM_AREAS = [
   {
     id: "offers",
@@ -120,7 +85,6 @@ export const PILLARS = [
 const appConstants = {
   TARGET_CITIES,
   ALL_COVERED_AREAS,
-  OPERATIONAL_HUBS,
   PLATFORM_AREAS,
   BRAND_COLORS,
   PILLARS,

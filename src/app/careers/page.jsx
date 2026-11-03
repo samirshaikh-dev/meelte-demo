@@ -30,15 +30,15 @@ import {
  * - Values became a ruled editorial list, benefits a 4-column bento, open roles a
  *   two-column status block, and the closing CTA a left/right split — so the page
  *   no longer reads as five stacked grids of identical cards
- *   (meelte-context.md §4).
+ *   (meelTe-context.md §4).
  * - The headline gradient ends in `primary-royal` instead of `accent`; amber
  *   `#F59E0B` as text measures 2.15:1 on this canvas (docs/Design.md §9.8).
  * - Breadcrumbs come from the shared primitive and are mirrored by a
  *   `BreadcrumbList` node (AI_RULE.md §2.6).
  *
- * Title note: `buildPageMetadata` runs the title through the root `%s | Meelte`
- * template in src/lib/seo/metadata.js. The previous "Careers at Meelte | Join Our
- * Team" therefore rendered as "Careers at Meelte | Join Our Team | Meelte" — a
+ * Title note: `buildPageMetadata` runs the title through the root `%s | meelTe`
+ * template in src/lib/seo/metadata.js. The previous "Careers at meelTe | Join Our
+ * Team" therefore rendered as "Careers at meelTe | Join Our Team | meelTe" — a
  * double brand and two pipes. The title below is short enough to survive the
  * template and describes what is actually on the page. Changing the template
  * itself is a site-wide decision and out of scope here.
@@ -48,14 +48,14 @@ import {
  * says. `JobPosting` is deliberately not emitted, because no posting exists.
  */
 export const metadata = buildPageMetadata({
-  title: "Careers at Meelte: Values, Benefits & How to Apply",
+  title: "Careers at meelTe: Values, Benefits & How to Apply",
   description:
-    "Build with Meelte. We're a small, mission-driven team working to help people discover, connect, and grow in their neighborhoods across India.",
+    "Build with meelTe. We're a small, mission-driven team working to help people discover, connect, and grow in their neighborhoods across India.",
   path: "/careers",
   keywords: [
-    "Meelte careers",
-    "jobs at Meelte",
-    "work at Meelte",
+    "meelTe careers",
+    "jobs at meelTe",
+    "work at meelTe",
     "startup jobs India",
     "hyperlocal startup hiring",
     "community platform careers",
@@ -65,7 +65,7 @@ export const metadata = buildPageMetadata({
 function getCareersJsonLd() {
   return mergeJsonLd(
     getWebPageJsonLd({
-      name: "Careers at Meelte",
+      name: "Careers at meelTe",
       // Quoted verbatim from the hero so the structured data cannot drift.
       description: CAREERS_DIRECT_ANSWER,
       path: "/careers",

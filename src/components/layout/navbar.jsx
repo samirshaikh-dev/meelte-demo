@@ -24,7 +24,7 @@ const PRODUCT_LINKS = [
   // {
   //   label: "Case Studies",
   //   href: "/case-studies",
-  //   description: "See how local shops grow with Meelte",
+  //   description: "See how local shops grow with meelTe",
   // },
 ];
 
@@ -37,7 +37,7 @@ const COMPANY_LINKS = [
   {
     label: "Careers",
     href: "/careers",
-    description: "Join the Meelte team",
+    description: "Join the meelTe team",
   },
   {
     label: "Contact Us",
@@ -94,18 +94,18 @@ export function Navbar() {
           <Link
             href="/"
             className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-xl"
-            aria-label="Meelte Home"
+            aria-label="meelTe Home"
           >
             <Image
-              src="/icon_only_meelte.png"
-              alt="Meelte"
+              src="/icon_only_meelTe.png"
+              alt="meelTe"
               width={40}
               height={40}
               className="h-10 w-10 shrink-0 rounded-xl object-contain shadow-soft transition-transform duration-200"
             />
             <Image
-              src="/only_meelte.png"
-              alt="Meelte wordmark"
+              src="/only_meelTe.png"
+              alt="meelTe wordmark"
               width={110}
               height={32}
               className="h-7 w-auto shrink-0 max-w-[110px] object-contain tracking-tight"
@@ -129,19 +129,17 @@ export function Navbar() {
                 setCompanyOpen(false);
               }}
               onMouseEnter={() => setProductOpen(true)}
-              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
-                isProductActive || productOpen
-                  ? "bg-surface-muted/80 text-primary"
-                  : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
-              }`}
+              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isProductActive || productOpen
+                ? "bg-surface-muted/80 text-primary"
+                : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
+                }`}
               aria-expanded={productOpen}
               aria-haspopup="true"
             >
               <span>Product</span>
               <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                  productOpen ? "rotate-180" : ""
-                }`}
+                className={`h-3.5 w-3.5 transition-transform duration-200 ${productOpen ? "rotate-180" : ""
+                  }`}
                 aria-hidden="true"
               />
               {(isProductActive || productOpen) && (
@@ -163,11 +161,10 @@ export function Navbar() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setProductOpen(false)}
-                        className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
-                          isActive
-                            ? "bg-surface-muted"
-                            : "hover:bg-surface-muted focus-visible:bg-surface-muted"
-                        }`}
+                        className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
+                          ? "bg-surface-muted"
+                          : "hover:bg-surface-muted focus-visible:bg-surface-muted"
+                          }`}
                         aria-current={isActive ? "page" : undefined}
                       >
                         <span className={`text-sm font-semibold ${isActive ? "text-primary" : "text-foreground"}`}>
@@ -185,11 +182,10 @@ export function Navbar() {
           {/* For Merchants - Direct Link */}
           <Link
             href="/for-merchants"
-            className={`relative inline-flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
-              isForMerchantsActive
-                ? "bg-surface-muted/80 text-primary"
-                : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
-            }`}
+            className={`relative inline-flex items-center rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isForMerchantsActive
+              ? "bg-surface-muted/80 text-primary"
+              : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
+              }`}
             aria-current={isForMerchantsActive ? "page" : undefined}
           >
             <span>For Merchants</span>
@@ -207,19 +203,17 @@ export function Navbar() {
                 setProductOpen(false);
               }}
               onMouseEnter={() => setCompanyOpen(true)}
-              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
-                isCompanyActive || companyOpen
-                  ? "bg-surface-muted/80 text-primary"
-                  : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
-              }`}
+              className={`relative inline-flex items-center gap-1 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${isCompanyActive || companyOpen
+                ? "bg-surface-muted/80 text-primary"
+                : "text-foreground-secondary hover:text-primary hover:bg-surface-muted"
+                }`}
               aria-expanded={companyOpen}
               aria-haspopup="true"
             >
               <span>Company</span>
               <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                  companyOpen ? "rotate-180" : ""
-                }`}
+                className={`h-3.5 w-3.5 transition-transform duration-200 ${companyOpen ? "rotate-180" : ""
+                  }`}
                 aria-hidden="true"
               />
               {(isCompanyActive || companyOpen) && (
@@ -241,11 +235,10 @@ export function Navbar() {
                         key={link.href}
                         href={link.href}
                         onClick={() => setCompanyOpen(false)}
-                        className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
-                          isActive
-                            ? "bg-surface-muted"
-                            : "hover:bg-surface-muted focus-visible:bg-surface-muted"
-                        }`}
+                        className={`flex flex-col gap-0.5 rounded-xl px-3.5 py-3 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
+                          ? "bg-surface-muted"
+                          : "hover:bg-surface-muted focus-visible:bg-surface-muted"
+                          }`}
                         aria-current={isActive ? "page" : undefined}
                       >
                         <span className={`text-sm font-semibold ${isActive ? "text-primary" : "text-foreground"}`}>

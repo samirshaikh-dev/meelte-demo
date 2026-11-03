@@ -34,7 +34,7 @@ export const CONTACT_BREADCRUMBS = [
  * Shared by `buildPageMetadata` and the `ContactPage` JSON-LD. ≤155 characters.
  */
 export const CONTACT_DESCRIPTION =
-  "Contact Meelte for app support, merchant onboarding, event partnerships or feedback. Email, phone and a registered office in Bodh Gaya, Bihar.";
+  "Contact meelTe for app support, merchant onboarding, event partnerships or feedback. Email, phone and a registered office in Bodh Gaya, Bihar.";
 
 export const CONTACT_HERO = {
   badge: "Contact Us",
@@ -64,7 +64,7 @@ export const CONTACT_CHANNELS = {
 
 export const CONTACT_OFFICE = {
   title: "Registered office",
-  company: "Meelte Private Limited",
+  company: "meelTe Private Limited",
   addressLines: [
     "Pratistha, Ward No. 14, LIC Gali, Upadhyay Bigha,",
     "Sujata Bypass, Rajapur, Bodh Gaya,",

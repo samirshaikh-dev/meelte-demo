@@ -30,7 +30,7 @@ export { FAQ_ITEMS };
 export function FaqSection({
   items = FAQ_ITEMS,
   viewAllHref,
-  title = "Clear, honest answers about Meelte.",
+  title = "Clear, honest answers about meelTe.",
   description = "Everything you need to know about privacy, city coverage, merchant listings, events, payments, referrals, and app access.",
   showMerchantLink = true,
 }) {
@@ -46,10 +46,6 @@ export function FaqSection({
       <Container className="max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <Badge variant="primary" className="mb-3 gap-1.5">
-            <HelpCircle className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            <span>Frequently Asked Questions</span>
-          </Badge>
           <h2
             id="faq-heading"
             className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight"
@@ -125,7 +121,7 @@ export function FaqSection({
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href={`mailto:${SUPPORT_EMAIL}?subject=Meelte%20Inquiry`}
+              href={`mailto:${SUPPORT_EMAIL}?subject=meelTe%20Inquiry`}
               className="rounded text-xs font-bold text-primary hover:underline px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               Contact our team

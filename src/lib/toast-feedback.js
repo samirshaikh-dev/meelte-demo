@@ -12,7 +12,7 @@
  *   re-guessed per call site.
  *
  * Never call `toast.*` directly from a component; use these helpers so durations, dedupe ids,
- * and copy stay aligned with the Meelte design system.
+ * and copy stay aligned with the meelTe design system.
  */
 
 import { toast } from "sonner";

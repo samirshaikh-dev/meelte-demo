@@ -34,10 +34,7 @@ export function SignupReferral() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3 gap-1.5">
-            <Gift className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Refer &amp; Earn</span>
-          </Badge>
+      
 
           <h2
             id="signup-referral-heading"

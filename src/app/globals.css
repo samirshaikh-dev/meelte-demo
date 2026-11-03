@@ -95,6 +95,7 @@ html {
     opacity: 0;
     transform-origin: top;
   }
+
   to {
     transform: scaleY(1);
     opacity: 1;
@@ -106,6 +107,7 @@ html {
     transform: scaleY(1);
     opacity: 1;
   }
+
   to {
     transform: scaleY(0);
     opacity: 0;
@@ -125,6 +127,7 @@ html {
 .focus-ring {
   outline: none;
 }
+
 .focus-ring:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
@@ -135,6 +138,7 @@ html {
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
@@ -151,11 +155,12 @@ html {
    file, so equal-specificity rules here would lose the cascade. Every selector
    below is therefore anchored to `html` for one extra specificity point, which
    is why they are written as `html [data-sonner-…]` instead of the bare
-   attribute selectors. Token values map to the Meelte design system
+   attribute selectors. Token values map to the meelTe design system
    (docs/Design.md) instead of the library's raw red/green defaults.
 ───────────────────────────────────────────── */
 html [data-sonner-toaster] {
-  --border-radius: 16px; /* rounded-2xl */
+  --border-radius: 16px;
+  /* rounded-2xl */
   font-family: var(--font-sans);
 }
 

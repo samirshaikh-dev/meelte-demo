@@ -2,25 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { MapPin, ArrowRight, Store } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
 import { PLATFORM_AREAS } from "@/constants/app-constants";
-
-/**
- * City coverage — the hubs confirmed by the business brief
- * (project-context.md §1 and §12: "real hubs (Bengaluru, Gaya, Ranchi)").
- *
- * Deliberately city-level only. Neighbourhood clusters, "active zone" statuses
- * and per-city highlight claims have no product evidence: ad city zones are
- * admin-configured and which of them are live is unresolved in
- * docs/target_customer.md §5. Nothing here asserts merchant verification
- * either — the product has no consumer-visible verification today
- * (meelte-context.md §3 claim guardrails).
- */
-const COVERAGE_HUBS = [
-  { city: "Bengaluru", state: "Karnataka" },
-  { city: "Gaya", state: "Bihar" },
-  { city: "Ranchi", state: "Jharkhand" },
-];
 
 export function HyperlocalDiscoverySection() {
   return (
@@ -28,36 +10,13 @@ export function HyperlocalDiscoverySection() {
       <Container>
         <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
           {/* Section Header */}
-          <div className="lg:col-span-6">
-            <Badge variant="primary" className="mb-3 gap-1.5">
-              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>City Coverage</span>
-            </Badge>
+          <div className="lg:col-span-8">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
-              Live in Bengaluru, Gaya and Ranchi.
+              Hyperlocal discovery across Indian neighbourhoods.
             </h2>
             <p className="mt-3 text-base text-foreground-secondary leading-relaxed">
-              Meelte runs in three Indian cities today. Open the Android app to see which offers, events and people are near you.
+              Open the meelTe app on Android or iPhone to see which offers, events, and people are near you.
             </p>
-          </div>
-
-          {/* Coverage Strip */}
-          <div className="lg:col-span-6">
-            <ul
-              role="list"
-              className="grid grid-cols-1 divide-y divide-border/70 overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-soft sm:grid-cols-3 sm:divide-x sm:divide-y-0"
-            >
-              {COVERAGE_HUBS.map((hub) => (
-                <li key={hub.city} className="px-5 py-4 sm:px-5 sm:py-5">
-                  <span className="block text-base font-bold text-foreground">
-                    {hub.city}
-                  </span>
-                  <span className="mt-0.5 block text-xs text-foreground-secondary">
-                    {hub.state}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 

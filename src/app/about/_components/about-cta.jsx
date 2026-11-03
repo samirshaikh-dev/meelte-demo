@@ -17,7 +17,7 @@ import { ABOUT_DISCOVER_LABEL, ABOUT_WHY } from "./about-content";
  * What changed in substance, and why:
  * - The store pair moved out. It already appears in the hero, and repeating the same
  *   two download buttons with identical labels at both ends of the page is exactly
- *   the duplicated-CTA pattern meelte-context.md §4 warns against. The destinations
+ *   the duplicated-CTA pattern meelTe-context.md §4 warns against. The destinations
  *   that close the argument now are the two the reader actually wants at this point:
  *   see the product (`/discover`) or talk to the team (`/contact`).
  * - No `Badge variant="accent"`. The amber pill was a raw palette utility outside
@@ -32,7 +32,7 @@ export function AboutCta() {
 
   return (
     <section
-      id="why-meelte"
+      id="why-meelTe"
       aria-labelledby="about-why-heading"
       className="scroll-mt-20 bg-canvas py-14 sm:py-20"
     >
@@ -40,10 +40,6 @@ export function AboutCta() {
         <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-6 shadow-card sm:p-10">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-x-12">
             <div className="lg:col-span-7">
-              <Badge variant="primary" className="mb-4">
-                <span>{ABOUT_WHY.badge}</span>
-              </Badge>
-
               <h2
                 id="about-why-heading"
                 className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl"

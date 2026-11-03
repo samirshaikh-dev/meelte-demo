@@ -13,22 +13,6 @@ const DISCOVER_BREADCRUMBS = [
   { name: "Discover" },
 ];
 
-/**
- * /discover hero.
- *
- * Rewritten as a server component with no invented content. The previous version
- * was a framer-motion client component that showed a mock phone listing three
- * fictional businesses at made-up distances (200m–650m) and described a "1–3 km"
- * walking radius. Neither exists: the product's feed is distance-sorted with a
- * default 60 km radius (docs/target_customer.md §1), and the app is the only place
- * real listings appear. The mock also claimed "on-device location", but ad
- * geofencing is evaluated against server-side city zones (§1 "Ad geofencing").
- *
- * The card that listed the three operational hubs has been removed so the hero is
- * a single text-first column like the other page heroes. The section links below
- * are generated from PLATFORM_AREAS, so they stay in step with the anchors the
- * footer and the CollectionPage schema point at.
- */
 export function DiscoverHero() {
   return (
     <section className="border-b border-border/80 bg-canvas pt-8 pb-14 sm:pt-10 sm:pb-20">
@@ -36,17 +20,12 @@ export function DiscoverHero() {
         <Breadcrumbs items={DISCOVER_BREADCRUMBS} className="mb-6" />
 
         <div className="max-w-3xl">
-          <Badge variant="primary" className="mb-4 gap-1.5">
-            <Compass className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Discover</span>
-          </Badge>
-
           <h1 className="text-3xl font-black leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]">
             What is on near you, right now.
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            Meelte is a nearby-first feed: offers from local shops, events you
+            meelTe is a nearby-first feed: offers from local shops, events you
             can join, and chat with people you follow.
           </p>
 
@@ -84,38 +63,8 @@ export function DiscoverHero() {
                 aria-hidden="true"
               />
             </Button>
-
-            <Button
-              as={Link}
-              href="/how-it-works"
-              variant="outline"
-              size="lg"
-              className="justify-center font-medium sm:w-auto"
-            >
-              <span>See how it works</span>
-            </Button>
           </div>
 
-          <p className="mt-5 text-sm text-foreground-secondary">
-            Meelte is live on Google Play and the App Store. The web app is still
-            in development.
-          </p>
-
-          <nav aria-label="On this page" className="mt-7 border-t border-border/70 pt-5">
-            <ul role="list" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-              <li className="font-semibold text-foreground-secondary">On this page:</li>
-              {PLATFORM_AREAS.map((area) => (
-                <li key={area.id}>
-                  <a
-                    href={`#${area.anchor}`}
-                    className="rounded font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
-                  >
-                    {area.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
         </div>
       </Container>
     </section>

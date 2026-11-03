@@ -14,16 +14,16 @@ const PRIVACY_BREADCRUMBS = [
 ];
 
 export const metadata = buildPageMetadata({
-  title: "Privacy Policy — Meelte",
+  title: "Privacy Policy — meelTe",
   description:
-    "How Meelte collects, uses, and protects your personal information. Read our official privacy policy.",
+    "How meelTe collects, uses, and protects your personal information. Read our official privacy policy.",
   path: "/privacy",
   keywords: [
-    "Meelte Privacy Policy",
-    "Meelte privacy",
-    "data protection Meelte",
-    "account deletion Meelte",
-    "location data Meelte",
+    "meelTe Privacy Policy",
+    "meelTe privacy",
+    "data protection meelTe",
+    "account deletion meelTe",
+    "location data meelTe",
   ],
 });
 
@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
               Privacy Policy
             </h1>
             <p className="mt-3 text-lg sm:text-xl text-foreground-secondary leading-relaxed">
-              How Meelte collects, uses, and protects your information.
+              How meelTe collects, uses, and protects your information.
             </p>
             <div className="mt-3 text-sm text-foreground-muted font-medium">
               Effective Date: October 2026
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
           <div className="pt-8 space-y-12 text-foreground-secondary text-base sm:text-lg leading-relaxed">
             {/* Introduction */}
             <p className="text-foreground text-lg sm:text-xl font-normal leading-relaxed">
-              At Meelte, we are committed to protecting your privacy and personal information. This Privacy Policy explains how we collect, use, store, share, and protect your information when you access or use the Meelte platform.
+              At meelTe, we are committed to protecting your privacy and personal information. This Privacy Policy explains how we collect, use, store, share, and protect your information when you access or use the meelTe platform.
             </p>
 
             {/* Section 1 */}
@@ -256,7 +256,7 @@ export default function PrivacyPolicyPage() {
                 7. Third-Party Services
               </h2>
               <p>
-                Meelte may integrate with third-party services. Their privacy practices are governed by their own privacy policies, and Meelte is not responsible for third-party privacy practices.
+                meelTe may integrate with third-party services. Their privacy practices are governed by their own privacy policies, and meelTe is not responsible for third-party privacy practices.
               </p>
             </section>
 
@@ -266,7 +266,7 @@ export default function PrivacyPolicyPage() {
                 8. Changes to This Privacy Policy
               </h2>
               <p>
-                We may update this Privacy Policy periodically. Continued use of Meelte following updates constitutes acceptance of the revised Privacy Policy.
+                We may update this Privacy Policy periodically. Continued use of meelTe following updates constitutes acceptance of the revised Privacy Policy.
               </p>
             </section>
 
@@ -277,15 +277,15 @@ export default function PrivacyPolicyPage() {
               </h2>
               <div className="space-y-2 text-foreground font-medium">
                 <div className="font-bold text-lg text-foreground">
-                  Meelte Private Limited
+                  meelTe Private Limited
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 shrink-0 text-foreground-secondary" aria-hidden="true" />
                   <a
-                    href="mailto:support@meelte.com"
+                    href="mailto:support@meelTe.com"
                     className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded"
                   >
-                    support@meelte.com
+                    support@meelTe.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2">

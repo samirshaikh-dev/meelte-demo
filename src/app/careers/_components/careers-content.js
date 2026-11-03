@@ -31,17 +31,17 @@ export const CAREERS_EMAIL = HR_EMAIL;
  * the rendered copy while the schema still receives the whole sentence.
  */
 export const CAREERS_STATUS_SENTENCE =
-  "Meelte is not actively hiring. A speculative application is welcome";
+  "meelTe is not actively hiring. A speculative application is welcome";
 
 /** `CAREERS_STATUS_SENTENCE` + the address, exactly as a reader sees it. */
 export const CAREERS_DIRECT_ANSWER = `${CAREERS_STATUS_SENTENCE} — ${CAREERS_EMAIL}.`;
 
-const CAREERS_SUBJECT = "Speculative application — Meelte";
+const CAREERS_SUBJECT = "Speculative application — meelTe";
 
 const CAREERS_BODY = [
-  "Hi Meelte team,",
+  "Hi meelTe team,",
   "",
-  "I would like to be considered for a role at Meelte.",
+  "I would like to be considered for a role at meelTe.",
   "",
   "Role I am interested in:",
   "Location or remote preference:",

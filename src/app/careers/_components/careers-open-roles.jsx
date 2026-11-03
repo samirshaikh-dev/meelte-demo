@@ -24,9 +24,6 @@ export function CareersOpenRoles() {
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-5">
-            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
-              <Briefcase className="h-5 w-5" aria-hidden="true" />
-            </div>
             <h2
               id="careers-open-roles-heading"
               className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
@@ -37,16 +34,13 @@ export function CareersOpenRoles() {
 
           <Card className="lg:col-span-7 border-primary/15 p-6 shadow-card sm:p-8">
             <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-surface-muted text-primary">
-                <Briefcase className="h-5 w-5" aria-hidden="true" />
-              </div>
               <div>
                 <h3 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
                   No open roles at the moment
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground-secondary sm:text-base">
                   We&apos;re not actively hiring right now. If you believe you&apos;d
-                  be a great fit for Meelte, we&apos;d still love to hear from you.
+                  be a great fit for meelTe, we&apos;d still love to hear from you.
                 </p>
               </div>
             </div>

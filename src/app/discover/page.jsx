@@ -46,30 +46,13 @@ export const metadata = buildPageMetadata({
     "hyperlocal community platform",
     "event hosting app",
     "discover nearby shops",
-    "meelte app",
+    "meelTe app",
   ],
 });
 
-/**
- * /discover describes what the Meelte app actually contains.
- *
- * The page follows a single conversion path — understand, see how it starts,
- * clear the objections, install:
- *   1. DiscoverHero      what it is and the primary action
- *   2. DiscoverAreas     the three capabilities, scannable
- *   3. DiscoverSteps     install → allow location → find something nearby
- *   4. FaqSection        five objection-handling questions, linked to /faq
- *   5. FinalConversionCTA  install for residents, onboarding for merchants
- *
- * The ItemList below is generated from PLATFORM_AREAS and points at the anchor ids
- * rendered by <DiscoverAreas>, so the structured data, the footer links and the
- * on-page sections all resolve to the same three targets. The earlier version
- * advertised five /discover#category fragments and fifteen invented businesses.
- * The FAQPage graph is built from exactly the questions rendered here.
- */
 function getDiscoverJsonLd() {
   const collectionJsonLd = getCollectionPageJsonLd({
-    name: "What you can do in Meelte",
+    name: "What you can do in meelTe",
     description:
       "Local offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you follow.",
     path: "/discover",
@@ -120,7 +103,7 @@ export default function DiscoverPage() {
           items={DISCOVER_FAQS}
           viewAllHref="/faq"
           title="Questions people ask before they install."
-          description="Where Meelte works, how to get the app, how joining an event works, who handles payment, and how safety is handled."
+          description="Where meelTe works, how to get the app, how joining an event works, who handles payment, and how safety is handled."
         />
         <FinalConversionCTA />
       </main>

@@ -13,7 +13,7 @@ const AREA_ICONS = {
 /**
  * "What you can do" section for /discover.
  *
- * Explains the three capabilities that exist in the Meelte app today
+ * Explains the three capabilities that exist in the meelTe app today
  * (docs/target_customer.md §1: local offers, local events, the social layer).
  *
  * This is a capability explainer, not a directory. The previous implementation
@@ -34,20 +34,12 @@ export function DiscoverAreas() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3 gap-1.5">
-            <Tag className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>In the app today</span>
-          </Badge>
           <h2
             id="discover-areas-heading"
             className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
-            Three things you can do in Meelte.
+            Three things you can do in meelTe.
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
-            Everything is filtered by distance from where you are — the &ldquo;Max
-            distance&rdquo; setting defaults to 60&nbsp;km.
-          </p>
         </div>
 
         <div className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-3">
@@ -60,9 +52,6 @@ export function DiscoverAreas() {
                 aria-labelledby={`${area.anchor}-heading`}
                 className="flex flex-col rounded-2xl border border-border/80 bg-surface p-6 shadow-soft transition-shadow hover:shadow-card sm:p-7 scroll-mt-24"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </div>
 
                 <h3
                   id={`${area.anchor}-heading`}
@@ -70,7 +59,7 @@ export function DiscoverAreas() {
                 >
                   {area.name}
                 </h3>
-                <p className="mt-1 text-sm font-semibold text-primary">{area.tagline}</p>
+
                 <p className="mt-3 text-sm leading-relaxed text-foreground-secondary">
                   {area.description}
                 </p>
@@ -91,11 +80,6 @@ export function DiscoverAreas() {
           })}
         </div>
 
-        <p className="mt-8 max-w-3xl rounded-2xl border border-border/80 bg-surface px-5 py-4 text-sm leading-relaxed text-foreground-secondary">
-          <span className="font-semibold text-foreground">One thing to know:</span> Meelte
-          does not sell goods, run events or take payments. You buy directly from the shop,
-          and any event cost is settled with the host.
-        </p>
       </Container>
     </section>
   );

@@ -10,14 +10,14 @@ import { Button } from "@/components/ui/button";
 /**
  * /signup hero.
  *
- * Two columns: what Meelte is and the two live store actions on the left, and an
+ * Two columns: what meelTe is and the two live store actions on the left, and an
  * honest availability card on the right. The card exists because the most common
  * misunderstanding about this route is that it is a web sign-up — it is not.
- * Meelte creates the account inside the mobile app, so the page states where
+ * meelTe creates the account inside the mobile app, so the page states where
  * joining is possible today and where it is not.
  *
  * Copy rules applied (docs/target_customer.md §1 "Product availability",
- * meelte-context.md §3 "Claim guardrails"):
+ * meelTe-context.md §3 "Claim guardrails"):
  * - both listings are live (Google Play and the App Store); the web app is in
  *   development, and the site never promotes one platform without the other,
  * - the 13+ age floor is the product's real policy (T&C §14),
@@ -63,10 +63,6 @@ export function SignupHero() {
         <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
           {/* Left — what the app is and the primary action */}
           <div className="lg:col-span-7">
-            <Badge variant="primary" className="mb-4 gap-1.5">
-              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Join Meelte</span>
-            </Badge>
 
             <h1
               id="signup-hero-heading"
@@ -76,7 +72,7 @@ export function SignupHero() {
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
-              Meelte is a nearby-first app: offers from local shops, events you can join,
+              meelTe is a nearby-first app: offers from local shops, events you can join,
               and one-to-one chat with the people you meet. Signing up happens inside
               the app on Android or iPhone. There is no account to create on this website.
             </p>
@@ -107,21 +103,7 @@ export function SignupHero() {
                 <Apple className="h-5 w-5 fill-current" aria-hidden="true" />
                 <span>Download for iPhone</span>
               </Button>
-
-              <Button
-                as={Link}
-                href="/discover"
-                variant="outline"
-                size="lg"
-                className="justify-center font-medium"
-              >
-                <span>See what is in the app</span>
-              </Button>
             </div>
-
-            <p className="mt-5 text-sm leading-relaxed text-foreground-secondary">
-              Free to browse nearby listings. Your location is never sold or shared.
-            </p>
           </div>
 
           {/* Right — availability, stated plainly */}
@@ -181,7 +163,7 @@ export function SignupHero() {
               </ul>
 
               <p className="mt-6 border-t border-border/70 pt-4 text-sm leading-relaxed text-foreground-secondary">
-                Meelte creates your account inside the app, and it is for ages 13
+                meelTe creates your account inside the app, and it is for ages 13
                 and over.
               </p>
             </div>

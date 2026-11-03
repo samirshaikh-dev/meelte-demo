@@ -31,10 +31,6 @@ export function SignupAreas() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3 gap-1.5">
-            <Tag className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>What you get</span>
-          </Badge>
 
           <h2
             id="signup-areas-heading"
@@ -83,16 +79,6 @@ export function SignupAreas() {
                     </li>
                   ))}
                 </ul>
-
-                <div className="mt-auto pt-5">
-                  <Link
-                    href={`/discover#${area.anchor}`}
-                    className="inline-flex items-center gap-1 rounded text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
-                  >
-                    <span>More on Discover</span>
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                  </Link>
-                </div>
               </li>
             );
           })}
@@ -100,7 +86,7 @@ export function SignupAreas() {
 
         <p className="mt-8 max-w-3xl rounded-2xl border border-border/80 bg-surface px-5 py-4 text-sm leading-relaxed text-foreground-secondary shadow-soft">
           <span className="font-semibold text-foreground">One thing to know:</span>{" "}
-          Meelte does not sell goods, run events or take payments. You buy directly
+          meelTe does not sell goods, run events or take payments. You buy directly
           from the shop, and any event cost is settled with the host.
         </p>
       </Container>

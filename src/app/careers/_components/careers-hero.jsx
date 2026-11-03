@@ -33,12 +33,12 @@ export function CareersHero() {
         <h1 className="text-3xl font-black leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
           Work at{" "}
           <span className="text-primary">
-            Meelte
+            meelTe
           </span>
         </h1>
 
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
-          Help us build Meelte to connect neighborhoods across India.
+          Help us build meelTe to connect neighborhoods across India.
         </p>
 
         <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">

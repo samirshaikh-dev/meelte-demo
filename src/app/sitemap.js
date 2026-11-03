@@ -11,7 +11,7 @@ const STABLE_RELEASE_DATE = "2026-08-01T00:00:00.000Z";
  * implemented — which sent crawlers to 404s (project-context.md §13 known issues).
  */
 export default function sitemap() {
-  const siteUrl = APP_URL || "https://meelte.com";
+  const siteUrl = APP_URL || "https://meelTe.com";
 
   const routes = [
     { path: "", changeFrequency: "weekly", priority: 1.0 },

@@ -11,7 +11,7 @@ import { ABOUT_STORY } from "./about-content";
  * story is a narrative in sequence, so an ordered list is the honest structure, and
  * it stops the section repeating the "centred heading + grid of identical cards"
  * rhythm the rest of the page already had five times over
- * (meelte-context.md §4).
+ * (meelTe-context.md §4).
  *
  * The closing act keeps the tinted panel it had before, as the narrative's landing
  * point. The ordinal markers are decorative and `aria-hidden`, because an ordered
@@ -33,10 +33,6 @@ export function AboutStory() {
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-4">
-            <Badge variant="neutral" className="mb-3 gap-1.5">
-              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>{ABOUT_STORY.badge}</span>
-            </Badge>
             <h2
               id="about-story-heading"
               className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
@@ -63,15 +59,6 @@ export function AboutStory() {
                   }
                 >
                   <div className="flex flex-wrap items-center gap-3">
-                    <span
-                      className={
-                        isLast
-                          ? "flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-white"
-                          : "flex h-10 w-10 items-center justify-center rounded-2xl bg-surface-muted text-primary"
-                      }
-                    >
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
                     <span
                       aria-hidden="true"
                       className="text-sm font-black tabular-nums text-primary/60"

@@ -15,15 +15,15 @@ const SUPPORT_BREADCRUMBS = [
 ];
 
 export const metadata = buildPageMetadata({
-  title: "Support — Meelte",
+  title: "Support — meelTe",
   description:
     "Get in touch with our customer-friendly support team. We're here from 9AM–6PM IST, Monday–Friday.",
   path: "/support",
   keywords: [
-    "Meelte support",
-    "Meelte help",
-    "Meelte customer service",
-    "contact Meelte support",
+    "meelTe support",
+    "meelTe help",
+    "meelTe customer service",
+    "contact meelTe support",
   ],
 });
 
@@ -68,7 +68,7 @@ export default function SupportPage() {
 
             {/* Heading */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
-              Get in touch with Meelte support
+              Get in touch with meelTe support
             </h1>
 
             {/* Support details card */}

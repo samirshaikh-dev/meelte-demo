@@ -45,18 +45,13 @@ export function AboutCapabilities() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3">
-            <span>{ABOUT_CAPABILITIES.badge}</span>
-          </Badge>
           <h2
             id="about-capabilities-heading"
             className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
             {ABOUT_CAPABILITIES.title}
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            {ABOUT_CAPABILITIES.intro}
-          </p>
+        
         </div>
 
         <ul
@@ -70,12 +65,12 @@ export function AboutCapabilities() {
               <li key={item.title}>
                 <Card className="flex h-full flex-col p-6 sm:p-7">
                   <div className="flex items-center justify-between gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
+                    {/* <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <span className="whitespace-nowrap rounded-full border border-primary/15 bg-surface-muted px-2.5 py-1 text-xs font-bold text-primary">
                       {item.chip}
-                    </span>
+                    </span> */}
                   </div>
                   <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
                     {item.title}
@@ -88,32 +83,6 @@ export function AboutCapabilities() {
             );
           })}
 
-          {/* Summary cell — the sixth slot in the 3×2 bento. */}
-          <li>
-            <div className="flex h-full flex-col justify-between rounded-2xl bg-gradient-to-br from-primary to-primary-hover p-6 text-white shadow-soft sm:p-7">
-              <div>
-                <h3 className="mt-2 text-lg font-bold tracking-tight text-white">
-                  {ABOUT_CAPABILITIES.summary.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/95">
-                  {ABOUT_CAPABILITIES.summary.body}
-                </p>
-              </div>
-
-              <div className="mt-6 border-t border-white/20 pt-4">
-                <Link
-                  href={ABOUT_CAPABILITIES.summary.href}
-                  className="group inline-flex items-center gap-1.5 rounded text-xs font-bold text-white underline decoration-white/60 underline-offset-4 transition-colors hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-                >
-                  <span>{ABOUT_DISCOVER_LABEL}</span>
-                  <ArrowRight
-                    className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </Link>
-              </div>
-            </div>
-          </li>
         </ul>
       </Container>
     </section>

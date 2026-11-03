@@ -1,5 +1,5 @@
 /**
- * App-wide constants for Meelte
+ * App-wide constants for meelTe
  * Synchronized with src/config/site.js as the canonical source of truth.
  */
 import {

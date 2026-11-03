@@ -1,4 +1,4 @@
-// Newsletter subscription client for the dedicated external Meelte backend.
+// Newsletter subscription client for the dedicated external meelTe backend.
 // Architecture rule (AI_RULE.md §2.1): no local `app/api/**` routes. This site talks to the
 // external backend only, so every request is issued from the browser against API_BASE_URL.
 
@@ -33,7 +33,7 @@ export async function submitNewsletterSubscription(email) {
   if (!NEWSLETTER_ENDPOINT) {
     throw createNewsletterError(
       NEWSLETTER_ERROR.NOT_CONFIGURED,
-      "NEXT_PUBLIC_MEELTE_API_BASE_URL is not configured."
+      "NEXT_PUBLIC_meelTe_API_BASE_URL is not configured."
     );
   }
 

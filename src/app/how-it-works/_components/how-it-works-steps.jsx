@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 export const RESIDENT_STEPS = [
   {
     title: "Install the app and sign in",
-    body: "Download Meelte from Google Play or the App Store, then sign in with a phone number, an email and password, Google or Apple.",
+    body: "Download meelTe from Google Play or the App Store, then sign in with a phone number, an email and password, Google or Apple.",
   },
   {
     title: "Allow location",
@@ -39,10 +39,6 @@ export function HowItWorksSteps() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3 gap-1.5">
-            <Route className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-            <span>The resident path</span>
-          </Badge>
           <h2
             id="how-it-works-steps-heading"
             className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem]"
@@ -79,22 +75,6 @@ export function HowItWorksSteps() {
           ))}
         </ol>
 
-        <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-border/80 bg-surface-subtle p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <p className="max-w-2xl text-sm leading-relaxed text-foreground-secondary">
-            <span className="font-semibold text-foreground">
-              Who handles the money:
-            </span>{" "}
-            you settle directly with the shop or the host. Meelte does not take
-            payments or sell tickets.
-          </p>
-          <Link
-            href="/faq"
-            className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded text-sm font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-          >
-            <span>Payment and safety questions</span>
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-          </Link>
-        </div>
       </Container>
     </section>
   );

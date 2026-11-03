@@ -23,7 +23,7 @@ import {
  *
  * Visual rebuild only — every content block from the previous version is still
  * here, in the same order: hero → our story → our mission → our vision → what we
- * do → why choose Meelte. What changed is the arrangement, the type scale, the token
+ * do → why choose meelTe. What changed is the arrangement, the type scale, the token
  * usage and the section rhythm:
  *
  * - One hero. `_components/about-hero.jsx` used to be an orphaned client-side
@@ -32,15 +32,15 @@ import {
  * - Five centred "heading + grid of identical cards" sections became five different
  *   shapes: an asymmetric split, a three-act ruled list, two full-width rows, four
  *   bordered cells with a `<blockquote>`, and a 3×2 bento with the summary in the
- *   sixth cell. meelte-context.md §4 asks for exactly that.
+ *   sixth cell. meelTe-context.md §4 asks for exactly that.
  * - The `<h1>` gradient ends in `primary-royal` instead of `accent`; amber
  *   `#F59E0B` as text measures 2.15:1 on this canvas (docs/Design.md §9.8).
  * - Sections carry `id`s matching `ABOUT_ON_THIS_PAGE`, so every section is
  *   deep-linkable and the hero can offer wayfinding.
  *
- * Title note: `buildPageMetadata` runs the title through the root `%s | Meelte`
- * template in src/lib/seo/metadata.js. The previous "About Meelte — Why We Built
- * Meelte" rendered as "About Meelte — Why We Built Meelte | Meelte": the brand three
+ * Title note: `buildPageMetadata` runs the title through the root `%s | meelTe`
+ * template in src/lib/seo/metadata.js. The previous "About meelTe — Why We Built
+ * meelTe" rendered as "About meelTe — Why We Built meelTe | meelTe": the brand three
  * times, saying the same thing twice. The title below survives the template and
  * spends its words on what the page is actually about. Changing the template itself
  * is a site-wide decision and out of scope here.
@@ -49,15 +49,15 @@ import {
  * string as the meta description, so schema and page cannot diverge.
  */
 export const metadata = buildPageMetadata({
-  title: "About Meelte — Why We Built a Hyperlocal App",
+  title: "About meelTe — Why We Built a Hyperlocal App",
   description: ABOUT_DESCRIPTION,
   path: "/about",
   keywords: [
-    "About Meelte",
-    "Meelte story",
+    "About meelTe",
+    "meelTe story",
     "hyperlocal community app India",
     "local community platform",
-    "why choose Meelte",
+    "why choose meelTe",
   ],
 });
 

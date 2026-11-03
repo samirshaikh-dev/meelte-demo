@@ -84,7 +84,7 @@ export function Footer() {
                 letterSpacing: "-0.04em",
               }}
             >
-              Meelte
+              meelTe
             </span>
           </div>
         </div>
@@ -133,7 +133,7 @@ export function Footer() {
               href={SOCIAL_LINKS.INSTAGRAM}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Meelte on Instagram"
+              aria-label="meelTe on Instagram"
               className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               <InstagramIcon className="h-4 w-4" />
@@ -144,7 +144,7 @@ export function Footer() {
               href={SOCIAL_LINKS.FACEBOOK}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Meelte on Facebook"
+              aria-label="meelTe on Facebook"
               className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               <FacebookIcon className="h-4 w-4" />
@@ -155,7 +155,7 @@ export function Footer() {
               href={SOCIAL_LINKS.TWITTER}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Meelte on Twitter"
+              aria-label="meelTe on Twitter"
               className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               <XIcon className="h-4 w-4" />
@@ -166,7 +166,7 @@ export function Footer() {
               href={SOCIAL_LINKS.LINKEDIN}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Meelte on LinkedIn"
+              aria-label="meelTe on LinkedIn"
               className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               <LinkedInIcon className="h-4 w-4" />
@@ -177,7 +177,7 @@ export function Footer() {
               href={SOCIAL_LINKS.YOUTUBE}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Meelte on YouTube"
+              aria-label="meelTe on YouTube"
               className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border bg-surface text-foreground-secondary hover:text-foreground hover:border-foreground/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
             >
               <YouTubeIcon className="h-4 w-4" />
@@ -187,9 +187,7 @@ export function Footer() {
 
         <div className="pt-4 pb-8 sm:pb-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-foreground-secondary border-t border-border/60">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span>&copy; {CURRENT_YEAR} Meelte Private Limited. All rights reserved.</span>
-            <span className="text-foreground-muted">•</span>
-            <span>Made for India</span>
+            <span>&copy; {CURRENT_YEAR} meelTe Private Limited. All rights reserved.</span>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4">

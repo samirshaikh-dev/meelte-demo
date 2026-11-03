@@ -8,19 +8,6 @@ import {
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 
-/**
- * "What we value" for /careers — the same four values as before, restyled.
- *
- * Layout change only: the four values used to be four identical icon cards in a
- * row, which is the pattern meelte-context.md §4 warns against ("prefer few
- * purposeful sections over a stack of generic feature cards"). They are now a ruled
- * editorial list — numerals, icon, heading, body — beside the section intro, so the
- * section reads as writing rather than as a tile grid, and the page keeps a
- * different shape from the benefits grid below it.
- *
- * The ordinals are decorative and `aria-hidden`; an ordered list already announces
- * its own ordering to a screen reader.
- */
 const VALUES = [
   {
     title: "Community-first",
@@ -43,7 +30,7 @@ const VALUES = [
   {
     title: "Empathy",
     description:
-      "We listen first, stay humble, and design with care for the people who use Meelte every day.",
+      "We listen first, stay humble, and design with care for the people who use meelTe every day.",
     icon: CheckCircle2,
   },
 ];
@@ -64,9 +51,6 @@ export function CareersValues() {
             >
               What we value
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
-              We keep things simple and focus on what matters.
-            </p>
           </div>
 
           <ol
@@ -74,19 +58,12 @@ export function CareersValues() {
             className="divide-y divide-border/70 border-t border-border/70 lg:col-span-8"
           >
             {VALUES.map((value, index) => {
-              const Icon = value.icon;
               return (
                 <li
                   key={value.title}
                   className="grid gap-3 py-6 sm:grid-cols-[3rem_1fr] sm:gap-x-6 sm:py-7"
                 >
                   <div className="flex items-center gap-3 sm:block">
-                    <span
-                      aria-hidden="true"
-                      className="flex h-10 w-10 items-center justify-center rounded-2xl bg-surface-muted text-primary"
-                    >
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
                     <span
                       aria-hidden="true"
                       className="text-sm font-black tabular-nums text-primary/60 sm:hidden"

@@ -35,7 +35,7 @@ import {
  * - The support channels moved from the bottom of the aside into the hero, where
  *   the visitor's first choice — form or direct contact — is on one screen.
  * - The aside sticks beside the form at `lg` instead of trailing off into space.
- * - `title` no longer renders the brand twice ("Get in Touch — Meelte | Meelte"),
+ * - `title` no longer renders the brand twice ("Get in Touch — meelTe | meelTe"),
  *   and the description is one string shared by the meta tag and the JSON-LD.
  *   The previous description claimed a "presence in Bengaluru, Gaya & Ranchi"
  *   that this page never showed, so it now states what the page actually says.
@@ -43,16 +43,16 @@ import {
  * Schema: ContactPage + BreadcrumbList, merged into one graph.
  */
 export const metadata = buildPageMetadata({
-  title: "Contact Meelte — Support, Merchants & Partnerships",
+  title: "Contact meelTe — Support, Merchants & Partnerships",
   description: CONTACT_DESCRIPTION,
   path: "/contact",
   keywords: [
-    "Contact Meelte",
-    "Meelte support",
-    "Meelte phone number",
+    "Contact meelTe",
+    "meelTe support",
+    "meelTe phone number",
     "merchant onboarding",
-    "Meelte registered office",
-    "Meelte Bodh Gaya",
+    "meelTe registered office",
+    "meelTe Bodh Gaya",
   ],
 });
 

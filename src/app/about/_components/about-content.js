@@ -7,7 +7,7 @@
  * acts, mission notes and vision points stay editable without touching layout code.
  *
  * Two things deliberately live outside this file: the metadata (page.jsx, because it
- * feeds buildPageMetadata) and the closing "Why Choose Meelte" lead sentence, whose
+ * feeds buildPageMetadata) and the closing "Why Choose meelTe" lead sentence, whose
  * three emphasised words are inline markup rather than a string.
  */
 
@@ -29,7 +29,7 @@ export const ABOUT_BREADCRUMBS = [
  * docs/target_customer.md and the page copy itself.
  */
 export const ABOUT_DESCRIPTION =
-  "Meelte is a hyperlocal community app for India: nearby shop offers, local events you can join, and the people you follow. Live on Google Play and the App Store.";
+  "meelTe is a hyperlocal community app for India: nearby shop offers, local events you can join, and the people you follow. Live on Google Play and the App Store.";
 
 /**
  * In-page anchors. The `id` values must stay in step with the sections rendered by
@@ -40,13 +40,13 @@ export const ABOUT_ON_THIS_PAGE = [
   { id: "mission", label: "Mission" },
   { id: "vision", label: "Vision" },
   { id: "what-we-do", label: "What we do" },
-  { id: "why-meelte", label: "Why Meelte" },
+  { id: "why-meelTe", label: "Why meelTe" },
 ];
 
 export const ABOUT_HERO = {
   badge: "Our Purpose & Origin",
   titleLead: "About",
-  titleAccent: "Meelte",
+  titleAccent: "meelTe",
   lead: "Why we built a platform to help people find what matters, before it slips away.",
   goalLabel: "Our core goal",
   goal: "Help people connect with the right opportunities and the right people at the right time.",
@@ -73,9 +73,8 @@ export const ABOUT_DISCOVER_LABEL = "Explore what's nearby";
  * on the third identical card.
  */
 export const ABOUT_STORY = {
-  badge: "The Spark",
   title: "Our Story",
-  intro: "Meelte was born from a simple everyday experience.",
+  intro: "meelTe was born from a simple everyday experience.",
   acts: [
     {
       marker: "01",
@@ -97,9 +96,9 @@ export const ABOUT_STORY = {
     {
       marker: "03",
       icon: "Sparkles",
-      title: "The Inspiration Behind Meelte",
+      title: "The Inspiration Behind meelTe",
       paragraphs: [
-        "These experiences inspired the creation of Meelte — a platform designed to help people discover opportunities, local products, meaningful events, and communities without missing what matters most to them.",
+        "These experiences inspired the creation of meelTe — a platform designed to help people discover opportunities, local products, meaningful events, and communities without missing what matters most to them.",
       ],
       conclusion:
         "Our goal is simple: help people connect with the right opportunities and the right people at the right time.",
@@ -109,10 +108,9 @@ export const ABOUT_STORY = {
 };
 
 export const ABOUT_MISSION = {
-  badge: "Value in Local Communities",
   title: "Our Mission",
   intro:
-    "At Meelte, our mission is to help people discover value in their local communities.",
+    "At meelTe, our mission is to help people discover value in their local communities.",
   items: [
     {
       icon: "Store",
@@ -123,14 +121,13 @@ export const ABOUT_MISSION = {
     {
       icon: "HeartHandshake",
       title: "Meaningful Human Connections",
-      body: "At the same time, we believe meaningful human connections are more important than ever. Through community-driven events and social experiences, Meelte provides a platform where people with shared interests, hobbies, cultures, and goals can come together, build relationships, and create lasting memories.",
+      body: "At the same time, we believe meaningful human connections are more important than ever. Through community-driven events and social experiences, meelTe provides a platform where people with shared interests, hobbies, cultures, and goals can come together, build relationships, and create lasting memories.",
       note: "Shared cultures & hobbies · real-world memories",
     },
   ],
 };
 
 export const ABOUT_VISION = {
-  badge: "Looking Ahead",
   title: "Our Vision",
   intro:
     "We envision a world where discovering opportunities and building connections is effortless.",
@@ -170,7 +167,7 @@ export const ABOUT_CAPABILITIES = {
   badge: "Platform Experience",
   title: "What We Do",
   intro:
-    "Meelte is a platform that brings together people, communities, events, and local opportunities in one place.",
+    "meelTe is a platform that brings together people, communities, events, and local opportunities in one place.",
   items: [
     {
       icon: "Compass",
@@ -203,18 +200,11 @@ export const ABOUT_CAPABILITIES = {
       chip: "Meaningful",
     },
   ],
-  summary: {
-    label: "All In One Place",
-    title: "Discover What Matters Most",
-    body: "Whether you are looking for the best local deal or seeking people with shared interests, Meelte helps you discover what matters most to you.",
-    linkLabel: "Browse Discovery Directory",
-    href: "/discover",
-  },
 };
 
 export const ABOUT_WHY = {
-  badge: "The Meelte Difference",
-  title: "Why Choose Meelte",
+  badge: "The meelTe Difference",
+  title: "Why Choose meelTe",
   /**
    * The opening sentence carries three emphasised words. They are stored separately
    * because each one is rendered as its own inline element — the emphasis has to
@@ -222,7 +212,7 @@ export const ABOUT_WHY = {
    */
   difference: {
     before:
-      "Unlike traditional platforms that often overwhelm users with irrelevant content, Meelte focuses on ",
+      "Unlike traditional platforms that often overwhelm users with irrelevant content, meelTe focuses on ",
     emphasis: ["relevance", "community", "meaningful discovery"],
     after: ".",
   },

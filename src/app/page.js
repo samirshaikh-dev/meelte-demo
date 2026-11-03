@@ -3,7 +3,10 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import {
   HeroSection,
+  HyperlocalDifferenceSection,
+  HomeJourneySection,
   ProductExperienceSection,
+  TrustBoundariesSection,
   FinalConversionCTA,
 } from "@/components/sections/home";
 import { FaqSection } from "@/components/sections/common";
@@ -45,16 +48,25 @@ export default function HomePage() {
 
       {/* Main Content Landmark */}
       <main id="main-content" className="flex-1">
-        {/* ── SECTION 2: High-Impact Hero with Interactive Community Pulse ── */}
+        {/* ── SECTION 2: Text-First, Buyer-Centred Hero with Dual Store CTAs ── */}
         <HeroSection />
 
-        {/* ── SECTION 3: Resident-focused product walkthrough ── */}
+        {/* ── SECTION 3: The Hyperlocal Difference (Why meelTe vs chaotic feeds) ── */}
+        <HyperlocalDifferenceSection />
+
+        {/* ── SECTION 4: Predictable 3-Step Journey for Residents & Merchants ── */}
+        <HomeJourneySection />
+
+        {/* ── SECTION 5: In-App Capabilities Tour ── */}
         <ProductExperienceSection />
 
-        {/* ── SECTION 4: Resident-focused FAQ teaser ── */}
+        {/* ── SECTION 6: Honest Boundaries & Operational Limits (Psychology §4 & §6) ── */}
+        <TrustBoundariesSection />
+
+        {/* ── SECTION 7: Resident-Focused FAQ Teaser ── */}
         <FaqSection items={HOMEPAGE_FAQS} viewAllHref="/faq" />
 
-        {/* ── SECTION 5: Resident and merchant next steps ── */}
+        {/* ── SECTION 8: Dual-Audience Conversion Closer ── */}
         <FinalConversionCTA />
       </main>
 

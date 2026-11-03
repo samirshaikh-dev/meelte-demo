@@ -40,9 +40,9 @@ const trustPills = [
   },
   {
     id: 3,
-    label: "Real Local Hubs",
+    label: "Local Field Support",
     icon: MapPin,
-    ariaLabel: "Bengaluru, Gaya and Ranchi",
+    ariaLabel: "In-person onboarding support for local shops",
   },
 ];
 

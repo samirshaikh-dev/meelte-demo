@@ -1,12 +1,15 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import {
   Apple,
+  ArrowRight,
+  CalendarDays,
+  Compass,
   MapPin,
-  MessageCircle,
   Play,
+  ShieldCheck,
+  Store,
   Tag,
 } from "@/lib/icons";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
@@ -15,30 +18,29 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 /**
- * Hero content.
- *
- * The hero is text-first and conversion-focused per AVOID.md and docs/target_customer.md.
- * It provides clear dual-store download actions and an honest merchant link without
- * artificial decorative sparkles, floating blobs, or nested card mocks.
+ * Trust signals reflecting verified product facts:
+ * - Proximity and distance-sorted feeds
+ * - Start and end dates + ₹ prices/discounts
+ * - In-person field onboarding for local merchants
  */
 const trustPills = [
   {
-    id: 1,
-    label: "Hyperlocal",
+    id: "hyperlocal",
+    label: "Indian Neighbourhoods",
     icon: MapPin,
-    ariaLabel: "Nearby listings sorted by distance, with a 60 km default",
+    ariaLabel: "Hyperlocal discovery for Indian neighbourhoods",
   },
   {
-    id: 2,
-    label: "Shop Offers",
-    icon: Tag,
-    ariaLabel: "Time-boxed offers set by nearby shops",
+    id: "distance",
+    label: "Distance-Sorted Feeds",
+    icon: Compass,
+    ariaLabel: "Nearby listings sorted by distance",
   },
   {
-    id: 3,
-    label: "Direct Chat",
-    icon: MessageCircle,
-    ariaLabel: "Chat one to one with people and shops you follow",
+    id: "direct",
+    label: "Direct offline settlement",
+    icon: ShieldCheck,
+    ariaLabel: "Payments and event fees settle directly between user and merchant or host",
   },
 ];
 
@@ -47,14 +49,14 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
+      staggerChildren: 0.08,
+      delayChildren: 0.04,
     },
   },
 };
 
 const fadeUpVariants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 14 },
   visible: {
     opacity: 1,
     y: 0,
@@ -67,10 +69,10 @@ const fadeUpVariants = {
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-24 border-b border-border/80 bg-canvas">
-      {/* Subtle brand wash */}
+    <section className="relative overflow-hidden border-b border-border/80 bg-canvas pt-12 pb-16 sm:pt-16 sm:pb-22 lg:pt-22 lg:pb-26">
+      {/* Subtle brand wash strictly using design tokens, zero neon glowing orbs */}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-canvas to-canvas"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-canvas to-canvas"
         aria-hidden="true"
       />
 
@@ -82,59 +84,38 @@ export function HeroSection() {
             animate="visible"
             className="flex flex-col items-center text-center"
           >
-            <motion.div variants={fadeUpVariants} className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 rounded-full bg-surface px-3 py-1 shadow-soft ring-1 ring-border/80">
-                {trustPills.map((pill) => {
-                  const Icon = pill.icon;
-                  return (
-                    <span
-                      key={pill.id}
-                      className="flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-semibold text-primary"
-                      aria-label={pill.ariaLabel}
-                      title={pill.ariaLabel}
-                    >
-                      <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                      <span className="hidden sm:inline">{pill.label}</span>
-                    </span>
-                  );
-                })}
+            {/* Context Badge */}
+            <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center justify-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface px-3.5 py-1.5 shadow-soft">
+                <span className="flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+                <span className="text-xs font-semibold text-foreground">
+                  Hyperlocal community app for India
+                </span>
+                <span className="text-border" aria-hidden="true">·</span>
+                <span className="text-xs font-medium text-foreground-secondary">
+                  Real Reach • Real Rapport
+                </span>
               </div>
             </motion.div>
 
+            {/* Buyer-Centered Heading (Psychology §1, §7) */}
             <motion.h1
               variants={fadeUpVariants}
-              className="mt-6 text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl lg:leading-[1.08]"
+              className="mt-6 text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl lg:leading-[1.1]"
             >
-              <span className="text-foreground">Discover what’s happening </span>
-              <span className="relative inline-block text-primary">
-                near you.
-                <svg
-                  className="absolute -bottom-2 left-0 w-full hidden sm:block"
-                  viewBox="0 0 320 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M 4 8 C 40 4, 120 2, 200 6 C 250 8, 300 6, 316 4"
-                    stroke="#6D3BB3"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                    opacity="0.85"
-                  />
-                </svg>
-              </span>
+              Find what’s happening near you,{" "}
+              <span className="text-primary">right now.</span>
             </motion.h1>
 
+            {/* Clear, honest value proposition without generic startup hype */}
             <motion.p
               variants={fadeUpVariants}
-              className="mt-5 max-w-xl text-base sm:text-lg text-foreground-secondary leading-relaxed"
+              className="mt-5 max-w-2xl text-base leading-relaxed text-foreground-secondary sm:text-lg"
             >
-              Meelte is the hyperlocal app for Indian neighbourhoods. See time-boxed shop
-              offers, request to join local events, and talk to people you meet. Results are
-              sorted by distance, not by a global feed.
+              Dated shop offers with rupee pricing, joinable community events, and direct neighbourhood conversations. Sorted by distance — never buried in an algorithmic social feed.
             </motion.p>
 
+            {/* Dual Store Conversion Actions (AVOID.md §6: standardized buttons) */}
             <motion.div
               variants={fadeUpVariants}
               className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
@@ -166,18 +147,6 @@ export function HeroSection() {
               </Button>
             </motion.div>
 
-            <motion.p
-              variants={fadeUpVariants}
-              className="mt-6 text-sm text-foreground-secondary"
-            >
-              Own a local business?{" "}
-              <Link
-                href="/for-merchants"
-                className="font-semibold text-primary underline underline-offset-4 hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded"
-              >
-                Explore merchant onboarding
-              </Link>
-            </motion.p>
           </motion.div>
         </div>
       </Container>

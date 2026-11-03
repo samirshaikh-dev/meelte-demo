@@ -1,5 +1,5 @@
 /**
- * Meelte — Site Configuration & Brand Single Source of Truth
+ * meelTe — Site Configuration & Brand Single Source of Truth
  * Guided by AI_RULE.md, project-context.md, and docs/Design.md
  */
 
@@ -11,30 +11,30 @@ import {
   PILLARS,
 } from "../constants/app-constants";
 
-export const APP_NAME = "Meelte";
-export const SITE_NAME = "Meelte";
+export const APP_NAME = "meelTe";
+export const SITE_NAME = "meelTe";
 export const APP_TAGLINE = "Discover Opportunities. Build Connections. Create Experiences.";
-export const APP_DESCRIPTION = "Meelte is a hyperlocal community platform connecting residents with nearby offers, events and people across India.";
+export const APP_DESCRIPTION = "meelTe is a hyperlocal community platform connecting residents with nearby offers, events and people across India.";
 export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL;
-export const API_BASE_URL = process.env.NEXT_PUBLIC_MEELTE_API_BASE_URL;
-export const SUPPORT_EMAIL = "support@meelte.com";
-export const HR_EMAIL = "hr@meelte.com";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_meelTe_API_BASE_URL;
+export const SUPPORT_EMAIL = "support@meelTe.com";
+export const HR_EMAIL = "hr@meelTe.com";
 export const CONTACT_PHONE = "+91-8884524444";
-export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.meelte.classico&pcampaignid=web_share";
+export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.meelTe.classico&pcampaignid=web_share";
 // Live App Store listing. Both store URLs are promoted together everywhere the app is
 // offered; change this one value and the navbar, mobile drawer, heroes and CTAs update.
-export const APP_STORE_URL = "https://apps.apple.com/ng/app/meelte/id6792304887";
-export const APPLE_LOGO_URL = "https://meelte.com/apple-touch-icon.png";
-export const TWITTER_HANDLE = "@meelteapp";
+export const APP_STORE_URL = "https://apps.apple.com/ng/app/meelTe/id6792304887";
+export const APPLE_LOGO_URL = "https://meelTe.com/apple-touch-icon.png";
+export const TWITTER_HANDLE = "@meelTeapp";
 export const BING_SITE_VERIFICATION = process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || "";
 export const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "";
 
 export const SOCIAL_LINKS = {
-  INSTAGRAM: "https://www.instagram.com/meelte.official",
+  INSTAGRAM: "https://www.instagram.com/meelTe.official",
   FACEBOOK: "https://www.facebook.com/meelTe",
-  TWITTER: "https://twitter.com/meelteapp",
-  LINKEDIN: "https://www.linkedin.com/company/meelte/",
-  YOUTUBE: "https://www.youtube.com/@meelte",
+  TWITTER: "https://twitter.com/meelTeapp",
+  LINKEDIN: "https://www.linkedin.com/company/meelTe/",
+  YOUTUBE: "https://www.youtube.com/@meelTe",
   WHATSAPP: "",
 };
 

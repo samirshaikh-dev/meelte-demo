@@ -15,20 +15,20 @@ import { SUPPORT_EMAIL } from "@/config/site";
 import faqData from "@/data/faq.json";
 
 export const metadata = buildPageMetadata({
-  title: "Meelte App FAQ: Downloads, Offers & Events",
+  title: "meelTe App FAQ: Downloads, Offers & Events",
   description:
-    "Answers about the Meelte app on Google Play and the App Store: nearby shop offers, local events, merchant listings, payments, privacy and availability.",
+    "Answers about the meelTe app on Google Play and the App Store: nearby shop offers, local events, merchant listings, payments, privacy and availability.",
   path: "/faq",
   keywords: [
-    "Meelte FAQ",
-    "Meelte app FAQs",
-    "Meelte app download",
-    "Meelte iPhone app",
+    "meelTe FAQ",
+    "meelTe app FAQs",
+    "meelTe app download",
+    "meelTe iPhone app",
     "hyperlocal community app India",
     "local offers app",
     "local events app India",
-    "Meelte merchant listings",
-    "Meelte privacy and payments",
+    "meelTe merchant listings",
+    "meelTe privacy and payments",
   ],
 });
 
@@ -96,7 +96,7 @@ export default function FaqPage() {
             <div className="flex flex-col items-start gap-7 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
                 <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                  Meelte,{" "}
+                  meelTe,{" "}
                   <span className="text-primary">explained clearly.</span>
                 </h1>
 
@@ -227,7 +227,7 @@ export default function FaqPage() {
               <div className="flex flex-wrap items-center gap-3">
                 <Button
                   as="a"
-                  href={`mailto:${SUPPORT_EMAIL}?subject=Meelte%20FAQ%20Inquiry`}
+                  href={`mailto:${SUPPORT_EMAIL}?subject=meelTe%20FAQ%20Inquiry`}
                   variant="primary"
                   size="md"
                   className="shadow-soft"

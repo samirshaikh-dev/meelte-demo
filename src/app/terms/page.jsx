@@ -13,16 +13,16 @@ const TERMS_BREADCRUMBS = [
 ];
 
 export const metadata = buildPageMetadata({
-  title: "Terms & Conditions — Meelte",
+  title: "Terms & Conditions — meelTe",
   description:
-    "The rules for using Meelte, for shoppers, event creators, and merchants. Read our official terms and conditions.",
+    "The rules for using meelTe, for shoppers, event creators, and merchants. Read our official terms and conditions.",
   path: "/terms",
   keywords: [
-    "Meelte Terms and Conditions",
-    "Meelte terms of service",
+    "meelTe Terms and Conditions",
+    "meelTe terms of service",
     "event creator terms",
-    "merchant terms Meelte",
-    "platform rules Meelte",
+    "merchant terms meelTe",
+    "platform rules meelTe",
   ],
 });
 
@@ -57,7 +57,7 @@ export default function TermsAndConditionsPage() {
               Terms & Conditions
             </h1>
             <p className="mt-3 text-lg sm:text-xl text-foreground-secondary leading-relaxed">
-              The rules for using Meelte, for shoppers, event creators, and merchants.
+              The rules for using meelTe, for shoppers, event creators, and merchants.
             </p>
             <div className="mt-3 text-sm text-foreground-muted font-medium">
               Effective Date: October 2026
@@ -68,7 +68,7 @@ export default function TermsAndConditionsPage() {
           <div className="pt-8 space-y-12 text-foreground-secondary text-base sm:text-lg leading-relaxed">
             {/* Preamble */}
             <p className="text-foreground text-lg sm:text-xl font-normal leading-relaxed">
-              Creating an account, logging in, accessing, or using Meelte, you acknowledge that you have read, understood, and agreed to these Terms & Conditions, our Privacy Policy, Community Guidelines, and all applicable laws.
+              Creating an account, logging in, accessing, or using meelTe, you acknowledge that you have read, understood, and agreed to these Terms & Conditions, our Privacy Policy, Community Guidelines, and all applicable laws.
             </p>
 
             {/* Section 1 */}
@@ -76,7 +76,7 @@ export default function TermsAndConditionsPage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
                 1. Eligibility
               </h2>
-              <p>You must be at least 13 years of age to create an account, access, or use Meelte.</p>
+              <p>You must be at least 13 years of age to create an account, access, or use meelTe.</p>
               <ul className="list-disc list-inside space-y-1.5 pl-1">
                 <li>You are at least 13 years old</li>
                 <li>You have the legal capacity to enter into a binding agreement</li>
@@ -90,10 +90,10 @@ export default function TermsAndConditionsPage() {
                 2. Nature of the Platform
               </h2>
               <p>
-                Meelte is a technology platform that enables users to discover events, create events, publish advertisements, connect with other users, and share content and experiences.
+                meelTe is a technology platform that enables users to discover events, create events, publish advertisements, connect with other users, and share content and experiences.
               </p>
               <p>
-                Meelte is not an event organiser, advertiser, broker, recruitment agency, seller of goods, promoter, contractor, or service provider.
+                meelTe is not an event organiser, advertiser, broker, recruitment agency, seller of goods, promoter, contractor, or service provider.
               </p>
             </section>
 
@@ -138,7 +138,7 @@ export default function TermsAndConditionsPage() {
                 <li>Ticketing and refunds</li>
               </ul>
               <p className="mt-2 text-foreground font-medium">
-                Meelte does not organise, supervise, endorse, or guarantee any event listed on the platform.
+                meelTe does not organise, supervise, endorse, or guarantee any event listed on the platform.
               </p>
             </section>
 
@@ -182,7 +182,7 @@ export default function TermsAndConditionsPage() {
                 8. Community Safety
               </h2>
               <p>
-                Users interact with others at their own discretion and risk. Meelte does not guarantee the identity, intentions, behaviour, or reliability of users.
+                Users interact with others at their own discretion and risk. meelTe does not guarantee the identity, intentions, behaviour, or reliability of users.
               </p>
             </section>
 
@@ -202,7 +202,7 @@ export default function TermsAndConditionsPage() {
                 10. Limitation of Liability
               </h2>
               <p>
-                To the maximum extent permitted by law, Meelte shall not be liable for user conduct, advertisements, events, transactions, product defects, service quality issues, personal injury, property damage, financial losses, or disputes between users.
+                To the maximum extent permitted by law, meelTe shall not be liable for user conduct, advertisements, events, transactions, product defects, service quality issues, personal injury, property damage, financial losses, or disputes between users.
               </p>
             </section>
 
@@ -212,7 +212,7 @@ export default function TermsAndConditionsPage() {
                 11. Changes to Terms
               </h2>
               <p>
-                Meelte may update these Terms & Conditions from time to time. Continued use of the platform constitutes acceptance of the updated terms.
+                meelTe may update these Terms & Conditions from time to time. Continued use of the platform constitutes acceptance of the updated terms.
               </p>
             </section>
 

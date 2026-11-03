@@ -40,21 +40,12 @@ export function AboutVision() {
     >
       <Container>
         <div className="max-w-3xl">
-          <Badge variant="neutral" className="mb-3">
-            <span>{ABOUT_VISION.badge}</span>
-          </Badge>
           <h2
             id="about-vision-heading"
             className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
             {ABOUT_VISION.title}
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            {ABOUT_VISION.intro}
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">
-            {ABOUT_VISION.subIntro}
-          </p>
         </div>
 
         <ol
@@ -62,14 +53,9 @@ export function AboutVision() {
           className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border/80 bg-border/70 sm:grid-cols-2 lg:grid-cols-4"
         >
           {ABOUT_VISION.points.map((point) => {
-            const Icon = VISION_ICONS[point.icon] || Store;
-
             return (
               <li key={point.marker} className="bg-surface-subtle p-6 sm:p-7">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-surface-muted text-primary">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
                   <span
                     aria-hidden="true"
                     className="text-sm font-black tabular-nums text-primary/60"
@@ -88,11 +74,6 @@ export function AboutVision() {
           })}
         </ol>
 
-        <figure className="mt-10 rounded-2xl border border-primary/15 bg-surface-muted px-6 py-7 sm:px-10">
-          <blockquote className="mx-auto max-w-2xl text-center text-base font-semibold leading-relaxed text-primary sm:text-lg">
-            <p>{ABOUT_VISION.quote}</p>
-          </blockquote>
-        </figure>
       </Container>
     </section>
   );

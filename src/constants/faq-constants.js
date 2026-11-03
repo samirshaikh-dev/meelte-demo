@@ -1,5 +1,5 @@
 /**
- * Meelte — Frequently Asked Questions (FAQ) Data
+ * meelTe — Frequently Asked Questions (FAQ) Data
  *
  * Single source of truth for every FAQ surface on the site:
  * - `src/data/faq.json` holds the content (imported by the dedicated `/faq` page,
@@ -11,7 +11,7 @@
  * Edit `src/data/faq.json` only — never duplicate the copy here, or the two
  * surfaces will drift apart.
  *
- * Copy rules for every entry (see `meelte-context.md` §3 "Claim guardrails"):
+ * Copy rules for every entry (see `meelTe-context.md` §3 "Claim guardrails"):
  * - Only describe capabilities that exist in the product (`docs/target_customer.md` §1).
  * - Never state a number, rating, customer count, or verification process that is not evidenced.
  * - The mobile app is live; the web app is "coming soon" — never imply otherwise.

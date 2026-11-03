@@ -4,7 +4,6 @@ import React from "react";
 import { Store } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { SUPPORT_EMAIL } from "@/config/site";
 import { Reveal } from "@/components/animations/reveal";
 
@@ -13,13 +12,13 @@ const ONBOARDING_STEPS = [
     number: "01",
     title: "Contact the merchant desk",
     description:
-      "Share your business name, category, phone number and city, or call the merchant desk directly.",
+      "Share your business name, category, phone number and locality, or reach out to our team directly.",
   },
   {
     number: "02",
     title: "A field team visit",
     description:
-      "Someone from the team meets you at the shop, sets up the profile and shows you how to publish an offer from the app.",
+      "Someone from our team meets you at the shop, sets up the profile and shows you how to publish an offer from the app.",
   },
   {
     number: "03",
@@ -34,16 +33,11 @@ export function BusinessAcquisitionSection() {
     <section id="for-businesses" className="py-16 sm:py-24 bg-surface-subtle scroll-mt-20 border-b border-border/80">
       <Container>
         <Reveal className="max-w-3xl mb-12 sm:mb-16">
-          <Badge variant="accent" className="mb-3 gap-1.5 py-1 px-3">
-            <Store className="h-3.5 w-3.5 text-accent-foreground" aria-hidden="true" />
-            <span className="font-bold">For local merchants</span>
-          </Badge>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight">
             From first conversation to your first offer.
           </h2>
           <p className="mt-4 text-base sm:text-lg text-foreground-secondary leading-relaxed">
-            Meelte&apos;s field team helps shops get set up in person in Bengaluru, Gaya and
-            Ranchi. Here&apos;s what getting started looks like.
+            meelTe&apos;s field team helps shops get set up in person. Here&apos;s what getting started looks like.
           </p>
         </Reveal>
 

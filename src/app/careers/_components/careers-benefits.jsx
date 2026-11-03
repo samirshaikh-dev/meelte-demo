@@ -11,18 +11,6 @@ import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 
-/**
- * "Perks & Benefits" for /careers — the same six benefits as before, restyled.
- *
- * Layout change only: a plain 3×2 grid of identical tiles becomes a 4-column bento
- * where the first two benefits run double width. That keeps the section from
- * repeating the rhythm of the values list above it and gives the two claims a
- * reader cares about most (flexible work, learning) room to be read rather than
- * scanned.
- *
- * Icon tiles use `bg-surface-muted text-primary`; there is no amber anywhere on the
- * page, because `#F59E0B` fails text contrast on this canvas (docs/Design.md §9.8).
- */
 const BENEFITS = [
   {
     title: "Flexible Work",
@@ -59,7 +47,7 @@ const BENEFITS = [
   {
     title: "Equity & Ownership",
     description:
-      "As an early team member, you'll have the opportunity to share in Meelte's growth.",
+      "As an early team member, you'll have the opportunity to share in meelTe's growth.",
     icon: Gift,
   },
 ];
@@ -73,20 +61,12 @@ export function CareersBenefits() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3 gap-1.5">
-            <Gift className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Perks &amp; Benefits</span>
-          </Badge>
           <h2
             id="careers-benefits-heading"
             className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
             Why you&apos;ll love working here
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
-            We take care of our team so we can focus on building for our
-            communities.
-          </p>
         </div>
 
         <ul

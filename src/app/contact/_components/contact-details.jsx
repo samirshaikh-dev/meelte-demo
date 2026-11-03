@@ -4,28 +4,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CONTACT_OFFICE, CONTACT_PRIVACY } from "./contact-content";
 
-/**
- * The /contact details column — registered office and the privacy note.
- *
- * This used to be the second half of `contact-client.jsx`, inside the `"use
- * client"` boundary. Nothing here is interactive beyond one link, so it is a
- * server component now and only the form hydrates.
- *
- * The support channels that used to sit above the office card (email, phone,
- * hours) moved into the hero, where they are visible without scrolling. That
- * leaves this column with the slow, reference-shaped information a visitor reads
- * after deciding to act, which is why it sticks beside the form at `lg` instead
- * of ending in dead space.
- *
- * Labelling: the aside takes its accessible name from the visible "Registered
- * office" heading rather than an `aria-label` that named information the page
- * never showed on screen. The Maps link previously carried
- * `aria-label="Open Meelte's registered office in Google Maps"`, which replaced the
- * visible text "View office in Maps" and failed WCAG 2.5.3 (Label in Name) — a
- * speech-input user saying what they can see would not match the control. The
- * visible label is now the accessible name, and the new-tab behaviour is announced
- * with visually hidden text instead.
- */
 export function ContactDetails() {
   return (
     <aside

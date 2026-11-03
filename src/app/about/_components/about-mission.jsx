@@ -31,34 +31,24 @@ export function AboutMission() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3">
-            <span>{ABOUT_MISSION.badge}</span>
-          </Badge>
           <h2
             id="about-mission-heading"
             className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
             {ABOUT_MISSION.title}
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-foreground-secondary sm:text-lg">
-            {ABOUT_MISSION.intro}
-          </p>
+         
         </div>
 
         <ul role="list" className="mt-10 border-t border-border/70 sm:mt-12">
           {ABOUT_MISSION.items.map((item) => {
-            const Icon = MISSION_ICONS[item.icon] || Store;
-
             return (
               <li
                 key={item.title}
                 className="border-b border-border/70 py-8 sm:py-10"
               >
                 <div className="grid gap-5 lg:grid-cols-12 lg:gap-x-12">
-                  <div className="lg:col-span-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </div>
+                  <div className="lg:col-span-4">    
                     <h3 className="mt-4 text-xl font-bold tracking-tight text-foreground">
                       {item.title}
                     </h3>

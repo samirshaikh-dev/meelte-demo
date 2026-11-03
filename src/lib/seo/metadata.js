@@ -1,6 +1,6 @@
 /**
- * Meelte — Global SEO Metadata & Viewport Configurations
- * Aligned with Next.js 16 App Router metadata standards, Meelte Brand Directives,
+ * meelTe — Global SEO Metadata & Viewport Configurations
+ * Aligned with Next.js 16 App Router metadata standards, meelTe Brand Directives,
  * and AEO/GEO best practices.
  */
 
@@ -62,15 +62,15 @@ export const metadata = {
   },
   description: APP_DESCRIPTION,
   keywords: [
-    "Meelte",
+    "meelTe",
     "hyperlocal community platform",
     "local community app",
     "discover local events",
     "local business promotion",
-    "local events Bengaluru",
-    "local businesses Bengaluru",
-    "local community Gaya",
-    "local events Ranchi",
+    "local events nearby",
+    "local businesses nearby",
+    "local community India",
+    "neighborhood events near me",
     "neighborhood community network",
     "connect with neighbors",
     "privacy-first community app",
@@ -154,7 +154,7 @@ export const metadata = {
  * @type {import('next').Viewport}
  */
 export const viewport = {
-  themeColor: BRAND_COLORS.primary, // #6D3BB3 (Meelte Primary Purple)
+  themeColor: BRAND_COLORS.primary, // #6D3BB3 (meelTe Primary Purple)
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -166,7 +166,7 @@ export const viewport = {
  * Reusable helper to build contextual, canonical page-level metadata.
  * 
  * @param {Object} options
- * @param {string} options.title - Page title (will be suffixed with " | Meelte" by Next.js template)
+ * @param {string} options.title - Page title (will be suffixed with " | meelTe" by Next.js template)
  * @param {string} [options.description] - Page meta description
  * @param {string} [options.path] - Route path (e.g. "/about", "/merchant")
  * @param {string[]} [options.keywords] - Additional contextual keywords

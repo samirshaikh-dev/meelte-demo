@@ -23,12 +23,12 @@ import { StoreButton } from "../footer/store-button";
 const PRODUCT_ITEMS = [
   { label: "How It Works", href: "/how-it-works", icon: Lightbulb, note: "Roles, app experience & platform flow" },
   { label: "Discover Nearby", href: "/discover", icon: Compass, note: "Find local shops, events & services" },
-  // { label: "Case Studies", href: "/case-studies", icon: FileText, note: "See how local shops grow with Meelte" },
+  // { label: "Case Studies", href: "/case-studies", icon: FileText, note: "See how local shops grow with meelTe" },
 ];
 
 const COMPANY_ITEMS = [
   { label: "About Us", href: "/about", icon: Users, note: "Our mission, pillars & story" },
-  { label: "Careers", href: "/careers", icon: Briefcase, note: "Join the Meelte team" },
+  { label: "Careers", href: "/careers", icon: Briefcase, note: "Join the meelTe team" },
   { label: "Contact Us", href: "/contact", icon: Mail, note: "Support, partnerships & queries" },
 ];
 
@@ -70,18 +70,18 @@ export function MobileNav() {
               href="/"
               onClick={() => setOpen(false)}
               className="flex items-center gap-2.5 group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
-              aria-label="Meelte Home"
+              aria-label="meelTe Home"
             >
               <Image
-                src="/icon_only_meelte.png"
-                alt="Meelte"
+                src="/icon_only_meelTe.png"
+                alt="meelTe"
                 width={40}
                 height={40}
                 className="h-9 w-9 shrink-0 rounded-xl object-contain shadow-soft transition-transform duration-200"
               />
               <Image
-                src="/only_meelte.png"
-                alt="Meelte wordmark"
+                src="/only_meelTe.png"
+                alt="meelTe wordmark"
                 width={110}
                 height={32}
                 className="h-7 w-auto shrink-0 max-w-[110px] object-contain tracking-tight"
@@ -101,7 +101,7 @@ export function MobileNav() {
           </div>
 
           <p id="mobile-nav-description" className="sr-only">
-            Meelte navigation menu with product and company links plus the Google Play and App Store downloads.
+            meelTe navigation menu with product and company links plus the Google Play and App Store downloads.
           </p>
 
           {/* Navigation Links */}
@@ -111,11 +111,10 @@ export function MobileNav() {
               <button
                 type="button"
                 onClick={() => setProductExpanded(!productExpanded)}
-                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
-                  isProductActive
-                    ? "bg-surface-muted/80 text-primary"
-                    : "text-foreground hover:bg-surface-muted"
-                }`}
+                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isProductActive
+                  ? "bg-surface-muted/80 text-primary"
+                  : "text-foreground hover:bg-surface-muted"
+                  }`}
                 aria-expanded={productExpanded}
               >
                 <span>Product</span>
@@ -135,18 +134,16 @@ export function MobileNav() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
-                          isActive
-                            ? "bg-surface-muted text-primary"
-                            : "text-foreground hover:bg-surface-muted hover:text-primary"
-                        }`}
+                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
+                          ? "bg-surface-muted text-primary"
+                          : "text-foreground hover:bg-surface-muted hover:text-primary"
+                          }`}
                         aria-current={isActive ? "page" : undefined}
                       >
-                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
-                          isActive
-                            ? "bg-primary/10"
-                            : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                        }`}>
+                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isActive
+                          ? "bg-primary/10"
+                          : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                          }`}>
                           <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                         </div>
                         <div className="flex flex-col min-w-0 flex-1">
@@ -164,18 +161,16 @@ export function MobileNav() {
             <Link
               href="/for-merchants"
               onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
-                isForMerchantsActive
-                  ? "bg-surface-muted/80 text-primary"
-                  : "text-foreground hover:bg-surface-muted hover:text-primary"
-              }`}
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isForMerchantsActive
+                ? "bg-surface-muted/80 text-primary"
+                : "text-foreground hover:bg-surface-muted hover:text-primary"
+                }`}
               aria-current={isForMerchantsActive ? "page" : undefined}
             >
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
-                isForMerchantsActive
-                  ? "bg-primary/10"
-                  : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-              }`}>
+              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isForMerchantsActive
+                ? "bg-primary/10"
+                : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                }`}>
                 <Store className="h-4 w-4" aria-hidden="true" />
               </div>
               <span>For Merchants</span>
@@ -186,11 +181,10 @@ export function MobileNav() {
               <button
                 type="button"
                 onClick={() => setCompanyExpanded(!companyExpanded)}
-                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
-                  isCompanyActive
-                    ? "bg-surface-muted/80 text-primary"
-                    : "text-foreground hover:bg-surface-muted"
-                }`}
+                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isCompanyActive
+                  ? "bg-surface-muted/80 text-primary"
+                  : "text-foreground hover:bg-surface-muted"
+                  }`}
                 aria-expanded={companyExpanded}
               >
                 <span>Company</span>
@@ -210,18 +204,16 @@ export function MobileNav() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${
-                          isActive
-                            ? "bg-surface-muted text-primary"
-                            : "text-foreground hover:bg-surface-muted hover:text-primary"
-                        }`}
+                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
+                          ? "bg-surface-muted text-primary"
+                          : "text-foreground hover:bg-surface-muted hover:text-primary"
+                          }`}
                         aria-current={isActive ? "page" : undefined}
                       >
-                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
-                          isActive
-                            ? "bg-primary/10"
-                            : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                        }`}>
+                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isActive
+                          ? "bg-primary/10"
+                          : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                          }`}>
                           <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                         </div>
                         <div className="flex flex-col min-w-0 flex-1">

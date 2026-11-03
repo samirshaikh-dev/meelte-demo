@@ -1,5 +1,5 @@
 /**
- * Meelte — Schema.org JSON-LD Structured Data Generators & Entity Graph
+ * meelTe — Schema.org JSON-LD Structured Data Generators & Entity Graph
  * Conforms to Google Rich Results standards and AEO/GEO (Answer Engine Optimization).
  * Single Source of Truth: src/config/site.js
  * 
@@ -47,7 +47,7 @@ function toAbsImage(image = OG_IMAGE_PATH) {
 }
 
 /**
- * Long-tail, intent-rich search phrases associated with Meelte.
+ * Long-tail, intent-rich search phrases associated with meelTe.
  * Strengthens GEO (Generative Engine Optimization) entity relationships and AI answer engine citations.
  */
 export const LONGTAIL_KEYWORDS = [
@@ -70,7 +70,7 @@ export const LONGTAIL_KEYWORDS = [
   "weekend events near me",
   "neighborhood artisan foods and cafes",
   "local commerce without middleman fees",
-  "Meelte app download Google Play Store",
+  "meelTe app download Google Play Store",
 ];
 
 /**
@@ -78,18 +78,18 @@ export const LONGTAIL_KEYWORDS = [
  * prospective community members, merchants and event hosts ask.
  */
 export const VOICE_QUERIES = [
-  "what is Meelte and how does it work",
+  "what is meelTe and how does it work",
   "how can I find local events happening near me this weekend",
   "where can I meet like-minded people after moving to a new city in India",
-  "how can local merchants promote products and services on Meelte",
-  "how does Meelte protect user location and data privacy",
-  "how do I organize a community meetup or neighborhood gathering on Meelte",
+  "how can local merchants promote products and services on meelTe",
+  "how does meelTe protect user location and data privacy",
+  "how do I organize a community meetup or neighborhood gathering on meelTe",
   "which app helps me discover local artisan food and fashion boutiques nearby",
-  "is Meelte free for community members and local organizers",
+  "is meelTe free for community members and local organizers",
 ];
 
 /**
- * Industries and domains Meelte bridges
+ * Industries and domains meelTe bridges
  */
 export const INDUSTRIES_SERVED = [
   "Hyperlocal Commerce",
@@ -103,9 +103,9 @@ export const INDUSTRIES_SERVED = [
 ];
 
 /**
- * Core Hyperlocal Services offered by Meelte
+ * Core Hyperlocal Services offered by meelTe
  */
-export const MEELTE_SERVICES = [
+export const meelTe_SERVICES = [
   {
     id: "local-offers",
     name: "Nearby Shop Offers",
@@ -138,9 +138,9 @@ export const MEELTE_SERVICES = [
  * These were previously emitted as `Offer` nodes with `price: "0"` and
  * `unitText: "Free Community Membership"`, asserting a price the business has not
  * published (project-context.md §13, docs/target_customer.md §4.4). They are now plain
- * `Service` nodes: they describe what Meelte does, and claim nothing about cost.
+ * `Service` nodes: they describe what meelTe does, and claim nothing about cost.
  */
-const PLATFORM_SERVICE_NODES = MEELTE_SERVICES.map((service) => ({
+const PLATFORM_SERVICE_NODES = meelTe_SERVICES.map((service) => ({
   "@type": "Service",
   name: service.name,
   serviceType: service.name,
@@ -190,7 +190,7 @@ export function getRootJsonLd() {
       "@type": "Organization",
       "@id": `${APP_URL}#organization`,
       name: SITE_NAME,
-      alternateName: "Meelte Community Platform",
+      alternateName: "meelTe Community Platform",
       url: APP_URL,
       logo: {
         "@type": "ImageObject",
@@ -212,7 +212,7 @@ export function getRootJsonLd() {
       knowsAbout: INDUSTRIES_SERVED,
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Meelte Platform Features & Services",
+        name: "meelTe Platform Features & Services",
         itemListElement: PLATFORM_SERVICE_NODES,
       },
       contactPoint: [
@@ -236,7 +236,7 @@ export function getRootJsonLd() {
       "@context": "https://schema.org",
       "@type": "MobileApplication",
       "@id": `${APP_URL}#mobileapp`,
-      name: "Meelte: Local Community & Events",
+      name: "meelTe: Local Community & Events",
       operatingSystem: "Android, iOS",
       applicationCategory: "CommunityApplication",
       installUrl: PLAY_STORE_URL,
@@ -251,7 +251,7 @@ export function getRootJsonLd() {
         availability: "https://schema.org/InStock",
       },
       description:
-        "Download Meelte on Android or iPhone to see time-boxed offers from nearby shops, request to join local events, and chat with people you meet around you.",
+        "Download meelTe on Android or iPhone to see time-boxed offers from nearby shops, request to join local events, and chat with people you meet around you.",
       inLanguage: "en-IN",
       isAccessibleForFree: true,
       publisher: {
@@ -307,7 +307,7 @@ export function getFaqPageJsonLd(faqs = []) {
 }
 
 /**
- * Event Schema generator for Meelte's community gatherings (/events/[id]).
+ * Event Schema generator for meelTe's community gatherings (/events/[id]).
  */
 export function getEventJsonLd(event) {
   if (!event) return null;
@@ -328,19 +328,19 @@ export function getEventJsonLd(event) {
     inLanguage: "en-IN",
     location: event.isOnline
       ? {
-          "@type": "VirtualLocation",
-          url: event.url || url,
-        }
+        "@type": "VirtualLocation",
+        url: event.url || url,
+      }
       : {
-          "@type": "Place",
-          name: event.locationName || "Local Community Venue",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: event.city || "Bengaluru",
-            addressCountry: "IN",
-            ...(event.address && { streetAddress: event.address }),
-          },
+        "@type": "Place",
+        name: event.locationName || "Local Community Venue",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: event.city || "India",
+          addressCountry: "IN",
+          ...(event.address && { streetAddress: event.address }),
         },
+      },
     image: toAbsImage(event.image),
     organizer: {
       "@type": "Organization",
@@ -381,12 +381,12 @@ export function getLocalBusinessJsonLd(business) {
     address: {
       "@type": "PostalAddress",
       ...(business.address && { streetAddress: business.address }),
-      addressLocality: business.city || "Bengaluru",
+      addressLocality: business.city || "India",
       addressCountry: "IN",
     },
     areaServed: {
-      "@type": "City",
-      name: business.city || "Bengaluru",
+      "@type": business.city ? "City" : "Country",
+      name: business.city || "India",
     },
   };
 }
@@ -545,7 +545,7 @@ export function getContactPageJsonLd({ description } = {}) {
 /**
  * AboutPage Schema for /about.
  *
- * `name` matches the visible `<h1>` ("About Meelte") and `description` is the same
+ * `name` matches the visible `<h1>` ("About meelTe") and `description` is the same
  * string as the page's meta description, so the structured data cannot claim more
  * than the page says. The previous values ("Our Mission & Community Story",
  * "local information overload and urban isolation") appeared nowhere on the page —

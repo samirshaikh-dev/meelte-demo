@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 const STEPS = [
   {
     title: "Download the app",
-    body: "Meelte is on Google Play and the App Store. The web app is still in development.",
+    body: "meelTe is on Google Play and the App Store. The web app is still in development.",
   },
   {
     title: "Turn on location",
@@ -38,19 +38,12 @@ export function DiscoverSteps() {
     >
       <Container>
         <div className="max-w-2xl">
-          <Badge variant="primary" className="mb-3 gap-1.5">
-            <Download className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>How it starts</span>
-          </Badge>
           <h2
             id="discover-steps-heading"
             className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
           >
             From download to something to do nearby.
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
-            Three steps. No booking forms, no account to create on the web.
-          </p>
         </div>
 
         <ol role="list" className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-3">
@@ -59,12 +52,6 @@ export function DiscoverSteps() {
               key={step.title}
               className="rounded-2xl border border-border/80 bg-canvas p-6 sm:p-7"
             >
-              <span
-                aria-hidden="true"
-                className="flex h-9 w-9 items-center justify-center rounded-xl bg-surface-muted text-sm font-black text-primary"
-              >
-                {index + 1}
-              </span>
               <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
                 {step.title}
               </h3>
