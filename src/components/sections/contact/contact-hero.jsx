@@ -15,16 +15,16 @@ import {
 
 export function ContactHero() {
   return (
-    <section className="relative overflow-hidden border-b border-border/80 pt-8 pb-14 sm:pt-12 sm:pb-20">
+    <section className="relative overflow-hidden border-b border-border/80 pt-8 pb-10 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16">
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-canvas to-canvas"
       />
 
       <Container>
-        <Breadcrumbs items={CONTACT_BREADCRUMBS} className="mb-6" />
+        <Breadcrumbs items={CONTACT_BREADCRUMBS} className="mb-3.5 sm:mb-4" />
 
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-x-12">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-start lg:gap-x-12">
           <div className="lg:col-span-7">
 
             <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -34,7 +34,7 @@ export function ContactHero() {
               </span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
+            <p className="mt-3.5 sm:mt-4 max-w-xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
               {CONTACT_HERO.lead}
             </p>
 

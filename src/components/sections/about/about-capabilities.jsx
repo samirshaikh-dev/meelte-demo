@@ -27,7 +27,7 @@ export function AboutCapabilities() {
     <section
       id="what-we-do"
       aria-labelledby="about-capabilities-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-canvas py-14 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">
@@ -42,7 +42,7 @@ export function AboutCapabilities() {
 
         <ul
           role="list"
-          className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {ABOUT_CAPABILITIES.items.map((item) => {
             const Icon = CAPABILITY_ICONS[item.icon] || Compass;

@@ -51,7 +51,7 @@ export function HowItWorksBoundaries() {
     <section
       id="boundaries"
       aria-labelledby="how-it-works-boundaries-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-canvas py-16 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">
@@ -63,7 +63,7 @@ export function HowItWorksBoundaries() {
           </h2>
         </div>
 
-        <ul role="list" className="mt-10 grid gap-4 sm:mt-12 md:grid-cols-2">
+        <ul role="list" className="mt-6 sm:mt-8 grid gap-4 md:grid-cols-2">
           {BOUNDARIES.map((item) => {
             const Icon = item.icon;
             return (

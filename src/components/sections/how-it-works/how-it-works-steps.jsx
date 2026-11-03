@@ -35,7 +35,7 @@ export function HowItWorksSteps() {
     <section
       id="residents"
       aria-labelledby="how-it-works-steps-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-canvas py-16 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">
@@ -45,17 +45,17 @@ export function HowItWorksSteps() {
           >
             What happens after you install.
           </h2>
-          <p className="mt-3.5 text-base leading-relaxed text-foreground-secondary sm:text-lg">
+          <p className="mt-2 text-base leading-relaxed text-foreground-secondary sm:text-lg">
             Four steps, in the order the app asks for them. There is no booking
             form, no checkout and no account to create on the web.
           </p>
         </div>
 
-        <ol role="list" className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2">
+        <ol role="list" className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 sm:grid-cols-2">
           {RESIDENT_STEPS.map((step, index) => (
             <li
               key={step.title}
-              className="flex items-start gap-4 rounded-2xl border border-border/80 bg-surface p-6 shadow-soft"
+              className="flex items-start gap-3.5 sm:gap-4 rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft"
             >
               <span
                 aria-hidden="true"

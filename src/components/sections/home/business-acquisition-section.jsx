@@ -30,36 +30,36 @@ const ONBOARDING_STEPS = [
 
 export function BusinessAcquisitionSection() {
   return (
-    <section id="for-businesses" className="py-16 sm:py-24 bg-surface-subtle scroll-mt-20 border-b border-border/80">
+    <section id="for-businesses" className="py-8 sm:py-12 lg:py-14 bg-surface-subtle scroll-mt-20 border-b border-border/80">
       <Container>
-        <Reveal className="max-w-3xl mb-12 sm:mb-16">
+        <Reveal className="max-w-3xl mb-6 sm:mb-8">
           <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight">
             From first conversation to your first offer.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-foreground-secondary leading-relaxed">
+          <p className="mt-2 text-base sm:text-lg text-foreground-secondary leading-relaxed">
             meelTe&apos;s field team helps shops get set up in person. Here&apos;s what getting started looks like.
           </p>
         </Reveal>
 
-        <div className="mb-12">
-          <Reveal className="text-center max-w-xl mx-auto mb-10">
+        <div className="mb-8">
+          <Reveal className="text-center max-w-xl mx-auto mb-6">
             <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mt-1">
               A straightforward three-step setup
             </h3>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {ONBOARDING_STEPS.map((step, idx) => (
               <Reveal
                 key={step.number}
                 delay={0.05 + idx * 0.05}
-                className="p-6 rounded-2xl bg-surface border border-border/80 shadow-soft flex flex-col justify-between transition-shadow hover:shadow-card"
+                className="p-5 sm:p-6 rounded-2xl bg-surface border border-border/80 shadow-soft flex flex-col justify-between transition-shadow hover:shadow-card"
               >
                 <div>
-                  <span className="text-2xl font-black text-primary/40 block mb-3">
+                  <span className="text-2xl font-black text-primary/40 block mb-2 sm:mb-3">
                     {step.number}
                   </span>
-                  <h4 className="font-bold text-lg text-foreground tracking-tight">
+                  <h4 className="font-bold text-base sm:text-lg text-foreground tracking-tight">
                     {step.title}
                   </h4>
                   <p className="mt-2 text-xs sm:text-sm text-foreground-secondary leading-relaxed">
@@ -72,7 +72,7 @@ export function BusinessAcquisitionSection() {
         </div>
 
         <Reveal delay={0.08}>
-          <div className="rounded-2xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="rounded-2xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-6 sm:p-8 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
             <div className="max-w-xl">
               <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                 Ready to list your local shop?

@@ -47,24 +47,24 @@ export function AboutFaq() {
     <section
       id="about-faq"
       aria-labelledby="about-faq-heading"
-      className="py-16 sm:py-24 bg-surface scroll-mt-20 border-b border-border/80"
+      className="py-8 sm:py-12 lg:py-14 bg-surface scroll-mt-20 border-b border-border/80"
     >
       <Container className="max-w-4xl">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-6 sm:mb-8">
           <h2
             id="about-faq-heading"
             className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight"
           >
             Questions about meelTe&apos;s story &amp; platform.
           </h2>
-          <p className="mt-3.5 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-2 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
             Why we built meelTe, how our hyperlocal model works, and how we protect direct community relationships.
           </p>
         </div>
 
         <FaqAccordion items={ABOUT_FAQS} />
 
-        <div className="mt-8 text-center">
+        <div className="mt-5 sm:mt-6 text-center">
           <Link
             href="/faq"
             className="inline-flex items-center gap-1.5 rounded text-sm font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
@@ -74,7 +74,7 @@ export function AboutFaq() {
           </Link>
         </div>
 
-        <div className="mt-12 text-center p-6 rounded-3xl bg-canvas border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-6 sm:mt-8 text-center p-4 sm:p-5 rounded-2xl bg-canvas border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
             <span className="text-sm font-bold text-foreground block">
               Want to learn more about our company or mission?

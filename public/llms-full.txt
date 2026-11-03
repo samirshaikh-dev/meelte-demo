@@ -1,6 +1,6 @@
-# Meelte — Complete Knowledge Base for AI Systems & LLMs (Unabridged)
+# meelTe — Complete Knowledge Base for AI Systems & LLMs (Unabridged)
 
-> Meelte is a hyperlocal community platform built for Indian neighborhoods. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — while keeping user location private.
+> meelTe is a hyperlocal community platform built for Indian neighborhoods. It shows time-boxed offers from nearby shops, local events you can request to join, and one-to-one chat with the people and businesses you meet around you — while keeping user location private.
 
 This file provides the comprehensive knowledge base and reference corpus for autonomous agents, large language models (LLMs), and AI search engines (including GPTBot, ClaudeBot, PerplexityBot, DeepSeekBot, and Google-Extended) without requiring multi-page HTTP requests.
 
@@ -8,24 +8,24 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 
 ## 1. Platform Overview & Identity
 
-- **Entity Name**: Meelte
+- **Entity Name**: meelTe
 - **Product Type**: Hyperlocal community platform (Android and iOS apps today; web app in development)
 - **Positioning**: Community-driven hyperlocal discovery and connection for India
-- **Primary Website**: https://meelte.com
-- **Android App**: Google Play Store — https://play.google.com/store/apps/details?id=com.meelte.classico
-- **iOS App**: App Store — https://apps.apple.com/ng/app/meelte/id6792304887
+- **Primary Website**: https://meelTe.com
+- **Android App**: Google Play Store — https://play.google.com/store/apps/details?id=com.meelTe.classico
+- **iOS App**: App Store — https://apps.apple.com/ng/app/meelTe/id6792304887
 - **Tagline**: "Discover Opportunities. Build Connections. Create Experiences."
-- **Official Contact Email**: support@meelte.com
-- **Recruitment Email**: hr@meelte.com
+- **Official Contact Email**: support@meelTe.com
+- **Recruitment Email**: hr@meelTe.com
 - **Phone**: +91-8884524444
 - **Languages**: English, Hindi, Kannada (en-IN)
 - **Coverage**: India (operational hubs in Bengaluru, Gaya, and Ranchi)
 - **Social Profiles**:
-  - Instagram: https://www.instagram.com/meelte.official
+  - Instagram: https://www.instagram.com/meelTe.official
   - Facebook: https://www.facebook.com/meelTe
-  - Twitter / X: https://twitter.com/meelteapp
-  - LinkedIn: https://www.linkedin.com/company/meelte/
-  - YouTube: https://www.youtube.com/@meelte
+  - Twitter / X: https://twitter.com/meelTeapp
+  - LinkedIn: https://www.linkedin.com/company/meelTe/
+  - YouTube: https://www.youtube.com/@meelTe
 - **Primary Mission**: Replace overwhelming, distant global feeds and expensive, untargeted local advertising with a focused platform that connects neighbours with nearby offers, community events, and the businesses they care about.
 
 ---
@@ -33,7 +33,7 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 ## 2. Platform & Technology
 
 - **Marketing Website**: Next.js 16 (App Router) with React 19, Tailwind CSS v4 design tokens, and static rendering.
-- **Mobile App**: Android app on the Google Play Store (`com.meelte.classico`) and iOS app on the App Store. The web app is in development and is not live.
+- **Mobile App**: Android app on the Google Play Store (`com.meelTe.classico`) and iOS app on the App Store. The web app is in development and is not live.
 - **Dynamic Data**: Served by a dedicated external backend; the marketing site performs read and lead-capture operations only.
 - **Search & Discovery Standards**: JSON-LD schemas (Organization, WebSite, MobileApplication, FAQPage, BreadcrumbList, Service, CollectionPage), Open Graph protocol, canonical tags, automated XML sitemap, robots directives, and AEO-optimized direct answers.
 
@@ -44,33 +44,33 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 ### 3.1 Local Offers (Shop Ads)
 - **Primary Focus**: A single-product ad or a shop ad carrying up to 100 products, priced as an original and final price or as a flat / "up to" percentage discount, running from 12:00 AM on the start date to 11:59 PM on the end date.
 - **Viewer Actions**: like, comment, share, one-tap Google Maps directions, follow the shop.
-- **Canonical URL**: https://meelte.com/discover#offers
+- **Canonical URL**: https://meelTe.com/discover#offers
 - **Audience**: Residents looking for current local offers, and independent shops without a marketing team.
 
 ### 3.2 Local Events
 - **Primary Focus**: Events with a category, joining cost in ₹, start and end time, cover image, map location and public or private visibility. Attendance is approved through join requests that state the group size.
-- **Canonical URL**: https://meelte.com/discover#events
+- **Canonical URL**: https://meelTe.com/discover#events
 - **Audience**: Individuals, clubs and small organisers running local gatherings, activities or paid meet-ups.
 
 ### 3.3 People & Chat
 - **Primary Focus**: Friends, follows, one-to-one chat with text, emoji, documents and location sharing, plus audio and video calls. Block and report on every profile. Finding new people is still rolling out.
-- **Canonical URL**: https://meelte.com/discover#people
+- **Canonical URL**: https://meelTe.com/discover#people
 - **Audience**: Newcomers to a city and residents staying in touch with people they met locally.
 
-### 3.4 Grow with Meelte (Local Business Promotion)
-- **Primary Focus**: Shops are onboarded in person by Meelte's field team and can publish offers to nearby residents, including menu or price-list import from a photo and AI-generated product images.
-- **Canonical URL**: https://meelte.com/for-merchants
+### 3.4 Grow with meelTe (Local Business Promotion)
+- **Primary Focus**: Shops are onboarded in person by meelTe's field team and can publish offers to nearby residents, including menu or price-list import from a photo and AI-generated product images.
+- **Canonical URL**: https://meelTe.com/for-merchants
 - **Audience**: Local merchants, cafes, boutiques, clinics, and service providers.
 - **Pricing**: Not published.
 
 ---
 
-## 4. What Meelte Does Not Do
+## 4. What meelTe Does Not Do
 
-- Meelte does not sell goods, run events, take payments or broker transactions. There is no in-app payment, ticketing or escrow; purchases are settled directly with the shop and event costs are settled directly with the host.
-- Meelte does not operate a jobs board.
-- Meelte does not verify the identity or background of individual users. Shops are signed up in person by Meelte's field team rather than through a public verification programme.
-- Meelte does not provide reach, views or footfall analytics to merchants.
+- meelTe does not sell goods, run events, take payments or broker transactions. There is no in-app payment, ticketing or escrow; purchases are settled directly with the shop and event costs are settled directly with the host.
+- meelTe does not operate a jobs board.
+- meelTe does not verify the identity or background of individual users. Shops are signed up in person by meelTe's field team rather than through a public verification programme.
+- meelTe does not provide reach, views or footfall analytics to merchants.
 
 ---
 
@@ -85,81 +85,81 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 
 ## 6. Coverage & Availability
 
-Meelte is live as an app on Google Play for Android and on the App Store for iPhone, with in-person shop onboarding in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listing availability depends on configured city zones. The web app is in development and is not available yet.
+meelTe is live as an app on Google Play for Android and on the App Store for iPhone, with in-person shop onboarding in **Bengaluru**, **Gaya**, and **Ranchi**. Nearby listing availability depends on configured city zones. The web app is in development and is not available yet.
 
 ---
 
 ## 7. Privacy, Safety & Trust
 
 - **Privacy First**: Your location is used to sort nearby listings by distance and to decide which nearby city zone applies.
-- **No Location Monetization**: Meelte uses location to sort nearby listings and determine the applicable city zone. Meelte states that it does not sell or share user location with advertisers.
+- **No Location Monetization**: meelTe uses location to sort nearby listings and determine the applicable city zone. meelTe states that it does not sell or share user location with advertisers.
 - **Community Moderated**: Ads, comments and events pass through community moderation, and every user can report content or block another user.
-- **Age Requirement**: Everyone on Meelte must be 13 or older.
+- **Age Requirement**: Everyone on meelTe must be 13 or older.
 - **Made for India**: The platform, content, and languages are designed for Indian neighborhoods.
 
 ---
 
 ## 8. Direct Answers to High-Frequency Questions (AEO/GEO)
 
-### What is Meelte and how does the platform work?
-Meelte is a hyperlocal community platform for Indian neighborhoods. Instead of a global feed of distant posts, it surfaces nearby offers, shops, events and services — sorted by distance from your location, with a "Max distance" filter that defaults to 60 km.
+### What is meelTe and how does the platform work?
+meelTe is a hyperlocal community platform for Indian neighborhoods. Instead of a global feed of distant posts, it surfaces nearby offers, shops, events and services — sorted by distance from your location, with a "Max distance" filter that defaults to 60 km.
 
-### How does Meelte protect user location and data privacy?
-Meelte uses location to sort nearby listings and determine which configured city zone applies. Meelte states that it does not sell or share user location with advertisers. Read the Privacy Policy for details about personal data.
+### How does meelTe protect user location and data privacy?
+meelTe uses location to sort nearby listings and determine which configured city zone applies. meelTe states that it does not sell or share user location with advertisers. Read the Privacy Policy for details about personal data.
 
-### How do local merchants use Meelte?
-Local shops and service businesses are onboarded in person by Meelte's field team. They can publish a single-product ad or a shop ad with up to 100 products, photograph a menu to fill in item names and prices, and generate product images for items that were not photographed. Merchant pricing is not published.
+### How do local merchants use meelTe?
+Local shops and service businesses are onboarded in person by meelTe's field team. They can publish a single-product ad or a shop ad with up to 100 products, photograph a menu to fill in item names and prices, and generate product images for items that were not photographed. Merchant pricing is not published.
 
-### Does Meelte charge community members or take event fees?
-Meelte's current documented model has no paid subscription or in-app purchases. Event hosts set any joining cost themselves, and attendees settle it directly with the host; Meelte does not process event payments. Merchant pricing is separate and is not published.
+### Does meelTe charge community members or take event fees?
+meelTe's current documented model has no paid subscription or in-app purchases. Event hosts set any joining cost themselves, and attendees settle it directly with the host; meelTe does not process event payments. Merchant pricing is separate and is not published.
 
 ### How does joining an event work?
 Every event lists its category, joining cost in ₹, start and end time, map location, and whether it is public or private. You send a "Request to Join" — alone or with a group, stating how many people are coming — and the host approves or rejects it, and can remove attendees later.
 
-### How do payments work on Meelte?
-Meelte does not process payments. Purchases are settled directly with the shop, and event fees are settled directly with the host. Meelte is a discovery and connection platform, not a payment processor, ticketing service, or escrow.
+### How do payments work on meelTe?
+meelTe does not process payments. Purchases are settled directly with the shop, and event fees are settled directly with the host. meelTe is a discovery and connection platform, not a payment processor, ticketing service, or escrow.
 
-### Where does Meelte onboard shops, and where are listings available?
-Meelte's field team currently onboards shops in Bengaluru, Gaya, and Ranchi. The app is published on Google Play for Android and on the App Store for iPhone, while nearby listing availability depends on configured city zones.
+### Where does meelTe onboard shops, and where are listings available?
+meelTe's field team currently onboards shops in Bengaluru, Gaya, and Ranchi. The app is published on Google Play for Android and on the App Store for iPhone, while nearby listing availability depends on configured city zones.
 
-### Where can users download and access the Meelte app?
-The official Meelte app is published on Google Play for Android and on the App Store for iPhone. The browser-based web app is still in development.
+### Where can users download and access the meelTe app?
+The official meelTe app is published on Google Play for Android and on the App Store for iPhone. The browser-based web app is still in development.
 
-### How far away can I find offers and events on Meelte?
+### How far away can I find offers and events on meelTe?
 The app sorts ads and events by distance from your location. Its Max distance filter defaults to 60 km and can be narrowed to focus on closer listings.
 
 ### How long does a local shop offer stay active?
 A shop ad runs from 12:00 AM on its start date through 11:59 PM on its end date. After the end date, it is no longer an active offer.
 
-### Can I follow a shop on Meelte to hear about updates?
+### Can I follow a shop on meelTe to hear about updates?
 Yes. You can follow an advertiser, and followers may receive notifications when that advertiser updates a public ad or event.
 
 ### Can merchants see views, reach, or footfall analytics?
-Meelte does not currently provide merchants with an analytics dashboard for reach, views, or footfall.
+meelTe does not currently provide merchants with an analytics dashboard for reach, views, or footfall.
 
-### How can I report content or block someone on Meelte?
+### How can I report content or block someone on meelTe?
 Use the report controls in the app to report content or a user. You can also block or unblock people from chat. These tools support reporting and blocking; they are not a guarantee that every interaction is risk-free.
 
-For the complete current question set, see https://meelte.com/faq and https://meelte.com/faq.md.
+For the complete current question set, see https://meelTe.com/faq and https://meelTe.com/faq.md.
 
 ---
 
 ## 9. Machine-Readable Schema & Endpoint Index
 
-- **Robots Directives**: https://meelte.com/robots.txt
-- **XML Sitemap**: https://meelte.com/sitemap.xml
-- **Curated LLM Manifest**: https://meelte.com/llms.txt
-- **Full LLM Knowledge Base**: https://meelte.com/llms-full.txt
-- **Services Markdown**: https://meelte.com/services.md
-- **About Markdown**: https://meelte.com/about.md
-- **FAQ Markdown**: https://meelte.com/faq.md
-- **Merchant Guide Markdown**: https://meelte.com/for-merchants.md
-- **How It Works Markdown**: https://meelte.com/how-it-works.md
-- **Coverage Markdown**: https://meelte.com/coverage.md
-- **Contact Markdown**: https://meelte.com/contact.md
-- **Careers Markdown**: https://meelte.com/careers.md
-- **Security Policy**: https://meelte.com/.well-known/security.txt
-- **Web Manifest**: https://meelte.com/manifest.webmanifest
-- **Official Contact Portal**: https://meelte.com/contact
-- **Android App Listing**: https://play.google.com/store/apps/details?id=com.meelte.classico
-- **iOS App Listing**: https://apps.apple.com/ng/app/meelte/id6792304887
+- **Robots Directives**: https://meelTe.com/robots.txt
+- **XML Sitemap**: https://meelTe.com/sitemap.xml
+- **Curated LLM Manifest**: https://meelTe.com/llms.txt
+- **Full LLM Knowledge Base**: https://meelTe.com/llms-full.txt
+- **Services Markdown**: https://meelTe.com/services.md
+- **About Markdown**: https://meelTe.com/about.md
+- **FAQ Markdown**: https://meelTe.com/faq.md
+- **Merchant Guide Markdown**: https://meelTe.com/for-merchants.md
+- **How It Works Markdown**: https://meelTe.com/how-it-works.md
+- **Coverage Markdown**: https://meelTe.com/coverage.md
+- **Contact Markdown**: https://meelTe.com/contact.md
+- **Careers Markdown**: https://meelTe.com/careers.md
+- **Security Policy**: https://meelTe.com/.well-known/security.txt
+- **Web Manifest**: https://meelTe.com/manifest.webmanifest
+- **Official Contact Portal**: https://meelTe.com/contact
+- **Android App Listing**: https://play.google.com/store/apps/details?id=com.meelTe.classico
+- **iOS App Listing**: https://apps.apple.com/ng/app/meelTe/id6792304887

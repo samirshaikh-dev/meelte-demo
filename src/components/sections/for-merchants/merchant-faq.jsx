@@ -52,24 +52,24 @@ export function MerchantFaq() {
     <section
       id="merchant-faq"
       aria-labelledby="merchant-faq-heading"
-      className="py-16 sm:py-24 bg-surface scroll-mt-20 border-b border-border/80"
+      className="py-8 sm:py-12 lg:py-14 bg-surface scroll-mt-20 border-b border-border/80"
     >
       <Container className="max-w-4xl">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-6 sm:mb-8">
           <h2
             id="merchant-faq-heading"
             className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight"
           >
             Questions about listing your business?
           </h2>
-          <p className="mt-3.5 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-2 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
             Find out what you can publish, how photo catalogue creation works, and how customer purchases are settled.
           </p>
         </div>
 
         <FaqAccordion items={MERCHANT_FAQS} />
 
-        <div className="mt-12 text-center p-6 rounded-3xl bg-canvas border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-6 sm:mt-8 text-center p-4 sm:p-5 rounded-2xl bg-canvas border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
             <span className="text-sm font-bold text-foreground block">
               Ready to showcase your shop to nearby residents?

@@ -40,7 +40,7 @@ export function CareersValues() {
     <section
       id="values"
       aria-labelledby="careers-values-heading"
-      className="border-b border-border/80 bg-canvas py-14 scroll-mt-20 sm:py-20"
+      className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14 scroll-mt-20"
     >
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12">

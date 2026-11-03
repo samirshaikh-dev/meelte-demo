@@ -36,7 +36,7 @@ export function AboutVision() {
     <section
       id="vision"
       aria-labelledby="about-vision-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-surface py-14 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-surface py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-3xl">
@@ -50,7 +50,7 @@ export function AboutVision() {
 
         <ol
           role="list"
-          className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border/80 bg-border/70 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-6 sm:mt-8 grid gap-px overflow-hidden rounded-2xl border border-border/80 bg-border/70 sm:grid-cols-2 lg:grid-cols-4"
         >
           {ABOUT_VISION.points.map((point) => {
             return (

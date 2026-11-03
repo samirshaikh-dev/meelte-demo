@@ -90,8 +90,8 @@ export default function FaqPage() {
 
       <main id="main-content" className="flex-1">
         <section className="border-b border-border/80 bg-surface">
-          <Container className="max-w-6xl pb-12 pt-8 sm:pb-16 sm:pt-10">
-            <Breadcrumbs items={BREADCRUMB_ITEMS} className="mb-10" />
+          <Container className="max-w-6xl pb-8 pt-6 sm:pb-10 sm:pt-8">
+            <Breadcrumbs items={BREADCRUMB_ITEMS} className="mb-4 sm:mb-5" />
 
             <div className="flex flex-col items-start gap-7 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
@@ -100,7 +100,7 @@ export default function FaqPage() {
                   <span className="text-primary">explained clearly.</span>
                 </h1>
 
-                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-foreground-secondary sm:text-xl">
+                <p className="mt-3.5 max-w-2xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
                   Straightforward answers about the app, nearby discovery, local businesses,
                   events, privacy, and support.
                 </p>
@@ -109,9 +109,9 @@ export default function FaqPage() {
           </Container>
         </section>
 
-        <section className="py-12 sm:py-16">
+        <section className="py-8 sm:py-12">
           <Container className="max-w-6xl">
-            <div className="grid items-start gap-10 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
+            <div className="grid items-start gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-10">
               <aside
                 id="faq-topics"
                 aria-labelledby="faq-topics-heading"
@@ -142,7 +142,7 @@ export default function FaqPage() {
                 </nav>
               </aside>
 
-              <div className="flex min-w-0 flex-col gap-10 sm:gap-12">
+              <div className="flex min-w-0 flex-col gap-6 sm:gap-8">
                 {FAQ_CATEGORIES.map((category, categoryIndex) => {
                   const questions = category.questionIds
                     .map((questionId) => faqData.find((faq) => faq.id === questionId))
@@ -155,7 +155,7 @@ export default function FaqPage() {
                       aria-labelledby={`${category.id}-heading`}
                       className="scroll-mt-28"
                     >
-                      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+                      <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
                         <div>
                           <p className="mb-1 text-xs font-bold uppercase tracking-[0.12em] text-primary">
                             Topic {String(categoryIndex + 1).padStart(2, "0")}
@@ -181,7 +181,7 @@ export default function FaqPage() {
                         {questions.map((faq) => (
                           <Accordion.Item key={faq.id} value={faq.id}>
                             <Accordion.Header className="flex">
-                              <Accordion.Trigger className="group flex min-h-16 w-full items-center justify-between gap-4 py-4 text-left text-base font-bold text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 sm:text-lg">
+                              <Accordion.Trigger className="group flex min-h-12 w-full items-center justify-between gap-4 py-3 sm:py-3.5 text-left text-base font-bold text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 sm:text-lg">
                                 <span>{faq.question}</span>
                                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-muted text-primary transition-colors group-hover:bg-primary group-hover:text-white">
                                   <ChevronDown
@@ -197,7 +197,7 @@ export default function FaqPage() {
                               forceMount
                               className="overflow-hidden text-sm leading-relaxed text-foreground-secondary data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up sm:text-base"
                             >
-                              <p className="pb-5 pr-2 sm:pb-6 sm:pr-12">{faq.answer}</p>
+                              <p className="pb-4 pr-2 sm:pb-5 sm:pr-12">{faq.answer}</p>
                             </Accordion.Content>
                           </Accordion.Item>
                         ))}
@@ -210,9 +210,9 @@ export default function FaqPage() {
           </Container>
         </section>
 
-        <section className="pb-16 sm:pb-20">
+        <section className="pb-10 sm:pb-14">
           <Container className="max-w-6xl">
-            <Card className="flex flex-col gap-7 border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-7 shadow-card sm:flex-row sm:items-center sm:justify-between sm:p-9">
+            <Card className="flex flex-col gap-6 border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-6 shadow-card sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div className="max-w-xl">
                 <p className="mb-2 text-sm font-bold uppercase tracking-[0.12em] text-primary">
                   Need a hand?

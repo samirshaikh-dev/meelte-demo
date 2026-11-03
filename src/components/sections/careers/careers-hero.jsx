@@ -16,7 +16,7 @@ import {
 
 export function CareersHero() {
   return (
-    <section className="relative overflow-hidden border-b border-border/80 pt-8 pb-14 sm:pt-12 sm:pb-20">
+    <section className="relative overflow-hidden border-b border-border/80 pt-8 pb-10 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16">
       {/* Old hero's radial wash, restored as a decorative layer. */}
       <div
         aria-hidden="true"
@@ -26,7 +26,7 @@ export function CareersHero() {
       <Container className="flex max-w-4xl flex-col items-center text-center">
         <Breadcrumbs
           items={CAREERS_BREADCRUMBS}
-          className="mb-5"
+          className="mb-3.5 sm:mb-4"
           listClassName="justify-center"
         />
 
@@ -37,11 +37,11 @@ export function CareersHero() {
           </span>
         </h1>
 
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
+        <p className="mt-3.5 sm:mt-4 max-w-2xl text-base leading-relaxed text-foreground-secondary sm:text-lg">
           Help us build meelTe to connect neighborhoods across India.
         </p>
 
-        <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+        <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
           <Button
             as="a"
             href={CAREERS_EMAIL_HREF}

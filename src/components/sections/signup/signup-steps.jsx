@@ -3,16 +3,6 @@ import { Download } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 
-/**
- * First-run path for /signup: install → allow location → find something nearby.
- *
- * Same three steps as /discover, mapped to the documented "Riya" journey
- * (docs/target_customer.md §4). The steps are a real `<ol>` so the order is
- * conveyed structurally and the numbered tiles can stay `aria-hidden` decoration.
- *
- * Deliberately absent: a form, a "create your account here" step, and any claim
- * about a browser-based sign-up. Step one is the only place an account is made.
- */
 const STEPS = [
   {
     title: "Install the app",
@@ -32,7 +22,7 @@ export function SignupSteps() {
   return (
     <section
       aria-labelledby="signup-steps-heading"
-      className="border-b border-border/80 bg-canvas py-14 sm:py-20"
+      className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">

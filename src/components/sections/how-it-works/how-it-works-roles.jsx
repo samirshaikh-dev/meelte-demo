@@ -40,7 +40,7 @@ export function HowItWorksRoles() {
     <section
       id="roles"
       aria-labelledby="how-it-works-roles-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-canvas py-16 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">
@@ -52,13 +52,13 @@ export function HowItWorksRoles() {
           </h2>
         </div>
 
-        <ul role="list" className="mt-10 grid gap-5 sm:mt-12 lg:grid-cols-3">
+        <ul role="list" className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 lg:grid-cols-3">
           {ROLES.map((role) => {
             const Icon = role.icon;
             return (
               <li
                 key={role.id}
-                className="flex flex-col rounded-2xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
+                className="flex flex-col rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-muted text-primary">
                   <Icon className="h-6 w-6" aria-hidden="true" />

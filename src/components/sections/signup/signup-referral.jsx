@@ -3,19 +3,6 @@ import { Gift, ShieldCheck } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
 
-/**
- * Referral facts for /signup.
- *
- * Every figure comes from the product's referral scheme as audited in
- * docs/target_customer.md §1 ("Growth & rewards"): a 30-coin signup bonus,
- * 30 coins per referred friend, milestones at 10 / 50 / 100 invites, redemption
- * as a ₹100 or ₹500 Amazon voucher, a ₹500 lifetime cap, and a 7-business-day
- * email delivery window.
- *
- * Presented as facts, never as income: no earnings, totals, guaranteed rewards
- * or "unlimited" claim appears here, and nothing is promised for this website —
- * coins live in the app and are not tracked or redeemed on the web.
- */
 const REFERRAL_FACTS = [
   { value: "30 coins", label: "when you create your account" },
   { value: "+30 coins", label: "for every friend who joins with your code" },
@@ -30,7 +17,7 @@ export function SignupReferral() {
   return (
     <section
       aria-labelledby="signup-referral-heading"
-      className="border-b border-border/80 bg-surface py-14 sm:py-20"
+      className="border-b border-border/80 bg-surface py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">
@@ -44,7 +31,7 @@ export function SignupReferral() {
           </h2>
         </div>
 
-        <div className="mt-10 rounded-2xl border border-primary/20 bg-canvas p-6 shadow-soft sm:mt-12 sm:p-8">
+        <div className="mt-6 sm:mt-8 rounded-2xl border border-primary/20 bg-canvas p-5 sm:p-6 shadow-soft">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
             <div>
               <p className="text-base leading-relaxed text-foreground-secondary">

@@ -168,31 +168,31 @@ export default function ForMerchantsPage() {
         {/* ── HERO ── */}
         <ForMerchantsHero />
 
-        <section className="border-y border-border/80 bg-canvas py-16 sm:py-24">
+        <section className="border-y border-border/80 bg-canvas py-8 sm:py-12 lg:py-14">
           <Container>
-            <div className="mb-10 max-w-3xl sm:mb-14">
+            <div className="mb-6 max-w-3xl sm:mb-8">
               <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
                 Turn your products and offers into a clear local listing.
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-foreground-secondary sm:text-lg">
+              <p className="mt-2.5 text-base leading-relaxed text-foreground-secondary sm:text-lg">
                 meelTe helps nearby residents discover your shop, understand the offer, and
                 get directions.
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="grid gap-4 sm:gap-5 md:grid-cols-3">
               {MERCHANT_CAPABILITIES.map(({ icon: Icon, title, description }) => (
                 <article
                   key={title}
-                  className="rounded-2xl border border-border/80 bg-surface p-6 shadow-soft sm:p-7"
+                  className="rounded-2xl border border-border/80 bg-surface p-5 shadow-soft sm:p-6"
                 >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-surface-muted text-primary">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <h3 className="text-lg font-bold tracking-tight text-foreground">
                     {title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground-secondary">
+                  <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">
                     {description}
                   </p>
                 </article>

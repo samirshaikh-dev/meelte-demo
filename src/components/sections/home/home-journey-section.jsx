@@ -1,19 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import {
-  ArrowRight,
-  Camera,
-  CheckCircle2,
-  Compass,
-  MapPin,
-  Store,
-  Tag,
-  Users,
-} from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Button } from "@/components/ui/button";
 
 const AUDIENCES = {
   residents: {
@@ -83,10 +71,10 @@ export function HomeJourneySection() {
   const current = AUDIENCES[selectedAudience];
 
   return (
-    <section className="border-b border-border/80 bg-canvas py-16 sm:py-24">
+    <section className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14">
       <Container>
         {/* Section Heading: Single clean title (AI_RULE.md: No double headings) */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10 border-b border-border/80">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-6 sm:pb-7 border-b border-border/80">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
               Predictable, low-effort from day one.
@@ -128,34 +116,34 @@ export function HomeJourneySection() {
           role="tabpanel"
           id={`panel-${current.id}`}
           aria-labelledby={`tab-${current.id}`}
-          className="mt-12"
+          className="mt-6 sm:mt-7"
         >
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-3.5 sm:mb-4 flex items-center justify-between">
             <p className="text-sm font-semibold text-foreground-secondary">
               {current.subtitle}
             </p>
           </div>
 
           {/* 3 Process Steps */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
             {current.steps.map((step) => (
               <div
                 key={step.number}
-                className="flex flex-col justify-between rounded-2xl border border-border/80 bg-surface p-6 sm:p-7 shadow-soft transition-shadow hover:shadow-card"
+                className="flex flex-col justify-between rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft transition-shadow hover:shadow-card"
               >
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-black text-primary/30 font-mono">
+                    <span className="text-2xl sm:text-3xl font-black text-primary/30 font-mono">
                       {step.number}
                     </span>
                     <span className="rounded-full bg-surface-muted px-2.5 py-1 text-[11px] font-semibold text-primary">
                       {step.highlight}
                     </span>
                   </div>
-                  <h3 className="mt-4 text-lg font-bold text-foreground tracking-tight">
+                  <h3 className="mt-3.5 text-base sm:text-lg font-bold text-foreground tracking-tight">
                     {step.title}
                   </h3>
-                  <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-foreground-secondary">
+                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-foreground-secondary">
                     {step.description}
                   </p>
                 </div>

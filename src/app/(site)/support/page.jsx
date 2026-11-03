@@ -52,7 +52,7 @@ export default function SupportPage() {
       {/* Centered Support Hero */}
       <main
         id="main-content"
-        className="flex-1 flex items-center justify-center py-14 sm:py-20"
+        className="flex-1 flex items-center justify-center py-8 sm:py-12 lg:py-14"
       >
         <Container className="max-w-2xl">
           <div className="flex flex-col items-center text-center gap-6">

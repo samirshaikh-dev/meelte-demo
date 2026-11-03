@@ -57,7 +57,7 @@ export function CareersBenefits() {
     <section
       id="benefits"
       aria-labelledby="careers-benefits-heading"
-      className="border-b border-border/80 bg-surface py-14 scroll-mt-20 sm:py-20"
+      className="border-b border-border/80 bg-surface py-8 sm:py-12 lg:py-14 scroll-mt-20"
     >
       <Container>
         <div className="max-w-2xl">
@@ -71,7 +71,7 @@ export function CareersBenefits() {
 
         <ul
           role="list"
-          className="mt-10 grid gap-5 sm:mt-12 md:grid-cols-2 lg:grid-cols-4"
+          className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-4"
         >
           {BENEFITS.map((benefit) => {
             const Icon = benefit.icon;

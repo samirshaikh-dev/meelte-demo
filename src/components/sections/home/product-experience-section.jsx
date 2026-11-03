@@ -42,11 +42,11 @@ export function ProductExperienceSection() {
     <section
       id="product-tour"
       aria-labelledby="product-tour-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-surface py-14 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-surface py-8 sm:py-12 lg:py-14"
     >
       <Container>
         {/* Section Heading */}
-        <div className="max-w-2xl mb-10 sm:mb-12">
+        <div className="max-w-2xl mb-6 sm:mb-8">
           <h2
             id="product-tour-heading"
             className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.4rem] lg:leading-tight"

@@ -28,7 +28,7 @@ export function AboutStory() {
     <section
       id="story"
       aria-labelledby="about-story-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-surface py-14 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-surface py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-12">

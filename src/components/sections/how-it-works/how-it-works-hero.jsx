@@ -37,20 +37,20 @@ export function HowItWorksHero() {
       />
 
       <Container>
-        <div className="max-w-3xl py-10 sm:py-14 lg:py-20">
-          <Breadcrumbs items={HOW_IT_WORKS_BREADCRUMBS} className="mb-5" />
+        <div className="max-w-3xl py-8 sm:py-12 lg:py-14">
+          <Breadcrumbs items={HOW_IT_WORKS_BREADCRUMBS} className="mb-3.5 sm:mb-4" />
 
           <h1 className="text-[2.4rem] font-black leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]">
             How meelTe works
           </h1>
 
-          <p className="mt-5 text-lg leading-relaxed text-foreground-secondary sm:text-xl">
+          <p className="mt-3.5 sm:mt-4 text-base leading-relaxed text-foreground-secondary sm:text-lg">
             Shops and event hosts post what is on nearby. The app sorts it by
             distance from where you are, and you deal with the shop or host
             directly — meelTe does not sit in the middle of the transaction.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button
               as="a"
               href={PLAY_STORE_URL}

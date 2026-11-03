@@ -27,7 +27,7 @@ export function AboutMission() {
     <section
       id="mission"
       aria-labelledby="about-mission-heading"
-      className="scroll-mt-20 border-b border-border/80 bg-canvas py-14 sm:py-20"
+      className="scroll-mt-20 border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">
@@ -40,7 +40,7 @@ export function AboutMission() {
          
         </div>
 
-        <ul role="list" className="mt-10 border-t border-border/70 sm:mt-12">
+        <ul role="list" className="mt-6 sm:mt-8 border-t border-border/70">
           {ABOUT_MISSION.items.map((item) => {
             return (
               <li

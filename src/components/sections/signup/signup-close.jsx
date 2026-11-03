@@ -5,15 +5,6 @@ import { APP_STORE_URL, PLAY_STORE_URL } from "@/config/site";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 
-/**
- * Closing band for /signup.
- *
- * One primary action (install on Google Play) and one secondary action (the App
- * Store listing), plus a direct path to the FAQ. Both stores are always promoted together.
- *
- * The white text and white focus rings are deliberate: this band sits on the
- * primary gradient, where the default `ring-primary/40` would be invisible.
- */
 export function SignupClose() {
   return (
     <section
@@ -30,7 +21,7 @@ export function SignupClose() {
         className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-white/10"
       />
 
-      <Container className="relative py-14 sm:py-20">
+      <Container className="relative py-8 sm:py-12 lg:py-14">
         <div className="max-w-2xl">
           <h2
             id="signup-close-heading"
@@ -39,11 +30,11 @@ export function SignupClose() {
             Start with what is nearby.
           </h2>
 
-          <p className="mt-3 text-base leading-relaxed text-white/90">
+          <p className="mt-2 text-base leading-relaxed text-white/90">
             Download meelTe on Android or iPhone and see what is happening around you today.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Button
               as="a"
               href={PLAY_STORE_URL}
@@ -70,15 +61,6 @@ export function SignupClose() {
               <span>Download for iPhone</span>
             </Button>
 
-            {/* <Button
-              as={Link}
-              href="/faq"
-              variant="ghost"
-              size="lg"
-              className="justify-center font-semibold text-white hover:bg-white/10 hover:text-white focus-visible:ring-white/70"
-            >
-              <span>Read the FAQ</span>
-            </Button> */}
           </div>
         </div>
       </Container>

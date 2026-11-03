@@ -19,12 +19,6 @@ const FOR_MERCHANTS_BREADCRUMBS = [
   { name: "For Merchants" },
 ];
 
-/**
- * Merchant hero.
- *
- * Clean, intentional and grounded in product evidence (AVOID.md & docs/target_customer.md).
- * No decorative sparkles, AI-generated floating blobs, or exaggerated button animations.
- */
 const trustPills = [
   {
     id: 1,
@@ -71,7 +65,7 @@ const fadeUpVariants = {
 
 export function ForMerchantsHero() {
   return (
-    <section className="relative overflow-hidden pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-20 lg:pb-24 border-b border-border/80 bg-canvas">
+    <section className="relative overflow-hidden pt-8 pb-10 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16 border-b border-border/80 bg-canvas">
       {/* Subtle brand wash */}
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent/10 via-canvas to-canvas"
@@ -105,13 +99,13 @@ export function ForMerchantsHero() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeUpVariants} className="mt-6">
+            <motion.div variants={fadeUpVariants} className="mt-4">
               <Breadcrumbs items={FOR_MERCHANTS_BREADCRUMBS} listClassName="justify-center" />
             </motion.div>
 
             <motion.h1
               variants={fadeUpVariants}
-              className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl lg:leading-[1.08]"
+              className="mt-3.5 text-3xl font-extrabold tracking-tight text-foreground sm:mt-4 sm:text-5xl lg:text-6xl lg:leading-[1.08]"
             >
               <span className="text-foreground">Grow your local business</span>
               <br />
@@ -137,7 +131,7 @@ export function ForMerchantsHero() {
 
             <motion.p
               variants={fadeUpVariants}
-              className="mt-5 max-w-xl text-base sm:text-lg text-foreground-secondary leading-relaxed"
+              className="mt-3.5 max-w-xl text-base sm:mt-4 sm:text-lg text-foreground-secondary leading-relaxed"
             >
               Put your shop&apos;s offer in front of the people already nearby. Publish a single
               product or a catalogue of up to 100, with a price, a discount and the dates it
@@ -146,7 +140,7 @@ export function ForMerchantsHero() {
 
             <motion.div
               variants={fadeUpVariants}
-              className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+              className="mt-6 flex w-full flex-col items-center justify-center gap-3 sm:mt-7 sm:w-auto sm:flex-row"
             >
               <Button
                 as="a"

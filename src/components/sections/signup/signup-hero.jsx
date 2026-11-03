@@ -55,7 +55,7 @@ export function SignupHero() {
   return (
     <section
       aria-labelledby="signup-hero-heading"
-      className="border-b border-border/80 bg-canvas pt-8 pb-14 sm:pt-10 sm:pb-20"
+      className="border-b border-border/80 bg-canvas pt-8 pb-10 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16"
     >
       <Container>
         <Breadcrumbs items={SIGNUP_BREADCRUMBS} className="mb-6" />

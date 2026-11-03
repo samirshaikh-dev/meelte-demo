@@ -48,24 +48,24 @@ export default function TermsAndConditionsPage() {
       {/* Global Navbar */}
       <Navbar />
 
-      <main id="main-content" className="flex-1 py-10 sm:py-16">
+      <main id="main-content" className="flex-1 py-8 sm:py-12 lg:py-14">
         <Container>
           {/* Header */}
-          <div className="pb-8 border-b border-border/80">
-            <Breadcrumbs items={TERMS_BREADCRUMBS} className="mb-4" />
+          <div className="pb-6 border-b border-border/80">
+            <Breadcrumbs items={TERMS_BREADCRUMBS} className="mb-3.5 sm:mb-4" />
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
               Terms & Conditions
             </h1>
-            <p className="mt-3 text-lg sm:text-xl text-foreground-secondary leading-relaxed">
+            <p className="mt-2.5 text-lg sm:text-xl text-foreground-secondary leading-relaxed">
               The rules for using meelTe, for shoppers, event creators, and merchants.
             </p>
-            <div className="mt-3 text-sm text-foreground-muted font-medium">
+            <div className="mt-2.5 text-sm text-foreground-muted font-medium">
               Effective Date: October 2026
             </div>
           </div>
 
           {/* Terms Content — Full Container Width */}
-          <div className="pt-8 space-y-12 text-foreground-secondary text-base sm:text-lg leading-relaxed">
+          <div className="pt-6 space-y-8 sm:space-y-10 text-foreground-secondary text-base sm:text-lg leading-relaxed">
             {/* Preamble */}
             <p className="text-foreground text-lg sm:text-xl font-normal leading-relaxed">
               Creating an account, logging in, accessing, or using meelTe, you acknowledge that you have read, understood, and agreed to these Terms & Conditions, our Privacy Policy, Community Guidelines, and all applicable laws.

@@ -27,7 +27,7 @@ export function SignupAreas() {
   return (
     <section
       aria-labelledby="signup-areas-heading"
-      className="border-b border-border/80 bg-surface py-14 sm:py-20"
+      className="border-b border-border/80 bg-surface py-8 sm:py-12 lg:py-14"
     >
       <Container>
         <div className="max-w-2xl">
@@ -39,13 +39,13 @@ export function SignupAreas() {
             Three things to do once you are in.
           </h2>
 
-          <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
+          <p className="mt-2 text-base leading-relaxed text-foreground-secondary">
             Everything is sorted by distance from where you are, and the
             &ldquo;Max distance&rdquo; setting defaults to 60&nbsp;km.
           </p>
         </div>
 
-        <ul role="list" className="mt-10 grid gap-6 sm:mt-12 lg:grid-cols-3">
+        <ul role="list" className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 lg:grid-cols-3">
           {PLATFORM_AREAS.map((area) => {
             const Icon = AREA_ICONS[area.id];
 

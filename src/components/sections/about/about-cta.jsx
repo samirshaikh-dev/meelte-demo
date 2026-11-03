@@ -34,10 +34,10 @@ export function AboutCta() {
     <section
       id="why-meelTe"
       aria-labelledby="about-why-heading"
-      className="scroll-mt-20 bg-canvas py-14 sm:py-20"
+      className="scroll-mt-20 bg-canvas py-8 sm:py-12 lg:py-14"
     >
       <Container>
-        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-6 shadow-card sm:p-10">
+        <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-6 shadow-card sm:p-8">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-x-12">
             <div className="lg:col-span-7">
               <h2
