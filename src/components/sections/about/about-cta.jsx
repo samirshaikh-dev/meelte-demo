@@ -19,7 +19,7 @@ import { ABOUT_HOW_IT_WORKS_LABEL, ABOUT_WHY } from "./about-content";
  *   two download buttons with identical labels at both ends of the page is exactly
  *   the duplicated-CTA pattern meelTe-context.md §4 warns against. The destinations
  *   that close the argument now are the two the reader actually wants at this point:
- *   see the product (`/discover`) or talk to the team (`/contact`).
+ *   see the product (`/how-it-works`) or talk to the team (`/contact`).
  * - No `Badge variant="accent"`. The amber pill was a raw palette utility outside
  *   the token set (docs/Design.md §9.2), and amber is a fill colour here, not a
  *   surface for text.

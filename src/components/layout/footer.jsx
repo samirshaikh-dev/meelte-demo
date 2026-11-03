@@ -27,7 +27,7 @@ const FOOTER_LINK_CLASS =
  * (docs/target_customer.md §1) — so the footer can never drift from the /how-it-works
  * section headings, the CollectionPage ItemList, or the hero copy (AI_RULE.md §2.3).
  *
- * Each href targets a section id that <DiscoverAreas> actually renders, so the
+ * Each href targets the roles section that /how-it-works actually renders, so the
  * fragments resolve on the page instead of pointing at dead anchors.
  */
 const IN_APP_LINKS = PLATFORM_AREAS.map((area) => ({

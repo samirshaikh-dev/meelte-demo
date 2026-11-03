@@ -9,13 +9,12 @@ import { Badge } from "@/components/ui/badge";
  * What you get once the app is installed, for /signup.
  *
  * Every card is generated from `PLATFORM_AREAS` (src/constants/app-constants.js),
- * the same constant behind the /discover cards, the footer "In the app" column
- * and the CollectionPage ItemList — so the three capability names, taglines and
- * bullets cannot drift between routes.
+ * the same constant behind the footer "In the app" column, the /how-it-works role
+ * headings and the CollectionPage ItemList — so the three capability names,
+ * taglines and bullets cannot drift between routes.
  *
- * Deliberately shorter than /discover: only the tagline and the three bullets are
- * repeated here, and each card links to its /discover anchor for the full
- * description. This page's job is the next action, not a second capability page.
+ * The cards are not links: this page's job is the next action, not a second
+ * capability page, and the capability detail lives on /how-it-works.
  */
 const AREA_ICONS = {
   offers: Tag,

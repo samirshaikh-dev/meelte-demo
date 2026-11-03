@@ -360,6 +360,106 @@ export function getEventJsonLd(event) {
 }
 
 /**
+ * Product schema for a public meelTe ad returned by web_get_ad.
+ * Only public fields are accepted, and a price is emitted only when the API
+ * actually provides final_price. Discount-only ads must not receive an
+ * invented price in structured data.
+ */
+export function getPublicAdJsonLd(ad) {
+  if (!ad?.id || !ad?.productName || ad.hasEnded) return null;
+
+  const url = toAbsUrl(`/ads/${encodeURIComponent(ad.id)}`);
+  const hasPrice = typeof ad.finalPrice === "number" && Number.isFinite(ad.finalPrice) && ad.finalPrice >= 0;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: ad.productName,
+    ...(ad.description && { description: ad.description }),
+    ...(ad.photoUrl && { image: [toAbsImage(ad.photoUrl)] }),
+    ...(ad.brandName && {
+      brand: {
+        "@type": "Brand",
+        name: ad.brandName,
+      },
+    }),
+    ...(ad.category && { category: ad.category }),
+    url,
+    offers: {
+      "@type": "Offer",
+      url,
+      priceCurrency: "INR",
+      ...(hasPrice && { price: ad.finalPrice }),
+      ...(ad.startAt && { validFrom: ad.startAt }),
+      ...(ad.endAt && { priceValidUntil: ad.endAt }),
+      availability: "https://schema.org/InStock",
+    },
+  };
+}
+
+/**
+ * Event schema for a public meelTe event returned by web_get_event.
+ * The organizer is the public host name only; internal user ids never enter
+ * this object.
+ */
+export function getPublicEventJsonLd(event) {
+  if (!event?.id || !event?.title || !event?.startTime || event.hasEnded) return null;
+
+  const url = toAbsUrl(`/events/${encodeURIComponent(event.id)}`);
+  const address = {
+    "@type": "PostalAddress",
+    ...(event.address && { streetAddress: event.address }),
+    ...(event.city && { addressLocality: event.city }),
+    ...(event.state && { addressRegion: event.state }),
+    addressCountry: event.country || "IN",
+  };
+  const hasCoordinates =
+    typeof event.lat === "number" &&
+    Number.isFinite(event.lat) &&
+    typeof event.lng === "number" &&
+    Number.isFinite(event.lng);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.title,
+    ...(event.description && { description: event.description }),
+    ...(event.coverUrl && { image: [toAbsImage(event.coverUrl)] }),
+    startDate: event.startTime,
+    ...(event.endTime && { endDate: event.endTime }),
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      ...(event.locationName && { name: event.locationName }),
+      address,
+      ...(hasCoordinates && {
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: event.lat,
+          longitude: event.lng,
+        },
+      }),
+    },
+    ...(event.creatorName && {
+      organizer: {
+        "@type": "Person",
+        name: event.creatorName,
+      },
+    }),
+    offers: {
+      "@type": "Offer",
+      url,
+      price: typeof event.cost === "number" && event.cost >= 0 ? event.cost : 0,
+      priceCurrency: "INR",
+      availability: "https://schema.org/InStock",
+    },
+    ...(event.cost === 0 && { isAccessibleForFree: true }),
+    url,
+  };
+}
+
+/**
  * LocalBusiness Schema generator for neighborhood merchants and shops.
  */
 export function getLocalBusinessJsonLd(business) {
@@ -621,6 +721,8 @@ const structuredData = {
   getBreadcrumbsJsonLd,
   getFaqPageJsonLd,
   getEventJsonLd,
+  getPublicAdJsonLd,
+  getPublicEventJsonLd,
   getLocalBusinessJsonLd,
   getCollectionPageJsonLd,
   getArticleJsonLd,
