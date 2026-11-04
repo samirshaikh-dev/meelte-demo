@@ -21,7 +21,7 @@ export function AboutHero() {
         <Breadcrumbs items={ABOUT_BREADCRUMBS} className="mb-3.5 sm:mb-4" />
 
         <div className="max-w-3xl">
-          <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-black leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance">
             {ABOUT_HERO.titleLead}{" "}
             <span className="text-primary">
               {ABOUT_HERO.titleAccent}

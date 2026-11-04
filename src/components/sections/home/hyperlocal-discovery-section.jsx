@@ -11,7 +11,7 @@ export function HyperlocalDiscoverySection() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
           {/* Section Header */}
           <div className="lg:col-span-8">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight text-balance">
               Hyperlocal discovery across Indian neighbourhoods.
             </h2>
             <p className="mt-3 text-base text-foreground-secondary leading-relaxed">

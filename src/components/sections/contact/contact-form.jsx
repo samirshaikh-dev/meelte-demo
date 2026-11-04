@@ -222,7 +222,7 @@ export function ContactForm() {
             id="contact-form-heading"
             ref={successHeadingRef}
             tabIndex={-1}
-            className="rounded-sm text-2xl font-bold tracking-tight text-foreground focus:outline-none focus:ring-2 focus:ring-primary/70 focus:ring-offset-4"
+            className="rounded-sm text-2xl font-bold tracking-tight text-foreground focus:outline-none focus:ring-2 focus:ring-primary/70 focus:ring-offset-4 text-balance"
           >
             {CONTACT_FORM.successTitle}
           </h2>
@@ -254,7 +254,7 @@ export function ContactForm() {
             </p>
             <h2
               id="contact-form-heading"
-              className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+              className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-balance"
             >
               {CONTACT_FORM.title}
             </h2>

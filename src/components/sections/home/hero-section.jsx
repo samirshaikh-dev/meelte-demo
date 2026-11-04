@@ -56,7 +56,7 @@ export function HeroSection() {
                 </span>
                 <span className="text-border" aria-hidden="true">·</span>
                 <span className="text-xs font-medium text-foreground-secondary">
-                  Real Reach • Real Rapport
+                  Real Rapport • Real Reach
                 </span>
               </div>
             </motion.div>
@@ -64,7 +64,7 @@ export function HeroSection() {
             {/* Buyer-Centered Heading (Psychology §1, §7) */}
             <motion.h1
               variants={fadeUpVariants}
-              className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:mt-5 sm:text-5xl lg:text-6xl lg:leading-[1.1]"
+              className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:mt-5 sm:text-5xl lg:text-6xl lg:leading-[1.1] text-balance"
             >
               Find what’s happening near you,{" "}
               <span className="text-primary">right now.</span>
@@ -79,7 +79,7 @@ export function HeroSection() {
             </motion.p>
 
             {/* Dual Store Conversion Actions (AVOID.md §6: standardized buttons) */}
-            <motion.div
+            {/* <motion.div
               variants={fadeUpVariants}
               className="mt-6 flex w-full flex-col items-center justify-center gap-3 sm:mt-7 sm:w-auto sm:flex-row"
             >
@@ -108,7 +108,7 @@ export function HeroSection() {
                 <Apple className="h-5 w-5 fill-current text-primary" aria-hidden="true" />
                 <span>Download for iPhone</span>
               </Button>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </Container>

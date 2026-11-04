@@ -32,30 +32,20 @@ export function CareersOpenRoles() {
             </h2>
           </div>
 
-          <Card className="lg:col-span-7 border-primary/15 p-6 shadow-card sm:p-8">
-            <div className="flex items-start gap-4">
-              <div>
-                <h3 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
+          <Card className="lg:col-span-7 rounded-2xl border border-primary/15 bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:border-primary/30 hover:shadow-soft">
+            <div className="flex items-start gap-3.5 sm:gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                <Briefcase className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-base font-semibold tracking-tight text-foreground">
                   No open roles at the moment
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-foreground-secondary sm:text-base">
+                <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
                   We&apos;re not actively hiring right now. If you believe you&apos;d
                   be a great fit for meelTe, we&apos;d still love to hear from you.
                 </p>
               </div>
-            </div>
-
-            <div className="mt-6 border-t border-border/70 pt-6">
-              <Button
-                as="a"
-                href={CAREERS_EMAIL_HREF}
-                variant="primary"
-                size="lg"
-                className="justify-center font-semibold sm:w-auto"
-              >
-                <Mail className="h-5 w-5" aria-hidden="true" />
-                <span>Send your resume</span>
-              </Button>
             </div>
           </Card>
         </div>

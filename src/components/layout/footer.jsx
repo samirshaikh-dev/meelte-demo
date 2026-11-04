@@ -11,7 +11,7 @@ import {
 import { PLATFORM_AREAS } from "@/constants/app-constants";
 import { SOCIAL_LINKS } from "@/config/site";
 import { Container } from "./container";
-import { NewsletterForm } from "./newsletter-form";
+
 import { FooterColumn } from "./footer-column";
 
 const CURRENT_YEAR = 2026;
@@ -106,12 +106,12 @@ export function Footer() {
           </div>
 
           {FOOTER_SECTIONS.map((section) => (
-            <div key={section.id} className="sm:col-span-1 lg:col-span-2">
+            <div key={section.id} className="sm:col-span-1 lg:col-span-3">
               <nav aria-label={section.title}>
                 <FooterColumn title={section.title}>
                   <ul className="flex flex-col gap-2" role="list">
                     {section.links.map((link) => (
-                      <li key={link.href}>
+                      <li key={link.label}>
                         <Link href={link.href} className={FOOTER_LINK_CLASS}>
                           {link.label}
                         </Link>
@@ -122,10 +122,6 @@ export function Footer() {
               </nav>
             </div>
           ))}
-
-          <div className="sm:col-span-1 lg:col-span-3">
-            <NewsletterForm />
-          </div>
         </div>
 
         <div className="flex items-center justify-center gap-2.5 sm:gap-3 pb-6">
@@ -218,3 +214,4 @@ export function Footer() {
 }
 
 export default Footer;
+

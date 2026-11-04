@@ -46,7 +46,7 @@ export function TrustBoundariesSection() {
           <span className="text-xs font-bold uppercase tracking-wider text-primary">
             Honest Boundaries
           </span>
-          <h2 className="mt-1.5 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
+          <h2 className="mt-1.5 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] lg:leading-tight text-balance">
             Trust is built on what we refuse to do.
           </h2>
         </div>

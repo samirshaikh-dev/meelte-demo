@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Store, Users } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
 
 /**
  * The three sides of the platform, stated plainly.
@@ -46,7 +45,7 @@ export function HowItWorksRoles() {
         <div className="max-w-2xl">
           <h2
             id="how-it-works-roles-heading"
-            className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem]"
+            className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] text-balance"
           >
             Three kinds of people use meelTe.
           </h2>
@@ -58,28 +57,22 @@ export function HowItWorksRoles() {
             return (
               <li
                 key={role.id}
-                className="flex flex-col rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft"
+                className="flex flex-col justify-between rounded-2xl border border-primary/15 bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-muted text-primary">
-                  <Icon className="h-6 w-6" aria-hidden="true" />
-                </div>
-
-                <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
-                  {role.title}
-                </h3>
-
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground-secondary">
-                  {role.body}
-                </p>
-
-                <div className="mt-6 pt-4 border-t border-border/70">
-                  <Link
-                    href={role.link.href}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded"
-                  >
-                    <span>{role.link.label}</span>
-                    <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                  </Link>
+                <div>
+                  <div className="flex items-start gap-3.5 sm:gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-base font-semibold tracking-tight text-foreground">
+                        {role.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+                        {role.body}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </li>
             );

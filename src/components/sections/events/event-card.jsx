@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Bookmark, CalendarDays, MapPin, MessageCircle, Users } from "@/lib/icons";
 import { Badge } from "@/components/ui/badge";
+import { formatDisplayName } from "@/lib/display-name";
 import { formatCost, formatDateTime } from "./event-formatters";
 
 /**
@@ -21,9 +22,12 @@ export function EventCard({ event, priority = false, onAction }) {
   const costLabel = formatCost(event.cost);
   const startDateTime = formatDateTime(event.startTime);
   const isFree = event.cost === 0;
-  const metaLine = [event.creatorName && `Hosted by ${event.creatorName}`, event.category]
-    .filter(Boolean)
-    .join(" · ");
+  // Hosts type titles and categories in any casing; the card and the detail page
+  // must show the same string, so the rule is applied in both places.
+  const title = formatDisplayName(event.title) || "Community event";
+  const hostName = formatDisplayName(event.creatorName);
+  const category = formatDisplayName(event.category);
+  const metaLine = [hostName && `Hosted by ${hostName}`, category].filter(Boolean).join(" · ");
   const place = event.locationName || [event.city, event.state].filter(Boolean).join(", ");
   const detailHref = `/events/${encodeURIComponent(event.id)}`;
 
@@ -33,13 +37,13 @@ export function EventCard({ event, priority = false, onAction }) {
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/80 bg-surface-muted transition-colors group-hover:border-primary/40">
         <Link
           href={detailHref}
-          className="block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-          aria-label={`View details for ${event.title || "Community event"}`}
+          className="relative block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
+          aria-label={`View details for ${title}`}
         >
           {event.coverUrl ? (
             <Image
               src={event.coverUrl}
-              alt={event.title || "Community event"}
+              alt={title}
               fill
               unoptimized
               priority={priority}
@@ -76,7 +80,7 @@ export function EventCard({ event, priority = false, onAction }) {
             e.stopPropagation();
             onAction?.("save", event);
           }}
-          aria-label={`Save ${event.title || "event"} to favourites`}
+          aria-label={`Save ${title} to favourites`}
           className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 text-foreground-secondary shadow-soft backdrop-blur-xs transition-colors hover:bg-surface hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
         >
           <Bookmark className="h-4 w-4" aria-hidden="true" />
@@ -90,7 +94,7 @@ export function EventCard({ event, priority = false, onAction }) {
             href={detailHref}
             className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
-            {event.title || "Community event"}
+            {title}
           </Link>
         </h2>
 
@@ -137,7 +141,7 @@ export function EventCard({ event, priority = false, onAction }) {
               onAction?.("chat", event);
             }}
             className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-            aria-label={`Message host about ${event.title || "this event"}`}
+            aria-label={`Message host about ${title}`}
           >
             <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Message</span>

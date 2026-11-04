@@ -29,7 +29,7 @@ export function SignupSteps() {
 
           <h2
             id="signup-steps-heading"
-            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance"
           >
             From install to something nearby.
           </h2>

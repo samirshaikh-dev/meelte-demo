@@ -11,25 +11,25 @@ import {
   Compass,
   Users,
   Mail,
-  Lightbulb,
   Store,
   ChevronDown,
   Briefcase,
-  FileText,
   Tag,
   CalendarDays,
+  HelpCircle,
 } from "../../lib/icons";
 import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
 import { StoreButton } from "./store-button";
 
 const PRODUCT_ITEMS = [
-  { label: "How It Works", href: "/how-it-works", icon: Lightbulb, note: "Roles, app experience & platform flow" },
+  { label: "How It Works", href: "/how-it-works", icon: Compass, note: "Roles, app experience & platform flow" },
   { label: "For Merchants", href: "/for-merchants", icon: Store, note: "Promote your shop & local offers" },
 ];
 
 const COMPANY_ITEMS = [
   { label: "About Us", href: "/about", icon: Users, note: "Our mission, pillars & story" },
   { label: "Contact Us", href: "/contact", icon: Mail, note: "Support, partnerships & queries" },
+  { label: "FAQ", href: "/faq", icon: HelpCircle, note: "Common questions & answers" },
 ];
 
 export function MobileNav() {
@@ -53,7 +53,7 @@ export function MobileNav() {
         <button
           type="button"
           aria-label="Open navigation menu"
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-border/80 bg-surface text-foreground shadow-soft transition-colors hover:border-primary/20 hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/80 bg-surface text-foreground shadow-2xs transition-colors hover:border-primary/20 hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 lg:hidden"
         >
           <Menu className="h-5 w-5 text-foreground" aria-hidden="true" />
         </button>
@@ -70,22 +70,22 @@ export function MobileNav() {
             <Link
               href="/"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2.5 group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              className="group flex items-center gap-2.5 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
               aria-label="meelTe Home"
             >
               <Image
                 src="/icon_only_meelte.png"
                 alt="meelTe"
-                width={40}
-                height={40}
-                className="h-9 w-9 shrink-0 rounded-xl object-contain shadow-soft transition-transform duration-200"
+                width={36}
+                height={36}
+                className="h-9 w-9 shrink-0 rounded-xl border border-primary/10 object-contain shadow-2xs transition-transform duration-200"
               />
               <Image
                 src="/only_meelte.png"
                 alt="meelTe wordmark"
-                width={110}
-                height={32}
-                className="h-7 w-auto shrink-0 max-w-[110px] object-contain tracking-tight"
+                width={100}
+                height={28}
+                className="h-6.5 w-auto shrink-0 max-w-[100px] object-contain tracking-tight"
                 style={{ letterSpacing: "-0.02em" }}
                 priority={false}
               />
@@ -94,7 +94,7 @@ export function MobileNav() {
               <button
                 type="button"
                 aria-label="Close navigation menu"
-                className="flex h-11 w-11 items-center justify-center rounded-xl text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                className="flex h-10 w-10 items-center justify-center rounded-xl text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -112,20 +112,23 @@ export function MobileNav() {
               <button
                 type="button"
                 onClick={() => setProductExpanded(!productExpanded)}
-                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isProductActive
-                  ? "bg-surface-muted/80 text-primary"
-                  : "text-foreground hover:bg-surface-muted"
-                  }`}
+                className={`flex items-center justify-between rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                  isProductActive
+                    ? "bg-surface-muted text-primary"
+                    : "text-foreground hover:bg-surface-muted"
+                }`}
                 aria-expanded={productExpanded}
               >
                 <span>Product</span>
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${productExpanded ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    productExpanded ? "rotate-180" : ""
+                  }`}
                   aria-hidden="true"
                 />
               </button>
               {productExpanded && (
-                <div className="flex flex-col gap-1 ml-2 mt-1">
+                <div className="ml-2 mt-1 flex flex-col gap-1">
                   {PRODUCT_ITEMS.map((item) => {
                     const Icon = item.icon;
                     const isActive =
@@ -135,21 +138,35 @@ export function MobileNav() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
-                          ? "bg-surface-muted text-primary"
-                          : "text-foreground hover:bg-surface-muted hover:text-primary"
-                          }`}
+                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                          isActive
+                            ? "bg-surface-muted text-primary"
+                            : "text-foreground hover:bg-surface-muted hover:text-primary"
+                        }`}
                         aria-current={isActive ? "page" : undefined}
                       >
-                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isActive
-                          ? "bg-primary/10"
-                          : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                          }`}>
+                        <div
+                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                          }`}
+                        >
                           <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                         </div>
                         <div className="flex flex-col min-w-0 flex-1">
-                          <span className={`font-semibold ${isActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>{item.label}</span>
-                          <span className="text-[10px] text-foreground-secondary">{item.note}</span>
+                          <span
+                            className={`font-semibold ${
+                              isActive
+                                ? "text-primary"
+                                : "text-foreground group-hover:text-primary"
+                            }`}
+                          >
+                            {item.label}
+                          </span>
+                          <span className="text-[10px] text-foreground-secondary">
+                            {item.note}
+                          </span>
                         </div>
                       </Link>
                     );
@@ -162,17 +179,21 @@ export function MobileNav() {
             <Link
               href="/ads"
               onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isAdsActive
-                ? "bg-surface-muted/80 text-primary"
-                : "text-foreground hover:bg-surface-muted hover:text-primary"
-                }`}
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                isAdsActive
+                  ? "bg-surface-muted text-primary"
+                  : "text-foreground hover:bg-surface-muted hover:text-primary"
+              }`}
               aria-current={isAdsActive ? "page" : undefined}
             >
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isAdsActive
-                ? "bg-primary/10"
-                : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                }`}>
-                <Tag className="h-4 w-4" aria-hidden="true" />
+              <div
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                  isAdsActive
+                    ? "bg-primary text-white"
+                    : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                }`}
+              >
+                <Tag className="h-3.5 w-3.5" aria-hidden="true" />
               </div>
               <span>Ads</span>
             </Link>
@@ -181,17 +202,21 @@ export function MobileNav() {
             <Link
               href="/events"
               onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isEventsActive
-                ? "bg-surface-muted/80 text-primary"
-                : "text-foreground hover:bg-surface-muted hover:text-primary"
-                }`}
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                isEventsActive
+                  ? "bg-surface-muted text-primary"
+                  : "text-foreground hover:bg-surface-muted hover:text-primary"
+              }`}
               aria-current={isEventsActive ? "page" : undefined}
             >
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isEventsActive
-                ? "bg-primary/10"
-                : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                }`}>
-                <CalendarDays className="h-4 w-4" aria-hidden="true" />
+              <div
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                  isEventsActive
+                    ? "bg-primary text-white"
+                    : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                }`}
+              >
+                <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" />
               </div>
               <span>Events</span>
             </Link>
@@ -200,17 +225,21 @@ export function MobileNav() {
             <Link
               href="/careers"
               onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isCareersActive
-                ? "bg-surface-muted/80 text-primary"
-                : "text-foreground hover:bg-surface-muted hover:text-primary"
-                }`}
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                isCareersActive
+                  ? "bg-surface-muted text-primary"
+                  : "text-foreground hover:bg-surface-muted hover:text-primary"
+              }`}
               aria-current={isCareersActive ? "page" : undefined}
             >
-              <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isCareersActive
-                ? "bg-primary/10"
-                : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                }`}>
-                <Briefcase className="h-4 w-4" aria-hidden="true" />
+              <div
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                  isCareersActive
+                    ? "bg-primary text-white"
+                    : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                }`}
+              >
+                <Briefcase className="h-3.5 w-3.5" aria-hidden="true" />
               </div>
               <span>Careers</span>
             </Link>
@@ -220,20 +249,23 @@ export function MobileNav() {
               <button
                 type="button"
                 onClick={() => setCompanyExpanded(!companyExpanded)}
-                className={`flex items-center justify-between rounded-xl p-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isCompanyActive
-                  ? "bg-surface-muted/80 text-primary"
-                  : "text-foreground hover:bg-surface-muted"
-                  }`}
+                className={`flex items-center justify-between rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                  isCompanyActive
+                    ? "bg-surface-muted text-primary"
+                    : "text-foreground hover:bg-surface-muted"
+                }`}
                 aria-expanded={companyExpanded}
               >
                 <span>Company</span>
                 <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${companyExpanded ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform duration-200 ${
+                    companyExpanded ? "rotate-180" : ""
+                  }`}
                   aria-hidden="true"
                 />
               </button>
               {companyExpanded && (
-                <div className="flex flex-col gap-1 ml-2 mt-1">
+                <div className="ml-2 mt-1 flex flex-col gap-1">
                   {COMPANY_ITEMS.map((item) => {
                     const Icon = item.icon;
                     const isActive =
@@ -243,21 +275,35 @@ export function MobileNav() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-inset ${isActive
-                          ? "bg-surface-muted text-primary"
-                          : "text-foreground hover:bg-surface-muted hover:text-primary"
-                          }`}
+                        className={`group flex items-start gap-3 rounded-xl p-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                          isActive
+                            ? "bg-surface-muted text-primary"
+                            : "text-foreground hover:bg-surface-muted hover:text-primary"
+                        }`}
                         aria-current={isActive ? "page" : undefined}
                       >
-                        <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${isActive
-                          ? "bg-primary/10"
-                          : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                          }`}>
+                        <div
+                          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                            isActive
+                              ? "bg-primary text-white"
+                              : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                          }`}
+                        >
                           <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                         </div>
                         <div className="flex flex-col min-w-0 flex-1">
-                          <span className={`font-semibold ${isActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>{item.label}</span>
-                          <span className="text-[10px] text-foreground-secondary">{item.note}</span>
+                          <span
+                            className={`font-semibold ${
+                              isActive
+                                ? "text-primary"
+                                : "text-foreground group-hover:text-primary"
+                            }`}
+                          >
+                            {item.label}
+                          </span>
+                          <span className="text-[10px] text-foreground-secondary">
+                            {item.note}
+                          </span>
                         </div>
                       </Link>
                     );
@@ -267,8 +313,7 @@ export function MobileNav() {
             </div>
           </nav>
 
-          {/* Bottom actions — the drawer is now the only compact download surface
-              below `lg`, so it carries both stores instead of a single app button. */}
+          {/* Bottom actions */}
           <div className="mt-auto flex flex-col gap-2.5 border-t border-border/80 pt-5">
             <span className="text-[11px] font-semibold text-foreground-secondary">
               Get the app

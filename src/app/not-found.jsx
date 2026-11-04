@@ -38,7 +38,7 @@ export default function NotFound() {
             <div className="absolute inset-x-0 -bottom-5 mx-auto h-1 w-24 bg-gradient-to-r from-transparent via-primary/40 to-transparent rounded-full" />
           </div>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-3 text-balance">
             Lost in the neighborhood
           </h1>
           <p className="text-base text-foreground-secondary mb-8 leading-relaxed max-w-xl mx-auto">

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Container } from "@/components/layout/container";
 import { AdsListing } from "@/components/sections/ads";
 import { buildCollectionMetadata } from "@/lib/seo/metadata";
 import {
@@ -98,10 +99,10 @@ function ListingFallback() {
       aria-label="Loading offers"
       className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <Container>
         <div className="h-9 w-64 animate-pulse rounded-lg bg-surface-muted" aria-hidden="true" />
         <div className="mt-4 h-5 w-full max-w-xl animate-pulse rounded-lg bg-surface-muted" aria-hidden="true" />
-      </div>
+      </Container>
     </section>
   );
 }

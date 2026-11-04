@@ -33,7 +33,7 @@ export function BusinessAcquisitionSection() {
     <section id="for-businesses" className="py-8 sm:py-12 lg:py-14 bg-surface-subtle scroll-mt-20 border-b border-border/80">
       <Container>
         <Reveal className="max-w-3xl mb-6 sm:mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight text-balance">
             From first conversation to your first offer.
           </h2>
           <p className="mt-2 text-base sm:text-lg text-foreground-secondary leading-relaxed">
@@ -43,7 +43,7 @@ export function BusinessAcquisitionSection() {
 
         <div className="mb-8">
           <Reveal className="text-center max-w-xl mx-auto mb-6">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mt-1">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground mt-1 text-balance">
               A straightforward three-step setup
             </h3>
           </Reveal>
@@ -74,7 +74,7 @@ export function BusinessAcquisitionSection() {
         <Reveal delay={0.08}>
           <div className="rounded-2xl bg-gradient-to-br from-primary via-primary-hover to-primary-royal p-6 sm:p-8 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
             <div className="max-w-xl">
-              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-balance">
                 Ready to list your local shop?
               </h3>
               <p className="mt-2 text-sm sm:text-base text-white/90 leading-relaxed">

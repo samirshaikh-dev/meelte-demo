@@ -6,15 +6,18 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Container } from "@/components/layout/container";
 import { StoreButton } from "@/components/layout/store-button";
 import { Button } from "@/components/ui/button";
-import { Bell, Search, Sparkles, Store, X } from "@/lib/icons";
+import { ChevronDown, MapPin, Search, X, PlusCircle } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 import { loadMoreAds } from "@/actions/ads/load-more-ads";
 import { AdCard } from "./ad-card";
 import { AppActionModal } from "./app-action-modal";
+import { formatDisplayName, getListingAreaLabel } from "./ad-formatters";
 
 const GRID_ID = "ads-grid";
 
-const CORE_CATEGORIES = ["All", "Food", "Fashion", "Services", "Health"];
+// Canonical shop categories stay ahead of merchant-typed free text.
+const CORE_CATEGORIES = ["Food", "Fashion", "Services", "Health"];
+const MAX_VISIBLE_CATEGORIES = 6;
 
 /**
  * The `/ads` listing grid with live search, category filtering, on-demand
@@ -39,6 +42,7 @@ export function AdsListing({
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   // App Action Modal state
   const [modalState, setModalState] = useState({
@@ -58,22 +62,83 @@ export function AdsListing({
     }
   }, [cursor]);
 
-  // Compute available categories dynamically from incoming items combined with core categories
-  const categories = useMemo(() => {
-    const fromItems = new Set();
+  /**
+   * Categories ranked for a single row: canonical shop categories first, then
+   * merchant-typed values by how many offers they actually carry. Free-text
+   * categories the app lets shops invent are real data, but they are not
+   * navigation — they belong behind "More" rather than in the first row.
+   */
+  const categoryGroups = useMemo(() => {
+    const counts = new Map();
+
     items.forEach((ad) => {
-      if (ad.category) {
-        fromItems.add(ad.category.trim());
+      const label = formatDisplayName(ad.category);
+      if (!label) return;
+      counts.set(label, (counts.get(label) || 0) + 1);
+    });
+
+    const core = [];
+    const other = [];
+
+    counts.forEach((count, label) => {
+      const coreIndex = CORE_CATEGORIES.findIndex(
+        (name) => name.toLowerCase() === label.toLowerCase()
+      );
+      if (coreIndex === -1) {
+        other.push([label, count]);
+      } else {
+        core.push([coreIndex, label, count]);
       }
     });
-    const combined = [...CORE_CATEGORIES];
-    fromItems.forEach((cat) => {
-      if (!combined.some((c) => c.toLowerCase() === cat.toLowerCase())) {
-        combined.push(cat);
-      }
-    });
-    return combined;
-  }, [items]);
+
+    core.sort((a, b) => a[0] - b[0]);
+    other.sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+    const all = [...core.map(([, label, count]) => [label, count]), ...other];
+    let visible = all.slice(0, MAX_VISIBLE_CATEGORIES);
+
+    // A filter hidden behind "More" must stay reachable while it is active.
+    const active = all.find(
+      ([label]) => selectedCategory !== "All" && label.toLowerCase() === selectedCategory.toLowerCase()
+    );
+
+    if (active && !visible.includes(active)) {
+      visible = [active, ...visible.slice(0, MAX_VISIBLE_CATEGORIES - 1)];
+    }
+
+    const visibleLabels = new Set(visible.map(([label]) => label));
+
+    return {
+      all,
+      visible,
+      hidden: all.filter(([label]) => !visibleLabels.has(label)),
+    };
+  }, [items, selectedCategory]);
+
+  // Where the loaded offers actually are. The API sends addresses, not
+  // distances, so the page names the area instead of inventing "X km away".
+  const areaLabel = useMemo(() => getListingAreaLabel(items), [items]);
+
+  function renderCategoryChip(label) {
+    const isActive = selectedCategory.toLowerCase() === label.toLowerCase();
+
+    return (
+      <button
+        key={label}
+        type="button"
+        onClick={() => setSelectedCategory(label)}
+        aria-pressed={isActive}
+        className={cn(
+          "shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
+          isActive
+            ? "bg-primary font-semibold text-white shadow-2xs"
+            : "bg-canvas text-foreground-secondary hover:bg-surface-muted hover:text-primary"
+        )}
+      >
+        {label}
+      </button>
+    );
+  }
 
   // Client-side filtering across current items
   const filteredItems = useMemo(() => {
@@ -149,16 +214,15 @@ export function AdsListing({
       aria-labelledby="offers-heading"
       className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
     >
-      <Container className="max-w-6xl">
+      <Container>
         <Breadcrumbs items={breadcrumbs} className="mb-5" />
 
         {/* Header & Sub-banner */}
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-
             <h1
               id="offers-heading"
-              className="text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-4xl"
+              className="text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-4xl text-balance"
             >
               Local offers nearby
             </h1>
@@ -167,6 +231,21 @@ export function AdsListing({
               directly with merchants on the meelTe mobile app.
             </p>
           </div>
+
+
+          {/* Action Triggers: Host & Alerts */}
+          <div className="flex flex-wrap items-center gap-2.5 pt-2 lg:pt-0">
+
+            <button
+              type="button"
+              onClick={() => handleAction("post", null)}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-primary/25 bg-surface-muted px-3.5 py-2 text-xs font-semibold text-primary transition-colors hover:border-primary/50 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+            >
+              <PlusCircle className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>Add an ads</span>
+            </button>
+          </div>
+
         </div>
 
         {unavailable ? (
@@ -247,31 +326,54 @@ export function AdsListing({
                 </div>
               </div>
 
-              {/* Category Pills */}
-              <div className="mt-3.5 flex flex-wrap items-center gap-1.5 border-t border-border/60 pt-3">
-                <span className="text-xs font-semibold text-foreground-secondary mr-1">
-                  Categories:
-                </span>
-                {categories.map((cat) => {
-                  const isActive = selectedCategory.toLowerCase() === cat.toLowerCase();
-                  return (
-                    <button
-                      key={cat}
-                      type="button"
-                      onClick={() => setSelectedCategory(cat)}
+              {/* Category row: one scannable line, long tail behind "More" */}
+              <div className="mt-3.5 flex items-center gap-2 border-t border-border/60 pt-3">
+                <div className="relative min-w-0 flex-1">
+                  <div
+                    role="group"
+                    aria-label="Filter offers by category"
+                    className="flex items-center gap-1.5 overflow-x-auto pr-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  >
+                    {["All", ...categoryGroups.visible.map(([label]) => label)].map(
+                      renderCategoryChip
+                    )}
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-surface to-transparent"
+                  />
+                </div>
+
+                {categoryGroups.hidden.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowAllCategories((open) => !open)}
+                    aria-expanded={showAllCategories}
+                    aria-controls="all-categories-panel"
+                    className="inline-flex shrink-0 items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-primary transition-colors hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                  >
+                    <span>
+                      {showAllCategories ? "Less" : `More (${categoryGroups.hidden.length})`}
+                    </span>
+                    <ChevronDown
                       className={cn(
-                        "rounded-full px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
-                        isActive
-                          ? "bg-primary text-white shadow-2xs font-semibold"
-                          : "bg-canvas text-foreground-secondary hover:bg-surface-muted hover:text-primary"
+                        "h-3.5 w-3.5 transition-transform duration-200",
+                        showAllCategories && "rotate-180"
                       )}
-                      aria-pressed={isActive}
-                    >
-                      {cat}
-                    </button>
-                  );
-                })}
+                      aria-hidden="true"
+                    />
+                  </button>
+                )}
               </div>
+
+              {showAllCategories && categoryGroups.hidden.length > 0 && (
+                <div
+                  id="all-categories-panel"
+                  className="mt-3 flex flex-wrap gap-1.5 border-t border-border/60 pt-3"
+                >
+                  {categoryGroups.all.map(([label]) => renderCategoryChip(label))}
+                </div>
+              )}
             </div>
 
             {/* Empty Filter State */}

@@ -40,7 +40,7 @@ export function HowItWorksHero() {
         <div className="max-w-3xl py-8 sm:py-12 lg:py-14">
           <Breadcrumbs items={HOW_IT_WORKS_BREADCRUMBS} className="mb-3.5 sm:mb-4" />
 
-          <h1 className="text-[2.4rem] font-black leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]">
+          <h1 className="text-[2.4rem] font-black leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem] text-balance">
             How meelTe works
           </h1>
 

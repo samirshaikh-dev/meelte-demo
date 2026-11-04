@@ -59,7 +59,7 @@ export default function HomePage() {
         <HomeFaq />
 
         {/* ── SECTION 8: Dual-Audience Conversion Closer ── */}
-        <FinalConversionCTA />
+        {/* <FinalConversionCTA /> */}
       </main>
 
       {/* ── Global multi-column directory footer ── */}

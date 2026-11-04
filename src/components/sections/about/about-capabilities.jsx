@@ -1,7 +1,5 @@
 import React from "react";
-import Link from "next/link";
 import {
-  ArrowRight,
   CalendarDays,
   Compass,
   ShieldCheck,
@@ -9,10 +7,8 @@ import {
   Users,
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ABOUT_CAPABILITIES } from "./about-content";
-
 
 const CAPABILITY_ICONS = {
   Compass,
@@ -33,11 +29,10 @@ export function AboutCapabilities() {
         <div className="max-w-2xl">
           <h2
             id="about-capabilities-heading"
-            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance"
           >
             {ABOUT_CAPABILITIES.title}
           </h2>
-        
         </div>
 
         <ul
@@ -48,22 +43,23 @@ export function AboutCapabilities() {
             const Icon = CAPABILITY_ICONS[item.icon] || Compass;
 
             return (
-              <li key={item.title}>
-                <Card className="flex h-full flex-col p-6 sm:p-7">
-                  <div className="flex items-center justify-between gap-3">
-
+              <li key={item.title} className="flex">
+                <Card className="flex w-full items-start gap-3.5 sm:gap-4 rounded-2xl border border-primary/15 bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">
-                    {item.body}
-                  </p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base font-semibold tracking-tight text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+                      {item.body}
+                    </p>
+                  </div>
                 </Card>
               </li>
             );
           })}
-
         </ul>
       </Container>
     </section>

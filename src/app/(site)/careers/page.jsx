@@ -29,7 +29,7 @@ import {
  *
  * - The hero is left-aligned instead of centred, and the "not actively hiring"
  *   status (which used to sit fourth) is stated directly under the summary.
- * - Values became a ruled editorial list, benefits a 4-column bento, open roles a
+ * - Values became a ruled editorial list, benefits a dense 3-column inline card grid, open roles a
  *   two-column status block, and the closing CTA a left/right split — so the page
  *   no longer reads as five stacked grids of identical cards
  *   (meelTe-context.md §4).

@@ -25,7 +25,7 @@ export function SignupReferral() {
 
           <h2
             id="signup-referral-heading"
-            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance"
           >
             Bring your friends in. Collect coins.
           </h2>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Bookmark, MapPin, MessageCircle, Tag } from "@/lib/icons";
 import { Badge } from "@/components/ui/badge";
-import { formatPrice, getDiscountLabel } from "./ad-formatters";
+import { formatDisplayName, getAreaLabel, getDealBadge } from "./ad-formatters";
 
 /**
  * One offer card for the `/ads` listing grid.
@@ -12,37 +12,38 @@ import { formatPrice, getDiscountLabel } from "./ad-formatters";
  * The card is deliberately open rather than a bordered box: the offer photo is
  * the only framed element and the text sits directly on the page canvas, so a
  * grid of offers reads as a catalogue instead of a stack of identical cards
- * (AVOID.md §2). The amber discount chip highlights the deal before the title.
+ * (AVOID.md §2).
+ *
+ * Everything that identifies the deal sits on a fixed 16:10 photo — the deal
+ * value, the category and the area — because the page exists to show offers, not
+ * shop names. Merchant photos vary wildly in framing and tone, so a bottom
+ * gradient holds the light overlay text and quietly unifies them.
  *
  * Interactive actions (Claim, Chat, Save) trigger the in-app feature modal, while
  * clicking the title or image navigates to the detailed view without nesting
  * button elements inside anchor tags.
  */
 export function AdCard({ ad, priority = false, onAction }) {
-  const finalPrice = formatPrice(ad.finalPrice);
-  const originalPrice = formatPrice(ad.originalPrice);
-  const discountLabel = getDiscountLabel(ad);
-  const showOriginalPrice =
-    Boolean(originalPrice) &&
-    typeof ad.finalPrice === "number" &&
-    typeof ad.originalPrice === "number" &&
-    ad.originalPrice > ad.finalPrice;
-  const metaLine = [ad.brandName, ad.category].filter(Boolean).join(" · ");
+  const offerName = formatDisplayName(ad.productName) || "Local offer";
+  const shopName = formatDisplayName(ad.brandName);
+  const categoryLabel = formatDisplayName(ad.category);
+  const areaLabel = getAreaLabel(ad);
+  const dealBadge = getDealBadge(ad);
   const detailHref = `/ads/${encodeURIComponent(ad.id)}`;
 
   return (
     <article className="group relative flex h-full flex-col">
       {/* Framed Image Container */}
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border/80 bg-surface-muted transition-colors group-hover:border-primary/40">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border/80 bg-surface-muted transition-colors group-hover:border-primary/40">
         <Link
           href={detailHref}
-          className="block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-          aria-label={`View details for ${ad.productName || "Local offer"}`}
+          className="relative block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
+          aria-label={`View details for ${offerName}`}
         >
           {ad.photoUrl ? (
             <Image
               src={ad.photoUrl}
-              alt={ad.productName || "Local offer"}
+              alt={offerName}
               fill
               unoptimized
               priority={priority}
@@ -54,16 +55,22 @@ export function AdCard({ ad, priority = false, onAction }) {
               No offer image was provided.
             </div>
           )}
+
+          {/* Unifies uneven merchant photos and holds the overlay labels readable */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 via-black/25 to-transparent"
+          />
         </Link>
 
-        {/* Discount Badge */}
-        {discountLabel && (
+        {/* Deal Value: the reason to click, visible before any scrolling */}
+        {dealBadge && (
           <Badge
             size="sm"
             variant="accent"
-            className="pointer-events-none absolute left-3 top-3 bg-accent text-accent-foreground shadow-soft"
+            className="pointer-events-none absolute left-3 top-3 max-w-[75%] truncate bg-accent text-accent-foreground shadow-soft"
           >
-            {discountLabel}
+            {dealBadge}
           </Badge>
         )}
 
@@ -75,75 +82,78 @@ export function AdCard({ ad, priority = false, onAction }) {
             e.stopPropagation();
             onAction?.("save", ad);
           }}
-          aria-label={`Save ${ad.productName || "offer"} to favourites`}
+          aria-label={`Save ${offerName} to favourites`}
           className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 text-foreground-secondary shadow-soft backdrop-blur-xs transition-colors hover:bg-surface hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
         >
           <Bookmark className="h-4 w-4" aria-hidden="true" />
         </button>
+
+        {/* Category and area: the two facts that make an offer local and findable */}
+        <div className="pointer-events-none absolute inset-x-3 bottom-3 flex items-end justify-between gap-2">
+          {categoryLabel ? (
+            <span className="max-w-[60%] truncate rounded-lg bg-black/45 px-2 py-0.5 text-[11px] font-semibold text-white ring-1 ring-white/25 ring-inset">
+              {categoryLabel}
+            </span>
+          ) : (
+            <span aria-hidden="true" />
+          )}
+
+          {areaLabel ? (
+            <span className="inline-flex max-w-[55%] items-center gap-1 rounded-lg bg-black/45 px-2 py-0.5 text-[11px] font-medium text-white ring-1 ring-white/25 ring-inset">
+              <MapPin className="h-3 w-3 shrink-0" aria-hidden="true" />
+              <span className="truncate">{areaLabel}</span>
+            </span>
+          ) : (
+            <span aria-hidden="true" />
+          )}
+        </div>
       </div>
 
       {/* Offer Info */}
-      <div className="flex flex-1 flex-col pt-3.5">
-        <h2 className="line-clamp-2 text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+      <div className="flex flex-1 flex-col pt-3">
+        {shopName && (
+          <p className="truncate text-xs font-semibold text-foreground-secondary">{shopName}</p>
+        )}
+
+        <h2 className="mt-1 line-clamp-2 text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
           <Link
             href={detailHref}
             className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
-            {ad.productName || "Local offer"}
+            {offerName}
           </Link>
         </h2>
 
-        {metaLine && (
-          <p className="mt-1 truncate text-xs text-foreground-secondary">{metaLine}</p>
-        )}
-
-        {finalPrice && (
-          <p className="mt-2.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-            <span className="text-base font-bold text-foreground">{finalPrice}</span>
-            {showOriginalPrice && (
-              <del className="text-xs text-foreground-secondary">
-                <span className="sr-only">Original price </span>
-                {originalPrice}
-              </del>
-            )}
-          </p>
-        )}
-
-        {ad.locationName && (
-          <p className="mt-2 flex items-center gap-1.5 text-xs text-foreground-secondary">
-            <MapPin className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
-            <span className="truncate">{ad.locationName}</span>
-          </p>
-        )}
-
         {/* Action Bar */}
-        <div className="mt-auto flex items-center justify-between gap-2 border-t border-border/60 pt-3">
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onAction?.("claim", ad);
-            }}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-surface-muted px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-          >
-            <Tag className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Claim deal</span>
-          </button>
+        <div className="mt-auto pt-3">
+          <div className="flex items-center justify-between gap-2 border-t border-border/60 pt-3">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onAction?.("claim", ad);
+              }}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-surface-muted px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+            >
+              <Tag className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>Claim deal</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onAction?.("chat", ad);
-            }}
-            className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-            aria-label={`Chat with merchant about ${ad.productName || "this offer"}`}
-          >
-            <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Chat</span>
-          </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onAction?.("chat", ad);
+              }}
+              className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+              aria-label={`Chat with merchant about ${offerName}`}
+            >
+              <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>Chat</span>
+            </button>
+          </div>
         </div>
       </div>
     </article>

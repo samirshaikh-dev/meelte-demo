@@ -49,43 +49,33 @@ export function ProductExperienceSection() {
         <div className="max-w-2xl mb-6 sm:mb-8">
           <h2
             id="product-tour-heading"
-            className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.4rem] lg:leading-tight"
+            className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.4rem] lg:leading-tight text-balance"
           >
             What you can do in the app.
           </h2>
         </div>
 
-        {/* Responsive 2-Column Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {EXPERIENCES.map((exp) => {
-            const Icon = exp.icon;
-
-            return (
-              <div
-                key={exp.id}
-                className="group rounded-2xl border border-border/80 bg-surface p-5 sm:p-6 shadow-soft transition-all duration-200 hover:border-primary/30 hover:bg-surface-subtle/50 hover:shadow-card"
-              >
-                {/* Header: Icon tile alongside Title */}
-                <div className="flex items-center gap-3.5">
-                  <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary transition-colors duration-200 group-hover:bg-primary group-hover:text-white"
-                    aria-hidden="true"
-                  >
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-foreground transition-colors duration-200 group-hover:text-primary">
-                    {exp.title}
-                  </h3>
+        {/* Compact 2x2 grid: static cards, so no hover or shadow implies clickability. */}
+        <ul role="list" className="grid gap-3.5 sm:grid-cols-2 sm:gap-4">
+          {EXPERIENCES.map((exp) => (
+            <li key={exp.id} className="flex">
+              <div className="flex w-full items-start gap-3.5 rounded-2xl border border-primary/15 bg-canvas p-4 sm:gap-4 sm:p-5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/15 bg-surface text-primary">
+                  <exp.icon className="h-5 w-5" aria-hidden="true" />
                 </div>
 
-                {/* Description below */}
-                <p className="mt-3.5 text-sm leading-relaxed text-foreground-secondary">
-                  {exp.description}
-                </p>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-base font-semibold tracking-tight text-foreground">
+                    {exp.title}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+                    {exp.description}
+                  </p>
+                </div>
               </div>
-            );
-          })}
-        </div>
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
   );

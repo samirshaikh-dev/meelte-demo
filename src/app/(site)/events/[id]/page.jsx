@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Container } from "@/components/layout/container";
 import { EventDetail } from "@/components/sections/events";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import {
@@ -9,10 +10,23 @@ import {
   getPublicEventJsonLd,
 } from "@/lib/seo/structured-data";
 import { getPublicEvent } from "@/services/supabase-services/events/get-events-by-id";
+import { formatDisplayName } from "@/lib/display-name";
 
 function snippet(value, fallback) {
   const normalized = typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "";
   return (normalized || fallback).slice(0, 155);
+}
+
+// Hosts type titles, categories and host names in any casing, and the detail page
+// title-cases them for display. Everything that names the event — heading,
+// breadcrumb, metadata and JSON-LD — reads from this one value so they agree.
+function displayEvent(event) {
+  return {
+    ...event,
+    title: formatDisplayName(event.title) || "Community event",
+    category: formatDisplayName(event.category),
+    creatorName: formatDisplayName(event.creatorName),
+  };
 }
 
 function routePath(id) {
@@ -34,13 +48,15 @@ export async function generateMetadata({ params }) {
       });
     }
 
+    const shown = displayEvent(event);
+
     return buildPageMetadata({
-      title: event.title || "Community event",
+      title: shown.title,
       description: snippet(event.description, "A public community event on meelTe."),
       path,
       image: event.coverUrl || undefined,
       noIndex: event.hasEnded,
-      keywords: [event.category, "local event", "meelTe"].filter(Boolean),
+      keywords: [shown.category, "local event", "meelTe"].filter(Boolean),
     });
   } catch {
     return buildPageMetadata({
@@ -57,14 +73,16 @@ async function EventPageContent({ params }) {
   const event = await getPublicEvent(id);
   if (!event) notFound();
 
+  const shown = displayEvent(event);
+
   const breadcrumbs = [
     { name: "Home", path: "/" },
     { name: "Events", path: "/events" },
-    { name: event.title || "Event", path: routePath(event.id) },
+    { name: shown.title, path: routePath(event.id) },
   ];
   const jsonLd = [
     getBreadcrumbsJsonLd(breadcrumbs),
-    !event.hasEnded && getPublicEventJsonLd(event),
+    !shown.hasEnded && getPublicEventJsonLd(shown),
   ].filter(Boolean);
 
   return (
@@ -75,7 +93,7 @@ async function EventPageContent({ params }) {
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <EventDetail event={event} breadcrumbs={breadcrumbs} />
+      <EventDetail event={shown} breadcrumbs={breadcrumbs} />
     </>
   );
 }
@@ -85,19 +103,20 @@ function DetailFallback() {
     <section
       aria-busy="true"
       aria-label="Loading event"
-      className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
+      className="border-b border-border/80 bg-canvas pb-24 pt-6 sm:pt-8 lg:pb-16"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:gap-12">
-          <div className="aspect-[4/3] animate-pulse rounded-2xl bg-surface-muted" />
+      <Container className="max-w-6xl">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
+          <div className="aspect-[4/3] animate-pulse rounded-2xl bg-surface-muted lg:aspect-square" />
           <div className="space-y-4">
-            <div className="h-6 w-24 animate-pulse rounded-md bg-surface-muted" />
-            <div className="h-10 w-3/4 animate-pulse rounded-lg bg-surface-muted" />
-            <div className="h-6 w-1/3 animate-pulse rounded-md bg-surface-muted" />
-            <div className="h-28 w-full animate-pulse rounded-2xl bg-surface-muted" />
+            <div className="h-9 w-4/5 animate-pulse rounded-lg bg-surface-muted" />
+            <div className="h-9 w-1/3 animate-pulse rounded-full bg-surface-muted" />
+            <div className="h-24 w-full animate-pulse rounded-lg bg-surface-muted" />
+            <div className="h-12 w-full animate-pulse rounded-xl bg-surface-muted" />
+            <div className="h-11 w-full animate-pulse rounded-xl bg-surface-muted" />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

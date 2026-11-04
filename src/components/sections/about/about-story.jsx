@@ -35,7 +35,7 @@ export function AboutStory() {
           <div className="lg:col-span-4">
             <h2
               id="about-story-heading"
-              className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+              className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance"
             >
               {ABOUT_STORY.title}
             </h2>

@@ -33,7 +33,7 @@ export function AboutMission() {
         <div className="max-w-2xl">
           <h2
             id="about-mission-heading"
-            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance"
           >
             {ABOUT_MISSION.title}
           </h2>

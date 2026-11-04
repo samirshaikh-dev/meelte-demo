@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Container } from "@/components/layout/container";
 import { AdDetail } from "@/components/sections/ads";
+import { formatDisplayName } from "@/components/sections/ads/ad-formatters";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import {
   getBreadcrumbsJsonLd,
@@ -13,6 +15,18 @@ import { getPublicAd } from "@/services/supabase-services/ads/get-ads-by-id";
 function snippet(value, fallback) {
   const normalized = typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "";
   return (normalized || fallback).slice(0, 155);
+}
+
+// Merchants type names in any casing, and the detail page title-cases them for
+// display. Everything that names the offer — heading, breadcrumb, metadata and
+// JSON-LD — reads from this one value so they can never disagree.
+function displayAd(ad) {
+  return {
+    ...ad,
+    productName: formatDisplayName(ad.productName) || "Local offer",
+    brandName: formatDisplayName(ad.brandName),
+    category: formatDisplayName(ad.category),
+  };
 }
 
 function routePath(id) {
@@ -34,16 +48,18 @@ export async function generateMetadata({ params }) {
       });
     }
 
+    const shown = displayAd(ad);
+
     return buildPageMetadata({
-      title: ad.productName || "Local offer",
+      title: shown.productName,
       description: snippet(
         ad.description,
-        `${ad.brandName || "A local business"} offer on meelTe.`
+        `${shown.brandName || "A local business"} offer on meelTe.`
       ),
       path,
       image: ad.photoUrl || undefined,
       noIndex: ad.hasEnded,
-      keywords: [ad.category, "local offer", "meelTe"].filter(Boolean),
+      keywords: [shown.category, "local offer", "meelTe"].filter(Boolean),
     });
   } catch {
     return buildPageMetadata({
@@ -60,14 +76,16 @@ async function AdPageContent({ params }) {
   const ad = await getPublicAd(id);
   if (!ad) notFound();
 
+  const shown = displayAd(ad);
+
   const breadcrumbs = [
     { name: "Home", path: "/" },
     { name: "Offers", path: "/ads" },
-    { name: ad.productName || "Offer", path: routePath(ad.id) },
+    { name: shown.productName, path: routePath(ad.id) },
   ];
   const jsonLd = [
     getBreadcrumbsJsonLd(breadcrumbs),
-    !ad.hasEnded && getPublicAdJsonLd(ad),
+    !shown.hasEnded && getPublicAdJsonLd(shown),
   ].filter(Boolean);
 
   return (
@@ -78,7 +96,7 @@ async function AdPageContent({ params }) {
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <AdDetail ad={ad} breadcrumbs={breadcrumbs} />
+      <AdDetail ad={shown} breadcrumbs={breadcrumbs} />
     </>
   );
 }
@@ -88,19 +106,20 @@ function DetailFallback() {
     <section
       aria-busy="true"
       aria-label="Loading offer"
-      className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
+      className="border-b border-border/80 bg-canvas pb-24 pt-6 sm:pt-8 lg:pb-16"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:gap-12">
-          <div className="aspect-[4/3] animate-pulse rounded-2xl bg-surface-muted" />
+      <Container className="max-w-6xl">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
+          <div className="aspect-[4/3] animate-pulse rounded-2xl bg-surface-muted lg:aspect-square" />
           <div className="space-y-4">
-            <div className="h-6 w-24 animate-pulse rounded-md bg-surface-muted" />
-            <div className="h-10 w-3/4 animate-pulse rounded-lg bg-surface-muted" />
-            <div className="h-6 w-1/3 animate-pulse rounded-md bg-surface-muted" />
-            <div className="h-28 w-full animate-pulse rounded-2xl bg-surface-muted" />
+            <div className="h-9 w-4/5 animate-pulse rounded-lg bg-surface-muted" />
+            <div className="h-4 w-2/5 animate-pulse rounded-md bg-surface-muted" />
+            <div className="h-10 w-1/2 animate-pulse rounded-lg bg-surface-muted" />
+            <div className="h-12 w-full animate-pulse rounded-xl bg-surface-muted" />
+            <div className="h-11 w-full animate-pulse rounded-xl bg-surface-muted" />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

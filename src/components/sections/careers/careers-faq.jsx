@@ -1,9 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
-import { ArrowRight } from "@/lib/icons";
-import { HR_EMAIL } from "@/config/site";
 import { getFaqPageJsonLd } from "@/lib/seo/structured-data";
 
 export const CAREERS_FAQS = [
@@ -53,7 +50,7 @@ export function CareersFaq() {
         <div className="text-center mb-6 sm:mb-8">
           <h2
             id="careers-faq-heading"
-            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight"
+            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight text-balance"
           >
             Frequently asked questions about working at meelTe.
           </h2>
@@ -63,41 +60,6 @@ export function CareersFaq() {
         </div>
 
         <FaqAccordion items={CAREERS_FAQS} />
-
-        <div className="mt-5 sm:mt-6 text-center">
-          <Link
-            href="/faq"
-            className="inline-flex items-center gap-1.5 rounded text-sm font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-          >
-            <span>See complete FAQ directory</span>
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-          </Link>
-        </div>
-
-        <div className="mt-6 sm:mt-8 text-center p-4 sm:p-5 rounded-2xl bg-canvas border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-left">
-            <span className="text-sm font-bold text-foreground block">
-              Have a question about working with us?
-            </span>
-            <span className="text-xs text-foreground-secondary">
-              Reach out directly to our talent team.
-            </span>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <a
-              href={`mailto:${HR_EMAIL}?subject=meelTe%20Careers%20Inquiry`}
-              className="rounded text-xs font-bold text-primary hover:underline px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-            >
-              Email talent team
-            </a>
-            <Link
-              href="/about"
-              className="text-xs font-bold text-foreground bg-surface hover:bg-surface-subtle border border-border px-3.5 py-2 rounded-xl transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-            >
-              About meelTe
-            </Link>
-          </div>
-        </div>
       </Container>
     </section>
   );

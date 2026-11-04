@@ -171,7 +171,7 @@ export default function ForMerchantsPage() {
         <section className="border-y border-border/80 bg-canvas py-8 sm:py-12 lg:py-14">
           <Container>
             <div className="mb-6 max-w-3xl sm:mb-8">
-              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl">
+              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl text-balance">
                 Turn your products and offers into a clear local listing.
               </h2>
               <p className="mt-2.5 text-base leading-relaxed text-foreground-secondary sm:text-lg">

@@ -53,7 +53,7 @@ export default function TermsAndConditionsPage() {
           {/* Header */}
           <div className="pb-6 border-b border-border/80">
             <Breadcrumbs items={TERMS_BREADCRUMBS} className="mb-3.5 sm:mb-4" />
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground text-balance">
               Terms & Conditions
             </h1>
             <p className="mt-2.5 text-lg sm:text-xl text-foreground-secondary leading-relaxed">

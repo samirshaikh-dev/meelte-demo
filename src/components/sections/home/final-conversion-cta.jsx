@@ -21,7 +21,7 @@ export function FinalConversionCTA() {
             <span className="inline-block rounded-full bg-white/15 px-3 py-1 text-xs font-semibold tracking-wide text-white">
               Available Now on Android &amp; iOS
             </span>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl text-balance">
               Start exploring your neighbourhood today.
             </h2>
             <p className="mx-auto mt-2.5 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">

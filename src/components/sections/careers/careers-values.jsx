@@ -16,9 +16,9 @@ const VALUES = [
     icon: HeartHandshake,
   },
   {
-    title: "Build for Bharat",
+    title: "Build by Bharat",
     description:
-      "Our focus is on India's towns and cities, solving everyday problems with simple, useful experiences.",
+    "Our focus is on India's towns and cities, solving everyday problems with simple, useful experiences.",
     icon: Users,
   },
   {

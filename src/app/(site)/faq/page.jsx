@@ -95,7 +95,7 @@ export default function FaqPage() {
 
             <div className="flex flex-col items-start gap-7 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-3xl">
-                <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance">
                   meelTe,{" "}
                   <span className="text-primary">explained clearly.</span>
                 </h1>
@@ -162,7 +162,7 @@ export default function FaqPage() {
                           </p>
                           <h2
                             id={`${category.id}-heading`}
-                            className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl"
+                            className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl text-balance"
                           >
                             {category.title}
                           </h2>
@@ -221,7 +221,7 @@ export default function FaqPage() {
                 <p className="mb-2 text-sm font-bold uppercase tracking-[0.12em] text-primary">
                   Need a hand?
                 </p>
-                <h2 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+                <h2 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl text-balance">
                   Still have a question?
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-foreground-secondary">

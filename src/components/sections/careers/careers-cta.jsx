@@ -20,13 +20,13 @@ export function CareersCta() {
   return (
     <section className="bg-surface py-8 sm:py-12 lg:py-14">
       <Container>
-        <Card className="border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-6 shadow-card sm:p-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+        <Card className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-surface to-surface p-5 shadow-none transition-all duration-200 hover:shadow-soft sm:p-6">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
             <div className="max-w-xl">
-              <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl">
+              <h2 className="text-xl font-bold leading-tight tracking-tight text-foreground sm:text-2xl">
                 Think you&apos;d be a great fit?
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
+              <p className="mt-1.5 text-sm leading-relaxed text-foreground-secondary sm:text-base">
                 Tell us a bit about yourself and share your resume. We&apos;ll reach
                 out if there&apos;s a good fit.
               </p>

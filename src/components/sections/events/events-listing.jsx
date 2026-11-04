@@ -150,7 +150,7 @@ export function EventsListing({
       aria-labelledby="events-heading"
       className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
     >
-      <Container className="max-w-6xl">
+      <Container>
         <Breadcrumbs items={breadcrumbs} className="mb-5" />
 
         {/* Header & Sub-banner */}
@@ -163,7 +163,7 @@ export function EventsListing({
 
             <h1
               id="events-heading"
-              className="text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-4xl"
+              className="text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-4xl text-balance"
             >
               Community events nearby
             </h1>
@@ -175,14 +175,6 @@ export function EventsListing({
 
           {/* Action Triggers: Host & Alerts */}
           <div className="flex flex-wrap items-center gap-2.5 pt-2 lg:pt-0">
-            <button
-              type="button"
-              onClick={() => handleAction("alerts", null)}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-border/80 bg-surface px-3.5 py-2 text-xs font-semibold text-foreground shadow-2xs transition-colors hover:border-primary/40 hover:bg-surface-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-            >
-              <Bell className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
-              <span>Get event alerts</span>
-            </button>
 
             <button
               type="button"

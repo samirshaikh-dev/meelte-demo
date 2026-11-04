@@ -67,7 +67,7 @@ export default function SupportPage() {
             </div>
 
             {/* Heading */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight text-balance">
               Get in touch with meelTe support
             </h1>
 

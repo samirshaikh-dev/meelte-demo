@@ -73,59 +73,56 @@ export function HomeJourneySection() {
   return (
     <section className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-14">
       <Container>
-        {/* Section Heading: Single clean title (AI_RULE.md: No double headings) */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 pb-6 sm:pb-7 border-b border-border/80">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
-              Predictable, low-effort from day one.
-            </h2>
-          </div>
-
-          {/* Accessible Role Switcher */}
-          <div
-            role="tablist"
-            aria-label="Choose journey by audience"
-            className="flex items-center rounded-xl border border-border/80 bg-surface p-1 shadow-soft shrink-0"
-          >
-            {Object.values(AUDIENCES).map((audience) => {
-              const isActive = audience.id === selectedAudience;
-              return (
-                <button
-                  key={audience.id}
-                  type="button"
-                  role="tab"
-                  id={`tab-${audience.id}`}
-                  aria-selected={isActive}
-                  aria-controls={`panel-${audience.id}`}
-                  onClick={() => setSelectedAudience(audience.id)}
-                  className={`rounded-lg px-4 py-2 text-xs sm:text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-1 ${
-                    isActive
-                      ? "bg-primary text-white shadow-soft"
-                      : "text-foreground-secondary hover:text-foreground hover:bg-surface-subtle"
-                  }`}
-                >
-                  {audience.label}
-                </button>
-              );
-            })}
-          </div>
+        {/* Section heading: one clean title given the full container measure, so it never orphans a word */}
+        <div className="border-b border-border/80 pb-6 sm:pb-7">
+          <h2 className="text-3xl font-extrabold tracking-tight text-foreground md:text-4xl lg:text-[2.6rem] lg:leading-tight text-balance">
+            Predictable, low-effort from day one.
+          </h2>
         </div>
 
-        {/* Tab Panel */}
-        <div
-          role="tabpanel"
-          id={`panel-${current.id}`}
-          aria-labelledby={`tab-${current.id}`}
-          className="mt-6 sm:mt-7"
-        >
-          <div className="mb-3.5 sm:mb-4 flex items-center justify-between">
+        <div className="mt-6 sm:mt-7">
+          {/* Audience switcher sits with the panel it controls, so the heading keeps the full width */}
+          <div className="mb-3.5 flex flex-col gap-3 sm:mb-4 lg:flex-row lg:items-center lg:justify-between">
             <p className="text-sm font-semibold text-foreground-secondary">
               {current.subtitle}
             </p>
+
+            <div
+              role="tablist"
+              aria-label="Choose journey by audience"
+              className="flex shrink-0 items-center self-start rounded-xl border border-border/80 bg-surface p-1 shadow-soft lg:self-auto"
+            >
+              {Object.values(AUDIENCES).map((audience) => {
+                const isActive = audience.id === selectedAudience;
+                return (
+                  <button
+                    key={audience.id}
+                    type="button"
+                    role="tab"
+                    id={`tab-${audience.id}`}
+                    aria-selected={isActive}
+                    aria-controls={`panel-${audience.id}`}
+                    onClick={() => setSelectedAudience(audience.id)}
+                    className={`rounded-lg px-4 py-2 text-xs sm:text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-1 ${
+                      isActive
+                        ? "bg-primary text-white shadow-soft"
+                        : "text-foreground-secondary hover:text-foreground hover:bg-surface-subtle"
+                    }`}
+                  >
+                    {audience.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* 3 Process Steps */}
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
+          {/* Tab Panel: 3 process steps */}
+          <div
+            role="tabpanel"
+            id={`panel-${current.id}`}
+            aria-labelledby={`tab-${current.id}`}
+            className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3"
+          >
             {current.steps.map((step) => (
               <div
                 key={step.number}

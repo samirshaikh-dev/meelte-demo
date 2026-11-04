@@ -25,7 +25,7 @@ export function SignupClose() {
         <div className="max-w-2xl">
           <h2
             id="signup-close-heading"
-            className="text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl"
+            className="text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl text-balance"
           >
             Start with what is nearby.
           </h2>

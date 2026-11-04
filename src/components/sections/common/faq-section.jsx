@@ -43,7 +43,7 @@ export function FaqSection({
         <div className="text-center mb-12 sm:mb-16">
           <h2
             id="faq-heading"
-            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight"
+            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight text-balance"
           >
             {title}
           </h2>

@@ -105,7 +105,7 @@ export function ForMerchantsHero() {
 
             <motion.h1
               variants={fadeUpVariants}
-              className="mt-3.5 text-3xl font-extrabold tracking-tight text-foreground sm:mt-4 sm:text-5xl lg:text-6xl lg:leading-[1.08]"
+              className="mt-3.5 text-3xl font-extrabold tracking-tight text-foreground sm:mt-4 sm:text-5xl lg:text-6xl lg:leading-[1.08] text-balance"
             >
               <span className="text-foreground">Grow your local business</span>
               <br />

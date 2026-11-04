@@ -66,7 +66,7 @@ export function SignupHero() {
 
             <h1
               id="signup-hero-heading"
-              className="max-w-2xl text-3xl font-black leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]"
+              className="max-w-2xl text-3xl font-black leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem] text-balance"
             >
               Your neighborhood has more to offer.
             </h1>
@@ -109,7 +109,7 @@ export function SignupHero() {
           {/* Right — availability, stated plainly */}
           <div className="lg:col-span-5">
             <div className="rounded-2xl border border-primary/15 bg-surface p-6 shadow-card lg:sticky lg:top-24 lg:p-8">
-              <h2 className="mt-3 text-2xl font-bold leading-tight tracking-tight text-foreground">
+              <h2 className="mt-3 text-2xl font-bold leading-tight tracking-tight text-foreground text-balance">
                 Where you can join today
               </h2>
 

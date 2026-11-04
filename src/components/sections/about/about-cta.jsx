@@ -42,7 +42,7 @@ export function AboutCta() {
             <div className="lg:col-span-7">
               <h2
                 id="about-why-heading"
-                className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl"
+                className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl text-balance"
               >
                 {ABOUT_WHY.title}
               </h2>

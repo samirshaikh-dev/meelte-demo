@@ -38,7 +38,7 @@ export function ContactHero() {
             </span>
           </div>
 
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance">
             {CONTACT_HERO.titleLead}{" "}
             <span className="text-primary">{CONTACT_HERO.titleAccent}</span>
           </h1>

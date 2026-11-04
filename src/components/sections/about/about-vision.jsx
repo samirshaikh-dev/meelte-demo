@@ -42,7 +42,7 @@ export function AboutVision() {
         <div className="max-w-3xl">
           <h2
             id="about-vision-heading"
-            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance"
           >
             {ABOUT_VISION.title}
           </h2>

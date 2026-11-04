@@ -8,7 +8,6 @@ import {
   Zap,
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 
 const BENEFITS = [
@@ -17,14 +16,12 @@ const BENEFITS = [
     description:
       "Work with flexibility that respects your life. We focus on outcomes, not just hours.",
     icon: Clock,
-    span: "md:col-span-2 lg:col-span-2",
   },
   {
     title: "Learning & Growth",
     description:
       "Access to learning resources, mentorship, and opportunities to grow your skills across the stack.",
     icon: BookOpen,
-    span: "md:col-span-2 lg:col-span-2",
   },
   {
     title: "Mission-Driven Impact",
@@ -63,7 +60,7 @@ export function CareersBenefits() {
         <div className="max-w-2xl">
           <h2
             id="careers-benefits-heading"
-            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl"
+            className="text-2xl font-extrabold leading-tight tracking-tight text-foreground sm:text-3xl lg:text-4xl text-balance"
           >
             Why you&apos;ll love working here
           </h2>
@@ -71,25 +68,26 @@ export function CareersBenefits() {
 
         <ul
           role="list"
-          className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-4"
+          className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {BENEFITS.map((benefit) => {
             const Icon = benefit.icon;
             return (
-              <li
-                key={benefit.title}
-                className={benefit.span || "md:col-span-1"}
-              >
-                <Card hoverable className="flex h-full flex-col p-6 sm:p-7">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface-muted text-primary">
+              <li key={benefit.title} className="flex">
+                <Card
+                  className="flex w-full items-start gap-3.5 sm:gap-4 rounded-2xl border border-primary/15 bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <h3 className="mt-4 text-lg font-bold tracking-tight text-foreground">
-                    {benefit.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground-secondary">
-                    {benefit.description}
-                  </p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base font-semibold tracking-tight text-foreground">
+                      {benefit.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
+                      {benefit.description}
+                    </p>
+                  </div>
                 </Card>
               </li>
             );

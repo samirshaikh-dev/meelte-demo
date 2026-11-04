@@ -41,7 +41,7 @@ export function HowItWorksSteps() {
         <div className="max-w-2xl">
           <h2
             id="how-it-works-steps-heading"
-            className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem]"
+            className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] text-balance"
           >
             What happens after you install.
           </h2>

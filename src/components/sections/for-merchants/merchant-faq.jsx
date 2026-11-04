@@ -1,8 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
-import { SUPPORT_EMAIL } from "@/config/site";
 import { getFaqPageJsonLd } from "@/lib/seo/structured-data";
 
 export const MERCHANT_FAQS = [
@@ -58,7 +56,7 @@ export function MerchantFaq() {
         <div className="text-center mb-6 sm:mb-8">
           <h2
             id="merchant-faq-heading"
-            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight"
+            className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight text-balance"
           >
             Questions about listing your business?
           </h2>
@@ -68,31 +66,6 @@ export function MerchantFaq() {
         </div>
 
         <FaqAccordion items={MERCHANT_FAQS} />
-
-        <div className="mt-6 sm:mt-8 text-center p-4 sm:p-5 rounded-2xl bg-canvas border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-left">
-            <span className="text-sm font-bold text-foreground block">
-              Ready to showcase your shop to nearby residents?
-            </span>
-            <span className="text-xs text-foreground-secondary">
-              Our merchant onboarding team will help you get listed.
-            </span>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <a
-              href={`mailto:${SUPPORT_EMAIL}?subject=meelTe%20Merchant%20Listing%20Inquiry`}
-              className="rounded text-xs font-bold text-primary hover:underline px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-            >
-              Email merchant desk
-            </a>
-            <a
-              href="#merchant-enquiry"
-              className="text-xs font-bold text-foreground bg-surface hover:bg-surface-subtle border border-border px-3.5 py-2 rounded-xl transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-            >
-              Enquire now
-            </a>
-          </div>
-        </div>
       </Container>
     </section>
   );

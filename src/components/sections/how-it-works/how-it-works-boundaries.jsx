@@ -1,8 +1,6 @@
 import React from "react";
-import Link from "next/link";
-import { ArrowRight, Ban, BarChart3, Lock, Receipt, UserCheck } from "@/lib/icons";
+import { Ban, BarChart3, Receipt, UserCheck } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
 
 /**
  * What meelTe does not do — stated on the page itself.
@@ -57,7 +55,7 @@ export function HowItWorksBoundaries() {
         <div className="max-w-2xl">
           <h2
             id="how-it-works-boundaries-heading"
-            className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem]"
+            className="text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem] text-balance"
           >
             What meelTe does not do.
           </h2>
@@ -69,15 +67,17 @@ export function HowItWorksBoundaries() {
             return (
               <li
                 key={item.id}
-                className="rounded-2xl border border-border/80 bg-surface p-5 sm:p-6"
+                className="rounded-2xl border border-primary/15 bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft"
               >
-                <div className="flex items-start gap-3">
-                 
-                  <div className="min-w-0">
-                    <h3 className="font-bold tracking-tight text-foreground">
+                <div className="flex items-start gap-3.5 sm:gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base font-semibold tracking-tight text-foreground">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-foreground-secondary">
+                    <p className="mt-1 text-sm leading-relaxed text-foreground-secondary">
                       {item.body}
                     </p>
                   </div>
