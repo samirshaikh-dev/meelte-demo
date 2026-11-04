@@ -35,7 +35,7 @@ export function FaqAccordion({ items, defaultValue, className }) {
         <Accordion.Item
           key={faq.id}
           value={faq.id}
-          className="rounded-2xl border border-border/80 bg-canvas/70 overflow-hidden shadow-2xs transition-colors transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
+          className="rounded-2xl border border-border/80 bg-canvas/70 shadow-2xs transition-colors transition-shadow data-[state=open]:border-primary/40 data-[state=open]:bg-surface data-[state=open]:shadow-soft"
         >
           <Accordion.Header className="flex">
             <Accordion.Trigger className="flex flex-1 items-center justify-between py-3.5 px-4.5 sm:py-4 sm:px-5 text-left font-bold text-base sm:text-lg text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 group">

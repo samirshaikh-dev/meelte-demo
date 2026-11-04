@@ -96,9 +96,12 @@ function ListingFallback() {
     <section
       aria-busy="true"
       aria-label="Loading offers"
-      className="border-b border-border/80 bg-canvas py-24"
+      className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
     >
-      <div className="mx-auto h-8 w-48 animate-pulse rounded-lg bg-surface-muted" />
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="h-9 w-64 animate-pulse rounded-lg bg-surface-muted" aria-hidden="true" />
+        <div className="mt-4 h-5 w-full max-w-xl animate-pulse rounded-lg bg-surface-muted" aria-hidden="true" />
+      </div>
     </section>
   );
 }
