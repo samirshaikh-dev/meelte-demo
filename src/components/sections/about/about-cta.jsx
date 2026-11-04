@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight, Compass, Mail } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ABOUT_HOW_IT_WORKS_LABEL, ABOUT_WHY } from "./about-content";
 

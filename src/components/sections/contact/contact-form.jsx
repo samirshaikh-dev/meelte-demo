@@ -248,22 +248,16 @@ export function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
-          <div className="border-b border-border/80 pb-5">
-            <p className="text-xs font-bold text-primary">
+          <div className="border-b border-border/80 pb-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">
               {CONTACT_FORM.eyebrow}
-            </p>
+            </span>
             <h2
               id="contact-form-heading"
-              className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-balance"
+              className="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-foreground text-balance"
             >
               {CONTACT_FORM.title}
             </h2>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-foreground-secondary">
-              {CONTACT_FORM.intro}
-            </p>
-            <p className="mt-3 text-xs leading-relaxed text-foreground-secondary">
-              {CONTACT_FORM.requiredNote}
-            </p>
           </div>
 
           <ContactField

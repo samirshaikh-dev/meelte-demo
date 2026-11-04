@@ -32,32 +32,6 @@ export function AboutHero() {
             {ABOUT_HERO.lead}
           </p>
 
-          <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-            <Button
-              as="a"
-              href={PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-              size="lg"
-              className="justify-center font-semibold shadow-card"
-            >
-              <Play className="h-4 w-4 fill-current" aria-hidden="true" />
-              <span>{ABOUT_HERO.playLabel}</span>
-            </Button>
-            <Button
-              as="a"
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="outline"
-              size="lg"
-              className="justify-center font-medium"
-            >
-              <Apple className="h-4 w-4 fill-current text-primary" aria-hidden="true" />
-              <span>{ABOUT_HERO.appStoreLabel}</span>
-            </Button>
-          </div>
         </div>
       </Container>
     </section>

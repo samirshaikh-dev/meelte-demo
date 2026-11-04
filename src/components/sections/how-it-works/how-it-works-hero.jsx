@@ -50,33 +50,6 @@ export function HowItWorksHero() {
             directly — meelTe does not sit in the middle of the transaction.
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button
-              as="a"
-              href={PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-              size="lg"
-              className="w-full justify-center rounded-xl px-6 sm:w-auto"
-            >
-              <Play className="h-5 w-5 shrink-0 fill-current" aria-hidden="true" />
-              <span>Get it on Google Play</span>
-            </Button>
-
-            <Button
-              as="a"
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="outline"
-              size="lg"
-              className="w-full justify-center rounded-xl px-6 sm:w-auto"
-            >
-              <Apple className="h-5 w-5 shrink-0 fill-current" aria-hidden="true" />
-              <span>Download on the App Store</span>
-            </Button>
-          </div>
         </div>
       </Container>
     </section>

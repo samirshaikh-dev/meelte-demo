@@ -162,6 +162,12 @@ export const ABOUT_CAPABILITIES = {
       body: "Move past superficial online follows into genuine, lasting friendships and community support networks.",
       chip: "Meaningful",
     },
+    {
+      icon: "Store",
+      title: "Support Local Businesses",
+      body: "Connect directly with independent neighborhood shops and service providers without middlemen or hidden fees.",
+      chip: "Local Reach",
+    },
   ],
 };
 

@@ -1,22 +1,9 @@
 import React from "react";
 import { MapPin, Sparkles, Zap } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
-import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { ABOUT_STORY } from "./about-content";
 
-/**
- * "Our Story" for /about — the same three acts, same wording, restyled.
- *
- * Layout change only: three stacked `Card`s became a three-act ruled `<ol>`. The
- * story is a narrative in sequence, so an ordered list is the honest structure, and
- * it stops the section repeating the "centred heading + grid of identical cards"
- * rhythm the rest of the page already had five times over
- * (meelTe-context.md §4).
- *
- * The closing act keeps the tinted panel it had before, as the narrative's landing
- * point. The ordinal markers are decorative and `aria-hidden`, because an ordered
- * list announces its own ordering and the marker would otherwise be read twice.
- */
 const ACT_ICONS = {
   Zap,
   MapPin,
@@ -44,47 +31,46 @@ export function AboutStory() {
             </p>
           </div>
 
-          <ol role="list" className="lg:col-span-8">
-            {ABOUT_STORY.acts.map((act, index) => {
+          <ol role="list" className="space-y-4 lg:col-span-8">
+            {ABOUT_STORY.acts.map((act) => {
               const Icon = ACT_ICONS[act.icon] || Sparkles;
-              const isLast = index === ABOUT_STORY.acts.length - 1;
 
               return (
-                <li
-                  key={act.marker}
-                  className={
-                    isLast
-                      ? "mt-8 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-surface to-surface p-6 sm:p-8"
-                      : "border-t border-border/70 py-7 first:border-t-0 first:pt-0 sm:py-8"
-                  }
-                >
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span
-                      aria-hidden="true"
-                      className="text-sm font-black tabular-nums text-primary/60"
-                    >
-                      {act.marker}
-                    </span>
-                    <h3 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
-                      {act.title}
-                    </h3>
-                  </div>
+                <li key={act.marker} className="flex">
+                  <Card className="flex w-full items-start gap-3.5 sm:gap-4 rounded-2xl border border-primary/15 bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-soft">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-primary">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span
+                          aria-hidden="true"
+                          className="text-xs font-bold tabular-nums text-primary/70"
+                        >
+                          {act.marker}
+                        </span>
+                        <h3 className="text-base font-semibold tracking-tight text-foreground">
+                          {act.title}
+                        </h3>
+                      </div>
 
-                  <div className="mt-3 space-y-3 sm:pl-13">
-                    {act.paragraphs.map((paragraph) => (
-                      <p
-                        key={paragraph.slice(0, 40)}
-                        className="text-sm leading-relaxed text-foreground-secondary sm:text-base"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
-                    {act.conclusion && (
-                      <p className="text-sm font-semibold leading-relaxed text-primary sm:text-base">
-                        {act.conclusion}
-                      </p>
-                    )}
-                  </div>
+                      <div className="mt-1.5 space-y-2">
+                        {act.paragraphs.map((paragraph) => (
+                          <p
+                            key={paragraph.slice(0, 40)}
+                            className="text-sm leading-relaxed text-foreground-secondary"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                        {act.conclusion && (
+                          <p className="mt-2 text-xs font-semibold text-primary">
+                            {act.conclusion}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
                 </li>
               );
             })}

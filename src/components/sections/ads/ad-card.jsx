@@ -2,27 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Bookmark, MapPin, MessageCircle, Tag } from "@/lib/icons";
+import { Bookmark, MapPin, Tag } from "@/lib/icons";
 import { Badge } from "@/components/ui/badge";
 import { formatDisplayName, getAreaLabel, getDealBadge } from "./ad-formatters";
 
-/**
- * One offer card for the `/ads` listing grid.
- *
- * The card is deliberately open rather than a bordered box: the offer photo is
- * the only framed element and the text sits directly on the page canvas, so a
- * grid of offers reads as a catalogue instead of a stack of identical cards
- * (AVOID.md §2).
- *
- * Everything that identifies the deal sits on a fixed 16:10 photo — the deal
- * value, the category and the area — because the page exists to show offers, not
- * shop names. Merchant photos vary wildly in framing and tone, so a bottom
- * gradient holds the light overlay text and quietly unifies them.
- *
- * Interactive actions (Claim, Chat, Save) trigger the in-app feature modal, while
- * clicking the title or image navigates to the detailed view without nesting
- * button elements inside anchor tags.
- */
 export function AdCard({ ad, priority = false, onAction }) {
   const offerName = formatDisplayName(ad.productName) || "Local offer";
   const shopName = formatDisplayName(ad.brandName);
@@ -74,20 +57,6 @@ export function AdCard({ ad, priority = false, onAction }) {
           </Badge>
         )}
 
-        {/* Save / Favorite Action Button */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onAction?.("save", ad);
-          }}
-          aria-label={`Save ${offerName} to favourites`}
-          className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 text-foreground-secondary shadow-soft backdrop-blur-xs transition-colors hover:bg-surface hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-        >
-          <Bookmark className="h-4 w-4" aria-hidden="true" />
-        </button>
-
         {/* Category and area: the two facts that make an offer local and findable */}
         <div className="pointer-events-none absolute inset-x-3 bottom-3 flex items-end justify-between gap-2">
           {categoryLabel ? (
@@ -126,7 +95,7 @@ export function AdCard({ ad, priority = false, onAction }) {
 
         {/* Action Bar */}
         <div className="mt-auto pt-3">
-          <div className="flex items-center justify-between gap-2 border-t border-border/60 pt-3">
+          <div className="border-t border-border/60 pt-3">
             <button
               type="button"
               onClick={(e) => {
@@ -134,24 +103,10 @@ export function AdCard({ ad, priority = false, onAction }) {
                 e.stopPropagation();
                 onAction?.("claim", ad);
               }}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-surface-muted px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-surface-muted py-2 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
             >
               <Tag className="h-3.5 w-3.5" aria-hidden="true" />
               <span>Claim deal</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onAction?.("chat", ad);
-              }}
-              className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-              aria-label={`Chat with merchant about ${offerName}`}
-            >
-              <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>Chat</span>
             </button>
           </div>
         </div>

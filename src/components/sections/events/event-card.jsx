@@ -72,19 +72,6 @@ export function EventCard({ event, priority = false, onAction }) {
           </Badge>
         )}
 
-        {/* Save / Bookmark Button */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onAction?.("save", event);
-          }}
-          aria-label={`Save ${title} to favourites`}
-          className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 text-foreground-secondary shadow-soft backdrop-blur-xs transition-colors hover:bg-surface hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-        >
-          <Bookmark className="h-4 w-4" aria-hidden="true" />
-        </button>
       </div>
 
       {/* Event Details */}
@@ -119,7 +106,7 @@ export function EventCard({ event, priority = false, onAction }) {
         </div>
 
         {/* Action Bar */}
-        <div className="mt-4 flex items-center justify-between gap-2 border-t border-border/60 pt-3">
+        <div className="border-t border-border/60 pt-3">
           <button
             type="button"
             onClick={(e) => {
@@ -127,25 +114,12 @@ export function EventCard({ event, priority = false, onAction }) {
               e.stopPropagation();
               onAction?.("join", event);
             }}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-surface-muted px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-surface-muted py-2 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <Users className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Request to join</span>
           </button>
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onAction?.("chat", event);
-            }}
-            className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-            aria-label={`Message host about ${title}`}
-          >
-            <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>Message</span>
-          </button>
         </div>
       </div>
     </article>

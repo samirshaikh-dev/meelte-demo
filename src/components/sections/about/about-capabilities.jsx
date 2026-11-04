@@ -4,6 +4,7 @@ import {
   Compass,
   ShieldCheck,
   Sparkles,
+  Store,
   Users,
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
@@ -16,6 +17,7 @@ const CAPABILITY_ICONS = {
   CalendarDays,
   Users,
   ShieldCheck,
+  Store,
 };
 
 export function AboutCapabilities() {

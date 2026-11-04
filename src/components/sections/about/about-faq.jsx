@@ -52,11 +52,8 @@ export function AboutFaq() {
             id="about-faq-heading"
             className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight text-foreground leading-tight text-balance"
           >
-            Questions about meelTe&apos;s story &amp; platform.
+            Still have questions? We&apos;re here to help.
           </h2>
-          <p className="mt-2 text-base sm:text-lg text-foreground-secondary leading-relaxed max-w-2xl mx-auto">
-            Why we built meelTe, how our hyperlocal model works, and how we protect direct community relationships.
-          </p>
         </div>
 
         <FaqAccordion items={ABOUT_FAQS} />
