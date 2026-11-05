@@ -8,7 +8,7 @@ import { StoreButton } from "@/components/layout/store-button";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MapPin, Search, X, PlusCircle } from "@/lib/icons";
 import { cn } from "@/lib/utils";
-import { loadMoreAds } from "@/actions/ads/load-more-ads";
+import { loadMoreAds } from "@/utils/ads/load-more-ads";
 import { AdCard } from "./ad-card";
 import { AppActionModal } from "./app-action-modal";
 import { formatDisplayName, getListingAreaLabel } from "./ad-formatters";

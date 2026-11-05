@@ -7,7 +7,7 @@ import { StoreButton } from "@/components/layout/store-button";
 import { Button } from "@/components/ui/button";
 import { Bell, CalendarDays, PlusCircle, Search, Sparkles, X } from "@/lib/icons";
 import { cn } from "@/lib/utils";
-import { loadMoreEvents } from "@/actions/events/load-more-events";
+import { loadMoreEvents } from "@/utils/events/load-more-events";
 import { EventCard } from "./event-card";
 import { AppActionModal } from "./app-action-modal";
 

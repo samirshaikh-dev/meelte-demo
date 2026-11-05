@@ -16,7 +16,6 @@
  */
 
 import { toast } from "sonner";
-import { SUPPORT_EMAIL } from "@/config/site";
 
 /** How long each toast stays on screen (ms). Errors get longer: they carry an action to take. */
 export const TOAST_DURATION = {
@@ -29,7 +28,6 @@ export const TOAST_DURATION = {
 export const TOAST_ID = {
   contact: "contact-feedback",
   merchant: "merchant-feedback",
-  newsletter: "newsletter-feedback",
 };
 
 /**
@@ -49,11 +47,6 @@ export const TOAST_COPY = {
   merchantHandoff: "Opening your email app with the enquiry details.",
   merchantHandoffDescription: (email) =>
     `Send it to ${email} — nothing is submitted until you do.`,
-  newsletterInvalidEmail: "Please enter a valid email address.",
-  newsletterSuccess: "You're subscribed. Neighborhood updates are on the way.",
-  newsletterAlreadySubscribed: "You're already on the neighborhood update list.",
-  newsletterNotConnected: `Newsletter signup isn't connected yet. Email ${SUPPORT_EMAIL} and we'll add you manually.`,
-  newsletterError: "Couldn't subscribe right now. Please try again.",
 };
 
 /**

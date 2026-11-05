@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { REGEX } from "@/constants/service-constants";
 
 export const CONTACT_FIELD_LIMITS = {
   name: 100,
@@ -62,9 +63,9 @@ const CONTACT_FORM_SCHEMA = z
     }
 
     if (values.phone) {
-      const phoneDigits = values.phone.replace(/\D/g, "");
+      const phoneDigits = values.phone.replace(REGEX.NON_DIGITS, "");
       if (
-        !/^\+?[0-9][0-9\s().-]*$/.test(values.phone) ||
+        !REGEX.PHONE.test(values.phone) ||
         phoneDigits.length < 7 ||
         phoneDigits.length > 15
       ) {
