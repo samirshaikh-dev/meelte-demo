@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo } from "react";
 import {
-  HrHeader,
   CandidatesFilterBar,
   CandidatesTable,
   useHr,
@@ -46,19 +45,13 @@ export default function CandidatesPage() {
   }, [candidates, searchQuery, selectedJobId, statusFilter]);
 
   return (
-    <>
-      <HrHeader title="Candidate Applications" />
-
-      <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl w-full mx-auto">
+    <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl w-full mx-auto">
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              Candidate Pool & Applications
+              Candidates Database
             </h1>
-            <p className="mt-1 text-xs sm:text-sm text-foreground-secondary">
-              Review applicant details, manage screening progression, and record evaluation notes.
-            </p>
           </div>
 
           <div className="rounded-xl border border-border bg-surface px-3 py-1.5 text-xs text-foreground-secondary self-start sm:self-auto">
@@ -85,6 +78,5 @@ export default function CandidatesPage() {
           onSelectCandidate={openCandidateModal}
         />
       </main>
-    </>
-  );
-}
+    );
+  }

@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "@/lib/icons";
-import { CandidateStatusBadge } from "@/components/hr/shared/hr-badge";
 
 function getInitials(name = "") {
   return name
@@ -67,15 +66,11 @@ export function RecentCandidatesCard({ candidates = [], onSelectCandidate, limit
                 </div>
 
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="truncate text-xs font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {candidate.fullName}
-                    </span>
-                    <CandidateStatusBadge status={candidate.status} />
-                  </div>
+                  <p className="truncate text-xs font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {candidate.fullName}
+                  </p>
                   <p className="truncate text-[11px] text-foreground-secondary mt-0.5">
-                    {candidate.appliedJobTitle} ·{" "}
-                    <span className="text-foreground-muted">{candidate.appliedDate}</span>
+                    {candidate.email} · {candidate.phone}
                   </p>
                 </div>
               </div>

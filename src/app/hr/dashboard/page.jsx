@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "@/lib/icons";
 import {
-  HrHeader,
   DashboardStats,
   RecentCandidatesCard,
   RecentJobsCard,
@@ -16,16 +15,11 @@ export default function HrDashboardPage() {
     jobs,
     candidates,
     stats,
-    openEditJobModal,
     openCandidateModal,
   } = useHr();
 
   return (
-    <>
-      {/* Minimal Top Header without redundant breadcrumbs */}
-      <HrHeader title="Recruitment Dashboard" />
-
-      <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-4 max-w-7xl w-full mx-auto">
+    <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-4 max-w-7xl w-full mx-auto">
         {/* Streamlined Welcome Banner */}
         <div className="flex items-center justify-between gap-3 pb-2 border-b border-border/60">
           <div>
@@ -58,11 +52,9 @@ export default function HrDashboardPage() {
           />
           <RecentJobsCard
             jobs={jobs}
-            onEditJob={openEditJobModal}
             limit={4}
           />
         </div>
       </main>
-    </>
-  );
-}
+    );
+  }

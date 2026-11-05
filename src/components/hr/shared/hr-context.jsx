@@ -15,10 +15,6 @@ export function HrProvider({ children }) {
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
   const closeSidebar = () => setIsSidebarOpen(false);
 
-  // Job Modal State (Create / Edit)
-  const [isJobModalOpen, setIsJobModalOpen] = useState(false);
-  const [editingJob, setEditingJob] = useState(null);
-
   // Candidate Details Modal State
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
@@ -41,24 +37,13 @@ export function HrProvider({ children }) {
   }, [jobs, candidates]);
 
   // Actions: Jobs
-  const openCreateJobModal = () => {
-    setEditingJob(null);
-    setIsJobModalOpen(true);
-  };
-
-  const openEditJobModal = (job) => {
-    setEditingJob(job);
-    setIsJobModalOpen(true);
-  };
-
-  const closeJobModal = () => {
-    setIsJobModalOpen(false);
-    setEditingJob(null);
+  const getJobById = (id) => {
+    return jobs.find((j) => j.id === id) || null;
   };
 
   const createJob = (jobData) => {
     const newId = `job-${Date.now()}`;
-    const today = "2026-11-04";
+    const today = new Date().toISOString().split("T")[0];
 
     const newJob = {
       ...jobData,
@@ -69,12 +54,11 @@ export function HrProvider({ children }) {
     };
 
     setJobs((prev) => [newJob, ...prev]);
-    closeJobModal();
-    notifySuccess(`Job "${newJob.title}" created successfully.`);
+    return newJob;
   };
 
   const updateJob = (id, updatedFields) => {
-    const today = "2026-11-04";
+    const today = new Date().toISOString().split("T")[0];
 
     setJobs((prev) =>
       prev.map((job) =>
@@ -83,8 +67,7 @@ export function HrProvider({ children }) {
           : job
       )
     );
-    closeJobModal();
-    notifySuccess("Job updated successfully.");
+    return { id, ...updatedFields };
   };
 
   const deleteJob = (id) => {
@@ -158,14 +141,10 @@ export function HrProvider({ children }) {
     setIsSidebarOpen,
     toggleSidebar,
     closeSidebar,
-    isJobModalOpen,
-    editingJob,
     selectedCandidate,
     deletingJobId,
     setDeletingJobId,
-    openCreateJobModal,
-    openEditJobModal,
-    closeJobModal,
+    getJobById,
     createJob,
     updateJob,
     deleteJob,

@@ -103,9 +103,6 @@ export function HrSidebar({ isOpen, onClose }) {
 
         {/* Navigation Links */}
         <div className="flex-1 overflow-y-auto px-3.5 py-4">
-          <div className="mb-2 px-2 text-[11px] font-semibold uppercase tracking-wider text-foreground-muted">
-            Main Menu
-          </div>
 
           <nav className="space-y-1">
             {NAV_ITEMS.map((item) => {

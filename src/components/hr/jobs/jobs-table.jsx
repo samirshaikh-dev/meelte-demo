@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   MoreVertical,
   Edit2,
@@ -16,7 +17,6 @@ import { JobStatusBadge } from "@/components/hr/shared/hr-badge";
 
 export function JobsTable({
   jobs = [],
-  onEditJob,
   onUpdateStatus,
   onDeleteJobClick,
 }) {
@@ -92,9 +92,10 @@ export function JobsTable({
                   <td className="px-5 py-3.5 text-right relative">
                     <div className="flex items-center justify-end gap-1.5">
                       <Button
+                        as={Link}
+                        href={`/hr/jobs/${job.id}/edit`}
                         variant="ghost"
                         size="sm"
-                        onClick={() => onEditJob(job)}
                         className="h-8 px-2 text-xs"
                         aria-label={`Edit ${job.title}`}
                       >

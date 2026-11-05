@@ -2,11 +2,11 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
+import { Menu } from "@/lib/icons";
 import {
   HrProvider,
   useHr,
   HrSidebar,
-  JobModal,
   DeleteJobDialog,
   CandidateDetailModal,
 } from "@/components/hr";
@@ -17,11 +17,6 @@ function HrLayoutContent({ children }) {
 
   const {
     jobs,
-    isJobModalOpen,
-    editingJob,
-    closeJobModal,
-    createJob,
-    updateJob,
     deletingJobId,
     setDeletingJobId,
     deleteJob,
@@ -31,6 +26,7 @@ function HrLayoutContent({ children }) {
     addCandidateNote,
     isSidebarOpen,
     closeSidebar,
+    toggleSidebar,
   } = useHr();
 
   // If on login page, render clean standalone layout without dashboard chrome
@@ -54,23 +50,26 @@ function HrLayoutContent({ children }) {
 
       {/* Main Content Area */}
       <div className="flex flex-1 flex-col min-w-0 h-screen overflow-y-auto">
+        {/* Mobile menu trigger bar (only on screens < lg) */}
+        <div className="sticky top-0 z-30 flex h-12 items-center justify-between border-b border-border bg-surface/90 px-4 backdrop-blur-md lg:hidden shrink-0">
+          <button
+            type="button"
+            onClick={toggleSidebar}
+            aria-label="Open sidebar menu"
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-foreground-secondary hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+          >
+            <Menu className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <span className="text-xs font-bold tracking-tight text-foreground uppercase">
+            HR Portal
+          </span>
+          <div className="w-9" aria-hidden="true" />
+        </div>
+
         {children}
       </div>
 
       {/* Global Modals for HR operations */}
-      <JobModal
-        isOpen={isJobModalOpen}
-        onClose={closeJobModal}
-        onSave={(data) => {
-          if (editingJob) {
-            updateJob(editingJob.id, data);
-          } else {
-            createJob(data);
-          }
-        }}
-        job={editingJob}
-      />
-
       <DeleteJobDialog
         isOpen={Boolean(deletingJobId)}
         onClose={() => setDeletingJobId(null)}

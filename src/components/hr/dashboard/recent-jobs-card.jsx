@@ -34,18 +34,10 @@ export function RecentJobsCard({ jobs = [], onEditJob, limit = 3 }) {
       <div className="divide-y divide-border/60">
         {recent.length > 0 ? (
           recent.map((job) => (
-            <div
+            <Link
               key={job.id}
-              onClick={() => onEditJob(job)}
-              className="group flex cursor-pointer items-center justify-between gap-3 px-4 py-2 sm:px-4 sm:py-2 transition-colors hover:bg-surface-subtle"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onEditJob(job);
-                }
-              }}
+              href={`/hr/jobs/${job.id}/edit`}
+              className="group flex items-center justify-between gap-3 px-4 py-2 sm:px-4 sm:py-2 transition-colors hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
               aria-label={`View or edit job requisition for ${job.title}`}
             >
               <div className="min-w-0 flex-1">
@@ -65,7 +57,7 @@ export function RecentJobsCard({ jobs = [], onEditJob, limit = 3 }) {
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <p className="py-8 text-center text-xs text-foreground-muted">
