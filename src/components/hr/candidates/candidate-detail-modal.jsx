@@ -1,30 +1,81 @@
 "use client";
 
-import { REGEX } from "@/constants/service-constants";
-
-import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { X, Mail, Phone, MapPin, Calendar, FileText, Send, User } from "@/lib/icons";
+import { FileText, X } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { CandidateStatusBadge } from "@/components/hr/shared/hr-badge";
 import { CANDIDATE_STATUSES } from "@/data/hr-mock-data";
+import { notifyInfo } from "@/lib/toast-feedback";
+import { REGEX } from "@/constants/service-constants";
 
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+/**
+ * Dates arrive as `YYYY-MM-DD`. Formatting them by hand keeps the label
+ * identical on the server and the client and avoids the timezone shift of
+ * `new Date("2026-11-03")`, which reads as UTC midnight and can render as the
+ * previous day. The year is kept here (unlike the dashboard row) because a
+ * candidate record outlives the current recruiting cycle.
+ */
+function formatIsoDate(value) {
+  if (typeof value !== "string") return "";
+  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(value);
+  if (!match) return "";
+  const month = MONTHS[Number(match[2]) - 1];
+  if (!month) return "";
+  return `${Number(match[3])} ${month} ${match[1]}`;
+}
+
+/**
+ * Candidate profile drawer.
+ *
+ * Ordered by the decision the recruiter is making: who is this and what did they
+ * apply for (header, which also labels the dialog), what is their status and how
+ * do I move it (first block, the only mutating action), how do I reach them, and
+ * what is on their application.
+ *
+ * AVOID.md §2: the drawer is already a container, so the old nested
+ * `rounded-xl border` cards (status strip, document card, summary card) are gone.
+ * Sections are separated by hairlines inside one scrolling body; the header stays
+ * fixed so the name and the close control never scroll away. Every label is 12px
+ * or larger on `foreground-secondary` or stronger.
+ *
+ * There is deliberately no notes panel: evaluation notes are not part of this
+ * view. `addCandidateNote` still exists in `HrProvider`, so restoring a notes
+ * surface means re-adding a prop here, not rebuilding the data path.
+ */
 export function CandidateDetailModal({
   candidate,
   isOpen,
   onClose,
   onUpdateStatus,
-  onAddNote,
 }) {
-  const [newNote, setNewNote] = useState("");
-
   if (!candidate) return null;
 
-  const handleAddNoteSubmit = (e) => {
-    e.preventDefault();
-    if (!newNote.trim()) return;
-    onAddNote(candidate.id, newNote);
-    setNewNote("");
+  const displayName = candidate.fullName || "Candidate";
+
+  const resumeFileName = `${displayName.replace(
+    REGEX.WHITESPACE,
+    "_"
+  )}_Resume.pdf`;
+
+  const handleDownloadResume = () => {
+    // No file storage is wired into this preview, so say that instead of
+    // faking a download or claiming a file was fetched.
+    notifyInfo(`${resumeFileName} is not downloadable in this preview yet.`);
   };
 
   return (
@@ -32,206 +83,157 @@ export function CandidateDetailModal({
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-foreground/40 transition-opacity duration-150 ease-out starting:opacity-0" />
 
-        <Dialog.Content className="fixed right-0 top-0 z-50 h-full w-full max-w-lg overflow-y-auto border-l border-border bg-surface p-6 shadow-card transition duration-200 ease-out starting:translate-x-full focus-visible:outline-none sm:p-7">
-          {/* Header */}
-          <div className="flex items-start justify-between border-b border-border pb-5">
-            <div className="flex items-center gap-3.5">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface-muted text-primary font-bold text-lg">
-                {candidate.fullName ? candidate.fullName.charAt(0) : "C"}
-              </div>
-              <div>
-                <Dialog.Title className="text-lg font-bold tracking-tight text-foreground">
-                  {candidate.fullName}
-                </Dialog.Title>
-                <p className="text-xs text-foreground-secondary">
-                  Applied for <span className="font-medium text-foreground">{candidate.appliedJobTitle}</span>
-                </p>
-              </div>
+        <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex h-full w-full max-w-lg flex-col overflow-hidden border-l border-border bg-surface transition-transform duration-200 ease-out starting:translate-x-full focus-visible:outline-none">
+          {/* Identity — stays put while the body scrolls */}
+          <div className="flex items-start gap-3 border-b border-border/60 px-5 py-4 sm:px-6">
+            <span
+              aria-hidden="true"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-sm font-semibold text-primary"
+            >
+              {displayName.charAt(0)}
+            </span>
+
+            <div className="min-w-0 flex-1">
+              <Dialog.Title className="text-base font-semibold tracking-tight text-foreground">
+                {displayName}
+              </Dialog.Title>
+              <Dialog.Description className="mt-0.5 text-sm leading-snug text-foreground-secondary">
+                {candidate.appliedJobTitle
+                  ? `Applied for ${candidate.appliedJobTitle}`
+                  : "Applied position not recorded"}
+              </Dialog.Description>
             </div>
 
             <Dialog.Close asChild>
               <button
                 type="button"
-                aria-label="Close candidate view"
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                aria-label={`Close ${displayName}'s profile`}
+                className="-mr-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-foreground-secondary transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </Dialog.Close>
           </div>
 
-          <div className="mt-5 space-y-6">
-            {/* Status & Quick Action */}
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-surface-subtle p-3.5">
-              <div>
-                <span className="block text-[11px] font-medium uppercase tracking-wider text-foreground-muted">
-                  Current Application Status
-                </span>
-                <div className="mt-1">
-                  <CandidateStatusBadge status={candidate.status} />
-                </div>
-              </div>
+          <div className="min-h-0 flex-1 divide-y divide-border/60 overflow-y-auto overscroll-contain px-5 sm:px-6">
+            {/* Status — the one action that moves a candidate forward */}
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-4">
+              <CandidateStatusBadge status={candidate.status} />
 
               <div className="flex items-center gap-2">
-                <label htmlFor="cand-status" className="sr-only">
-                  Update Candidate Status
+                <label
+                  htmlFor="candidate-status"
+                  className="text-xs font-medium text-foreground-secondary"
+                >
+                  Change status
                 </label>
                 <select
-                  id="cand-status"
+                  id="candidate-status"
                   value={candidate.status}
-                  onChange={(e) => onUpdateStatus(candidate.id, e.target.value)}
-                  className="rounded-lg border border-border bg-surface px-2.5 py-1.5 text-xs font-semibold text-foreground focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                  onChange={(event) =>
+                    onUpdateStatus(candidate.id, event.target.value)
+                  }
+                  className="h-9 rounded-lg border border-border bg-surface px-2 text-xs font-medium text-foreground transition-colors focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
-                  {CANDIDATE_STATUSES.map((st) => (
-                    <option key={st} value={st}>
-                      {st}
+                  {CANDIDATE_STATUSES.map((status) => (
+                    <option key={status} value={status}>
+                      {status}
                     </option>
                   ))}
                 </select>
               </div>
             </div>
 
-            {/* Contact Details */}
-            <div className="space-y-3">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
-                Contact & Profile Information
+            {/* How to reach them */}
+            <div className="py-4">
+              <h3 className="text-sm font-semibold tracking-tight text-foreground">
+                Contact
               </h3>
-              <div className="grid gap-2.5 text-xs">
-                <div className="flex items-center gap-2.5 text-foreground-secondary">
-                  <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <a
-                    href={`mailto:${candidate.email}`}
-                    className="hover:text-primary transition-colors hover:underline"
-                  >
-                    {candidate.email}
-                  </a>
-                </div>
 
-                <div className="flex items-center gap-2.5 text-foreground-secondary">
-                  <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <a
-                    href={`tel:${candidate.phone}`}
-                    className="hover:text-primary transition-colors hover:underline"
-                  >
-                    {candidate.phone}
-                  </a>
-                </div>
+              <dl className="mt-2 grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-4 gap-y-2 text-sm">
+                <dt className="text-foreground-secondary">Email</dt>
+                <dd className="min-w-0 break-words">
+                  {candidate.email ? (
+                    <a
+                      href={`mailto:${candidate.email}`}
+                      className="rounded text-primary transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                    >
+                      {candidate.email}
+                    </a>
+                  ) : (
+                    <span className="text-foreground">Not recorded</span>
+                  )}
+                </dd>
+
+                <dt className="text-foreground-secondary">Phone</dt>
+                <dd className="min-w-0 break-words">
+                  {candidate.phone ? (
+                    <a
+                      href={`tel:${candidate.phone.replace(REGEX.WHITESPACE, "")}`}
+                      className="rounded text-primary transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                    >
+                      {candidate.phone}
+                    </a>
+                  ) : (
+                    <span className="text-foreground">Not recorded</span>
+                  )}
+                </dd>
 
                 {candidate.location && (
-                  <div className="flex items-center gap-2.5 text-foreground-secondary">
-                    <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
-                    <span>{candidate.location}</span>
-                  </div>
+                  <>
+                    <dt className="text-foreground-secondary">Based in</dt>
+                    <dd className="min-w-0 text-foreground">
+                      {candidate.location}
+                    </dd>
+                  </>
                 )}
-
-                <div className="flex items-center gap-2.5 text-foreground-secondary">
-                  <Calendar className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <span>
-                    Applied: <strong className="text-foreground">{candidate.appliedDate}</strong> (Registered: {candidate.registeredDate})
-                  </span>
-                </div>
-
-                {candidate.experience && (
-                  <div className="flex items-center gap-2.5 text-foreground-secondary">
-                    <User className="h-4 w-4 text-primary" aria-hidden="true" />
-                    <span>
-                      Experience: <strong className="text-foreground">{candidate.experience}</strong> · Current: {candidate.currentCompany || "N/A"}
-                    </span>
-                  </div>
-                )}
-              </div>
+              </dl>
             </div>
 
-            {/* Resume Placeholder */}
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
-                Application Documents
+            {/* What we know about the application */}
+            <div className="py-4">
+              <h3 className="text-sm font-semibold tracking-tight text-foreground">
+                Application
               </h3>
-              <div className="mt-2.5 flex items-center justify-between rounded-xl border border-border bg-surface p-3.5">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-muted text-primary">
-                    <FileText className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-foreground">
-                      {candidate.fullName.replace(REGEX.WHITESPACE, "_")}_Resume.pdf
-                    </p>
-                    <p className="text-[11px] text-foreground-muted">PDF Document · 245 KB</p>
-                  </div>
-                </div>
+
+              <dl className="mt-2 grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-4 gap-y-2 text-sm">
+                <dt className="text-foreground-secondary">Experience</dt>
+                <dd className="min-w-0 text-foreground">
+                  {candidate.experience || "Not recorded"}
+                </dd>
+
+                <dt className="text-foreground-secondary">Current company</dt>
+                <dd className="min-w-0 text-foreground">
+                  {candidate.currentCompany || "Not recorded"}
+                </dd>
+
+                <dt className="text-foreground-secondary">Applied on</dt>
+                <dd className="min-w-0 text-foreground">
+                  <time dateTime={candidate.appliedDate || undefined}>
+                    {formatIsoDate(candidate.appliedDate) || "Not recorded"}
+                  </time>
+                </dd>
+              </dl>
+
+              <div className="mt-3 flex items-center justify-between gap-3">
+                <span className="flex min-w-0 items-center gap-2">
+                  <FileText
+                    className="h-4 w-4 shrink-0 text-foreground-secondary"
+                    aria-hidden="true"
+                  />
+                  <span className="truncate text-sm text-foreground">
+                    {resumeFileName}
+                  </span>
+                </span>
 
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => alert(`Simulating download for ${candidate.fullName}'s resume.`)}
+                  onClick={handleDownloadResume}
+                  className="shrink-0"
                 >
                   Download
                 </Button>
-              </div>
-            </div>
-
-            {/* Application Details */}
-            <div className="space-y-2.5">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
-                Job Application Summary
-              </h3>
-              <div className="rounded-xl border border-border bg-surface p-3.5 text-xs text-foreground-secondary">
-                <p>
-                  Position Applied: <span className="font-semibold text-foreground">{candidate.appliedJobTitle}</span>
-                </p>
-                <p className="mt-1">
-                  Submission Channel: <span className="text-foreground">Meelte Careers Portal (Web)</span>
-                </p>
-              </div>
-            </div>
-
-            {/* Internal Notes Feed */}
-            <div className="space-y-3">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-foreground-secondary">
-                HR Evaluation Notes & History
-              </h3>
-
-              {/* Add Note Form */}
-              <form onSubmit={handleAddNoteSubmit} className="space-y-2">
-                <div className="relative">
-                  <textarea
-                    rows={2}
-                    placeholder="Add an internal evaluation note (e.g. interview feedback, screening comments)..."
-                    value={newNote}
-                    onChange={(e) => setNewNote(e.target.value)}
-                    className="w-full rounded-xl border border-border bg-surface px-3 py-2 text-xs text-foreground placeholder:text-foreground-muted focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-                  />
-                </div>
-                <div className="flex justify-end">
-                  <Button type="submit" variant="secondary" size="sm" disabled={!newNote.trim()}>
-                    <Send className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
-                    Save Note
-                  </Button>
-                </div>
-              </form>
-
-              {/* Notes List */}
-              <div className="space-y-2 pt-1">
-                {candidate.notes && candidate.notes.length > 0 ? (
-                  candidate.notes.map((note) => (
-                    <div
-                      key={note.id}
-                      className="rounded-xl border border-border bg-surface-subtle p-3 text-xs"
-                    >
-                      <div className="flex items-center justify-between text-[11px] text-foreground-muted">
-                        <span className="font-medium text-foreground">{note.author}</span>
-                        <span>{note.date}</span>
-                      </div>
-                      <p className="mt-1.5 text-foreground-secondary leading-relaxed">
-                        {note.text}
-                      </p>
-                    </div>
-                  ))
-                ) : (
-                  <p className="rounded-xl border border-dashed border-border p-4 text-center text-xs text-foreground-muted">
-                    No notes recorded yet for this candidate.
-                  </p>
-                )}
               </div>
             </div>
           </div>
@@ -242,4 +244,3 @@ export function CandidateDetailModal({
 }
 
 export default CandidateDetailModal;
-

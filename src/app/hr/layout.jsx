@@ -23,7 +23,6 @@ function HrLayoutContent({ children }) {
     selectedCandidate,
     closeCandidateModal,
     updateCandidateStatus,
-    addCandidateNote,
     isSidebarOpen,
     closeSidebar,
     toggleSidebar,
@@ -82,7 +81,6 @@ function HrLayoutContent({ children }) {
         candidate={selectedCandidate}
         onClose={closeCandidateModal}
         onUpdateStatus={updateCandidateStatus}
-        onAddNote={addCandidateNote}
       />
     </div>
   );
