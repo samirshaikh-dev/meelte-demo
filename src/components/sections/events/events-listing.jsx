@@ -25,9 +25,12 @@ const CORE_CATEGORIES = ["All", "Social", "Sports", "Music", "Workshops", "Commu
  */
 export function EventsListing({
   events = [],
-  breadcrumbs,
+  breadcrumbs = [],
   unavailable = false,
   nextCursor = null,
+  showHeading = true,
+  toggleControl = null,
+  className,
 }) {
   const [items, setItems] = useState(events);
   const [cursor, setCursor] = useState(nextCursor);
@@ -148,38 +151,31 @@ export function EventsListing({
   return (
     <section
       aria-labelledby="events-heading"
-      className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
+      className={cn(
+        "border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16",
+        className
+      )}
     >
       <Container>
         <Breadcrumbs items={breadcrumbs} className="mb-5" />
 
-        {/* Header & Sub-banner */}
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl">
-            <div className="mb-2.5 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-surface-muted px-3 py-1 text-xs font-semibold text-primary">
-              <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              <span>Hyperlocal Community Events</span>
+        {/* Accessible hidden heading for section aria-labelledby */}
+        <h2 id="events-heading" className="sr-only">
+          Community events nearby
+        </h2>
+
+        {/* Top Control Bar: Toggle (flex: 1 1 auto) + Host an event button (flex: 0 0 auto) on md+, stacked on mobile */}
+        <div className="flex w-full flex-col md:flex-row md:items-center gap-4">
+          {toggleControl && (
+            <div className="w-full md:flex-[1_1_auto] md:min-w-0">
+              {toggleControl}
             </div>
-
-            <h1
-              id="events-heading"
-              className="text-3xl font-black leading-[1.1] tracking-tight text-foreground sm:text-4xl text-balance"
-            >
-              Community events nearby
-            </h1>
-            <p className="mt-3 text-base leading-7 text-foreground-secondary">
-              Discover local meetups, sports activities, and workshops. Request to join and chat
-              with organisers directly on the meelTe mobile app.
-            </p>
-          </div>
-
-          {/* Action Triggers: Host & Alerts */}
-          <div className="flex flex-wrap items-center gap-2.5 pt-2 lg:pt-0">
-
+          )}
+          <div className="w-full md:w-auto md:flex-[0_0_auto]">
             <button
               type="button"
               onClick={() => handleAction("host", null)}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-primary/25 bg-surface-muted px-3.5 py-2 text-xs font-semibold text-primary transition-colors hover:border-primary/50 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+              className="inline-flex h-12 w-full md:w-auto items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-primary/25 bg-surface-muted px-5 text-xs font-semibold text-primary transition-colors hover:border-primary/50 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
             >
               <PlusCircle className="h-3.5 w-3.5" aria-hidden="true" />
               <span>Host an event</span>

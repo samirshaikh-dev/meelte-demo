@@ -197,7 +197,7 @@ export function AdDetail({ ad, breadcrumbs }) {
                   no longer be redeemed.
                 </p>
                 <Link
-                  href="/ads"
+                  href="/"
                   className="rounded-sm text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
                   Browse live offers
@@ -367,7 +367,7 @@ export function AdDetail({ ad, breadcrumbs }) {
 
             <div className="mt-8">
               <Link
-                href="/ads"
+                href="/"
                 className="inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />

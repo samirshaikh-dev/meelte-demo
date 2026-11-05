@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { Container } from "@/components/layout/container";
 import { EventsListing } from "@/components/sections/events";
+import { ListingFallback } from "@/components/sections/discovery";
 import { buildCollectionMetadata } from "@/lib/seo/metadata";
 import {
   getBreadcrumbsJsonLd,
@@ -92,21 +92,6 @@ async function EventsPageContent() {
   );
 }
 
-function ListingFallback() {
-  return (
-    <section
-      aria-busy="true"
-      aria-label="Loading events"
-      className="border-b border-border/80 bg-canvas py-8 sm:py-12 lg:py-16"
-    >
-      <Container>
-        <div className="h-9 w-64 animate-pulse rounded-lg bg-surface-muted" aria-hidden="true" />
-        <div className="mt-4 h-5 w-full max-w-xl animate-pulse rounded-lg bg-surface-muted" aria-hidden="true" />
-      </Container>
-    </section>
-  );
-}
-
 export default function EventsPage() {
   return (
     <div className="flex min-h-screen flex-col bg-canvas selection:bg-primary/20 selection:text-primary">
@@ -120,7 +105,7 @@ export default function EventsPage() {
         <Navbar />
       </Suspense>
       <main id="main-content" className="flex-1">
-        <Suspense fallback={<ListingFallback />}>
+        <Suspense fallback={<ListingFallback label="Loading events" />}>
           <EventsPageContent />
         </Suspense>
       </main>

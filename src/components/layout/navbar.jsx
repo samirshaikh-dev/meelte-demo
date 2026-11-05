@@ -11,6 +11,7 @@ import {
   Users,
   Mail,
   HelpCircle,
+  Home,
 } from "../../lib/icons";
 import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
 import { Container } from "./container";
@@ -33,6 +34,12 @@ const PRODUCT_LINKS = [
 ];
 
 const COMPANY_LINKS = [
+  {
+    label: "Home",
+    href: "/",
+    description: "Explore offers and community events",
+    icon: Home,
+  },
   {
     label: "About Us",
     href: "/about",
@@ -103,10 +110,10 @@ export function Navbar() {
     (link) => pathname === link.href || pathname?.startsWith(`${link.href}/`)
   );
   const isCompanyActive = COMPANY_LINKS.some(
-    (link) => pathname === link.href || pathname?.startsWith(`${link.href}/`)
+    (link) =>
+      link.href !== "/" &&
+      (pathname === link.href || pathname?.startsWith(`${link.href}/`))
   );
-  const isAdsActive = pathname === "/ads" || pathname?.startsWith("/ads/");
-  const isEventsActive = pathname === "/events" || pathname?.startsWith("/events/");
   const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
 
   return (
@@ -182,7 +189,9 @@ export function Navbar() {
                   {PRODUCT_LINKS.map((link) => {
                     const Icon = link.icon;
                     const isActive =
-                      pathname === link.href || pathname?.startsWith(`${link.href}/`);
+                      link.href === "/"
+                        ? pathname === "/"
+                        : pathname === link.href || pathname?.startsWith(`${link.href}/`);
                     return (
                       <Link
                         key={link.href}
@@ -225,34 +234,6 @@ export function Navbar() {
               </div>
             )}
           </div>
-
-          {/* Ads - Direct Link */}
-          <Link
-            href="/ads"
-            onMouseEnter={() => handleMouseEnter(null)}
-            className={`inline-flex items-center rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 ${
-              isAdsActive
-                ? "bg-surface-muted text-primary font-semibold"
-                : "text-foreground-secondary hover:text-foreground hover:bg-surface-muted/60"
-            }`}
-            aria-current={isAdsActive ? "page" : undefined}
-          >
-            <span>Ads</span>
-          </Link>
-
-          {/* Events - Direct Link */}
-          <Link
-            href="/events"
-            onMouseEnter={() => handleMouseEnter(null)}
-            className={`inline-flex items-center rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 ${
-              isEventsActive
-                ? "bg-surface-muted text-primary font-semibold"
-                : "text-foreground-secondary hover:text-foreground hover:bg-surface-muted/60"
-            }`}
-            aria-current={isEventsActive ? "page" : undefined}
-          >
-            <span>Events</span>
-          </Link>
 
           {/* Careers - Direct Link */}
           <Link
@@ -307,7 +288,9 @@ export function Navbar() {
                   {COMPANY_LINKS.map((link) => {
                     const Icon = link.icon;
                     const isActive =
-                      pathname === link.href || pathname?.startsWith(`${link.href}/`);
+                      link.href === "/"
+                        ? pathname === "/"
+                        : pathname === link.href || pathname?.startsWith(`${link.href}/`);
                     return (
                       <Link
                         key={link.href}

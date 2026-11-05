@@ -14,9 +14,8 @@ import {
   Store,
   ChevronDown,
   Briefcase,
-  Tag,
-  CalendarDays,
   HelpCircle,
+  Home,
 } from "../../lib/icons";
 import { PLAY_STORE_URL, APP_STORE_URL } from "../../config/site";
 import { StoreButton } from "./store-button";
@@ -27,6 +26,7 @@ const PRODUCT_ITEMS = [
 ];
 
 const COMPANY_ITEMS = [
+  { label: "Home", href: "/", icon: Home, note: "Explore offers and community events" },
   { label: "About Us", href: "/about", icon: Users, note: "Our mission, pillars & story" },
   { label: "Contact Us", href: "/contact", icon: Mail, note: "Support, partnerships & queries" },
   { label: "FAQ", href: "/faq", icon: HelpCircle, note: "Common questions & answers" },
@@ -41,10 +41,10 @@ export function MobileNav() {
     (item) => pathname === item.href || pathname?.startsWith(`${item.href}/`)
   );
   const isCompanyActive = COMPANY_ITEMS.some(
-    (item) => pathname === item.href || pathname?.startsWith(`${item.href}/`)
+    (item) =>
+      item.href !== "/" &&
+      (pathname === item.href || pathname?.startsWith(`${item.href}/`))
   );
-  const isAdsActive = pathname === "/ads" || pathname?.startsWith("/ads/");
-  const isEventsActive = pathname === "/events" || pathname?.startsWith("/events/");
   const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
 
   return (
@@ -132,7 +132,9 @@ export function MobileNav() {
                   {PRODUCT_ITEMS.map((item) => {
                     const Icon = item.icon;
                     const isActive =
-                      pathname === item.href || pathname?.startsWith(`${item.href}/`);
+                      item.href === "/"
+                        ? pathname === "/"
+                        : pathname === item.href || pathname?.startsWith(`${item.href}/`);
                     return (
                       <Link
                         key={item.href}
@@ -174,52 +176,6 @@ export function MobileNav() {
                 </div>
               )}
             </div>
-
-            {/* Ads - Direct Link */}
-            <Link
-              href="/ads"
-              onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
-                isAdsActive
-                  ? "bg-surface-muted text-primary"
-                  : "text-foreground hover:bg-surface-muted hover:text-primary"
-              }`}
-              aria-current={isAdsActive ? "page" : undefined}
-            >
-              <div
-                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
-                  isAdsActive
-                    ? "bg-primary text-white"
-                    : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                }`}
-              >
-                <Tag className="h-3.5 w-3.5" aria-hidden="true" />
-              </div>
-              <span>Ads</span>
-            </Link>
-
-            {/* Events - Direct Link */}
-            <Link
-              href="/events"
-              onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
-                isEventsActive
-                  ? "bg-surface-muted text-primary"
-                  : "text-foreground hover:bg-surface-muted hover:text-primary"
-              }`}
-              aria-current={isEventsActive ? "page" : undefined}
-            >
-              <div
-                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
-                  isEventsActive
-                    ? "bg-primary text-white"
-                    : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
-                }`}
-              >
-                <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" />
-              </div>
-              <span>Events</span>
-            </Link>
 
             {/* Careers - Direct Link */}
             <Link
@@ -269,7 +225,9 @@ export function MobileNav() {
                   {COMPANY_ITEMS.map((item) => {
                     const Icon = item.icon;
                     const isActive =
-                      pathname === item.href || pathname?.startsWith(`${item.href}/`);
+                      item.href === "/"
+                        ? pathname === "/"
+                        : pathname === item.href || pathname?.startsWith(`${item.href}/`);
                     return (
                       <Link
                         key={item.href}

@@ -46,7 +46,7 @@ const FOOTER_SECTIONS = [
     id: "product",
     title: "Product",
     links: [
-      { label: "Ads", href: "/ads" },
+      { label: "Ads", href: "/" },
       { label: "Events", href: "/events" },
       { label: "How it works", href: "/how-it-works" },
       { label: "For Merchant", href: "/for-merchants" },

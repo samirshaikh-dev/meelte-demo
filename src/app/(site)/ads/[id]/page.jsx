@@ -80,7 +80,6 @@ async function AdPageContent({ params }) {
 
   const breadcrumbs = [
     { name: "Home", path: "/" },
-    { name: "Offers", path: "/ads" },
     { name: shown.productName, path: routePath(ad.id) },
   ];
   const jsonLd = [
