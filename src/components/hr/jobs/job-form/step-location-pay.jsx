@@ -1,12 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useSyncExternalStore } from "react";
 import {
   WORKPLACE_TYPES,
   SALARY_CURRENCIES,
   SALARY_PERIODS,
   getTodayDateString,
 } from "@/validation/hr/job-validation";
+
+// Client-only "today" snapshot for the deadline picker's `min` bound.
+// Reading the clock during render is an unstable value that fails the static prerender
+// of the HR job routes (Next.js 16 Cache Components). `useSyncExternalStore` gives the
+// hook a server snapshot for the prerender/hydration pass and the real local date on the
+// client, without a setState-in-effect cascade or a hydration mismatch.
+const subscribeToNothing = () => () => {};
+const getClientDateSnapshot = () => getTodayDateString();
+const getServerDateSnapshot = () => "";
 
 /**
  * Step 2: Location and Pay
@@ -15,7 +24,11 @@ import {
 export function StepLocationPay({ register, errors, watch, headingRef }) {
   const currentWorkplaceType = watch("workplaceType");
   const isLocationRequired = currentWorkplaceType !== "Remote";
-  const todayDateString = getTodayDateString();
+  const todayDateString = useSyncExternalStore(
+    subscribeToNothing,
+    getClientDateSnapshot,
+    getServerDateSnapshot
+  );
 
   return (
     <section aria-labelledby="step-2-heading" className="space-y-6">
@@ -214,7 +227,7 @@ export function StepLocationPay({ register, errors, watch, headingRef }) {
             <input
               id="job-deadline"
               type="date"
-              min={todayDateString}
+              min={todayDateString || undefined}
               {...register("deadline")}
               aria-required="true"
               aria-invalid={Boolean(errors.deadline)}

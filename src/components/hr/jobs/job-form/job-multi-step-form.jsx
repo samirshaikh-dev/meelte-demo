@@ -11,6 +11,7 @@ import {
   jobDraftSchema,
   STEP_FIELDS,
   getInitialJobFormValues,
+  getDefaultDeadlineDateString,
 } from "@/validation/hr/job-validation";
 import { useJobAutosave } from "@/hooks/use-job-autosave";
 import { JobStepper } from "./job-stepper";
@@ -51,8 +52,21 @@ export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
     reset,
     trigger,
     setError,
+    setValue,
     formState: { errors, isDirty, isSubmitted },
   } = form;
+
+  // Suggested deadline (today + 30 days) is resolved after mount rather than during
+  // render. Reading the clock while rendering a Client Component is an unstable value
+  // that fails the static prerender of /hr/jobs/new under Next.js 16 Cache Components.
+  // Deferring keeps the prerendered HTML deterministic and still uses the visitor's
+  // local calendar date. `shouldDirty: false` keeps the autosave/unsaved-changes guards
+  // from treating the seeded default as user input.
+  useEffect(() => {
+    if (!getValues("deadline")) {
+      setValue("deadline", getDefaultDeadlineDateString(), { shouldDirty: false });
+    }
+  }, [getValues, setValue]);
 
   // Autosave and Draft Restoration
   const {

@@ -73,6 +73,11 @@ export function getTodayDateString() {
 
 /**
  * Returns default suggested deadline (30 days from today) formatted as YYYY-MM-DD.
+ *
+ * This reads the clock, so it must never be called during render. Next.js 16 Cache
+ * Components treats `new Date()` inside a Client Component as an unstable value and
+ * fails the static prerender. Consumers seed it from an effect instead, e.g. the
+ * deadline default in `JobMultiStepForm`.
  */
 export function getDefaultDeadlineDateString() {
   const d = new Date();
@@ -233,6 +238,10 @@ export const STEP_FIELDS = {
 
 /**
  * Initial empty values for a new job form.
+ *
+ * Deliberately clock-free: `deadline` starts empty and is seeded from an effect after
+ * mount (`JobMultiStepForm`), so this stays a pure function safe to call during the
+ * prerender of `/hr/jobs/new` and `/hr/jobs/[id]/edit`.
  */
 export function getInitialJobFormValues(existingJob = null) {
   if (existingJob) {
@@ -248,7 +257,7 @@ export function getInitialJobFormValues(existingJob = null) {
       salaryMax: existingJob.salaryMax ?? "",
       salaryCurrency: existingJob.salaryCurrency || "₹ (INR)",
       salaryPeriod: existingJob.salaryPeriod || "per year",
-      deadline: existingJob.deadline || getDefaultDeadlineDateString(),
+      deadline: existingJob.deadline || "",
       openings: existingJob.openings ?? 1,
       description: existingJob.description || "",
       responsibilities: existingJob.responsibilities || "",
@@ -268,7 +277,7 @@ export function getInitialJobFormValues(existingJob = null) {
     salaryMax: "",
     salaryCurrency: "₹ (INR)",
     salaryPeriod: "per year",
-    deadline: getDefaultDeadlineDateString(),
+    deadline: "",
     openings: 1,
     description: "",
     responsibilities: "",
