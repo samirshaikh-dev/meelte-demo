@@ -1,31 +1,32 @@
-// Meelte website — opencode project configuration.
+// meelTe website — opencode project configuration.
 // JSONC: comments and trailing commas are allowed.
 // Full reference: https://opencode.ai/config.json
 {
   "$schema": "https://opencode.ai/config.json",
-
   // Pin models explicitly (uncomment to override the global default).
   // "model": "anthropic/claude-sonnet-4-6",
   // "small_model": "groq/llama-3.3-70b-versatile",
-
   // Always inject project context and rules so the mandatory pre-implementation
   // protocol (load .agents/skills before any code change) is in effect.
-  "instructions": ["project-context.md", "AI_RULE.md", "meelte-context.md"],
-
+  "instructions": [
+    "project-context.md",
+    "AI_RULE.md",
+    "meelTe-context.md"
+  ],
   // Register the 16 discipline skills (ui-ux, frontend, accessibility, animation,
   // ai, output-judgement, backend, database, security, devops, performance, seo,
   // seo-strategy, keyword-research, personal-seo) as native opencode skills.
   // Each lives in .agents/skills/<skill-id>/SKILL.md and is scanned recursively.
   // V2 expects an array of sources; `.agents/skills` is auto-discovered too, so
   // this entry only makes the path explicit.
-  "skills": [".agents/skills"],
-
+  "skills": [
+    ".agents/skills"
+  ],
   // Custom agents: OpenCode reads Markdown agents from `.opencode/agents/<name>.md`
   // or inline under `agents`. The shared role agents in this repo live in
   // `.github/agents/*.agent.md` (GitHub Copilot format) and are not discovered by
   // OpenCode — mirror one into `.opencode/agents/` if it should be a subagent.
   // "agents": {},
-
   // Convenience commands aligned with the repo's npm scripts.
   "command": {
     "lint": {
@@ -41,7 +42,6 @@
       "template": "Run `python -m code_review_graph status` to check graph health, `python -m code_review_graph update` to refresh changed files, or `python -m code_review_graph build` to rebuild the graph. See code-review-install-guide.txt."
     }
   },
-
   // Fail-open, AI-friendly permission defaults: keep secrets safe, allow git.
   "permission": {
     "bash": {

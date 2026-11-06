@@ -1,0 +1,21 @@
+{
+  "scanned": "2026-10-31",
+  "findings": {
+    "fonts": "Geist Sans + Geist Mono (next/font in layout.js; --font-sans/--font-mono in src/app/globals.css)",
+    "palette": "24 color tokens in @theme (src/app/globals.css); brand primary #6D3BB3; locked docs/Design.md",
+    "motion": "framer-motion 14.7.1; Radix accordion keyframes; prefers-reduced-motion in globals.css",
+    "spacing": "Tailwind v4 default scale; no custom --space-* tokens",
+    "framework": "Next.js 16.4.3 App Router, React 19.3.0, Tailwind CSS v4",
+    "designMd": "docs/Design.md (locked system; overrides Hallmark theme deal)",
+    "product": "this repo is the marketing site; Flutter app lives elsewhere; Play Store live, web app coming soon",
+    "inspo": "none",
+    "together": "not required for audit"
+  },
+  "preserve": [
+    "docs/Design.md tokens and brand purple",
+    "Geist stack",
+    "routes, links, forms, handlers",
+    "product claims already on pages"
+  ],
+  "introduce": []
+}

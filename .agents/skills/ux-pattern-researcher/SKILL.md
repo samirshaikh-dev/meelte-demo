@@ -39,14 +39,14 @@ Does NOT own:
 - "What UI patterns should this page/feature use?"
 - "Show me how leading products solve this same problem."
 - "Which navigation pattern fits our audience?"
-- "Is this trend appropriate for Meelte, and when should we use it?"
+- "Is this trend appropriate for meelTe, and when should we use it?"
 - Reviewing whether an adopted pattern still fits the product and its users.
 
 ## Core Responsibilities
 
 1. Research patterns from credible real-world references (design systems, published case studies, leading products), not unverified screenshots.
 2. Evaluate each pattern against the audience: local consumers (P1), merchants (P2), event hosts (S1), referral-driven users (S2), social connectors (S3).
-3. Map patterns to Meelte's design tokens (`src/app/globals.css`) and `docs/Design.md` contract — recommendations must be implementable within this stack.
+3. Map patterns to meelTe's design tokens (`src/app/globals.css`) and `docs/Design.md` contract — recommendations must be implementable within this stack.
 4. Document rationale: why the pattern works, when to use it, when to avoid it, and what trade-offs it introduces.
 5. Hand off concrete, implementable direction (spacing/type references, states, behavior) to frontend-engineer / ui-ux-engineer.
 
@@ -102,7 +102,7 @@ A pattern recommendation should include:
 ## Common Failure Modes
 
 - Recommending a pattern because it's trendy, not because it fits P1/P2 tasks.
-- Copying a pattern from a consumer app without adjusting for Meelte's merchant/audience context.
+- Copying a pattern from a consumer app without adjusting for meelTe's merchant/audience context.
 - Ignoring design tokens and proposing one-off arbitrary values.
 - Skipping edge states (empty, error, loading, disabled).
 - Recommending patterns that require a local backend or unsupported APIs.

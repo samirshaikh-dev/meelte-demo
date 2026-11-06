@@ -24,7 +24,8 @@ How to apply:
 ## What meelTe Values
 
 - **Community-first** — build for neighbourhoods, putting real people and local communities at the heart of the work.
-- **Build for Bharat** — focus on India's towns and cities, solving everyday problems with simple, useful experiences.
+- **Build by Bharat
+** — focus on India's towns and cities, solving everyday problems with simple, useful experiences.
 - **Ownership** — take initiative, move with purpose, and own outcomes in a small, tight-knit team.
 - **Empathy** — listen first, stay humble, and design with care for the people who use meelTe every day.
 

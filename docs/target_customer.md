@@ -1,6 +1,6 @@
-# MEELTE — Target Customers
+# meelTe — Target Customers
 
-Derived from the `meelte_user` (classico) repository only: the Flutter app (`lib/`), Supabase migrations and edge functions (`supabase/`), the public web pages (`public/`), and the in-app Terms & Conditions (`assets/legal/terms_and_conditions.md`). The admin panel lives in a separate repository and was not analysed; admin-side facts below come only from migrations in this repo.
+Derived from the `meelTe_user` (classico) repository only: the Flutter app (`lib/`), Supabase migrations and edge functions (`supabase/`), the public web pages (`public/`), and the in-app Terms & Conditions (`assets/legal/terms_and_conditions.md`). The admin panel lives in a separate repository and was not analysed; admin-side facts below come only from migrations in this repo.
 
 Statements marked **(inferred)** are reasoned from code and copy, not stated outright. Statements marked **(uncertain)** are gaps the codebase cannot answer. No market research, analytics or user data was available.
 
@@ -8,7 +8,7 @@ Statements marked **(inferred)** are reasoned from code and copy, not stated out
 
 ## 1. Product Overview
 
-MEELTE is a location-based mobile app (Android and iOS, built in Flutter) for India. It combines three things:
+meelTe is a location-based mobile app (Android and iOS, built in Flutter) for India. It combines three things:
 
 - **Local offers.** Businesses post time-boxed advertisements with a price or discount.
 - **Local events.** Users host events and approve who joins.
@@ -31,23 +31,23 @@ A referral-and-coins scheme rewards growth, and coins can be redeemed for Amazon
 | Trust & safety | Users must be 13 or older. There are report tools, comment moderation and admin approve/reject of content (`admin_status`). There is no identity or background verification (T&C §14). Users can delete their account in the app or on the web (`public/acc-dlt.html`). |
 | Sign-in | Phone OTP, email and password, Google, and Apple. |
 
-**What the product is not.** Per the T&C, MEELTE does not sell goods, run events, take payments or broker transactions, and the app contains no payment SDK. Buying happens offline at the shop, and any event fees are settled directly between attendee and organiser.
+**What the product is not.** Per the T&C, meelTe does not sell goods, run events, take payments or broker transactions, and the app contains no payment SDK. Buying happens offline at the shop, and any event fees are settled directly between attendee and organiser.
 
-**Business side visible in the backend.** MEELTE employs ground staff (`field_acquisition` role) who sign up users and shops with their personal referral code. Supervisors, HR and Accounts then verify each referral ("real shop vs fake / AI-generated") and process the staff's payout requests. Per a migration comment, one field referral "almost always means one shopkeeper with one ad". In other words, the supply side (merchants) is acquired in person, not only through self-serve sign-up.
+**Business side visible in the backend.** meelTe employs ground staff (`field_acquisition` role) who sign up users and shops with their personal referral code. Supervisors, HR and Accounts then verify each referral ("real shop vs fake / AI-generated") and process the staff's payout requests. Per a migration comment, one field referral "almost always means one shopkeeper with one ad". In other words, the supply side (merchants) is acquired in person, not only through self-serve sign-up.
 
-**Revenue model: (uncertain).** No paid ad placement, subscription, commission or in-app purchase exists in the code. Posting an ad appears to be free today. How MEELTE plans to earn money cannot be determined from this repository.
+**Revenue model: (uncertain).** No paid ad placement, subscription, commission or in-app purchase exists in the code. Posting an ad appears to be free today. How meelTe plans to earn money cannot be determined from this repository.
 
 ---
 
 ## 2. Target Customer Segments
 
-MEELTE is a two-sided local marketplace. Consumers come for nearby deals and events, and businesses and hosts come to reach those consumers.
+meelTe is a two-sided local marketplace. Consumers come for nearby deals and events, and businesses and hosts come to reach those consumers.
 
 ### Primary segments
 
 **P1. Local consumers ("nearby discoverers").** Smartphone users in India aged 13+ who want to find offers, shops and things to do close to where they are.
 - **Evidence:** distance-sorted feeds, ₹ pricing, discount badges, directions to the shop, and the web landing line "connect and meet new people around you".
-- **(Inferred)** They live in the specific cities where MEELTE runs ground acquisition and has switched on an ad zone. Which cities these are is not in the repo **(uncertain)**. The company's legal jurisdiction is Gaya, Bihar.
+- **(Inferred)** They live in the specific cities where meelTe runs ground acquisition and has switched on an ad zone. Which cities these are is not in the repo **(uncertain)**. The company's legal jurisdiction is Gaya, Bihar.
 
 **P2. Local small businesses and shopkeepers ("merchants").** Independent shops, restaurants and service businesses that want local visibility without running their own digital marketing.
 - **Evidence:** "Brand Name / Shop Name" field, shop ads with up to 100 items, menu/price-list photo import, discount formats, and the field-acquisition flow built around shopkeepers.
@@ -57,18 +57,18 @@ MEELTE is a two-sided local marketplace. Consumers come for nearby deals and eve
 
 **S1. Community event hosts.** Individuals, clubs and small organisers running local gatherings, activities or paid meet-ups.
 - **Evidence:** event creation, joining cost, public/private events, approval-based attendance with group sizes, and follower notifications.
-- **(Uncertain)** whether MEELTE targets professional promoters. The T&C deliberately leave ticketing, permits and payments to the host, which fits informal and community events better.
+- **(Uncertain)** whether meelTe targets professional promoters. The T&C deliberately leave ticketing, permits and payments to the host, which fits informal and community events better.
 
 **S2. Referral-driven early adopters ("reward seekers").** Users motivated to invite friends in exchange for coins and Amazon vouchers.
 - **Evidence:** referral milestones (10 / 50 / 100 friends), invite channels, and the voucher screen.
 - **(Inferred)** This is an acquisition channel more than a long-term segment: total redemption is capped at ₹500 per user.
 
 **S3. Social connectors.** Users who mainly want to meet and talk to people nearby: friends, follows, chat and calls.
-- **(Uncertain)** how central this is. The web landing page is titled "MEELTE - Connect & Meet", but people discovery is still "coming soon", and chat and calls work only between users who already found each other through friends, contacts or content.
+- **(Uncertain)** how central this is. The web landing page is titled "meelTe - Connect & Meet", but people discovery is still "coming soon", and chat and calls work only between users who already found each other through friends, contacts or content.
 
 ### Internal users (not customers, but heavy users of the system)
 
-Field acquisition staff, supervisors, HR, accounts and admins use the separate admin panel (admin.meelte.com) for:
+Field acquisition staff, supervisors, HR, accounts and admins use the separate admin panel (admin.meelTe.com) for:
 - moderation and verification of content and referrals,
 - category and city-zone management,
 - staff payouts.
@@ -79,10 +79,10 @@ They are out of scope for this document except where they shape the customer exp
 
 ## 3. Customer Needs and Pain Points
 
-| Segment | Needs | Pain points MEELTE addresses | How the product responds |
+| Segment | Needs | Pain points meelTe addresses | How the product responds |
 |---|---|---|---|
 | **P1 Local consumers** | Know what offers and events exist nearby, right now; trust the price; get there easily | Local deals are scattered across WhatsApp forwards, posters and word of mouth; offers are often expired or vague | Distance-sorted feed with a default 60 km radius; explicit start/end dates; original vs final price or % discount; one-tap directions; follow a shop to hear about its updates |
-| **P2 Merchants** | Cheap, simple local reach; show the whole menu or stock; repeat customers | No time or skill to build a website or run social ads; digitising a menu is tedious; no product photos | Free self-serve ad posting **(as far as the code shows)**; single or catalogue ads; menu photo → product list via AI; AI product photos; followers notified of ad updates; in-person onboarding by MEELTE staff |
+| **P2 Merchants** | Cheap, simple local reach; show the whole menu or stock; repeat customers | No time or skill to build a website or run social ads; digitising a menu is tedious; no product photos | Free self-serve ad posting **(as far as the code shows)**; single or catalogue ads; menu photo → product list via AI; AI product photos; followers notified of ad updates; in-person onboarding by meelTe staff |
 | **S1 Event hosts** | Fill an event with the right people; control who comes; plan for group sizes | Open WhatsApp/Instagram invites give no control over attendance and no headcount | Approval-based join requests with group size; remove attendees; public or private events; share link; followers notified of updates |
 | **S2 Reward seekers** | A tangible reward for inviting people | Most apps give nothing for referrals | 30-coin referral bonus; milestones; redeem for an Amazon voucher |
 | **S3 Social connectors** | Meet and talk to people around them safely | Fragmented between apps; safety worries | Friends, chat, calls in one app; block and report tools; 13+ age policy |
@@ -97,11 +97,11 @@ They are out of scope for this document except where they shape the customer exp
 
 ## 4. Website User Personas
 
-MEELTE's consumer product is the mobile app. Its web presence (`public/`) is thin:
+meelTe's consumer product is the mobile app. Its web presence (`public/`) is thin:
 - a landing page that points to Google Play,
 - privacy, terms and child-safety pages,
 - a web account-deletion page,
-- a catch-all page that sends people opening a shared `/ad/` or `/event/` link without the app to a download link (`meelte-get.web.app`).
+- a catch-all page that sends people opening a shared `/ad/` or `/event/` link without the app to a download link (`meelTe-get.web.app`).
 
 The personas below therefore cover app users plus the few web-only visitors. **Persona names and personal details are illustrative.** Only the goals and journeys are taken from the code.
 
@@ -120,7 +120,7 @@ The personas below therefore cover app users plus the few web-only visitors. **P
 - **Goal:** more walk-in customers at low cost and effort.
 - **Motivation:** competitors are visible online and he is not; he has no time to manage social media.
 - **Typical journey:**
-  1. A MEELTE field agent visits and signs him up with the agent's referral code.
+  1. A meelTe field agent visits and signs him up with the agent's referral code.
   2. Creates a Shop ad: photographs his menu, "Import from Photos" fills in names and prices, and he reviews them. AI generates photos for items he did not shoot.
   3. Sets a discount and the start/end dates, and pins the shop location.
   4. The ad goes live at midnight on the start date and may be reviewed by admins.
@@ -152,7 +152,7 @@ Three types, each served by a page in `public/`:
 
 | Who | Arrives | Need | Journey |
 |---|---|---|---|
-| **Link recipient without the app** | Opens a shared `meelte.com/ad/…` or `/event/…` link | See the shared offer or event | Redirected to the download page; has to install before seeing the content. **(Inferred)** This is a drop-off point. |
+| **Link recipient without the app** | Opens a shared `meelTe.com/ad/…` or `/event/…` link | See the shared offer or event | Redirected to the download page; has to install before seeing the content. **(Inferred)** This is a drop-off point. |
 | **Leaving user** | Visits the web account-deletion page | Delete the account without reinstalling the app | Uses `acc-dlt.html` (the same option also exists in the app menu). |
 | **Policy reader** (parents, app-store reviewers, partners) | Lands on the policy pages | Check the 13+ age rule, privacy and child-safety commitments | Reads `privacy.html`, `terms.html`, `safety.html`. |
 
@@ -160,10 +160,10 @@ Three types, each served by a page in `public/`:
 
 ## 5. Value Proposition
 
-| Segment | Why they would choose MEELTE | Strength of evidence |
+| Segment | Why they would choose meelTe | Strength of evidence |
 |---|---|---|
 | **P1 Local consumers** | One place to see what is on offer and happening **near me, right now**: dated, priced deals and joinable events, with directions, plus friends and chat in the same app and a sign-up bonus on top. | Strong (core feeds, filters, directions, coins are all built) |
-| **P2 Merchants** | **Local visibility with almost no effort or cost:** a shop catalogue built from a menu photo, AI product images, discount badges, followers who get update notifications, and a person from MEELTE who helps set it up. | Strong on features; **cost to the merchant is uncertain** (no pricing in code) |
+| **P2 Merchants** | **Local visibility with almost no effort or cost:** a shop catalogue built from a menu photo, AI product images, discount badges, followers who get update notifications, and a person from meelTe who helps set it up. | Strong on features; **cost to the merchant is uncertain** (no pricing in code) |
 | **S1 Event hosts** | **Controlled attendance** (approve requests, see group sizes) and local reach, without building a ticketing setup. | Moderate (feature built; no payments or check-in) |
 | **S2 Reward seekers** | **Real rewards for inviting friends:** coins convertible to Amazon vouchers. | Strong but time-limited (₹500 lifetime cap) |
 | **S3 Social connectors** | Chat, location sharing and voice/video calls with people met through local content and contacts. | Weak to moderate (people discovery not built yet) |

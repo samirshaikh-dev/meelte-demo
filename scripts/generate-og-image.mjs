@@ -1,5 +1,5 @@
 /**
- * Meelte — OpenGraph / social share card generator.
+ * meelTe — OpenGraph / social share card generator.
  *
  * Produces `public/og-image.png` (1200×630) from the transparent brand logo
  * (`public/transparent_logo_meelTe.png`) so WhatsApp, Facebook, LinkedIn,
@@ -87,7 +87,7 @@ function buildBackgroundSvg({ canvas, primary, foregroundSecondary }) {
   <text x="${WIDTH / 2}" y="562" text-anchor="middle"
     font-family="Segoe UI, system-ui, -apple-system, Arial, sans-serif"
     font-size="20" font-weight="400" letter-spacing="1"
-    fill="${foregroundSecondary}">meelte.com · Bengaluru · Gaya · Ranchi</text>
+    fill="${foregroundSecondary}">meelTe.com · Bengaluru · Gaya · Ranchi</text>
 </svg>`;
 }
 

@@ -44,17 +44,17 @@ This file provides the comprehensive knowledge base and reference corpus for aut
 ### 3.1 Local Offers (Shop Ads)
 - **Primary Focus**: A single-product ad or a shop ad carrying up to 100 products, priced as an original and final price or as a flat / "up to" percentage discount, running from 12:00 AM on the start date to 11:59 PM on the end date.
 - **Viewer Actions**: like, comment, share, one-tap Google Maps directions, follow the shop.
-- **Canonical URL**: https://meelTe.com/discover#offers
+- **Canonical URL**: https://meelTe.com/
 - **Audience**: Residents looking for current local offers, and independent shops without a marketing team.
 
 ### 3.2 Local Events
 - **Primary Focus**: Events with a category, joining cost in ₹, start and end time, cover image, map location and public or private visibility. Attendance is approved through join requests that state the group size.
-- **Canonical URL**: https://meelTe.com/discover#events
+- **Canonical URL**: https://meelTe.com/events
 - **Audience**: Individuals, clubs and small organisers running local gatherings, activities or paid meet-ups.
 
 ### 3.3 People & Chat
 - **Primary Focus**: Friends, follows, one-to-one chat with text, emoji, documents and location sharing, plus audio and video calls. Block and report on every profile. Finding new people is still rolling out.
-- **Canonical URL**: https://meelTe.com/discover#people
+- **Canonical URL**: https://meelTe.com/how-it-works
 - **Audience**: Newcomers to a city and residents staying in touch with people they met locally.
 
 ### 3.4 Grow with meelTe (Local Business Promotion)

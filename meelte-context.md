@@ -1,10 +1,10 @@
-# Meelte Context
+# meelTe Context
 
 > **Purpose:** This document is the shared product and project context
-> for developers and AI coding assistants working on the Meelte website.
+> for developers and AI coding assistants working on the meelTe website.
 >
 > **Repository:** `nextjs-website` (intended project naming:
-> `meelte-nextjs-web`) **Live website:** https://meelte.com/ **Project
+> `meelTe-nextjs-web`) **Live website:** https://meelTe.com/ **Project
 > type:** Website redesign and rebuild **Last updated:** 29 October 2026
 >
 > **Read before any change:** `docs/target_customer.md`,
@@ -13,24 +13,24 @@
 
 ------------------------------------------------------------------------
 
-## 1. What Is Meelte?
+## 1. What Is meelTe?
 
-Meelte is both a **company/brand** and a **hyper-local community
+meelTe is both a **company/brand** and a **hyper-local community
 platform**. Keep those two meanings distinct:
 
--   **Meelte the company** is the brand behind the product and needs a
+-   **meelTe the company** is the brand behind the product and needs a
     credible, clear digital presence.
--   **Meelte the platform** helps people discover and connect with their
+-   **meelTe the platform** helps people discover and connect with their
     local community, nearby opportunities, services, businesses, and
     relevant local activity.
 
-Do not describe Meelte only as an app or only as a generic community
+Do not describe meelTe only as an app or only as a generic community
 feed. The website must explain the platform while also presenting the
 company as trustworthy and capable.
 
 ### Product availability
 
--   The Meelte mobile app is currently available.
+-   The meelTe mobile app is currently available.
 -   The web app is **coming soon**.
 -   Never imply that the full web app is already available.
 -   Make the current mobile experience easy to understand and provide a
@@ -45,12 +45,12 @@ ask for confirmation.
 
 ## 2. What We Are Doing
 
-We are redesigning and rebuilding the existing Meelte website at
-[meelte.com](https://meelte.com/) from scratch using a modern Next.js
+We are redesigning and rebuilding the existing meelTe website at
+[meelTe.com](https://meelTe.com/) from scratch using a modern Next.js
 application.
 
 The current working repository is `nextjs-website`; the preferred
-project identity/name is `meelte-nextjs-web`.
+project identity/name is `meelTe-nextjs-web`.
 
 The immediate focus is the **homepage**, followed by supporting pages
 such as the signup/onboarding page and other essential company/product
@@ -61,8 +61,8 @@ paths, and a foundation for organic search growth.
 ### Main business objectives
 
 1.  **Attract users** by explaining the value of joining and using
-    Meelte.
-2.  **Attract businesses** by showing how Meelte can help them reach and
+    meelTe.
+2.  **Attract businesses** by showing how meelTe can help them reach and
     engage with their local community.
 3.  **Grow organic traffic** with clear page structure, useful content,
     strong metadata, crawlable links, and good technical SEO.
@@ -75,7 +75,7 @@ paths, and a foundation for organic search growth.
 
 A first-time visitor should quickly understand:
 
--   What Meelte is.
+-   What meelTe is.
 -   Who it is for.
 -   Why it is useful to them.
 -   Whether they should explore the mobile app or learn more as a
@@ -91,7 +91,7 @@ without making the homepage feel like two unrelated websites.
 
 Audience definitions below are derived from `docs/target_customer.md`,
 which audits the Flutter app, Supabase migrations and edge functions,
-public web pages, and the in-app Terms & Conditions. Meelte is a
+public web pages, and the in-app Terms & Conditions. meelTe is a
 **two-sided hyper-local marketplace**: consumers come for nearby offers
 and events, while merchants and event hosts come to reach those
 consumers. Keep website messaging consistent with these segments and
@@ -115,7 +115,7 @@ running digital marketing. They need cheap, simple reach, a way to show
 their whole menu or stock, and repeat customers. Product evidence: shop
 ads with up to 100 products, menu-photo import (AI vision), AI product
 images, discount formats, follower notifications, and in-person field
-onboarding by Meelte staff.
+onboarding by meelTe staff.
 
 **Messaging direction:** local visibility and low effort, with a
 straightforward next step. Do not promise specific reach, leads,
@@ -162,7 +162,7 @@ example in-person merchant onboarding.
 
 ### Claim guardrails
 
--   Meelte does not sell goods, run events, take payments, or broker
+-   meelTe does not sell goods, run events, take payments, or broker
     transactions; purchases and event fees settle offline between the
     two parties.
 -   Merchant pricing is not confirmed in the product code. Before
@@ -234,8 +234,8 @@ memorable at first glance**.
 
 ### Signup / onboarding page
 
-The signup-related page should explain the benefit of Meelte before
-asking visitors to act. It should answer "Why should I choose Meelte?"
+The signup-related page should explain the benefit of meelTe before
+asking visitors to act. It should answer "Why should I choose meelTe?"
 without becoming a feature-heavy sales page.
 
 Clearly communicate:
@@ -342,7 +342,7 @@ The repository contains or is expected to use these project documents:
 -   `docs/target_customer.md` --- audience and customer context.
 -   `docs/Design.md` --- brand design system: colors, tokens, typography, and visual theme.
 -   `AI_RULE.md` --- project-specific AI and engineering rules.
--   `meelte-context.md` --- this document; high-level product purpose,
+-   `meelTe-context.md` --- this document; high-level product purpose,
     business goals, design direction, stack, and current work.
 
 These documents have different roles. Keep them consistent and avoid
@@ -367,18 +367,15 @@ architectural pattern:
 
 ### Active priorities
 
-1.  Redesign the homepage around the business objectives and the
-    primary audiences: local consumers (P1) and local merchants (P2),
-    with event hosts (S1), referral-driven early adopters (S2), and
-    social connectors (S3) as secondary.
-2.  Improve the first-screen impact, hierarchy, spacing, alignment, and
-    conversion paths.
-3.  Remove repeated information and unnecessary cards or sections.
-4.  Ensure the signup/onboarding experience explains the product value
+1.  **Homepage unified discovery:** `/` serves as the consolidated discovery
+    surface for nearby shop offers (default) and community events with an
+    accessible segmented toggle (`DiscoveryToggle`), while the company narrative
+    lives on `/about`, `/how-it-works`, `/for-merchants`, and `/faq`.
+2.  Maintain consistency with repository documentation, SEO indexing, and the
+    established token system.
+3.  Ensure the signup/onboarding experience explains the product value
     and accurately communicates app availability.
-5.  Maintain consistency with repository documentation and the existing
-    design system.
-6.  Validate responsive layouts, accessibility, SEO, and the production
+4.  Validate responsive layouts, accessibility, SEO, and the production
     build.
 
 ### Known issue previously encountered
@@ -403,7 +400,7 @@ a previously discussed issue is still present.
 
 Before making a significant change:
 
-1.  Read `meelte-context.md`, `AGENTS.md`, `AI_RULE.md`,
+1.  Read `meelTe-context.md`, `AGENTS.md`, `AI_RULE.md`,
     `project-context.md`, and the relevant files under `docs/`.
 2.  Inspect the existing implementation and identify the actual source
     files and components involved.
@@ -427,7 +424,7 @@ reason, or claim checks passed unless they were run successfully.
 
 A homepage or page redesign is ready for review when:
 
--   The page clearly communicates what Meelte is.
+-   The page clearly communicates what meelTe is.
 -   Both users and businesses can identify a relevant next step.
 -   Mobile app availability and web app status are accurate.
 -   The visual hierarchy is clear at a glance.
@@ -461,8 +458,8 @@ A homepage or page redesign is ready for review when:
 
 ### Do not
 
--   Treat Meelte as only a generic social-media app.
--   Treat Meelte as only a company brochure and hide the platform value.
+-   Treat meelTe as only a generic social-media app.
+-   Treat meelTe as only a company brochure and hide the platform value.
 -   Invent features, statistics, reviews, customer logos, or app-store
     links.
 -   Suggest that the web app is already live.
@@ -479,7 +476,7 @@ A homepage or page redesign is ready for review when:
 
 ## 12. One-Sentence Project Brief
 
-**Rebuild Meelte's website as a clear, memorable, conversion-focused
+**Rebuild meelTe's website as a clear, memorable, conversion-focused
 company and product experience that attracts local users and businesses,
 explains the mobile platform honestly, and establishes a strong
 foundation for organic growth.**

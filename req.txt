@@ -1,0 +1,217 @@
+Perfect. Then let's simplify the MVP further. We are building the HR dashboard UI first, not the complete recruitment platform.
+
+No candidate dashboard, no candidate profile management portal, and no complicated recruitment workflow for now.
+
+## 1. Final MVP scope
+
+UI-first approach
+
+| Feature                     | For now            |
+| --------------------------- | ------------------ |
+| HR Dashboard                | Yes                |
+| Job Management              | Yes                |
+| Candidate Management        | Yes                |
+| Candidate Registration      | Future integration |
+| Candidate Dashboard         | No                 |
+| Candidate Profile Portal    | No                 |
+| Application Tracking System | Basic records only |
+| Payroll / Attendance        | No                 |
+
+## 2. Dashboard pages
+
+1\. Dashboard
+
+- Total registered candidates
+- Total active jobs
+- Total applications
+- Expired jobs
+- Recently registered candidates
+- Recently created jobs
+
+2\. Jobs
+
+- Jobs listing table
+- Create new job
+- Edit job
+- Publish / unpublish
+- Archive
+- Expire
+- Delete
+
+3\. Candidates
+
+- All candidate records
+- Search by name, email or phone
+- Filter by applied job
+- View candidate details
+- See which jobs they applied for
+
+## 3. Candidate application flow
+
+Keep the public-facing experience simple:
+
+Meelte Careers
+
+Frontend Developer · Full-time
+
+Open
+
+Apply Now →
+
+Apply for this position
+
+Enter your details to submit your application.
+
+Register & ApplyIllustrative UI only.
+
+Application submitted
+
+Candidate details and application are stored for HR.
+
+The registration form can collect only the information needed now. Store the candidate's details and application together appropriately, while keeping the option to introduce candidate profiles later.
+
+## 4. UI design direction
+
+[CRM dashboard — Untitled UI by Jordan Hughes® on Dribbble](https://images.openai.com/static-rsc-4/aIDja7KLFUIEGrqw1WCyKs4lnuverW_lC7mCY9tidh7LSZbOzoaVtTKZ_-DhitKAx7hmzXMUB74Y_HZ9sLipBELgWlEzIKe6NsQ3lyhtnR8ZtEOS8N6wr0taAAbQpuOrljFyKTq9KWd7wWXZwbnYxF7-oLwPstc3U7Yq4Y8P2y0?purpose=inline)
+
+Dashboard
+
+Clean overview and statistics.
+
+[Applicant Tracking System Template | Lovable](https://images.openai.com/static-rsc-4/9HFYC5xyVi6UDiVTXTE6nQjhVLDqqC5TcBSUdhF9F779N3Wjd6JclClKYnEKdhF7xATYSb7qsPKcr6RBQIpIzWPXL6Xyu5-NGu_wroCniY6jBBWR8B-iV4IP4em6c1_5qdXSXQ5VVACHmwJW4DPaYeS1xVyTMLCsXWB8tBE0p2U?purpose=inline)
+
+Job management
+
+Simple tables and clear actions.
+
+[Recrutement vidéo – Présélection par entrevue | YesssGo](https://images.openai.com/static-rsc-4/sXO883cE_gDkuTfPH_2deUHz6YigziPsfTHAqVE-1sPQd0LQBKY4b0j4_1FqwBHRkck_vQrYcK6T_13Fuc9CRuEs58Crk3qwGbKqrBN4ZNszxube7LrFVTGoZL85oT-Ax1ZtklHAaMVfk8n4NPncrQIUis1ahumAGgxu4y1x35Y?purpose=inline)
+
+Candidates
+
+Searchable candidate directory.
+
+[Tiimi — Job Creation Flow in HR Management SaaS by Bagus Fikri for Fikri Studio on Dribbble](https://images.openai.com/static-rsc-4/NfT3iaE4goXy7TBMjlJgQKwM_GamITBJUYgs7hOo432roTZVIvqmSuzeLV_jNvggBf8UNTuo80_uv-YFZz6PC4fwtW6c04QNpDBr2RNvVa7ciBOPP9Fdy4V_aeozxvnkrQumxU8OJ2Zil2vWIwU5Nguy1wijYauh-yZ9zKvF4sQ?purpose=inline)
+
+Create job
+
+Simple, organised form.
+
+## 5. Implementation prompt
+
+Here is the prompt I would give your coding agent to build the initial UI.
+
+# Meelte HR Dashboard — UI-First MVP
+
+Build a clean, minimal, professional HR recruitment dashboard for Meelte.
+
+## Objective
+
+Create an internal HR interface that allows authorised HR users to manage job postings and view candidate information collected through the Meelte Careers page.
+
+This is a UI-first MVP. Focus on completing the frontend experience before implementing backend integrations.
+
+## Scope
+
+Build three main sections:
+
+1. Dashboard
+2. Job Management
+3. Candidates
+
+### Dashboard
+
+- Total registered candidates.
+- Total active jobs.
+- Total applications.
+- Total expired jobs.
+- Recently added candidates.
+- Recently created jobs.
+
+### Job Management
+
+- Jobs listing table.
+- Create job form.
+- Edit job form.
+- Publish/unpublish actions.
+- Archive and restore actions.
+- Expire job action.
+- Delete with confirmation.
+- Status indicators: Draft, Active, Expired, Archived.
+
+Job fields:
+
+- Job title
+- Department
+- Employment type
+- Workplace type
+- Location
+- Job description
+- Responsibilities
+- Requirements
+- Salary range (optional)
+- Application deadline
+- Job status
+
+### Candidates
+
+- Candidates listing table.
+- Search by name, email and phone.
+- Filter by applied job.
+- View candidate details in a drawer or modal.
+- Show registration date.
+- Show applied jobs and application dates.
+
+Candidate data fields for the initial application UI:
+
+- Full name
+- Email
+- Phone
+- Password (authentication only; never store plaintext passwords)
+- Resume (optional if supported in the initial form).
+
+## Candidate application experience
+
+On the public Careers page:
+
+1. Candidate clicks Apply Now.
+2. Candidate registers or logs in.
+3. Candidate submits the application.
+4. Candidate details and application are made available to HR.
+
+Do not build a candidate dashboard or candidate self-service profile portal.
+
+Keep the candidate data model extensible so a dedicated candidate portal can be introduced later.
+
+## UI/UX direction
+
+- Minimal, modern SaaS interface.
+- White surfaces with subtle neutral backgrounds.
+- Professional typography.
+- Consistent spacing and alignment.
+- Compact, readable tables.
+- Clear page hierarchy.
+- Restrained accent colour.
+- Subtle borders rather than heavy shadows.
+- Responsive desktop and mobile layouts.
+- Avoid unnecessary animations, gradients, decorative charts and oversized cards.
+
+## Important constraints
+
+- Do not build payroll, attendance or employee management.
+- Do not build a separate candidate dashboard.
+- Do not overcomplicate recruitment workflows.
+- Use realistic mock data for frontend development.
+- Keep components reusable.
+- Maintain clean folder organisation.
+- Ensure all buttons and UI actions have meaningful interactions.
+- Do not claim backend persistence when using mock data.
+
+## Delivery
+
+Complete the dashboard layout, navigation, dashboard overview, job management, job creation/editing and candidate listing/detail views.
+
+Prioritise usability, visual consistency and a production-quality interface over adding unnecessary features.
+
+My suggested development order: Dashboard layout → Jobs listing → Create/Edit Job → Candidates listing → Candidate details.
+
+This gets you a complete, presentable HR dashboard before spending time on authentication, database and application integrations.

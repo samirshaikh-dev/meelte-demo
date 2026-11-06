@@ -12,7 +12,7 @@ GitHub: [tirth8205/code-review-graph](https://github.com/tirth8205/code-review-g
 
 ## 1. What problem does it solve?
 
-Imagine you're working on your Meelte Next.js project.
+Imagine you're working on your meelTe Next.js project.
 
 You ask Cursor:
 
@@ -58,7 +58,7 @@ pipx install code-review-graph
 Then navigate to your project:
 
 ```
-cd path\to\your\meelte-project
+cd path\to\your\meelTe-project
 ```
 
 Install AI tool integrations:
@@ -119,7 +119,7 @@ Since you were also exploring Graphify, here's the distinction:
 
 ## 6. My recommendation
 
-For your development workflow, particularly Meelte:
+For your development workflow, particularly meelTe:
 
 Worth trying
 
@@ -149,7 +149,7 @@ I recommend setting up both.
 
 ## 1. Connect Cursor to Code Review Graph
 
-From your current Meelte project directory, run:
+From your current meelTe project directory, run:
 
 ```
 python -m code_review_graph install --platform cursor
@@ -179,7 +179,7 @@ python -m code_review_graph install --help
 ## 2. Restart Cursor and verify MCP
 
 1. Close Cursor completely.
-2. Reopen your Meelte project.
+2. Reopen your meelTe project.
 3. Open Cursor Settings.
 4. Navigate to Tools & MCP.
 5. Find `code-review-graph`.
@@ -285,7 +285,7 @@ GitHub
 
 
 
-## My recommended Meelte workflow
+## My recommended meelTe workflow
 
 ## Development workflow
 

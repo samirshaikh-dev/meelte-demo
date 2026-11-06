@@ -15,8 +15,8 @@ meelTe is available as a mobile app on Google Play for Android and on the App St
 
 ## Core Pages
 
-- [Home](https://meelTe.com/): Platform overview, the Discover / Connect / Create / Grow pillars, and the app downloads.
-- [Discover](https://meelTe.com/discover): The three things the app does — local offers, local events, and people & chat.
+- [Home / Local Offers](https://meelTe.com/): Platform overview, live nearby offers, and the app downloads.
+- [Community Events](https://meelTe.com/events): Live community gatherings and meetups happening nearby.
 - [About](https://meelTe.com/about): meelTe's origin story, mission, and the local problems the platform was built to solve.
 - [How It Works](https://meelTe.com/how-it-works): How a resident gets from install to a nearby offer, who posts on the platform, and what it deliberately does not do.
 - [For Merchants](https://meelTe.com/for-merchants): Local business promotion and how shops are onboarded in person.
@@ -30,9 +30,9 @@ meelTe is available as a mobile app on Google Play for Android and on the App St
 
 ## What The App Does
 
-- [Local offers](https://meelTe.com/discover#offers): Shops post a single product or a catalogue of up to 100 items with a price or discount and a fixed run of dates. Viewers can like, comment, share, get one-tap Google Maps directions, and follow the shop.
-- [Local events](https://meelTe.com/discover#events): Residents, clubs and organisers publish events with a date, time, pinned location and joining cost. Attendees request to join with their group size, and the host approves, rejects or removes people.
-- [People & chat](https://meelTe.com/discover#people): Friends, follows, one-to-one chat with text, emoji, documents and location sharing, plus audio and video calls. Finding new people is still rolling out.
+- [Local offers](https://meelTe.com/): Shops post a single product or a catalogue of up to 100 items with a price or discount and a fixed run of dates. Viewers can like, comment, share, get one-tap Google Maps directions, and follow the shop.
+- [Local events](https://meelTe.com/events): Residents, clubs and organisers publish events with a date, time, pinned location and joining cost. Attendees request to join with their group size, and the host approves, rejects or removes people.
+- [People & chat](https://meelTe.com/how-it-works): Friends, follows, one-to-one chat with text, emoji, documents and location sharing, plus audio and video calls. Finding new people is still rolling out.
 
 ## What meelTe Does Not Do
 

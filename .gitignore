@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# The example template holds variable NAMES only, never values. Without this
+# negation no developer ever receives the env contract (see plan.md E1).
+!.env.example
 
 # vercel
 .vercel
