@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, RotateCcw, X } from "@/lib/icons";
 import { notifySuccess, notifyError } from "@/lib/toast-feedback";
 import {
   jobPublishSchema,
@@ -24,7 +23,7 @@ import { StickyActionBar } from "./sticky-action-bar";
 /**
  * Master Multi-Step Job Posting Form
  * Shared between Create (/hr/jobs/new) and Edit (/hr/jobs/[id]/edit).
- * Complies with new-req.md, AVOID.md, and WCAG 2.2 AA.
+ * Persists drafts and published jobs directly to the backend database.
  */
 export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
   const router = useRouter();
@@ -49,48 +48,24 @@ export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
     control,
     watch,
     getValues,
-    reset,
     trigger,
     setError,
     setValue,
     formState: { errors, isDirty, isSubmitted },
   } = form;
 
-  // Suggested deadline (today + 30 days) is resolved after mount rather than during
-  // render. Reading the clock while rendering a Client Component is an unstable value
-  // that fails the static prerender of /hr/jobs/new under Next.js 16 Cache Components.
-  // Deferring keeps the prerendered HTML deterministic and still uses the visitor's
-  // local calendar date. `shouldDirty: false` keeps the autosave/unsaved-changes guards
-  // from treating the seeded default as user input.
+  // Cleanup legacy localStorage drafts and warn before unload if unsaved changes exist
+  const { clearDraft } = useJobAutosave({
+    isDirty,
+    isSubmitted,
+  });
+
+  // Suggested deadline (today + 30 days) is resolved after mount rather than during render
   useEffect(() => {
     if (!getValues("deadline")) {
       setValue("deadline", getDefaultDeadlineDateString(), { shouldDirty: false });
     }
   }, [getValues, setValue]);
-
-  // Autosave and Draft Restoration
-  const {
-    showRestorePrompt,
-    savedDraftTime,
-    restoreDraft,
-    dismissDraft,
-    clearDraft,
-    triggerAutosave,
-  } = useJobAutosave({
-    jobId: existingJob?.id || null,
-    getValues,
-    reset,
-    isDirty,
-    isSubmitted,
-  });
-
-  // Watch form changes via subscription for debounced autosave
-  useEffect(() => {
-    const subscription = watch(() => {
-      triggerAutosave();
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, triggerAutosave]);
 
   // Focus step heading on step change
   useEffect(() => {
@@ -105,7 +80,7 @@ export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // Save Draft Handler: validates only the title
+  // Save Draft Handler: validates only the title and saves to backend database
   const handleSaveDraft = useCallback(async () => {
     setIsSubmitting(true);
     setSubmittingType("draft");
@@ -134,8 +109,8 @@ export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
 
       await onSaveJob(payload, "Draft");
       clearDraft();
-      notifySuccess(`Draft "${payload.title}" saved successfully.`);
-      router.push("/hr/jobs");
+      notifySuccess("Draft saved");
+      router.push("/hr/jobs?status=Draft");
     } catch (err) {
       notifyError(err.message || "Failed to save draft.");
     } finally {
@@ -191,7 +166,7 @@ export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
       await onSaveJob(payload, "Active");
       clearDraft();
       notifySuccess(`Job "${payload.title}" published successfully!`);
-      router.push("/hr/jobs");
+      router.push("/hr/jobs?status=Active");
     } catch (err) {
       notifyError(err.message || "Failed to publish job.");
     } finally {
@@ -229,42 +204,6 @@ export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
 
   return (
     <div className="w-full space-y-6">
-      {/* Autosave Draft Found Recovery Prompt */}
-      {showRestorePrompt && (
-        <div
-          role="region"
-          aria-label="Draft recovery notification"
-          className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-primary/30 bg-surface-muted/90 p-3.5 sm:p-4 text-xs shadow-soft"
-        >
-          <div className="flex items-center gap-2.5">
-            <AlertCircle className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-            <span className="text-foreground">
-              You have an unsaved in-progress draft
-              {savedDraftTime && ` from ${new Date(savedDraftTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}.
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2 self-end sm:self-auto">
-            <button
-              type="button"
-              onClick={restoreDraft}
-              className="inline-flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 transition-colors"
-            >
-              <RotateCcw className="h-3 w-3" aria-hidden="true" />
-              <span>Restore Draft</span>
-            </button>
-            <button
-              type="button"
-              onClick={dismissDraft}
-              aria-label="Dismiss draft notice"
-              className="rounded-lg p-1 text-foreground-secondary hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-            >
-              <X className="h-4 w-4" aria-hidden="true" />
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Responsive Step Progress Stepper */}
       <JobStepper
         currentStep={currentStep}
@@ -323,3 +262,5 @@ export function JobMultiStepForm({ existingJob = null, onSaveJob }) {
     </div>
   );
 }
+
+export default JobMultiStepForm;

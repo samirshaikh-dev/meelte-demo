@@ -159,7 +159,26 @@ export function HrProvider({ children }) {
     // Optimistic UI update
     setJobs((prev) => [newJob, ...prev]);
 
-    // Async cloud persistence
+    // Backend API persistence with client SDK fallback
+    try {
+      const res = await fetch("/api/hr/jobs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newJob),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.data) {
+          setJobs((prev) =>
+            prev.map((j) => (j.id === newId ? json.data : j))
+          );
+          return json.data;
+        }
+      }
+    } catch {
+      // Fallback to client SDK
+    }
+
     try {
       await createHrJob(newJob);
     } catch (err) {
@@ -183,7 +202,23 @@ export function HrProvider({ children }) {
       )
     );
 
-    // Async cloud update
+    // Backend API persistence with client SDK fallback
+    try {
+      const res = await fetch(`/api/hr/jobs/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedFields),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.data) {
+          return json.data;
+        }
+      }
+    } catch {
+      // Fallback to client SDK
+    }
+
     try {
       await updateHrJob(id, updatedFields);
     } catch (err) {
@@ -203,7 +238,16 @@ export function HrProvider({ children }) {
     setDeletingJobId(null);
     notifyInfo(`Job "${targetJob?.title || id}" deleted.`);
 
-    // Async cloud delete
+    // Backend API persistence with client SDK fallback
+    try {
+      const res = await fetch(`/api/hr/jobs/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) return;
+    } catch {
+      // Fallback to client SDK
+    }
+
     try {
       await deleteHrJob(id);
     } catch (err) {
@@ -224,7 +268,18 @@ export function HrProvider({ children }) {
     );
     notifySuccess(`Status updated to "${newStatus}".`);
 
-    // Async cloud update
+    // Backend API persistence with client SDK fallback
+    try {
+      const res = await fetch(`/api/hr/jobs/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      if (res.ok) return;
+    } catch {
+      // Fallback to client SDK
+    }
+
     try {
       await updateHrJob(id, { status: newStatus });
     } catch (err) {

@@ -18,37 +18,16 @@ import {
   getWebPageJsonLd,
   mergeJsonLd,
 } from "@/lib/seo/structured-data";
+import { fetchPublicActiveJobs } from "@/services/careers/public-jobs-service";
 
-/**
- * /careers
- *
- * Visual rebuild only — every content block from the previous version is still
- * here, in the same order: hero → what we value → perks & benefits → open roles →
- * closing CTA. What changed is the arrangement, the type scale, the token usage and
- * the section rhythm:
- *
- * - The hero is left-aligned instead of centred, and the "not actively hiring"
- *   status (which used to sit fourth) is stated directly under the summary.
- * - Values became a ruled editorial list, benefits a dense 3-column inline card grid, open roles a
- *   two-column status block, and the closing CTA a left/right split — so the page
- *   no longer reads as five stacked grids of identical cards
- *   (meelTe-context.md §4).
- * - The headline gradient ends in `primary-royal` instead of `accent`; amber
- *   `#F59E0B` as text measures 2.15:1 on this canvas (docs/Design.md §9.8).
- * - Breadcrumbs come from the shared primitive and are mirrored by a
- *   `BreadcrumbList` node (AI_RULE.md §2.6).
- *
- * Title note: `buildPageMetadata` runs the title through the root `%s | meelTe`
- * template in src/lib/seo/metadata.js. The previous "Careers at meelTe | Join Our
- * Team" therefore rendered as "Careers at meelTe | Join Our Team | meelTe" — a
- * double brand and two pipes. The title below is short enough to survive the
- * template and describes what is actually on the page. Changing the template
- * itself is a site-wide decision and out of scope here.
- *
- * Schema: WebPage + BreadcrumbList. The `WebPage.description` is quoted verbatim
- * from the hero status line so the structured data cannot claim more than the page
- * says. `JobPosting` is deliberately not emitted, because no posting exists.
+/*
+ * Cache Components (`next.config.mjs` → `cacheComponents: true`) rejects the
+ * `revalidate` route segment config. The 60-second freshness window now lives
+ * on the data itself: `fetchPublicActiveJobs` is a `"use cache"` scope with
+ * `cacheLife('minutes')` (revalidate 60s, expire 1h), so the list still picks
+ * up newly published or archived roles within a minute.
  */
+
 export const metadata = buildPageMetadata({
   title: "Careers at meelTe: Values, Benefits & How to Apply",
   description:
@@ -68,7 +47,6 @@ function getCareersJsonLd() {
   return mergeJsonLd(
     getWebPageJsonLd({
       name: "Careers at meelTe",
-      // Quoted verbatim from the hero so the structured data cannot drift.
       description: CAREERS_DIRECT_ANSWER,
       path: "/careers",
       speakableSelectors: ["h1", "h2"],
@@ -78,7 +56,8 @@ function getCareersJsonLd() {
   );
 }
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const activeJobs = await fetchPublicActiveJobs();
   const jsonLd = getCareersJsonLd();
 
   return (
@@ -103,7 +82,7 @@ export default function CareersPage() {
         <CareersHero />
         <CareersValues />
         <CareersBenefits />
-        <CareersOpenRoles />
+        <CareersOpenRoles initialJobs={activeJobs} />
         <CareersFaq />
         <CareersCta />
       </main>

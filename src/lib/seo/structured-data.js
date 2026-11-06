@@ -701,6 +701,84 @@ export function getJsonLdScript(jsonLd) {
 }
 
 /**
+ * Generates Schema.org JobPosting structured data for an active opening.
+ * Conforms to Google Search Central JobPosting rich result standards.
+ */
+export function getJobPostingJsonLd(job) {
+  if (!job || !job.title) return null;
+
+  const jobUrl = toAbsUrl(`/careers/${job.slug || job.id}`);
+
+  // Map employment type string to schema.org enum
+  const empMap = {
+    "full-time": "FULL_TIME",
+    "part-time": "PART_TIME",
+    contract: "CONTRACTOR",
+    internship: "INTERN",
+  };
+  const normalizedType = (job.employmentType || "full-time").toLowerCase();
+  const employmentType = empMap[normalizedType] || "FULL_TIME";
+
+  const node = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description || job.responsibilities || `${job.title} position at meelTe.`,
+    identifier: {
+      "@type": "PropertyValue",
+      name: SITE_NAME,
+      value: job.id,
+    },
+    datePosted: job.createdAt || new Date().toISOString().split("T")[0],
+    validThrough: job.deadline || undefined,
+    employmentType,
+    hiringOrganization: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      sameAs: APP_URL,
+      logo: toAbsImage(BRAND_LOGO_PATH),
+    },
+    url: jobUrl,
+  };
+
+  // Workplace & Location mapping
+  const isRemote = (job.workplaceType || "").toLowerCase() === "remote";
+  if (isRemote) {
+    node.jobLocationType = "TELECOMMUTE";
+    node.applicantLocationRequirements = {
+      "@type": "Country",
+      name: "India",
+    };
+  } else {
+    node.jobLocation = {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: job.location || "Bengaluru",
+        addressRegion: "Karnataka",
+        addressCountry: "IN",
+      },
+    };
+  }
+
+  // Base salary if provided
+  if (job.salaryMin || job.salaryMax) {
+    node.baseSalary = {
+      "@type": "MonetaryAmount",
+      currency: "INR",
+      value: {
+        "@type": "QuantitativeValue",
+        minValue: job.salaryMin || undefined,
+        maxValue: job.salaryMax || undefined,
+        unitText: (job.salaryPeriod || "").toLowerCase().includes("month") ? "MONTH" : "YEAR",
+      },
+    };
+  }
+
+  return node;
+}
+
+/**
  * Merge multiple JSON-LD objects/arrays safely
  */
 export function mergeJsonLd(...items) {
@@ -730,6 +808,7 @@ const structuredData = {
   getWebPageJsonLd,
   getContactPageJsonLd,
   getAboutPageJsonLd,
+  getJobPostingJsonLd,
   getSpeakableJsonLd,
   getJsonLdScript,
   mergeJsonLd,

@@ -59,11 +59,14 @@ export function JobsFilterBar({
       {/* Status Filter Tabs */}
       <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 border-t border-border/80 pt-2.5 mt-0.5">
         {["All", "Active", "Draft", "Expired", "Archived"].map((st) => {
-          const isSelected = statusFilter === st;
+          const isSelected =
+            statusFilter.toLowerCase() === st.toLowerCase();
           const count =
             st === "All"
               ? jobs.length
-              : jobs.filter((j) => j.status === st).length;
+              : jobs.filter(
+                  (j) => (j.status || "").toLowerCase() === st.toLowerCase()
+                ).length;
 
           return (
             <button

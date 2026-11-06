@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Plus } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +11,10 @@ import {
   useHr,
 } from "@/components/hr";
 
-export default function JobsManagementPage() {
+function JobsManagementContent() {
+  const searchParams = useSearchParams();
+  const urlStatusParam = searchParams.get("status");
+
   const {
     jobs,
     updateJobStatus,
@@ -19,17 +23,30 @@ export default function JobsManagementPage() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDept, setSelectedDept] = useState("All Departments");
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [selectedStatusTab, setSelectedStatusTab] = useState(null);
+
+  // Derive status filter directly from user selection or URL search param without effect setState
+  const statusFilter = useMemo(() => {
+    if (selectedStatusTab) return selectedStatusTab;
+    if (urlStatusParam) {
+      const matched = ["All", "Active", "Draft", "Expired", "Archived"].find(
+        (s) => s.toLowerCase() === urlStatusParam.toLowerCase()
+      );
+      if (matched) return matched;
+    }
+    return "All";
+  }, [selectedStatusTab, urlStatusParam]);
 
   // Filtered jobs calculation
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
       // Search query filter
-      const query = searchQuery.toLowerCase();
+      const query = searchQuery.toLowerCase().trim();
       const matchesSearch =
-        job.title.toLowerCase().includes(query) ||
-        job.department.toLowerCase().includes(query) ||
-        job.location.toLowerCase().includes(query);
+        !query ||
+        job.title?.toLowerCase().includes(query) ||
+        job.department?.toLowerCase().includes(query) ||
+        job.location?.toLowerCase().includes(query);
 
       // Department filter
       const matchesDept =
@@ -37,7 +54,8 @@ export default function JobsManagementPage() {
 
       // Status tab filter
       const matchesStatus =
-        statusFilter === "All" || job.status === statusFilter;
+        statusFilter === "All" ||
+        (job.status || "").toLowerCase() === statusFilter.toLowerCase();
 
       return matchesSearch && matchesDept && matchesStatus;
     });
@@ -72,16 +90,31 @@ export default function JobsManagementPage() {
         selectedDept={selectedDept}
         onDeptChange={setSelectedDept}
         statusFilter={statusFilter}
-        onStatusChange={setStatusFilter}
+        onStatusChange={setSelectedStatusTab}
         jobs={jobs}
       />
 
       {/* Modular Jobs Table */}
       <JobsTable
         jobs={filteredJobs}
+        statusFilter={statusFilter}
         onUpdateStatus={updateJobStatus}
         onDeleteJobClick={setDeletingJobId}
       />
     </main>
+  );
+}
+
+export default function JobsManagementPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex-1 p-4 sm:p-5 lg:p-6 max-w-7xl w-full mx-auto flex items-center justify-center min-h-[50vh]">
+          <p className="text-xs text-foreground-muted">Loading jobs...</p>
+        </main>
+      }
+    >
+      <JobsManagementContent />
+    </Suspense>
   );
 }
