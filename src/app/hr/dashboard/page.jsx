@@ -63,30 +63,30 @@ export default function HrDashboardPage() {
   // Skeleton Loading State
   if (isLoading && !jobs.length && !candidates.length) {
     return (
-      <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-4 max-w-7xl w-full mx-auto animate-pulse">
+      <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-6 max-w-7xl w-full mx-auto animate-pulse">
         <div className="h-8 w-48 rounded-lg bg-surface-muted" />
 
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className="h-20 rounded-xl border border-border/60 bg-surface p-3"
+              className="h-24 rounded-xl border border-border/80 bg-surface p-4 shadow-soft"
             />
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 flex-1 min-h-0">
-          <div className="h-64 rounded-xl border border-border/60 bg-surface" />
-          <div className="h-64 rounded-xl border border-border/60 bg-surface" />
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 items-start">
+          <div className="lg:col-span-7 h-52 rounded-xl border border-border/80 bg-surface shadow-soft" />
+          <div className="lg:col-span-5 h-52 rounded-xl border border-border/80 bg-surface shadow-soft" />
         </div>
       </main>
     );
   }
 
   return (
-    <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-4 max-w-7xl w-full mx-auto">
+    <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
       {/* Streamlined Welcome Banner */}
-      <div className="flex items-center justify-between gap-3 pb-2 border-b border-border/60">
+      <div className="flex items-center justify-between gap-4 pb-3 border-b border-border/80">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
             Dashboard
@@ -97,10 +97,10 @@ export default function HrDashboardPage() {
           <Link
             href="/careers"
             target="_blank"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-surface px-3 py-1.5 text-xs font-medium text-foreground-secondary hover:bg-surface-subtle hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+            className="group inline-flex items-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-foreground-secondary hover:bg-surface-muted hover:text-primary transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
           >
             <span>Public Careers</span>
-            <ArrowUpRight className="h-3.5 w-3.5 text-foreground-muted" aria-hidden="true" />
+            <ArrowUpRight className="h-3.5 w-3.5 text-foreground-muted group-hover:text-primary transition-colors" aria-hidden="true" />
           </Link>
         </div>
       </div>
@@ -128,17 +128,21 @@ export default function HrDashboardPage() {
       {/* 4 Overview Statistics Metric Cards */}
       <DashboardStats stats={stats} />
 
-      {/* Two-Column Grid: Recent Candidates & Recent Jobs */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 flex-1 min-h-0">
-        <RecentCandidatesCard
-          candidates={candidates}
-          onSelectCandidate={openCandidateModal}
-          limit={4}
-        />
-        <RecentJobsCard
-          jobs={jobs}
-          limit={4}
-        />
+      {/* Two-Column Grid: Recent Candidates & Recent Jobs (60/40 split, content-sized) */}
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 items-start">
+        <div className="lg:col-span-7">
+          <RecentCandidatesCard
+            candidates={candidates}
+            onSelectCandidate={openCandidateModal}
+            limit={4}
+          />
+        </div>
+        <div className="lg:col-span-5">
+          <RecentJobsCard
+            jobs={jobs}
+            limit={4}
+          />
+        </div>
       </div>
     </main>
   );

@@ -21,10 +21,10 @@ export function RecentJobsCard({ jobs = [], limit = 3 }) {
   return (
     <section
       aria-labelledby={headingId}
-      className="flex flex-col overflow-hidden rounded-xl border border-border/80 bg-surface"
+      className="flex flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-soft"
     >
       {/* Panel Header */}
-      <div className="flex items-center justify-between gap-3 border-b border-border/60 px-4 py-2.5">
+      <div className="flex items-center justify-between gap-3 border-b border-border/80 px-4 py-3">
         <h2
           id={headingId}
           className="text-sm font-semibold tracking-tight text-foreground"
@@ -35,7 +35,7 @@ export function RecentJobsCard({ jobs = [], limit = 3 }) {
         <Link
           href="/hr/jobs"
           aria-label="Manage all job requisitions"
-          className="inline-flex shrink-0 items-center gap-1 rounded-md text-xs font-semibold text-primary transition-colors hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+          className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-primary-hover hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
         >
           <span>Manage all</span>
           <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -101,17 +101,10 @@ export function RecentJobsCard({ jobs = [], limit = 3 }) {
           })}
         </ul>
       ) : (
-        <div className="px-4 py-6">
-          <p className="text-xs leading-relaxed text-foreground-secondary">
+        <div className="flex min-h-[160px] items-center justify-center p-6 text-center">
+          <p className="text-xs text-foreground-muted">
             No job requisitions yet.
           </p>
-          <Link
-            href="/hr/jobs/new"
-            className="mt-2 inline-flex items-center gap-1 rounded-md text-xs font-semibold text-primary transition-colors hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-          >
-            <span>Create a job requisition</span>
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-          </Link>
         </div>
       )}
     </section>

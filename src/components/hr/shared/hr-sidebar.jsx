@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Briefcase,
   Users,
-  ShieldCheck,
   LogOut,
   X,
   Loader2,
@@ -67,28 +67,24 @@ export function HrSidebar({ isOpen, onClose }) {
       {/* Sidebar Container */}
       <aside
         className={cn(
-          "fixed top-0 bottom-0 left-0 z-50 flex w-64 flex-col border-r border-border bg-surface transition-transform duration-200 ease-out lg:static lg:translate-x-0",
+          "fixed top-0 bottom-0 left-0 z-50 flex w-64 flex-col border-r border-border bg-surface transition-transform duration-200 ease-out lg:static lg:translate-x-0 shadow-2xs",
           isOpen ? "translate-x-0 shadow-card" : "-translate-x-full"
         )}
       >
-        {/* Brand / Logo Area */}
-        <div className="flex h-16 items-center justify-between border-b border-border px-5">
-          <Link
-            href="/hr/dashboard"
-            className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white font-bold text-base">
-              m
+        {/* Brand Header */}
+        <div className="flex h-16 items-center justify-between border-b border-border/80 px-5">
+          <div className="flex items-center gap-2.5">
+            <Image
+              src="/icon_only_meelte.png"
+              alt="meelTe Logo"
+              width={32}
+              height={32}
+              className="h-8 w-8 shrink-0 rounded-lg object-contain"
+            />
+            <span className="font-extrabold text-base tracking-tight text-foreground">
+              HR Ops
             </span>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-base tracking-tight text-foreground">
-                meelTe
-              </span>
-              <span className="text-[10px] font-medium tracking-wide uppercase text-primary">
-                HR Recruitment
-              </span>
-            </div>
-          </Link>
+          </div>
 
           {/* Close button on mobile */}
           <button
@@ -101,10 +97,9 @@ export function HrSidebar({ isOpen, onClose }) {
           </button>
         </div>
 
-        {/* Navigation Links */}
-        <div className="flex-1 overflow-y-auto px-3.5 py-4">
-
-          <nav className="space-y-1">
+        {/* Navigation Links (aligned with logo left edge at 20px) */}
+        <div className="flex-1 overflow-y-auto px-3 py-4">
+          <nav className="space-y-1.5">
             {NAV_ITEMS.map((item) => {
               const isActive =
                 item.href === "/hr/dashboard"
@@ -119,17 +114,17 @@ export function HrSidebar({ isOpen, onClose }) {
                   href={item.href}
                   onClick={onClose}
                   className={cn(
-                    "flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold transition-colors duration-150 select-none",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
+                    "flex h-10 items-center gap-3 rounded-xl px-2.5 text-xs font-semibold transition-colors duration-150 select-none",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-1",
                     isActive
-                      ? "bg-surface-muted text-primary font-bold shadow-xs"
-                      : "text-foreground-secondary hover:bg-surface-subtle hover:text-foreground"
+                      ? "bg-primary/10 text-primary font-bold"
+                      : "text-foreground-secondary hover:bg-surface-muted/60 hover:text-foreground font-medium"
                   )}
                 >
                   <Icon
                     className={cn(
                       "h-4 w-4 shrink-0 transition-colors",
-                      isActive ? "text-primary" : "text-foreground-secondary"
+                      isActive ? "text-primary" : "text-foreground-muted"
                     )}
                     aria-hidden="true"
                   />
@@ -140,41 +135,39 @@ export function HrSidebar({ isOpen, onClose }) {
           </nav>
         </div>
 
-        {/* User Card & Sign Out */}
-        <div className="border-t border-border p-3.5 space-y-2">
-          <div className="flex items-center gap-3 rounded-xl border border-border bg-surface-subtle p-2.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-muted text-primary">
-              <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-            </div>
-            <div className="min-w-0 flex-1">
+        {/* User Card & Sign Out (Single consolidated card) */}
+        <div className="border-t border-border/80 p-3.5">
+          <div className="overflow-hidden rounded-xl border border-border bg-surface-subtle divide-y divide-border/60">
+            {/* User Profile */}
+            <div className="px-3.5 py-2.5">
               <p className="truncate text-xs font-semibold text-foreground">
-                Meelte HR Ops
+                meelTe HR Ops
               </p>
               <p className="truncate text-[11px] text-foreground-muted">
                 hr@meelte.com
               </p>
             </div>
-          </div>
 
-          {/* Logout Action */}
-          <button
-            type="button"
-            onClick={handleLogout}
-            disabled={isLoggingOut}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 text-xs font-semibold text-foreground-secondary hover:bg-error-bg hover:text-error hover:border-error-border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 disabled:opacity-50"
-          >
-            {isLoggingOut ? (
-              <>
-                <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
-                <span>Signing out...</span>
-              </>
-            ) : (
-              <>
-                <LogOut className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>Sign Out</span>
-              </>
-            )}
-          </button>
+            {/* Ghost Sign Out Action */}
+            <button
+              type="button"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="flex w-full items-center gap-2 px-3.5 py-2 text-xs font-medium text-foreground-secondary hover:text-error hover:bg-error/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 disabled:opacity-50"
+            >
+              {isLoggingOut ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 animate-spin text-foreground-muted" aria-hidden="true" />
+                  <span>Signing out...</span>
+                </>
+              ) : (
+                <>
+                  <LogOut className="h-3.5 w-3.5 text-foreground-muted group-hover:text-error" aria-hidden="true" />
+                  <span>Sign Out</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </aside>
     </>

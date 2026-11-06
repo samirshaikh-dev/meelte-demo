@@ -27,26 +27,26 @@ export function JobsTable({
   };
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-soft">
+    <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-soft">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
-            <tr className="border-b border-border bg-surface-subtle text-foreground-secondary uppercase tracking-wider text-[11px]">
-              <th className="px-5 py-3.5 font-semibold">Job Title & Role</th>
-              <th className="px-4 py-3.5 font-semibold">Department</th>
-              <th className="px-4 py-3.5 font-semibold">Type & Setup</th>
-              <th className="px-4 py-3.5 font-semibold">Applicants</th>
-              <th className="px-4 py-3.5 font-semibold">Deadline</th>
-              <th className="px-4 py-3.5 font-semibold">Status</th>
-              <th className="px-5 py-3.5 font-semibold text-right">Actions</th>
+            <tr className="border-b border-border/80 bg-surface-subtle/80 text-foreground-muted uppercase tracking-wider text-[11px]">
+              <th className="w-[32%] px-5 py-3 font-semibold">Job Title & Role</th>
+              <th className="w-[15%] px-4 py-3 font-semibold">Department</th>
+              <th className="w-[15%] px-4 py-3 font-semibold">Type & Setup</th>
+              <th className="w-[12%] px-4 py-3 font-semibold text-center">Applicants</th>
+              <th className="w-[12%] px-4 py-3 font-semibold">Deadline</th>
+              <th className="w-[12%] px-4 py-3 font-semibold">Status</th>
+              <th className="w-[14%] px-5 py-3 font-semibold text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-border">
+          <tbody className="divide-y divide-border/60">
             {jobs.length > 0 ? (
               jobs.map((job) => (
                 <tr
                   key={job.id}
-                  className="hover:bg-surface-subtle transition-colors"
+                  className="h-14 sm:h-16 hover:bg-surface-subtle/60 transition-colors"
                 >
                   {/* Title & Location */}
                   <td className="px-5 py-3.5">
@@ -72,14 +72,14 @@ export function JobsTable({
                   </td>
 
                   {/* Applicants */}
-                  <td className="px-4 py-3.5">
-                    <span className="inline-flex items-center rounded-lg bg-surface-muted px-2.5 py-1 text-xs font-semibold text-primary">
-                      {job.applicantCount} applicants
+                  <td className="px-4 py-3.5 text-center">
+                    <span className="inline-flex items-center rounded-lg bg-surface-muted px-2.5 py-1 text-xs font-semibold text-primary tabular-nums">
+                      {job.applicantCount ?? 0}
                     </span>
                   </td>
 
                   {/* Deadline */}
-                  <td className="px-4 py-3.5 text-foreground-secondary">
+                  <td className="px-4 py-3.5 text-foreground-secondary tabular-nums">
                     {job.deadline}
                   </td>
 
@@ -96,10 +96,10 @@ export function JobsTable({
                         href={`/hr/jobs/${job.id}/edit`}
                         variant="ghost"
                         size="sm"
-                        className="h-8 px-2 text-xs"
+                        className="h-8 px-2 text-xs font-medium text-foreground-secondary hover:text-foreground"
                         aria-label={`Edit ${job.title}`}
                       >
-                        <Edit2 className="h-3.5 w-3.5 mr-1" />
+                        <Edit2 className="h-3.5 w-3.5 mr-1 text-foreground-muted" />
                         Edit
                       </Button>
 
@@ -209,8 +209,10 @@ export function JobsTable({
               ))
             ) : (
               <tr>
-                <td colSpan={7} className="p-8 text-center text-xs text-foreground-muted">
-                  No jobs matched your current filter criteria.
+                <td colSpan={7} className="py-14 sm:py-16 px-4 text-center">
+                  <p className="text-xs text-foreground-muted">
+                    No job requisitions found.
+                  </p>
                 </td>
               </tr>
             )}
@@ -222,4 +224,3 @@ export function JobsTable({
 }
 
 export default JobsTable;
-

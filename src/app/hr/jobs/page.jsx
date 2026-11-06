@@ -44,44 +44,44 @@ export default function JobsManagementPage() {
   }, [jobs, searchQuery, selectedDept, statusFilter]);
 
   return (
-    <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl w-full mx-auto">
-        {/* Page Title & Action Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              Jobs Management
-            </h1>
-          </div>
-
-          <Button
-            as={Link}
-            href="/hr/jobs/new"
-            variant="primary"
-            size="sm"
-            className="gap-1.5 self-start sm:self-auto"
-          >
-            <Plus className="h-4 w-4" aria-hidden="true" />
-            <span>Create New Job</span>
-          </Button>
+    <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
+      {/* Page Title & Action Bar */}
+      <div className="flex items-center justify-between gap-4 pb-3 border-b border-border/80">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+            Jobs Management
+          </h1>
         </div>
 
-        {/* Modular Filter & Search Bar */}
-        <JobsFilterBar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          selectedDept={selectedDept}
-          onDeptChange={setSelectedDept}
-          statusFilter={statusFilter}
-          onStatusChange={setStatusFilter}
-          jobs={jobs}
-        />
+        <Button
+          as={Link}
+          href="/hr/jobs/new"
+          variant="primary"
+          size="sm"
+          className="gap-1.5 rounded-xl shadow-2xs font-semibold focus-visible:ring-primary/70"
+        >
+          <Plus className="h-4 w-4" aria-hidden="true" />
+          <span>Create New Job</span>
+        </Button>
+      </div>
 
-        {/* Modular Jobs Table */}
-        <JobsTable
-          jobs={filteredJobs}
-          onUpdateStatus={updateJobStatus}
-          onDeleteJobClick={setDeletingJobId}
-        />
-      </main>
-    );
-  }
+      {/* Modular Filter & Search Bar */}
+      <JobsFilterBar
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        selectedDept={selectedDept}
+        onDeptChange={setSelectedDept}
+        statusFilter={statusFilter}
+        onStatusChange={setStatusFilter}
+        jobs={jobs}
+      />
+
+      {/* Modular Jobs Table */}
+      <JobsTable
+        jobs={filteredJobs}
+        onUpdateStatus={updateJobStatus}
+        onDeleteJobClick={setDeletingJobId}
+      />
+    </main>
+  );
+}

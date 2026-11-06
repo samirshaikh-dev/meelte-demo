@@ -5,10 +5,10 @@ import { Users, Briefcase, FileCheck2, AlertCircle } from "@/lib/icons";
 
 /**
  * Overview statistics grid for HR dashboard
- * Conforms to compact-card-design and AVOID.md:
- * - Crisp 1px token borders (no puffy resting shadows)
- * - Calibrated icon tiles (32x32px) and disciplined typography
- * - High-contrast readable metric counts without verbose boilerplate
+ * Conforms to compact-card-design, docs/Design.md, and AVOID.md:
+ * - Clear visual hierarchy: bold large metrics with compact muted uppercase labels
+ * - Subtle accent tints: purple for Active Jobs, subtle red/amber for Expired Roles
+ * - Crisp borders with shadow-soft for distinct card elevation over lavender canvas
  */
 export function DashboardStats({ stats }) {
   const statItems = [
@@ -16,76 +16,59 @@ export function DashboardStats({ stats }) {
       id: "candidates",
       label: "Candidates",
       value: stats.totalRegisteredCandidates,
-      tag: "In Pool",
-      tagStyle: "bg-surface-muted text-primary border-primary/20",
-      description: "Registered applicant profiles",
       icon: Users,
-      iconStyle: "bg-surface-muted text-primary",
+      cardStyle: "bg-surface border-border hover:border-primary/30",
+      valueStyle: "text-foreground",
     },
     {
       id: "active-jobs",
       label: "Active Jobs",
       value: stats.totalActiveJobs,
-      tag: "Live",
-      tagStyle: "bg-success-bg text-success border-success-border",
-      description: "Accepting applications",
       icon: Briefcase,
-      iconStyle: "bg-success-bg text-success",
+      cardStyle: "bg-primary/[0.025] border-primary/20 hover:border-primary/40",
+      valueStyle: "text-primary",
     },
     {
       id: "applications",
       label: "Total Applications",
       value: stats.totalApplications,
-      tag: "Submissions",
-      tagStyle: "bg-surface-subtle text-foreground-secondary border-border",
-      description: "Across published roles",
       icon: FileCheck2,
-      iconStyle: "bg-surface-muted text-primary",
+      cardStyle: "bg-surface border-border hover:border-primary/30",
+      valueStyle: "text-foreground",
     },
     {
       id: "expired-jobs",
       label: "Expired Roles",
       value: stats.totalExpiredJobs,
-      tag: stats.totalExpiredJobs > 0 ? "Needs Review" : "Clear",
-      tagStyle:
-        stats.totalExpiredJobs > 0
-          ? "bg-warning-bg text-warning border-warning-border"
-          : "bg-surface-subtle text-foreground-muted border-border",
-      description: "Passed listing deadline",
       icon: AlertCircle,
-      iconStyle:
+      cardStyle:
         stats.totalExpiredJobs > 0
-          ? "bg-warning-bg text-warning"
-          : "bg-surface-subtle text-foreground-muted",
+          ? "bg-error/[0.025] border-error/25 hover:border-error/40"
+          : "bg-surface border-border hover:border-primary/30",
+      valueStyle: stats.totalExpiredJobs > 0 ? "text-error" : "text-foreground",
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
-      {statItems.map((item) => {
-        
-        return (
-          <div
-            key={item.id}
-            className="flex flex-col justify-between rounded-xl border border-border/80 bg-surface p-3 transition-colors hover:border-primary/30"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-foreground-secondary">
-                {item.label}
-              </span>
+    <div className="grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {statItems.map((item) => (
+        <div
+          key={item.id}
+          className={`flex flex-col justify-between rounded-xl border p-3.5 sm:p-4 shadow-soft transition-all duration-150 ${item.cardStyle}`}
+        >
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-foreground-muted">
+            {item.label}
+          </span>
 
-            </div>
-
-            <div className="mt-1.5 flex items-baseline justify-between gap-1.5">
-              <span className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-                {item.value}
-              </span>
-
-            </div>
-
+          <div className="mt-2 flex items-baseline justify-between">
+            <span
+              className={`text-2xl font-extrabold tracking-tight sm:text-3xl tabular-nums ${item.valueStyle}`}
+            >
+              {item.value}
+            </span>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 }

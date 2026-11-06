@@ -45,38 +45,40 @@ export default function CandidatesPage() {
   }, [candidates, searchQuery, selectedJobId, statusFilter]);
 
   return (
-    <main className="flex-1 p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl w-full mx-auto">
-        {/* Page Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              Candidates Database
-            </h1>
-          </div>
-
-          <div className="rounded-xl border border-border bg-surface px-3 py-1.5 text-xs text-foreground-secondary self-start sm:self-auto">
-            Total Candidates:{" "}
-            <span className="font-bold text-foreground">{candidates.length}</span>
-          </div>
+    <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
+      {/* Page Header */}
+      <div className="flex items-center justify-between gap-4 pb-3 border-b border-border/80">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+            Candidates Database
+          </h1>
         </div>
 
-        {/* Modular Candidates Filter Bar */}
-        <CandidatesFilterBar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          selectedJobId={selectedJobId}
-          onJobChange={setSelectedJobId}
-          statusFilter={statusFilter}
-          onStatusChange={setStatusFilter}
-          jobOptions={jobOptions}
-          candidates={candidates}
-        />
+        <div className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-surface px-3 py-1.5 text-xs text-foreground-secondary shadow-2xs">
+          <span className="text-foreground-muted">Total Candidates:</span>
+          <span className="font-semibold text-foreground tabular-nums">
+            {candidates.length}
+          </span>
+        </div>
+      </div>
 
-        {/* Modular Candidates Table */}
-        <CandidatesTable
-          candidates={filteredCandidates}
-          onSelectCandidate={openCandidateModal}
-        />
-      </main>
-    );
-  }
+      {/* Modular Candidates Filter Bar */}
+      <CandidatesFilterBar
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        selectedJobId={selectedJobId}
+        onJobChange={setSelectedJobId}
+        statusFilter={statusFilter}
+        onStatusChange={setStatusFilter}
+        jobOptions={jobOptions}
+        candidates={candidates}
+      />
+
+      {/* Modular Candidates Table */}
+      <CandidatesTable
+        candidates={filteredCandidates}
+        onSelectCandidate={openCandidateModal}
+      />
+    </main>
+  );
+}
