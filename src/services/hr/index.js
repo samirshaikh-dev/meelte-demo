@@ -1,22 +1,15 @@
 /**
- * HR portal service barrel — the single import site for HR authentication.
+ * HR Service Master Barrel (Client-Safe Data Services)
  *
- * Only the surface callers actually consume is re-exported. Internal helpers
- * stay private to their own modules so this file cannot drift into a firehose:
- * `password.js` keeps its verification functions, `session.js` keeps its cookie
- * plumbing, and `@/utils/hr/auth-crypto.js` keeps the token primitives. Code
- * inside the service imports those directly; everything outside it imports here.
+ * Consolidates partitioned HR domain data services safe for both
+ * Client Components and Server Components:
+ *   - Job Requisitions:    ./jobs
+ *   - Candidate Pipeline:  ./candidates
  *
- * Layering:
- *   - `password.js`   verifies credentials against the environment (node:crypto).
- *   - `session.js`    issues, reads, and clears the session cookie (next/headers).
- *   - `rate-limit.js` per-process sliding-window limiter, internal to `login.js`.
- *   - `login.js`      orchestrates one sign-in attempt and owns the response envelope.
- *   - `@/utils/hr/auth-crypto.js`    shared HS256 primitives, also used by `src/proxy.js`.
- *   - `@/utils/hr/session-cookie.js` shared cookie contract, also used by `src/proxy.js`.
- *
- * Used by `src/app/api/hr/{login,session,logout}/route.js`.
+ * NOTE: Server-only authentication services (login, session, rate-limit, password)
+ * are intentionally isolated in `@/services/hr/login` to prevent leaking
+ * `server-only`, `node:crypto`, or `next/headers` dependencies into Client Component bundles.
  */
 
-export { getClientIdentifier, loginHr } from "./login";
-export { getHrSession, logoutHr } from "./session";
+export * from "./jobs";
+export * from "./candidates";

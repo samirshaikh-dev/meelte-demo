@@ -41,7 +41,7 @@ export function HrSidebar({ isOpen, onClose }) {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      const response = await fetch("/api/hr/logout", { method: "POST" });
+      const response = await fetch("/api/hr/auth", { method: "DELETE" });
       const result = await response.json();
       notifySuccess("Signed out successfully.");
       router.push(result?.redirectUrl || "/hr/login");

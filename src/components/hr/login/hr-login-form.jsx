@@ -62,7 +62,7 @@ export function HrLoginForm() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/hr/login", {
+      const response = await fetch("/api/hr/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

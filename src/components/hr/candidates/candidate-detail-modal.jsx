@@ -1,10 +1,12 @@
 "use client";
 
+import React, { useState, useRef } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { FileText, X } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { CandidateStatusBadge } from "@/components/hr/shared/hr-badge";
-import { CANDIDATE_STATUSES } from "@/data/hr-mock-data";
+import { useHr } from "@/components/hr/shared/hr-context";
+import { CANDIDATE_STATUSES } from "@/constants/hr-constants";
 import { notifyInfo } from "@/lib/toast-feedback";
 import { REGEX } from "@/constants/service-constants";
 
@@ -63,19 +65,42 @@ export function CandidateDetailModal({
   onClose,
   onUpdateStatus,
 }) {
+  const { uploadResume } = useHr();
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
+
   if (!candidate) return null;
 
   const displayName = candidate.fullName || "Candidate";
 
-  const resumeFileName = `${displayName.replace(
+  const resumeFileName = candidate.resumeFileName || `${displayName.replace(
     REGEX.WHITESPACE,
     "_"
   )}_Resume.pdf`;
 
   const handleDownloadResume = () => {
-    // No file storage is wired into this preview, so say that instead of
-    // faking a download or claiming a file was fetched.
+    if (candidate.resumeUrl && candidate.resumeUrl !== "#") {
+      window.open(candidate.resumeUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
     notifyInfo(`${resumeFileName} is not downloadable in this preview yet.`);
+  };
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setIsUploading(true);
+      await uploadResume(candidate.id, file);
+    } catch {
+      // Notification is already dispatched by uploadResume
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
   };
 
   return (
@@ -215,7 +240,7 @@ export function CandidateDetailModal({
                 </dd>
               </dl>
 
-              <div className="mt-3 flex items-center justify-between gap-3">
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                 <span className="flex min-w-0 items-center gap-2">
                   <FileText
                     className="h-4 w-4 shrink-0 text-foreground-secondary"
@@ -226,14 +251,37 @@ export function CandidateDetailModal({
                   </span>
                 </span>
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleDownloadResume}
-                  className="shrink-0"
-                >
-                  Download
-                </Button>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    className="hidden"
+                    id="upload-candidate-resume"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    disabled={isUploading}
+                    onClick={() => fileInputRef.current?.click()}
+                    className="text-xs"
+                  >
+                    {isUploading ? "Uploading..." : "Upload New"}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={handleDownloadResume}
+                    className="shrink-0"
+                  >
+                    {candidate.resumeUrl && candidate.resumeUrl !== "#"
+                      ? "View / Download"
+                      : "Download"}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

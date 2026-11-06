@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Search } from "@/lib/icons";
-import { CANDIDATE_STATUSES } from "@/data/hr-mock-data";
+import { CANDIDATE_STATUSES } from "@/constants/hr-constants";
 
 export function CandidatesFilterBar({
   searchQuery,

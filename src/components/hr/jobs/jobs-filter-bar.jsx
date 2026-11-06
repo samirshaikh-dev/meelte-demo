@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Search } from "@/lib/icons";
-import { DEPARTMENTS } from "@/data/hr-mock-data";
+import { DEPARTMENTS } from "@/constants/hr-constants";
 
 export function JobsFilterBar({
   searchQuery,
