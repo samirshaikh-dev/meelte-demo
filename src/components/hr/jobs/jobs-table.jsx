@@ -169,9 +169,13 @@ export function JobsTable({
                       {isDraft ? (
                         <span className="text-foreground-muted font-normal select-none">—</span>
                       ) : (
-                        <span className="inline-flex items-center rounded-lg bg-surface-muted px-2.5 py-1 text-xs font-semibold text-primary tabular-nums">
+                        <Link
+                          href={`/hr/candidates?jobId=${job.id}`}
+                          title={`View applicants for ${job.title}`}
+                          className="inline-flex items-center rounded-lg bg-surface-muted hover:bg-primary/15 border border-transparent hover:border-primary/30 px-2.5 py-1 text-xs font-semibold text-primary tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                        >
                           {job.applicantCount ?? 0}
-                        </span>
+                        </Link>
                       )}
                     </td>
 

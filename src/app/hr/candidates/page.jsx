@@ -1,18 +1,23 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   CandidatesFilterBar,
   CandidatesTable,
   useHr,
 } from "@/components/hr";
 
-export default function CandidatesPage() {
+function CandidatesPageContent() {
+  const searchParams = useSearchParams();
   const { candidates, jobs, openCandidateModal } = useHr();
 
+  const urlJobId = searchParams.get("jobId");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedJobId, setSelectedJobId] = useState("ALL");
+  const [selectedJobIdOverride, setSelectedJobIdOverride] = useState(null);
   const [statusFilter, setStatusFilter] = useState("ALL");
+
+  const selectedJobId = selectedJobIdOverride ?? (urlJobId || "ALL");
 
   // Options for jobs dropdown
   const jobOptions = useMemo(() => {
@@ -67,7 +72,7 @@ export default function CandidatesPage() {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         selectedJobId={selectedJobId}
-        onJobChange={setSelectedJobId}
+        onJobChange={setSelectedJobIdOverride}
         statusFilter={statusFilter}
         onStatusChange={setStatusFilter}
         jobOptions={jobOptions}
@@ -80,5 +85,21 @@ export default function CandidatesPage() {
         onSelectCandidate={openCandidateModal}
       />
     </main>
+  );
+}
+
+export default function CandidatesPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex-1 p-4 sm:p-5 lg:p-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
+          <div className="h-8 w-48 animate-pulse rounded-md bg-surface-muted" />
+          <div className="h-16 animate-pulse rounded-xl border border-border bg-surface" />
+          <div className="h-96 animate-pulse rounded-xl border border-border bg-surface" />
+        </main>
+      }
+    >
+      <CandidatesPageContent />
+    </Suspense>
   );
 }

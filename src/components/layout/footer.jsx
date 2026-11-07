@@ -10,6 +10,7 @@ import {
 } from "@/lib/icons";
 import { PLATFORM_AREAS } from "@/constants/app-constants";
 import { SOCIAL_LINKS } from "@/config/site";
+import { cn } from "@/lib/utils";
 import { Container } from "./container";
 
 import { FooterColumn } from "./footer-column";
@@ -69,9 +70,9 @@ const FOOTER_SECTIONS = [
   },
 ];
 
-export function Footer() {
+export function Footer({ className, containerClassName }) {
   return (
-    <footer className="relative overflow-hidden border-t border-border/80 bg-surface text-foreground">
+    <footer className={cn("relative overflow-hidden border-t border-border/80 bg-surface text-foreground", className)}>
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 select-none overflow-hidden"
         aria-hidden="true"
@@ -91,7 +92,7 @@ export function Footer() {
         </div>
       </div>
 
-      <Container className="relative z-10">
+      <Container className={cn("relative z-10", containerClassName)}>
         <div className="grid grid-cols-1 gap-10 pb-10 pt-10 sm:grid-cols-2 sm:gap-12 sm:pt-12 lg:grid-cols-12 lg:gap-8 lg:pt-14">
           <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-3">
             <p className="max-w-sm text-sm leading-relaxed text-foreground-secondary">

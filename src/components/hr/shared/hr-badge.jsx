@@ -53,16 +53,20 @@ export function CandidateStatusBadge({ status, className }) {
 
   let style = "bg-surface-subtle text-foreground-secondary border-border";
 
-  if (normalized === "under review") {
-    style = "bg-warning-bg text-warning border-warning-border font-medium";
-  } else if (normalized === "shortlisted") {
+  if (normalized === "applied") {
     style = "bg-surface-muted text-primary border-primary/20 font-medium";
+  } else if (normalized === "shortlisted") {
+    style = "bg-accent/15 text-accent-foreground border-accent/40 font-medium";
+  } else if (normalized === "rejected") {
+    style = "bg-error-bg text-error border-error-border font-medium";
+  } else if (normalized === "hired") {
+    style = "bg-success-bg text-success border-success-border font-medium";
+  } else if (normalized === "under review") {
+    style = "bg-warning-bg text-warning border-warning-border font-medium";
   } else if (normalized === "interview scheduled") {
     style = "bg-accent/15 text-accent-foreground border-accent/40 font-medium";
   } else if (normalized === "offered") {
     style = "bg-success-bg text-success border-success-border font-medium";
-  } else if (normalized === "rejected") {
-    style = "bg-error-bg text-error border-error-border font-medium";
   }
 
   return (
@@ -76,11 +80,13 @@ export function CandidateStatusBadge({ status, className }) {
       <span
         className={cn(
           "h-1.5 w-1.5 rounded-full",
+          normalized === "applied" && "bg-primary",
+          normalized === "shortlisted" && "bg-accent",
+          normalized === "rejected" && "bg-error",
+          normalized === "hired" && "bg-success",
           normalized === "under review" && "bg-warning",
-          normalized === "shortlisted" && "bg-primary",
           normalized === "interview scheduled" && "bg-accent",
-          normalized === "offered" && "bg-success",
-          normalized === "rejected" && "bg-error"
+          normalized === "offered" && "bg-success"
         )}
         aria-hidden="true"
       />

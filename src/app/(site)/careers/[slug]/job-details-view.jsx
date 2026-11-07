@@ -13,41 +13,15 @@ import {
   CheckCircle2,
   Mail,
   GraduationCap,
+  ArrowRight,
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { shareCurrentPage } from "@/lib/share-link";
 import { sanitizeHtml } from "@/lib/sanitize-html";
-import { HR_EMAIL } from "@/config/site";
-
-/**
- * Generates pre-filled mailto application link for this job opening.
- */
-function getJobApplyMailto(job) {
-  const subject = `Job Application: ${job.title} (ID: ${job.id}) — [Your Full Name]`;
-  const body = [
-    `Dear meelTe Hiring Team,`,
-    ``,
-    `I am writing to express my interest in the ${job.title} position (${job.department}) at meelTe.`,
-    ``,
-    `My Details:`,
-    `- Full Name: `,
-    `- Phone Number: `,
-    `- Current Location: `,
-    `- LinkedIn Profile: `,
-    `- Portfolio / GitHub: `,
-    ``,
-    `Please find my resume attached to this email.`,
-    ``,
-    `Best regards,`,
-    `[Your Name]`,
-  ].join("\n");
-
-  return `mailto:${HR_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
 
 export function JobDetailsView({ job }) {
-  const applyHref = getJobApplyMailto(job);
+  const applyUrl = `/careers/${job.slug || job.id}/apply`;
 
   const handleShare = () => {
     shareCurrentPage({
@@ -138,14 +112,14 @@ export function JobDetailsView({ job }) {
             {/* Desktop Apply CTA */}
             <div className="hidden lg:flex shrink-0">
               <Button
-                as="a"
-                href={applyHref}
+                as={Link}
+                href={applyUrl}
                 variant="primary"
                 size="lg"
                 className="gap-2 font-bold px-6 shadow-2xs rounded-xl"
               >
-                <Mail className="h-4 w-4" aria-hidden="true" />
                 <span>Apply for this position</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -271,13 +245,13 @@ export function JobDetailsView({ job }) {
 
               <div className="pt-2">
                 <Button
-                  as="a"
-                  href={applyHref}
+                  as={Link}
+                  href={applyUrl}
                   variant="primary"
                   className="w-full gap-2 font-semibold shadow-2xs rounded-xl"
                 >
-                  <Mail className="h-4 w-4" aria-hidden="true" />
                   <span>Apply Now</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </div>
             </div>
@@ -314,14 +288,14 @@ export function JobDetailsView({ job }) {
         </div>
 
         <Button
-          as="a"
-          href={applyHref}
+          as={Link}
+          href={applyUrl}
           variant="primary"
           size="sm"
           className="shrink-0 gap-1.5 font-bold rounded-xl shadow-2xs"
         >
-          <Mail className="h-3.5 w-3.5" aria-hidden="true" />
           <span>Apply Now</span>
+          <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
         </Button>
       </div>
     </div>

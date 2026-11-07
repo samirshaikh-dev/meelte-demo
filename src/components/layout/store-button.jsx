@@ -33,7 +33,7 @@ const STORE_META = {
     eyebrowClass: "tracking-[0.18em]",
     Icon: Apple,
     brandClass:
-      "border border-primary/25 bg-surface text-primary shadow-2xs hover:border-primary/40 hover:bg-surface-muted active:bg-primary/10",
+      "bg-primary text-white hover:bg-primary-hover active:bg-primary-active shadow-2xs",
     brandIconClass: "fill-current",
   },
 };

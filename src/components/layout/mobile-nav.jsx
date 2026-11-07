@@ -26,7 +26,7 @@ const PRODUCT_ITEMS = [
 ];
 
 const COMPANY_ITEMS = [
-  { label: "Home", href: "/", icon: Home, note: "Explore offers and community events" },
+  // { label: "Home", href: "/", icon: Home, note: "Explore offers and community events" },
   { label: "About Us", href: "/about", icon: Users, note: "Our mission, pillars & story" },
   { label: "Contact Us", href: "/contact", icon: Mail, note: "Support, partnerships & queries" },
   { label: "FAQ", href: "/faq", icon: HelpCircle, note: "Common questions & answers" },

@@ -13,6 +13,7 @@ export const candidateApplicationSchema = z.object({
   email: z
     .string()
     .trim()
+    .toLowerCase()
     .email("Please provide a valid email address")
     .max(120, "Email cannot exceed 120 characters"),
   phone: z
@@ -29,6 +30,18 @@ export const candidateApplicationSchema = z.object({
   appliedJobTitle: z.string().min(1, "Applied job title is required"),
   experience: z.string().trim().max(50, "Experience cannot exceed 50 characters").optional().default(""),
   currentCompany: z.string().trim().max(100, "Company cannot exceed 100 characters").optional().default(""),
+  noticePeriod: z.string().trim().max(50, "Notice period cannot exceed 50 characters").optional().default(""),
+  expectedSalary: z.string().trim().max(50, "Expected salary cannot exceed 50 characters").optional().default(""),
+  linkedinUrl: z.string().trim().max(200, "LinkedIn URL cannot exceed 200 characters").optional().default(""),
+  portfolioUrl: z.string().trim().max(200, "Portfolio URL cannot exceed 200 characters").optional().default(""),
+  coverNote: z.string().trim().max(1000, "Cover note cannot exceed 1000 characters").optional().default(""),
+  consentGiven: z.boolean().optional().default(true),
+  consentGivenAt: z.string().optional(),
+  consentVersion: z.string().optional().default("2026-11"),
+  source: z.string().trim().max(50).optional().default("admin-portal"),
+  resumeStoragePath: z.string().optional(),
+  resumeFileName: z.string().optional(),
+  resumeUrl: z.string().optional(),
   status: z.enum(HR_CANDIDATE_STATUSES).default("Applied"),
 });
 
@@ -46,7 +59,7 @@ export function validateResumeFile(file) {
   if (file.size > HR_FILE_UPLOAD_CONSTRAINTS.MAX_RESUME_SIZE_BYTES) {
     return {
       valid: false,
-      error: "File size exceeds the 10MB limit. Please upload a smaller document.",
+      error: "File size exceeds the 5MB limit. Please upload a smaller document.",
     };
   }
 

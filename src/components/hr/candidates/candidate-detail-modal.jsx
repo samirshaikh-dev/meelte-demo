@@ -79,7 +79,11 @@ export function CandidateDetailModal({
   )}_Resume.pdf`;
 
   const handleDownloadResume = () => {
-    if (candidate.resumeUrl && candidate.resumeUrl !== "#") {
+    if (candidate.resumeStoragePath) {
+      window.open(`/api/hr/candidates/${candidate.id}/resume`, "_blank", "noopener,noreferrer");
+      return;
+    }
+    if (candidate.resumeUrl && candidate.resumeUrl !== "#" && candidate.resumeUrl.startsWith("http")) {
       window.open(candidate.resumeUrl, "_blank", "noopener,noreferrer");
       return;
     }
@@ -212,6 +216,38 @@ export function CandidateDetailModal({
                     </dd>
                   </>
                 )}
+
+                {candidate.linkedinUrl && (
+                  <>
+                    <dt className="text-foreground-secondary">LinkedIn</dt>
+                    <dd className="min-w-0 break-words">
+                      <a
+                        href={candidate.linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded text-primary transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                      >
+                        {candidate.linkedinUrl}
+                      </a>
+                    </dd>
+                  </>
+                )}
+
+                {candidate.portfolioUrl && (
+                  <>
+                    <dt className="text-foreground-secondary">Portfolio / Code</dt>
+                    <dd className="min-w-0 break-words">
+                      <a
+                        href={candidate.portfolioUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded text-primary transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                      >
+                        {candidate.portfolioUrl}
+                      </a>
+                    </dd>
+                  </>
+                )}
               </dl>
             </div>
 
@@ -232,13 +268,47 @@ export function CandidateDetailModal({
                   {candidate.currentCompany || "Not recorded"}
                 </dd>
 
+                {candidate.noticePeriod && (
+                  <>
+                    <dt className="text-foreground-secondary">Notice period</dt>
+                    <dd className="min-w-0 text-foreground">
+                      {candidate.noticePeriod}
+                    </dd>
+                  </>
+                )}
+
+                {candidate.expectedSalary && (
+                  <>
+                    <dt className="text-foreground-secondary">Expected salary</dt>
+                    <dd className="min-w-0 text-foreground">
+                      {candidate.expectedSalary}
+                    </dd>
+                  </>
+                )}
+
                 <dt className="text-foreground-secondary">Applied on</dt>
                 <dd className="min-w-0 text-foreground">
                   <time dateTime={candidate.appliedDate || undefined}>
                     {formatIsoDate(candidate.appliedDate) || "Not recorded"}
                   </time>
                 </dd>
+
+                {candidate.source && (
+                  <>
+                    <dt className="text-foreground-secondary">Source</dt>
+                    <dd className="min-w-0 text-foreground font-mono text-xs">
+                      {candidate.source}
+                    </dd>
+                  </>
+                )}
               </dl>
+
+              {candidate.coverNote && (
+                <div className="mt-3 rounded-lg border border-border/60 bg-surface-subtle p-3 text-xs text-foreground-secondary">
+                  <div className="font-semibold text-foreground mb-1">Cover Note:</div>
+                  <p className="whitespace-pre-wrap leading-relaxed">{candidate.coverNote}</p>
+                </div>
+              )}
 
               <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                 <span className="flex min-w-0 items-center gap-2">

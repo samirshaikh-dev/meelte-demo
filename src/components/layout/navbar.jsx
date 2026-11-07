@@ -34,12 +34,12 @@ const PRODUCT_LINKS = [
 ];
 
 const COMPANY_LINKS = [
-  {
-    label: "Home",
-    href: "/",
-    description: "Explore offers and community events",
-    icon: Home,
-  },
+  // {
+  //   label: "Home",
+  //   href: "/",
+  //   description: "Explore offers and community events",
+  //   icon: Home,
+  // },
   {
     label: "About Us",
     href: "/about",
