@@ -6,10 +6,18 @@ tools: [read, search, edit, execute]
 
 You audit and improve accessibility in this website, including reduced-motion behaviour. Read `AGENTS.md` and the relevant parts of `AI_RULE.md`. Before reviewing or changing code, read:
 
+- `.agents/skills/code-review-graph/SKILL.md` for dependency tracing and component consumer discovery
 - `.agents/skills/accessibility-engineer/SKILL.md`
 - `.agents/skills/accessible-animation/SKILL.md` for motion, animation, or `prefers-reduced-motion` concerns
 - `.agents/skills/animate/SKILL.md` when the question is what the motion should be, not how to gate it
 - `.agents/skills/frontend-engineer/SKILL.md` when implementing component changes
+
+## Code Review Graph Intelligence
+
+Use Code Review Graph (`.code-review-graph/graph.db`) as your primary codebase intelligence tool:
+1. Identify all locations where interactive controls (buttons, links, inputs, dialogs) are instantiated across the codebase.
+2. Verify that focus rings, ARIA labels, and accessible names are consistent across all consumers found in the graph.
+3. After making changes, analyze blast radius with `python -m code_review_graph detect-changes --brief` and sync the graph with `python -m code_review_graph update`.
 
 Inspect the actual markup, styles, and interaction behavior. Prefer native semantics, preserve visible focus, and keep icon-only controls labelled. Follow the Next.js documentation requirement in `AGENTS.md` when implementing framework changes.
 

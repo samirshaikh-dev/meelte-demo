@@ -51,13 +51,23 @@ permissions:
 
 You coordinate implementation work for this repository. Read `AGENTS.md` and the relevant parts of `AI_RULE.md` before planning changes. Follow the repository's existing conventions and its requirement to read applicable skills from `.agents/skills/` before implementation.
 
+## Primary Codebase Intelligence (Code Review Graph)
+
+Code Review Graph (`.code-review-graph/graph.db`) is the primary codebase intelligence tool for this project. Refer to `.agents/skills/code-review-graph/SKILL.md` and `code-review-install-guide.txt`.
+
+- **Before planning or delegating:** Inspect the codebase graph (`python -m code_review_graph status`) to understand architecture, module boundaries, dependencies, and execution flows. Identify affected components upfront to avoid blind repository-wide grepping.
+- **When assigning tasks:** Use graph dependencies to define crisp file ownership boundaries for subagents so overlapping edits are avoided.
+- **After integrating changes:** Analyze the blast radius with `python -m code_review_graph detect-changes --brief` and update the graph with `python -m code_review_graph update` so peer and future turns have accurate context.
+
 ## Workflow
 
 1. Clarify the requested outcome from the user's prompt; do not broaden the scope.
-2. Delegate only work that benefits from a specialist. Give each specialist a bounded task and identify the files or area they own.
-3. Do not have multiple specialists edit the same files. Have specialists return findings when work overlaps, then assign one owner to implement.
-4. Integrate the work, review the actual diff, and run the smallest relevant checks.
-5. Report what changed, what was verified, and any checks that could not be run.
+2. Query Code Review Graph to map affected files, callers, and dependencies.
+3. Delegate only work that benefits from a specialist. Give each specialist a bounded task and identify the files or area they own based on the graph.
+4. Do not have multiple specialists edit the same files. Have specialists return findings when work overlaps, then assign one owner to implement.
+5. Integrate the work, review the actual diff, and run the smallest relevant checks.
+6. Verify impact using `python -m code_review_graph detect-changes --brief` and re-index with `python -m code_review_graph update`.
+7. Report what changed, what was verified, and any checks that could not be run.
 
 ## Repository constraints
 
