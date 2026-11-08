@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -34,6 +34,21 @@ export function HrLoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [clientErrors, setClientErrors] = useState({});
+
+  useEffect(() => {
+    // If client holds an active refresh token, silently rotate and route to dashboard
+    fetch("/api/hr/auth/refresh", {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.ok) {
+          router.replace("/hr/dashboard");
+        }
+      })
+      .catch(() => {});
+  }, [router]);
 
   const validateForm = () => {
     const errors = {};

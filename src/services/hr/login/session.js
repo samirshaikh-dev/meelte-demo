@@ -1,99 +1,85 @@
 import "server-only";
 import { cookies } from "next/headers";
-import { createSessionToken, verifySessionToken } from "@/utils/hr/auth-crypto";
 import {
-  HR_SESSION_COOKIE_NAME,
-  HR_SESSION_COOKIE_PATH,
+  createAccessToken,
+  createRefreshToken,
+  verifyAccessToken,
+} from "@/utils/hr/auth-crypto";
+import {
+  HR_ACCESS_COOKIE_NAME,
+  HR_REFRESH_COOKIE_NAME,
+  buildAccessCookieOptions,
+  buildRefreshCookieOptions,
 } from "@/utils/hr/session-cookie";
 
 /**
- * HR session lifecycle: issue, read, clear.
+ * Sets dual HttpOnly session cookies in browser.
  *
- * Token signing and verification live in `src/utils/hr/auth-crypto.js` because
- * `src/proxy.js` needs the same implementation. This module owns only the
- * Node-side cookie plumbing and the session lifetime policy, so the token `exp`
- * and the cookie `maxAge` are derived from one constant.
+ * @param {{ accessToken: string, refreshToken?: string }} tokens
  */
-
-/** 8 hours, matching the documented HR portal session length. */
-export const HR_SESSION_TTL_SECONDS = 8 * 60 * 60;
-
-/**
- * Builds the cookie attributes for both issuing and clearing the session.
- * `maxAge: 0` expires the cookie immediately.
- *
- * @param {number} maxAge
- */
-function buildCookieOptions(maxAge) {
-  return {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: HR_SESSION_COOKIE_PATH,
-    maxAge,
-  };
-}
-
-/**
- * Writes the session cookie. Returns `false` when called outside a
- * cookie-writable context (for example a Server Component render) instead of
- * throwing, so a caller can still complete its own work.
- *
- * @param {string} token
- * @returns {Promise<boolean>}
- */
-export async function setHrSessionCookie(token) {
+export async function setHrSessionCookies({ accessToken, refreshToken }) {
   try {
     const cookieStore = await cookies();
-    cookieStore.set(HR_SESSION_COOKIE_NAME, token, buildCookieOptions(HR_SESSION_TTL_SECONDS));
+
+    if (accessToken) {
+      cookieStore.set(HR_ACCESS_COOKIE_NAME, accessToken, buildAccessCookieOptions());
+    }
+
+    if (refreshToken) {
+      cookieStore.set(HR_REFRESH_COOKIE_NAME, refreshToken, buildRefreshCookieOptions());
+    }
+
     return true;
-  } catch {
+  } catch (error) {
+    console.error("[Session] Failed to set cookies:", error.message);
     return false;
   }
 }
 
 /**
- * Expires the session cookie immediately.
- *
- * @returns {Promise<boolean>}
+ * Clears both session cookies.
  */
-export async function clearHrSessionCookie() {
+export async function clearHrSessionCookies() {
   try {
     const cookieStore = await cookies();
-    cookieStore.set(HR_SESSION_COOKIE_NAME, "", buildCookieOptions(0));
+    cookieStore.set(HR_ACCESS_COOKIE_NAME, "", buildAccessCookieOptions(0));
+    cookieStore.set(HR_REFRESH_COOKIE_NAME, "", buildRefreshCookieOptions(0));
     return true;
-  } catch {
+  } catch (error) {
+    console.error("[Session] Failed to clear cookies:", error.message);
     return false;
   }
 }
 
 /**
- * Issues a signed session token and writes it to the session cookie.
+ * Issues new session cookies for the HR user.
  *
- * @param {string} email Verified identity to record in the session.
- * @returns {Promise<string>} The signed token.
+ * @param {string} email
+ * @returns {Promise<{ accessToken: string, refreshToken: string }>}
  */
 export async function issueHrSession(email) {
-  const token = await createSessionToken(email, HR_SESSION_TTL_SECONDS);
-  await setHrSessionCookie(token);
-  return token;
+  const accessToken = await createAccessToken({ email, role: "hr_admin" });
+  const refreshToken = await createRefreshToken({ email, role: "hr_admin" });
+
+  await setHrSessionCookies({ accessToken, refreshToken });
+  return { accessToken, refreshToken };
 }
 
 /**
- * Reads and verifies the current requester's session.
+ * Verifies current active access token session.
  *
- * @returns {Promise<{ authenticated: false }|{ authenticated: true, email: string }>}
+ * @returns {Promise<{ authenticated: boolean, email?: string }>}
  */
 export async function getHrSession() {
   try {
     const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get(HR_SESSION_COOKIE_NAME);
+    const token = cookieStore.get(HR_ACCESS_COOKIE_NAME)?.value;
 
-    if (!sessionCookie?.value) {
+    if (!token) {
       return { authenticated: false };
     }
 
-    const payload = await verifySessionToken(sessionCookie.value);
+    const payload = await verifyAccessToken(token);
     if (!payload?.email) {
       return { authenticated: false };
     }
@@ -108,12 +94,12 @@ export async function getHrSession() {
 }
 
 /**
- * Invalidates the HR session by expiring the session cookie.
+ * Logs out the user by clearing cookies.
  *
  * @returns {Promise<{ ok: true, redirectUrl: string }>}
  */
 export async function logoutHr() {
-  await clearHrSessionCookie();
+  await clearHrSessionCookies();
   return {
     ok: true,
     redirectUrl: "/hr/login",

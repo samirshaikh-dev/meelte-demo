@@ -1,21 +1,57 @@
 /**
- * Edge-safe HR session cookie contract.
- *
- * The cookie name and path are shared by two modules that cannot import one
- * another:
- *
- *   - `src/proxy.js` (Next 16 request entry) — reads the cookie from the
- *     incoming request before routing. It must not pull in
- *     `src/services/hr/session.js`, which is server-only and depends on
- *     `next/headers`; `proxy.js` is bundled and shipped separately from the app.
- *   - `src/services/hr/session.js` — writes and clears the cookie.
- *
- * Both sides must agree on exactly one cookie name. When they drifted apart in
- * the past the failure mode was silent: `loginHr` would issue a valid session,
- * the guard would look for a different cookie, and an authenticated admin was
- * bounced straight back to `/hr/login`. Keep this module free of `server-only`,
- * Node built-ins, and `next/headers`.
+ * Edge-safe HR session & cookie contract for Next.js.
  */
 
-export const HR_SESSION_COOKIE_NAME = "meelte_hr_session";
-export const HR_SESSION_COOKIE_PATH = "/hr";
+export const HR_ACCESS_COOKIE_NAME = "meelte_hr_access";
+export const HR_REFRESH_COOKIE_NAME = "meelte_hr_refresh";
+export const HR_SESSION_COOKIE_NAME = HR_ACCESS_COOKIE_NAME;
+
+export const HR_ACCESS_COOKIE_PATH = "/";
+export const HR_REFRESH_COOKIE_PATH = "/api/hr/auth";
+
+/**
+ * Parses duration strings like '15m', '1h', '1d', '7d' or raw numbers into seconds.
+ *
+ * @param {string|undefined} val
+ * @param {number} defaultSec
+ * @returns {number}
+ */
+export function parseDuration(val, defaultSec) {
+  if (!val) return defaultSec;
+  const str = String(val).trim().toLowerCase();
+  const num = parseInt(str, 10);
+
+  if (str.endsWith("m")) return num * 60;
+  if (str.endsWith("h")) return num * 3600;
+  if (str.endsWith("d")) return num * 86400;
+
+  return num > 0 ? num : defaultSec;
+}
+
+export function getAccessCookieMaxAge() {
+  return parseDuration(process.env.JWT_ACCESS_EXPIRES_IN, 15 * 60);
+}
+
+export function getRefreshCookieMaxAge() {
+  return parseDuration(process.env.JWT_REFRESH_EXPIRES_IN, 24 * 60 * 60);
+}
+
+export function buildAccessCookieOptions(maxAge = getAccessCookieMaxAge()) {
+  return {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: HR_ACCESS_COOKIE_PATH,
+    maxAge,
+  };
+}
+
+export function buildRefreshCookieOptions(maxAge = getRefreshCookieMaxAge()) {
+  return {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: HR_REFRESH_COOKIE_PATH,
+    maxAge,
+  };
+}

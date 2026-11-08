@@ -3,14 +3,13 @@ export {
   getHrSession,
   logoutHr,
   issueHrSession,
-  setHrSessionCookie,
-  clearHrSessionCookie,
-  HR_SESSION_TTL_SECONDS,
+  setHrSessionCookies,
+  clearHrSessionCookies,
 } from "./session";
+export { refreshHrSession } from "./refresh";
 export { safeStringCompare, verifyPassword } from "./password";
 export {
   checkRateLimit,
   recordFailedAttempt,
   resetRateLimit,
 } from "./rate-limit";
-

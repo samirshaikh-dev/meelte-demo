@@ -2,12 +2,32 @@ import { NextResponse } from "next/server";
 import { getClientIdentifier, loginHr, logoutHr, getHrSession } from "@/services/hr/login";
 
 /**
+ * Validates request Origin against Host to prevent CSRF attacks on cookie-based endpoints.
+ *
+ * @param {Request} request
+ * @returns {boolean}
+ */
+function isOriginAllowed(request) {
+  const origin = request.headers.get("origin");
+  const host = request.headers.get("host");
+
+  if (!origin || !host) return true; // Direct same-origin or programmatic server call
+
+  try {
+    const originHost = new URL(origin).host;
+    return originHost === host;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * /api/hr/auth
  *
  * Consolidated HR Authentication Endpoint:
  *   - GET:    Verifies current session state
- *   - POST:   Authenticates credentials and issues session cookie
- *   - DELETE: Terminates session and expires cookie
+ *   - POST:   Authenticates credentials and issues dual HttpOnly session cookies
+ *   - DELETE: Terminates session, revokes refresh token in DB, and expires cookies
  */
 
 export async function GET() {
@@ -16,6 +36,13 @@ export async function GET() {
 }
 
 export async function POST(request) {
+  if (!isOriginAllowed(request)) {
+    return NextResponse.json(
+      { ok: false, error: "Cross-site request blocked." },
+      { status: 403 }
+    );
+  }
+
   let body;
   try {
     body = await request.json();
@@ -33,17 +60,26 @@ export async function POST(request) {
   }
 
   const clientIp = await getClientIdentifier(request);
+  const userAgent = request.headers.get("user-agent") || "unknown";
+
   const result = await loginHr({
     email: body?.email,
     password: body?.password,
     clientIp,
+    userAgent,
   });
 
   return NextResponse.json(result.data, { status: result.status });
 }
 
-export async function DELETE() {
+export async function DELETE(request) {
+  if (!isOriginAllowed(request)) {
+    return NextResponse.json(
+      { ok: false, error: "Cross-site request blocked." },
+      { status: 403 }
+    );
+  }
+
   const result = await logoutHr();
   return NextResponse.json(result);
 }
-

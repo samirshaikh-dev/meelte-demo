@@ -78,7 +78,7 @@ export async function getClientIdentifier(request = null) {
  *   data: { ok: boolean, error?: string, redirectUrl?: string }
  * }>}
  */
-export async function loginHr({ email, password, clientIp = null }) {
+export async function loginHr({ email, password, clientIp = null, userAgent = "unknown" }) {
   const ip = clientIp || (await getClientIdentifier());
 
   // 1. Rate limiting — checked before any credential work so a locked-out
@@ -107,8 +107,8 @@ export async function loginHr({ email, password, clientIp = null }) {
   }
 
   // 3. Deployment configuration.
-  const rawExpectedEmail = process.env.HR_EMAIL || "hr@meelte.com";
-  const rawExpectedPassword = process.env.HR_PASSWORD || "hr@meelte.com";
+  const rawExpectedEmail = process.env.HR_EMAIL;
+  const rawExpectedPassword = process.env.HR_PASSWORD;
 
   if (!rawExpectedEmail || !rawExpectedPassword) {
     recordFailedAttempt(ip);
@@ -156,11 +156,11 @@ export async function loginHr({ email, password, clientIp = null }) {
     };
   }
 
-  const token = await issueHrSession(expectedEmail);
+  const session = await issueHrSession(expectedEmail, { clientIp: ip, userAgent });
 
   return {
     status: 200,
-    token,
+    token: session.accessToken,
     data: {
       ok: true,
       redirectUrl: "/hr/dashboard",
