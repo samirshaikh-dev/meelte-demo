@@ -4,9 +4,8 @@ import { REGEX } from "@/constants/service-constants";
  * Environment-value normalisation for the HR module.
  *
  * The same two operations — strip a wrapping pair of quotes, then trim — were
- * written out three times: in `auth-crypto.js` (session secret), in `login.js`
- * (`HR_EMAIL` / `HR_PASSWORD_HASH`), and inline in `password.js` (the stored
- * hash). Three copies of one rule is how `HR_EMAIL="admin@meelte.com"` works in
+ * written out: in `auth-crypto.js`, in `login.js` (`HR_EMAIL` / `HR_PASSWORD`),
+ * and inline in `password.js`. Three copies of one rule is how `HR_EMAIL="admin@meelte.com"` works in
  * one place and fails in another, so it lives here once.
  *
  * Kept free of `node:*`, `next/headers`, and `server-only`: `src/proxy.js`

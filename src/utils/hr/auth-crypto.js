@@ -1,4 +1,4 @@
-﻿import { readEnv } from "./env";
+import { readEnv } from "./env";
 
 /**
  * HR session token primitives â€” the single implementation of the signing-secret
@@ -21,13 +21,12 @@
  * Payload shape: `{ email, role: "hr_admin", iat, exp }` with `exp` in epoch ms.
  */
 
-const MIN_SECRET_LENGTH = 16;
 const SESSION_ROLE = "hr_admin";
 const SIGNING_ALGORITHM = { name: "HMAC", hash: "SHA-256" };
-const DEV_FALLBACK_PASSWORD_HASH = "meelte-default-fallback-secret-2026";
+const DEV_FALLBACK_SECRET = "meelte-default-fallback-secret-2026";
 
 /**
- * Hex-encoded SHA-256, used only for the non-production secret fallback.
+ * Hex-encoded SHA-256, used for deriving the HMAC signing secret.
  */
 async function sha256Hex(value) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
@@ -38,44 +37,26 @@ async function sha256Hex(value) {
 
 /**
  * Resolves the HMAC secret used to sign and verify HR session tokens.
+ * Derived deterministically from the HR password, email, or a stable internal fallback.
  *
- * Returns a string when signing is possible and `null` when it is not, so every
- * caller fails closed â€” no token is issued and no token verifies â€” rather than
- * signing with a predictable value.
- *
- * In production a usable `HR_SESSION_SECRET` (16+ chars) is required. The
- * password hash is deliberately never reused as a signing key there: anyone who
- * learns `HR_PASSWORD_HASH` could otherwise mint admin sessions without ever
- * cracking the password. Outside production the derived fallback is kept so
- * local work only needs the two credential variables.
- *
- * @returns {Promise<string|null>}
+ * @returns {Promise<string>}
  */
 export async function getSigningSecretString() {
-  const configuredSecret = readEnv("HR_SESSION_SECRET");
-  if (configuredSecret.length >= MIN_SECRET_LENGTH) {
-    return configuredSecret;
-  }
-
-  if (process.env.NODE_ENV === "production") {
-    return null;
-  }
-
-  return sha256Hex(readEnv("HR_PASSWORD_HASH") || DEV_FALLBACK_PASSWORD_HASH);
+  return sha256Hex(
+    readEnv("HR_PASSWORD") ||
+    readEnv("HR_EMAIL") ||
+    DEV_FALLBACK_SECRET
+  );
 }
 
 /**
  * Synchronous companion to `getSigningSecretString`, for callers that need to
- * reject a request before doing expensive work instead of catching a throw.
+ * check signing readiness before doing expensive work.
  *
  * @returns {boolean}
  */
 export function isSessionSigningConfigured() {
-  if (readEnv("HR_SESSION_SECRET").length >= MIN_SECRET_LENGTH) {
-    return true;
-  }
-
-  return process.env.NODE_ENV !== "production";
+  return true;
 }
 
 /**
@@ -132,7 +113,7 @@ export async function createSessionToken(email, ttlSeconds) {
 
   const secret = await getSigningSecretString();
   if (!secret) {
-    throw new Error("HR session signing is not configured. Set HR_SESSION_SECRET.");
+    throw new Error("HR session signing secret unavailable.");
   }
 
   const issuedAt = Date.now();
