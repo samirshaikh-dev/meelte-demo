@@ -1,2 +1,2 @@
-export * from "./hr-candidates-service";
-export * from "./hr-storage-service";
+export * from "./candidates-service";
+export * from "./storage-service";

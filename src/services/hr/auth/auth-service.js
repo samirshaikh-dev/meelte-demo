@@ -1,35 +1,32 @@
 import "server-only";
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
 import { hrLoginSchema } from "@/validation/hr/auth-validation";
 import {
   checkRateLimit,
   recordFailedAttempt,
   resetRateLimit,
 } from "./rate-limit";
-import { isSessionSigningConfigured } from "@/utils/hr/auth-crypto";
+import {
+  isSessionSigningConfigured,
+  createAccessToken,
+  createRefreshToken,
+  verifyRefreshToken,
+} from "@/utils/hr/auth-crypto";
 import { stripEnvQuotes } from "@/utils/hr/env";
+import { HR_REFRESH_COOKIE_NAME } from "@/utils/hr/session-cookie";
 import { safeStringCompare, verifyPassword } from "./password";
-import { issueHrSession } from "./session";
-
-/**
- * HR portal sign-in.
- *
- * Owns the whole decision for one login attempt: rate limit → validate →
- * verify credentials against the environment → issue a session. The API route
- * stays thin and only maps the returned envelope onto a status code.
- *
- * Every rejection returns the same generic message so the endpoint cannot be
- * used to discover whether the email, the password, or the deployment
- * configuration was the thing that did not match.
- */
+import {
+  issueHrSession,
+  setHrSessionCookies,
+  clearHrSessionCookies,
+} from "./session";
 
 const UNKNOWN_CLIENT_ID = "unknown-client";
 const GENERIC_CREDENTIAL_ERROR = "Invalid email or password";
 const SIGNING_UNAVAILABLE_ERROR = "Sign-in is temporarily unavailable. Please try again later.";
 
 /**
- * Extracts the client IP from a header source (`Request#headers` or the result
- * of `next/headers` `headers()`).
+ * Extracts client IP from request headers.
  *
  * @param {{ get: (name: string) => string|null }} headerSource
  * @returns {string}
@@ -44,10 +41,7 @@ function readClientIp(headerSource) {
 }
 
 /**
- * Resolves the identifier the rate limiter keys on.
- *
- * Accepts an optional Web `Request` so a route can pass its own request; falls
- * back to the ambient request headers when called from another server context.
+ * Resolves the client IP identifier for rate limiting.
  *
  * @param {Request|null} request
  * @returns {Promise<string>}
@@ -64,25 +58,19 @@ export async function getClientIdentifier(request = null) {
 }
 
 /**
- * Attempts an HR sign-in.
- *
- * Returns a discriminated envelope rather than throwing: the caller maps
- * `status` onto the response and serialises `data`. `token` is included for
- * server-side callers and is never part of `data`, so it cannot be leaked into
- * a response by accident.
+ * Authenticates HR credentials and issues dual session cookies.
  *
  * @param {{ email?: unknown, password?: unknown, clientIp?: string|null }} input
  * @returns {Promise<{
  *   status: 200|401|429|503,
  *   token?: string,
- *   data: { ok: boolean, error?: string, redirectUrl?: string }
+ *   data: { ok: boolean, error?: string, redirectUrl?: string, accessToken?: string, refreshToken?: string, user?: Object }
  * }>}
  */
-export async function loginHr({ email, password, clientIp = null, userAgent = "unknown" }) {
+export async function loginHr({ email, password, clientIp = null }) {
   const ip = clientIp || (await getClientIdentifier());
 
-  // 1. Rate limiting — checked before any credential work so a locked-out
-  //    client cannot use this endpoint as an oracle or a CPU sink.
+  // 1. Rate limiting check
   const rateLimitStatus = checkRateLimit(ip);
   if (rateLimitStatus.isBlocked) {
     const minutes = Math.ceil(rateLimitStatus.remainingSeconds / 60);
@@ -95,8 +83,7 @@ export async function loginHr({ email, password, clientIp = null, userAgent = "u
     };
   }
 
-  // 2. Input validation at the trust boundary. Everything downstream reads the
-  //    validated value, never the raw body.
+  // 2. Boundary validation
   const validation = hrLoginSchema.safeParse({ email, password });
   if (!validation.success) {
     recordFailedAttempt(ip);
@@ -106,7 +93,7 @@ export async function loginHr({ email, password, clientIp = null, userAgent = "u
     };
   }
 
-  // 3. Deployment configuration.
+  // 3. Deployment configuration
   const rawExpectedEmail = process.env.HR_EMAIL;
   const rawExpectedPassword = process.env.HR_PASSWORD;
 
@@ -122,7 +109,7 @@ export async function loginHr({ email, password, clientIp = null, userAgent = "u
   const expectedPassword = stripEnvQuotes(rawExpectedPassword);
   const candidateEmail = validation.data.email.trim().toLowerCase();
 
-  // 4. Constant-time credential verification.
+  // 4. Constant-time credential verification
   const isEmailMatch = safeStringCompare(candidateEmail, expectedEmail);
   const isPasswordMatch = verifyPassword(validation.data.password, expectedPassword);
 
@@ -143,12 +130,8 @@ export async function loginHr({ email, password, clientIp = null, userAgent = "u
     };
   }
 
-  // 5. Credentials are correct, so the attempt no longer counts against the
-  //    limit even if session issuing fails below.
   resetRateLimit(ip);
 
-  // 6. A correct password is useless without a signing secret. Report it as an
-  //    unavailable dependency (503) instead of throwing a 500 with a digest.
   if (!isSessionSigningConfigured()) {
     return {
       status: 503,
@@ -156,14 +139,74 @@ export async function loginHr({ email, password, clientIp = null, userAgent = "u
     };
   }
 
-  const session = await issueHrSession(expectedEmail, { clientIp: ip, userAgent });
+  const session = await issueHrSession(expectedEmail);
 
   return {
     status: 200,
     token: session.accessToken,
     data: {
       ok: true,
+      accessToken: session.accessToken,
+      refreshToken: session.refreshToken,
       redirectUrl: "/hr/dashboard",
+      user: {
+        email: expectedEmail,
+        role: "hr_admin",
+      },
     },
   };
 }
+
+/**
+ * Validates the refresh token cookie and rotates both access & refresh tokens.
+ *
+ * @returns {Promise<{
+ *   status: 200|401,
+ *   data: { ok: boolean, error?: string, accessToken?: string, refreshToken?: string }
+ * }>}
+ */
+export async function refreshHrSession() {
+  const cookieStore = await cookies();
+  const rawRefresh = cookieStore.get(HR_REFRESH_COOKIE_NAME)?.value;
+
+  if (!rawRefresh) {
+    return {
+      status: 401,
+      data: { ok: false, error: "No refresh token provided." },
+    };
+  }
+
+  const payload = await verifyRefreshToken(rawRefresh);
+
+  if (!payload?.email) {
+    await clearHrSessionCookies();
+    return {
+      status: 401,
+      data: { ok: false, error: "Invalid or expired refresh token." },
+    };
+  }
+
+  const newAccessToken = await createAccessToken({
+    email: payload.email,
+    role: payload.role || "hr_admin",
+  });
+  const newRefreshToken = await createRefreshToken({
+    email: payload.email,
+    role: payload.role || "hr_admin",
+  });
+
+  await setHrSessionCookies({
+    accessToken: newAccessToken,
+    refreshToken: newRefreshToken,
+  });
+
+  return {
+    status: 200,
+    data: {
+      ok: true,
+      accessToken: newAccessToken,
+      refreshToken: newRefreshToken,
+    },
+  };
+}
+

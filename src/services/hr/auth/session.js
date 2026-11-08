@@ -13,7 +13,7 @@ import {
 } from "@/utils/hr/session-cookie";
 
 /**
- * Sets dual HttpOnly session cookies in browser.
+ * Sets dual HttpOnly session cookies in the browser.
  *
  * @param {{ accessToken: string, refreshToken?: string }} tokens
  */
@@ -31,7 +31,7 @@ export async function setHrSessionCookies({ accessToken, refreshToken }) {
 
     return true;
   } catch (error) {
-    console.error("[Session] Failed to set cookies:", error.message);
+    console.error("[Auth Session] Failed to set session cookies:", error.message);
     return false;
   }
 }
@@ -46,7 +46,7 @@ export async function clearHrSessionCookies() {
     cookieStore.set(HR_REFRESH_COOKIE_NAME, "", buildRefreshCookieOptions(0));
     return true;
   } catch (error) {
-    console.error("[Session] Failed to clear cookies:", error.message);
+    console.error("[Auth Session] Failed to clear session cookies:", error.message);
     return false;
   }
 }
@@ -105,3 +105,4 @@ export async function logoutHr() {
     redirectUrl: "/hr/login",
   };
 }
+

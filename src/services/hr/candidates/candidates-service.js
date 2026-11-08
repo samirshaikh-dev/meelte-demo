@@ -48,7 +48,7 @@ export async function fetchHrCandidates() {
     return snapshot.docs.map(normalizeCandidate);
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
-      console.warn("[HR Candidates Service] Error fetching candidates:", error.message);
+      console.warn("[Candidates Service] Error fetching candidates:", error.message);
     }
     return [];
   }
@@ -131,7 +131,7 @@ export async function createCandidateApplication(candidateData) {
       });
     } catch (jobErr) {
       if (process.env.NODE_ENV !== "production") {
-        console.warn("[HR Candidates Service] Failed to increment job applicant count:", jobErr.message);
+        console.warn("[Candidates Service] Failed to increment job applicant count:", jobErr.message);
       }
     }
   }

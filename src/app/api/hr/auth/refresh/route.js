@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getClientIdentifier, refreshHrSession } from "@/services/hr/login";
+import { getClientIdentifier, refreshHrSession } from "@/services/hr/auth";
 
 /**
  * Validates request Origin against Host to prevent CSRF attacks on cookie-based endpoints.

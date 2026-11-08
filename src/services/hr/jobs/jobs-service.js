@@ -57,7 +57,7 @@ export async function fetchHrJobs() {
     return snapshot.docs.map(normalizeJob);
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
-      console.warn("[HR Jobs Service] Error fetching jobs:", error.message);
+      console.warn("[Jobs Service] Error fetching jobs:", error.message);
     }
     return [];
   }
@@ -80,7 +80,7 @@ export async function fetchHrJobById(id) {
     }
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
-      console.warn(`[HR Jobs Service] Job ${id} fetch error:`, error.message);
+      console.warn(`[Jobs Service] Job ${id} fetch error:`, error.message);
     }
   }
 
@@ -122,7 +122,7 @@ export async function fetchHrJobBySlugOrId(slugOrId) {
     return matched || null;
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
-      console.warn(`[HR Jobs Service] Slug search error for "${slugOrId}":`, error.message);
+      console.warn(`[Jobs Service] Slug search error for "${slugOrId}":`, error.message);
     }
     return null;
   }
@@ -194,3 +194,4 @@ export async function deleteHrJob(id) {
   const docRef = doc(db, HR_COLLECTIONS.JOBS, id);
   await deleteDoc(docRef);
 }
+

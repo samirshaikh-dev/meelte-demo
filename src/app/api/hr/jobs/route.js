@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getHrSession } from "@/services/hr/login";
+import { getHrSession } from "@/services/hr/auth";
 import { fetchHrJobs, createHrJob } from "@/services/hr/jobs";
 
 /**

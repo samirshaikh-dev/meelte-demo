@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getHrSession } from "@/services/hr/login";
+import { getHrSession } from "@/services/hr/auth";
 import { getAdminDb } from "@/services/firebase/admin";
 import { HR_COLLECTIONS } from "@/constants/hr-constants";
 import { getSignedResumeDownloadUrl } from "@/services/careers/apply-storage";
