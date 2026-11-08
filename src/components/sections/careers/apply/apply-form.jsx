@@ -464,7 +464,7 @@ export function ApplyForm({ job }) {
       payload.append("website", formData.website);
       payload.append("resume", resumeFile);
 
-      const res = await fetch(`/api/careers/jobs/${jobId}/apply`, {
+      const res = await fetch(`/api/site/careers/jobs/${jobId}/apply`, {
         method: "POST",
         body: payload,
       });

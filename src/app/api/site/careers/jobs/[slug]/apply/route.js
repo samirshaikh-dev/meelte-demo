@@ -13,7 +13,7 @@ import {
 } from "@/validation/careers/application-validation";
 
 /**
- * POST /api/careers/jobs/[slug]/apply
+ * POST /api/site/careers/jobs/[slug]/apply
  *
  * Public endpoint to submit job applications.
  */

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { fetchPublicJobBySlugOrId } from "@/services/site/careers";
 
 /**
- * GET /api/careers/jobs/[slug]
+ * GET /api/site/careers/jobs/[slug]
  *
  * Public unauthenticated endpoint retrieving a single active job opening by slug or ID.
  * Returns 404 if the job does not exist, is not Active, or has passed its deadline.

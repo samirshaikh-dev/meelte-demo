@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { fetchPublicActiveJobs } from "@/services/site/careers";
 
 /**
- * GET /api/careers/jobs
+ * GET /api/site/careers/jobs
  *
  * Public unauthenticated endpoint listing active, unexpired job openings.
  * Excludes internal administrative fields.
