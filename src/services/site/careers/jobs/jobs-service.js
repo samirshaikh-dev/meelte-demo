@@ -1,3 +1,4 @@
+import "server-only";
 import { cacheLife } from "next/cache";
 import { fetchHrJobs, fetchHrJobBySlugOrId } from "@/services/hr/jobs";
 

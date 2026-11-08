@@ -3,6 +3,15 @@ import { validateResumeFile } from "@/validation/hr/candidate-validation";
 import { HR_STORAGE_PATHS } from "@/constants/hr-constants";
 
 /**
+ * Client-safe candidate document storage helpers.
+ *
+ * This module is imported by the `HrProvider` Client Component, so it must only
+ * depend on the Firebase client SDK. Server-only helpers that need
+ * `firebase-admin` (the resume signed-URL issuer) live in
+ * `./signed-url-service.js` and must never be re-exported from this file.
+ */
+
+/**
  * Uploads a candidate's resume or portfolio document to Firebase Storage.
  *
  * @param {string} candidateId - Target candidate identifier

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchPublicActiveJobs } from "@/services/careers/public-jobs-service";
+import { fetchPublicActiveJobs } from "@/services/site/careers";
 
 /**
  * GET /api/careers/jobs

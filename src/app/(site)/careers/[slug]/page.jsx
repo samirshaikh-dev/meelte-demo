@@ -8,13 +8,13 @@ import {
   getJobPostingJsonLd,
   mergeJsonLd,
 } from "@/lib/seo/structured-data";
-import { fetchPublicJobBySlugOrId } from "@/services/careers/public-jobs-service";
+import { fetchPublicJobBySlugOrId } from "@/services/site/careers";
 import { JobDetailsView } from "./job-details-view";
 import { RoleClosedView } from "./role-closed-view";
 
 /*
  * Freshness is set on the cached read functions in
- * `@/services/careers/public-jobs-service` via `cacheLife('minutes')`.
+ * `@/services/site/careers` via `cacheLife('minutes')`.
  * `export const revalidate` is rejected under Cache Components, and the slug
  * only exists at request time, so this route builds as a partial-prerender
  * page: the shell (header, skeleton, footer) is static and the role streams in

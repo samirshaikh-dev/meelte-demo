@@ -7,7 +7,7 @@ import {
   uploadResumeBuffer,
   generateResumeStoragePath,
   deleteStoredResume,
-} from "./apply-storage";
+} from "./storage-service";
 
 /**
  * Generates a deterministic candidate ID based on email and appliedJobId.

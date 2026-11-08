@@ -18,7 +18,7 @@ import {
   getWebPageJsonLd,
   mergeJsonLd,
 } from "@/lib/seo/structured-data";
-import { fetchPublicActiveJobs } from "@/services/careers/public-jobs-service";
+import { fetchPublicActiveJobs } from "@/services/site/careers";
 
 /*
  * Cache Components (`next.config.mjs` → `cacheComponents: true`) rejects the

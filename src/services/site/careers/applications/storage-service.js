@@ -39,24 +39,6 @@ export async function uploadResumeBuffer(storagePath, buffer, mimeType) {
 }
 
 /**
- * Generates a 60-second signed URL for authenticated HR admins to view/download a resume.
- *
- * @param {string} storagePath
- * @returns {Promise<string>}
- */
-export async function getSignedResumeDownloadUrl(storagePath) {
-  const bucket = getAdminBucket();
-  const file = bucket.file(storagePath);
-
-  const [signedUrl] = await file.getSignedUrl({
-    action: "read",
-    expires: Date.now() + 60 * 1000, // 60 seconds TTL
-  });
-
-  return signedUrl;
-}
-
-/**
  * Deletes an uploaded resume file (for rollback / orphan cleanup).
  *
  * @param {string} storagePath

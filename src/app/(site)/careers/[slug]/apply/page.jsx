@@ -5,7 +5,7 @@ import { Container } from "@/components/layout/container";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbsJsonLd } from "@/lib/seo/structured-data";
-import { fetchPublicJobBySlugOrId } from "@/services/careers/public-jobs-service";
+import { fetchPublicJobBySlugOrId } from "@/services/site/careers";
 import { ApplyForm } from "@/components/sections/careers/apply";
 import { RoleClosedView } from "../role-closed-view";
 

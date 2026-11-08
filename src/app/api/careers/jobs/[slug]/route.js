@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchPublicJobBySlugOrId } from "@/services/careers/public-jobs-service";
+import { fetchPublicJobBySlugOrId } from "@/services/site/careers";
 
 /**
  * GET /api/careers/jobs/[slug]

@@ -3,12 +3,10 @@ import {
   checkApplyRateLimit,
   recordApplyAttempt,
   getClientIp,
-} from "@/services/careers/apply-rate-limit";
-import {
   findActiveJobBySlugOrId,
   isJobOpen,
   submitJobApplication,
-} from "@/services/careers/apply-service";
+} from "@/services/site/careers/applications";
 import {
   publicApplicationSchema,
   validateResumeBuffer,

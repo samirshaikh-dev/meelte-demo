@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getHrSession } from "@/services/hr/auth";
 import { getAdminDb } from "@/services/firebase/admin";
 import { HR_COLLECTIONS } from "@/constants/hr-constants";
-import { getSignedResumeDownloadUrl } from "@/services/careers/apply-storage";
+import { getSignedResumeDownloadUrl } from "@/services/hr/candidates/signed-url-service";
 
 /**
  * GET /api/hr/candidates/[id]/resume
