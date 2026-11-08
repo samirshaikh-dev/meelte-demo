@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { logger } from "@/lib/logger";
 import {
   checkApplyRateLimit,
   recordApplyAttempt,
@@ -178,6 +179,10 @@ export async function POST(request, context) {
     );
   } catch (err) {
     if (err.code === "ALREADY_APPLIED") {
+      logger.warn(
+        { operation: "job_application", code: "ALREADY_APPLIED" },
+        "Candidate already applied for this role"
+      );
       return NextResponse.json(
         {
           success: false,
@@ -188,9 +193,10 @@ export async function POST(request, context) {
       );
     }
 
-    if (process.env.NODE_ENV !== "production") {
-      console.error("[Careers Apply Error]:", err.message);
-    }
+    logger.error(
+      { err, operation: "job_application" },
+      "Failed to save job application"
+    );
 
     return NextResponse.json(
       {

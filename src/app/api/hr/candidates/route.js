@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { logger } from "@/lib/logger";
 import { getHrSession } from "@/services/hr/auth";
 import { fetchHrCandidates, createCandidateApplication } from "@/services/hr/candidates";
 import { candidateApplicationSchema } from "@/validation/hr/candidate-validation";
@@ -24,7 +25,10 @@ export async function GET() {
     const candidates = await fetchHrCandidates();
     return NextResponse.json({ success: true, data: candidates });
   } catch (error) {
-    console.error("[HR Candidates API Error]:", error);
+    logger.error(
+      { err: error, operation: "fetch_candidates" },
+      "Failed to retrieve candidate profiles"
+    );
     return NextResponse.json(
       { success: false, error: "Failed to retrieve candidate profiles." },
       { status: 500 }
@@ -65,12 +69,19 @@ export async function POST(request) {
     }
 
     const newCandidate = await createCandidateApplication(validation.data);
+    logger.info(
+      { operation: "create_candidate", candidateId: newCandidate?.id },
+      "Candidate application created successfully"
+    );
     return NextResponse.json(
       { success: true, data: newCandidate },
       { status: 201 }
     );
   } catch (error) {
-    console.error("[HR Candidate Create API Error]:", error);
+    logger.error(
+      { err: error, operation: "create_candidate" },
+      "Failed to record candidate application"
+    );
     return NextResponse.json(
       { success: false, error: "Failed to record candidate application." },
       { status: 500 }

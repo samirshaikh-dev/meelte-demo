@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { logger } from "@/lib/logger";
 import { getHrSession } from "@/services/hr/auth";
 import { fetchHrJobs } from "@/services/hr/jobs";
 import { fetchHrCandidates } from "@/services/hr/candidates";
@@ -50,8 +51,11 @@ export async function GET() {
       },
     });
   } catch (error) {
-    // Log complete error details server-side for diagnostics
-    console.error("[HR Dashboard API Error]:", error);
+    // Log structured error details server-side for diagnostics
+    logger.error(
+      { err: error, operation: "get_hr_dashboard" },
+      "Unable to retrieve dashboard metrics from database"
+    );
 
     // Return generic user-friendly message to caller
     return NextResponse.json(

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { logger } from "@/lib/logger";
 import { fetchPublicActiveJobs } from "@/services/site/careers";
 
 /**
@@ -15,7 +16,10 @@ export async function GET() {
       data: jobs,
     });
   } catch (error) {
-    console.error("[Careers Jobs API Error]:", error);
+    logger.error(
+      { err: error, operation: "fetch_public_active_jobs" },
+      "Failed to retrieve public job listings"
+    );
     return NextResponse.json(
       { success: false, error: "Failed to retrieve public job listings." },
       { status: 500 }
