@@ -182,9 +182,6 @@ export function EventFilterSheet({
                           <span className="text-sm font-semibold text-foreground">
                             {group.label}
                           </span>
-                          <span className="ml-2 inline-flex items-center rounded-full bg-surface-muted px-2 py-0.5 text-2xs font-semibold text-primary">
-                            {group.count}
-                          </span>
                         </div>
                       </button>
                     </div>
@@ -209,14 +206,6 @@ export function EventFilterSheet({
                                 <Check className="h-3 w-3 stroke-[2.5]" aria-hidden="true" />
                               )}
                               <span>{sub.label}</span>
-                              <span
-                                className={cn(
-                                  "text-2xs",
-                                  isSubSelected ? "text-white/80" : "text-foreground-secondary/70"
-                                )}
-                              >
-                                ({sub.count})
-                              </span>
                             </button>
                           );
                         })}

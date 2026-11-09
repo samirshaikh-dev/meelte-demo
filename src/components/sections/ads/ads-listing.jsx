@@ -595,14 +595,6 @@ export function AdsListing({
                           <Check className="h-3 w-3 stroke-[2.5]" aria-hidden="true" />
                         )}
                         <span>All</span>
-                        <span
-                          className={cn(
-                            "rounded-full px-1.5 py-0.2 text-2xs font-medium",
-                            isAll ? "bg-white/20 text-white" : "bg-surface-muted text-foreground-secondary"
-                          )}
-                        >
-                          {totalAllCount}
-                        </span>
                       </button>
                     );
                   })()}
@@ -633,16 +625,6 @@ export function AdsListing({
                           <Icon className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                         )}
                         <span>{group.label}</span>
-                        <span
-                          className={cn(
-                            "rounded-full px-1.5 py-0.2 text-2xs font-medium",
-                            isActive
-                              ? "bg-white/20 text-white"
-                              : "bg-surface-muted text-foreground-secondary"
-                          )}
-                        >
-                          {group.count}
-                        </span>
                       </button>
                     );
                   })}
@@ -685,7 +667,6 @@ export function AdsListing({
                           <Check className="h-3 w-3 stroke-[2.5]" aria-hidden="true" />
                         )}
                         <span>{sub.label}</span>
-                        <span className="text-2xs opacity-75">({sub.count})</span>
                       </button>
                     );
                   })}
