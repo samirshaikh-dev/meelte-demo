@@ -41,34 +41,6 @@ export function CareersHero() {
           Help us build meelTe to connect neighborhoods across India.
         </p>
 
-        <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-          <Button
-            as="a"
-            href={CAREERS_EMAIL_HREF}
-            variant="primary"
-            size="lg"
-            className="group justify-center font-semibold shadow-card"
-          >
-            <Mail className="h-5 w-5" aria-hidden="true" />
-            <span>Email your resume</span>
-            <ArrowRight
-              className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </Button>
-
-          <Button
-            as={Link}
-            href="/about"
-            variant="outline"
-            size="lg"
-            className="group justify-center font-medium"
-          >
-            <Users className="h-5 w-5 text-primary" aria-hidden="true" />
-            <span>Learn more about us</span>
-          </Button>
-        </div>
-
       </Container>
     </section>
   );

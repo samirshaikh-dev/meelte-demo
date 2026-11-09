@@ -5,12 +5,12 @@ import Link from "next/link";
 import {
   Briefcase,
   MapPin,
-  Clock,
   ArrowRight,
   GraduationCap,
 } from "@/lib/icons";
 import { Container } from "@/components/layout/container";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { CAREERS_EMAIL_HREF } from "./careers-content";
 
 /**
@@ -19,18 +19,21 @@ import { CAREERS_EMAIL_HREF } from "./careers-content";
  */
 function CompactJobCard({ job }) {
   const targetHref = `/careers/${job.slug || job.id}`;
+  const applyHref = `/careers/${job.slug || job.id}/apply`;
 
   return (
-    <Link
-      href={targetHref}
-      className="group block rounded-2xl border border-border bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:border-primary/40 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-    >
+    <Card className="group rounded-2xl border border-border bg-surface p-4 sm:p-5 shadow-none transition-all duration-200 hover:border-primary/40 hover:shadow-soft">
       <div className="flex flex-col gap-3">
         {/* Header Row: Title & Department Pill */}
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
-            <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
-              {job.title}
+            <h3 className="text-base sm:text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+              <Link
+                href={targetHref}
+                className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded-sm"
+              >
+                {job.title}
+              </Link>
             </h3>
           </div>
           <span className="inline-flex shrink-0 items-center rounded-md border border-primary/20 bg-surface-muted px-2.5 py-0.5 text-xs font-semibold text-primary">
@@ -60,28 +63,31 @@ function CompactJobCard({ job }) {
           )}
         </div>
 
-        {/* Footer Row: Deadline / Posted & View Details CTA */}
-        <div className="flex items-center justify-between border-t border-border/60 pt-2.5 text-xs">
-          <span className="text-foreground-muted flex items-center gap-1.5">
-            {job.deadline ? (
-              <>
-                <Clock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                <span>Apply by {job.deadline}</span>
-              </>
-            ) : job.createdAt ? (
-              <span>Posted on {job.createdAt}</span>
-            ) : (
-              <span>Active opening</span>
-            )}
-          </span>
-
-          <span className="inline-flex items-center font-semibold text-primary transition-transform group-hover:translate-x-0.5">
+        {/* Footer Row: View Details & Apply CTA */}
+        <div className="flex items-center justify-between border-t border-border/60 pt-3 text-xs">
+          <Link
+            href={targetHref}
+            className="inline-flex items-center font-semibold text-foreground-secondary hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 rounded-md py-1"
+            aria-label={`View details for ${job.title}`}
+          >
             <span>View details</span>
-            <ArrowRight className="h-3.5 w-3.5 ml-1" aria-hidden="true" />
-          </span>
+            <ArrowRight className="h-3.5 w-3.5 ml-1 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+          </Link>
+
+          <Button
+            as={Link}
+            href={applyHref}
+            variant="primary"
+            size="sm"
+            className="h-8 px-3.5 text-xs font-bold rounded-xl shadow-2xs gap-1.5"
+            aria-label={`Apply for ${job.title}`}
+          >
+            <span>Apply</span>
+            <ArrowRight className="h-3 w-3" aria-hidden="true" />
+          </Button>
         </div>
       </div>
-    </Link>
+    </Card>
   );
 }
 
@@ -104,7 +110,10 @@ function RolesSkeleton() {
             <div className="h-6 w-24 bg-surface-muted rounded-md" />
             <div className="h-6 w-24 bg-surface-muted rounded-md" />
           </div>
-          <div className="h-4 w-32 bg-surface-muted rounded-md" />
+          <div className="flex justify-between items-center pt-2">
+            <div className="h-4 w-20 bg-surface-muted rounded-md" />
+            <div className="h-8 w-16 bg-surface-muted rounded-xl" />
+          </div>
         </div>
       ))}
     </div>

@@ -80,9 +80,9 @@ export default async function CareersPage() {
 
       <main id="main-content" className="flex-1">
         <CareersHero />
+        <CareersOpenRoles initialJobs={activeJobs} />
         <CareersValues />
         <CareersBenefits />
-        <CareersOpenRoles initialJobs={activeJobs} />
         <CareersFaq />
         <CareersCta />
       </main>
