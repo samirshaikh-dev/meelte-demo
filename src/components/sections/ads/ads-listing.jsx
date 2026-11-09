@@ -1,34 +1,30 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
-import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Container } from "@/components/layout/container";
 import { StoreButton } from "@/components/layout/store-button";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, MapPin, Search, X, PlusCircle } from "@/lib/icons";
+import { ChevronDown, Search, X, PlusCircle } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 import { loadMoreAds } from "@/utils/ads/load-more-ads";
 import { AdCard } from "./ad-card";
 import { AppActionModal } from "./app-action-modal";
-import { formatDisplayName, getListingAreaLabel } from "./ad-formatters";
+import { formatDisplayName } from "./ad-formatters";
 
 const GRID_ID = "ads-grid";
-
-// Canonical shop categories stay ahead of merchant-typed free text.
-const CORE_CATEGORIES = ["Food", "Fashion", "Services", "Health"];
 const MAX_VISIBLE_CATEGORIES = 6;
 
 /**
- * The `/ads` listing grid with live search, category filtering, on-demand
+ * The `/ads` listing grid with live search, API category filtering, on-demand
  * pagination, and mobile app action gating.
  *
  * Browsing is open and crawlable: the first 20 offers arrive server-rendered.
- * In-app actions (claiming deals, chatting with shops, saving offers, or setting
- * alerts) trigger the AppActionModal directing visitors to the mobile app.
+ * Category filtering calls the Web API with `p_category` via Server Action.
  */
 export function AdsListing({
   ads = [],
+  categories = [],
   breadcrumbs = [],
   unavailable = false,
   nextCursor = null,
@@ -46,6 +42,17 @@ export function AdsListing({
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showAllCategories, setShowAllCategories] = useState(false);
+
+  // Cache fetched results per category in memory for instant switching
+  const categoryCacheRef = useRef(new Map());
+
+  // Initialize/sync "All" category cache with props
+  useEffect(() => {
+    categoryCacheRef.current.set("All", {
+      items: ads,
+      nextCursor,
+    });
+  }, [ads, nextCursor]);
 
   // App Action Modal state
   const [modalState, setModalState] = useState({
@@ -66,61 +73,93 @@ export function AdsListing({
   }, [cursor]);
 
   /**
-   * Categories ranked for a single row: canonical shop categories first, then
-   * merchant-typed values by how many offers they actually carry. Free-text
-   * categories the app lets shops invent are real data, but they are not
-   * navigation — they belong behind "More" rather than in the first row.
+   * Category list derived from the API (`web_list_ad_categories`).
+   * Fallback to extracting from loaded items if category endpoint data is absent.
    */
-  const categoryGroups = useMemo(() => {
-    const counts = new Map();
-
+  const categoryNames = useMemo(() => {
+    if (Array.isArray(categories) && categories.length > 0) {
+      return categories
+        .map((c) => (typeof c === "string" ? c : c?.category))
+        .filter(Boolean);
+    }
+    const set = new Set();
     items.forEach((ad) => {
-      const label = formatDisplayName(ad.category);
-      if (!label) return;
-      counts.set(label, (counts.get(label) || 0) + 1);
+      if (ad.category) set.add(ad.category);
     });
+    return Array.from(set);
+  }, [categories, items]);
 
-    const core = [];
-    const other = [];
-
-    counts.forEach((count, label) => {
-      const coreIndex = CORE_CATEGORIES.findIndex(
-        (name) => name.toLowerCase() === label.toLowerCase()
-      );
-      if (coreIndex === -1) {
-        other.push([label, count]);
-      } else {
-        core.push([coreIndex, label, count]);
-      }
-    });
-
-    core.sort((a, b) => a[0] - b[0]);
-    other.sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-
-    const all = [...core.map(([, label, count]) => [label, count]), ...other];
+  const categoryGroups = useMemo(() => {
+    const all = categoryNames;
     let visible = all.slice(0, MAX_VISIBLE_CATEGORIES);
 
     // A filter hidden behind "More" must stay reachable while it is active.
     const active = all.find(
-      ([label]) => selectedCategory !== "All" && label.toLowerCase() === selectedCategory.toLowerCase()
+      (name) => selectedCategory !== "All" && name.toLowerCase() === selectedCategory.toLowerCase()
     );
 
     if (active && !visible.includes(active)) {
       visible = [active, ...visible.slice(0, MAX_VISIBLE_CATEGORIES - 1)];
     }
 
-    const visibleLabels = new Set(visible.map(([label]) => label));
+    const visibleSet = new Set(visible);
+    const hidden = all.filter((name) => !visibleSet.has(name));
 
     return {
       all,
       visible,
-      hidden: all.filter(([label]) => !visibleLabels.has(label)),
+      hidden,
     };
-  }, [items, selectedCategory]);
+  }, [categoryNames, selectedCategory]);
 
-  // Where the loaded offers actually are. The API sends addresses, not
-  // distances, so the page names the area instead of inventing "X km away".
-  const areaLabel = useMemo(() => getListingAreaLabel(items), [items]);
+  function handleCategorySelect(catName) {
+    if (catName === selectedCategory || isPending) return;
+    setSelectedCategory(catName);
+    setError("");
+
+    // Check if we have cached results for this category
+    const cached = categoryCacheRef.current.get(catName);
+    if (cached) {
+      setItems(cached.items);
+      setCursor(cached.nextCursor);
+      setAnnouncement(
+        cached.items.length === 0
+          ? `No offers found in ${catName}.`
+          : `Showing ${cached.items.length} offers in ${catName}.`
+      );
+      return;
+    }
+
+    // Otherwise, fetch from API via Server Action
+    startTransition(async () => {
+      const result = await loadMoreAds({
+        category: catName === "All" ? undefined : catName,
+      });
+
+      if (!result.ok) {
+        setError("Could not load offers for this category. Please try again.");
+        setAnnouncement("Could not load offers.");
+        return;
+      }
+
+      setItems(result.items);
+      setCursor(result.nextCursor);
+      categoryCacheRef.current.set(catName, {
+        items: result.items,
+        nextCursor: result.nextCursor,
+      });
+      setAnnouncement(
+        result.items.length === 0
+          ? `No offers found in ${catName}.`
+          : `Showing ${result.items.length} offers in ${catName}.`
+      );
+    });
+  }
+
+  function handleResetFilters() {
+    setSearchQuery("");
+    handleCategorySelect("All");
+  }
 
   function renderCategoryChip(label) {
     const isActive = selectedCategory.toLowerCase() === label.toLowerCase();
@@ -129,7 +168,7 @@ export function AdsListing({
       <button
         key={label}
         type="button"
-        onClick={() => setSelectedCategory(label)}
+        onClick={() => handleCategorySelect(label)}
         aria-pressed={isActive}
         className={cn(
           "shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
@@ -138,23 +177,17 @@ export function AdsListing({
             : "bg-canvas text-foreground-secondary hover:bg-surface-muted hover:text-primary"
         )}
       >
-        {label}
+        {label === "All" ? "All" : formatDisplayName(label)}
       </button>
     );
   }
 
-  // Client-side filtering across current items
+  // Client-side text search across items returned by the API
   const filteredItems = useMemo(() => {
+    if (!searchQuery.trim()) return items;
+
+    const q = searchQuery.toLowerCase().trim();
     return items.filter((ad) => {
-      const matchesCategory =
-        selectedCategory === "All" ||
-        ad.category?.toLowerCase() === selectedCategory.toLowerCase();
-
-      if (!matchesCategory) return false;
-
-      if (!searchQuery.trim()) return true;
-
-      const q = searchQuery.toLowerCase().trim();
       const nameMatch = ad.productName?.toLowerCase().includes(q);
       const brandMatch = ad.brandName?.toLowerCase().includes(q);
       const categoryMatch = ad.category?.toLowerCase().includes(q);
@@ -162,7 +195,7 @@ export function AdsListing({
 
       return nameMatch || brandMatch || categoryMatch || locationMatch;
     });
-  }, [items, selectedCategory, searchQuery]);
+  }, [items, searchQuery]);
 
   function handleAction(actionType, ad) {
     setModalState({
@@ -177,7 +210,11 @@ export function AdsListing({
     setError("");
 
     startTransition(async () => {
-      const result = await loadMoreAds(cursor);
+      const result = await loadMoreAds({
+        category: selectedCategory === "All" ? undefined : selectedCategory,
+        beforeCreatedAt: cursor.beforeCreatedAt,
+        beforeId: cursor.beforeId,
+      });
 
       if (!result.ok) {
         setError(
@@ -192,12 +229,19 @@ export function AdsListing({
       // Guard against overlapping IDs
       const seen = new Set(items.map((ad) => ad.id));
       const fresh = result.items.filter((ad) => !seen.has(ad.id));
+      const nextItems = [...items, ...fresh];
 
-      setItems([...items, ...fresh]);
+      setItems(nextItems);
+      setCursor(result.nextCursor);
+      categoryCacheRef.current.set(selectedCategory, {
+        items: nextItems,
+        nextCursor: result.nextCursor,
+      });
+
       setAnnouncement(
         fresh.length === 0
           ? "No further offers were found."
-          : `${fresh.length} more offers loaded. ${items.length + fresh.length} offers shown.`
+          : `${fresh.length} more offers loaded. ${nextItems.length} offers shown.`
       );
 
       if (result.nextCursor) {
@@ -209,7 +253,7 @@ export function AdsListing({
     });
   }
 
-  const showEmptyState = items.length === 0 && !cursor;
+  const showEmptyState = items.length === 0 && !cursor && !isPending;
   const isFilteringActive = searchQuery.trim() !== "" || selectedCategory !== "All";
 
   return (
@@ -313,10 +357,7 @@ export function AdsListing({
                   {isFilteringActive && (
                     <button
                       type="button"
-                      onClick={() => {
-                        setSearchQuery("");
-                        setSelectedCategory("All");
-                      }}
+                      onClick={handleResetFilters}
                       className="font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/70"
                     >
                       Reset filters
@@ -333,9 +374,7 @@ export function AdsListing({
                     aria-label="Filter offers by category"
                     className="flex items-center gap-1.5 overflow-x-auto pr-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                   >
-                    {["All", ...categoryGroups.visible.map(([label]) => label)].map(
-                      renderCategoryChip
-                    )}
+                    {["All", ...categoryGroups.visible].map(renderCategoryChip)}
                   </div>
                   <span
                     aria-hidden="true"
@@ -370,13 +409,13 @@ export function AdsListing({
                   id="all-categories-panel"
                   className="mt-3 flex flex-wrap gap-1.5 border-t border-border/60 pt-3"
                 >
-                  {categoryGroups.all.map(([label]) => renderCategoryChip(label))}
+                  {["All", ...categoryGroups.all].map(renderCategoryChip)}
                 </div>
               )}
             </div>
 
             {/* Empty Filter State */}
-            {filteredItems.length === 0 ? (
+            {!isPending && filteredItems.length === 0 ? (
               <div className="mt-10 rounded-2xl border border-dashed border-border bg-surface px-6 py-12 text-center">
                 <p className="text-base font-semibold text-foreground">
                   No offers found matching your filters
@@ -386,10 +425,7 @@ export function AdsListing({
                 </p>
                 <button
                   type="button"
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedCategory("All");
-                  }}
+                  onClick={handleResetFilters}
                   className="mt-5 inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
                   Clear all filters
@@ -401,7 +437,10 @@ export function AdsListing({
                 id={GRID_ID}
                 role="list"
                 aria-busy={isPending}
-                className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10"
+                className={cn(
+                  "mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10 transition-opacity duration-200",
+                  isPending && "opacity-60 pointer-events-none"
+                )}
               >
                 {filteredItems.map((ad, index) => (
                   <li key={ad.id}>

@@ -31,6 +31,55 @@ export const EVENTS_CURSOR_SCHEMA = z.object({
   beforeId: cursorString(EVENTS_CURSOR_LIMITS.beforeId),
 });
 
+export const EVENTS_FILTER_SCHEMA = z.object({
+  category: z
+    .string()
+    .trim()
+    .max(120)
+    .refine((value) => !SINGLE_LINE.test(value), {
+      message: "Category must be single-line text.",
+    })
+    .optional(),
+  beforeCreatedAt: cursorString(EVENTS_CURSOR_LIMITS.beforeCreatedAt).optional(),
+  beforeId: cursorString(EVENTS_CURSOR_LIMITS.beforeId).optional(),
+});
+
+/**
+ * Validate the filter and pagination argument a browser may send to the `loadMoreEvents` server action.
+ *
+ * @param {unknown} input
+ * @returns {{ category?: string, cursor: { beforeCreatedAt: string, beforeId: string } | null } | null}
+ */
+export function validateEventsFilter(input) {
+  const source = input && typeof input === "object" ? input : {};
+  const categoryRaw = typeof source.category === "string" ? source.category.trim() : undefined;
+
+  let validatedCategory;
+  if (categoryRaw) {
+    const catParsed = EVENTS_FILTER_SCHEMA.shape.category.safeParse(categoryRaw);
+    if (!catParsed.success) return null;
+    validatedCategory = catParsed.data;
+  }
+
+  // Cursor is optional, but if either beforeCreatedAt or beforeId is passed, both must be valid
+  if (source.beforeCreatedAt || source.beforeId) {
+    const cursorResult = EVENTS_CURSOR_SCHEMA.safeParse({
+      beforeCreatedAt: source.beforeCreatedAt,
+      beforeId: source.beforeId,
+    });
+    if (!cursorResult.success) return null;
+    return {
+      category: validatedCategory,
+      cursor: cursorResult.data,
+    };
+  }
+
+  return {
+    category: validatedCategory,
+    cursor: null,
+  };
+}
+
 /**
  * Validate the argument a browser may send to the `loadMoreEvents` server action.
  *

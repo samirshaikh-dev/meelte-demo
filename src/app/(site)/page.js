@@ -5,7 +5,9 @@ import { DiscoverySwitch, ListingFallback } from "@/components/sections/discover
 import { buildCollectionMetadata } from "@/lib/seo/metadata";
 import { getCollectionPageJsonLd } from "@/lib/seo/structured-data";
 import { listPublicAds } from "@/services/supabase-services/ads/get-all-ads";
+import { listAdCategories } from "@/services/supabase-services/ads/get-ad-categories";
 import { listPublicEvents } from "@/services/supabase-services/events/get-all-events";
+import { listEventCategories } from "@/services/supabase-services/events/get-event-categories";
 import { LISTING_PAGE_SIZE } from "@/services/supabase-services/shared/constants";
 
 const PAGE_PATH = "/";
@@ -34,9 +36,11 @@ export const metadata = buildCollectionMetadata({
  * Emits CollectionPage schema covering only the server-rendered offers.
  */
 async function DiscoveryContent() {
-  const [adsResult, eventsResult] = await Promise.allSettled([
+  const [adsResult, eventsResult, adCategoriesResult, eventCategoriesResult] = await Promise.allSettled([
     listPublicAds({ limit: LISTING_PAGE_SIZE }),
     listPublicEvents({ limit: LISTING_PAGE_SIZE }),
+    listAdCategories(),
+    listEventCategories(),
   ]);
 
   const adsPage = adsResult.status === "fulfilled" ? adsResult.value : [];
@@ -48,6 +52,7 @@ async function DiscoveryContent() {
       ? { beforeCreatedAt: lastAd.createdAt, beforeId: lastAd.id }
       : null;
   const liveAds = adsPage.filter((ad) => !ad.hasEnded);
+  const adCategories = adCategoriesResult.status === "fulfilled" ? adCategoriesResult.value : [];
 
   const eventsPage = eventsResult.status === "fulfilled" ? eventsResult.value : [];
   const eventsUnavailable = eventsResult.status === "rejected";
@@ -58,6 +63,7 @@ async function DiscoveryContent() {
       ? { beforeCreatedAt: lastEvent.createdAt, beforeId: lastEvent.id }
       : null;
   const liveEvents = eventsPage.filter((event) => !event.hasEnded);
+  const eventCategories = eventCategoriesResult.status === "fulfilled" ? eventCategoriesResult.value : [];
 
   // Schema: CollectionPage covering only the offers actually rendered in server HTML.
   // BreadcrumbList is not emitted on / per AI_RULE.md §2.7 exemption.
@@ -87,11 +93,13 @@ async function DiscoveryContent() {
       <DiscoverySwitch
         ads={{
           items: liveAds,
+          categories: adCategories,
           nextCursor: nextAdsCursor,
           unavailable: adsUnavailable,
         }}
         events={{
           items: liveEvents,
+          categories: eventCategories,
           nextCursor: nextEventsCursor,
           unavailable: eventsUnavailable,
         }}

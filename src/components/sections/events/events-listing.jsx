@@ -5,26 +5,25 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Container } from "@/components/layout/container";
 import { StoreButton } from "@/components/layout/store-button";
 import { Button } from "@/components/ui/button";
-import { Bell, CalendarDays, PlusCircle, Search, Sparkles, X } from "@/lib/icons";
+import { PlusCircle, Search, X } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 import { loadMoreEvents } from "@/utils/events/load-more-events";
 import { EventCard } from "./event-card";
 import { AppActionModal } from "./app-action-modal";
+import { formatDisplayName } from "@/lib/display-name";
 
 const GRID_ID = "events-grid";
 
-const CORE_CATEGORIES = ["All", "Social", "Sports", "Music", "Workshops", "Community"];
-
 /**
- * The `/events` listing grid with live search, category filtering, on-demand
+ * The `/events` listing grid with live search, API category filtering, on-demand
  * pagination, and mobile app action gating.
  *
  * Browsing is open and crawlable: the first 20 events arrive server-rendered.
- * In-app actions (requesting to join, messaging hosts, saving events, or hosting)
- * trigger the AppActionModal directing visitors to the mobile app.
+ * Category filtering calls the Web API with `p_category` via Server Action.
  */
 export function EventsListing({
   events = [],
+  categories = [],
   breadcrumbs = [],
   unavailable = false,
   nextCursor = null,
@@ -41,6 +40,17 @@ export function EventsListing({
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // Cache fetched results per category in memory for instant switching
+  const categoryCacheRef = useRef(new Map());
+
+  // Initialize/sync "All" category cache with props
+  useEffect(() => {
+    categoryCacheRef.current.set("All", {
+      items: events,
+      nextCursor,
+    });
+  }, [events, nextCursor]);
 
   // App Action Modal state
   const [modalState, setModalState] = useState({
@@ -60,35 +70,78 @@ export function EventsListing({
     }
   }, [cursor]);
 
-  // Compute available categories dynamically from incoming items
-  const categories = useMemo(() => {
-    const fromItems = new Set();
+  /**
+   * Category list derived from the API (`web_list_event_categories`).
+   * Fallback to extracting from loaded items if category endpoint data is absent.
+   */
+  const categoryNames = useMemo(() => {
+    if (Array.isArray(categories) && categories.length > 0) {
+      return categories
+        .map((c) => (typeof c === "string" ? c : c?.category))
+        .filter(Boolean);
+    }
+    const set = new Set();
     items.forEach((event) => {
-      if (event.category) {
-        fromItems.add(event.category.trim());
-      }
+      if (event.category) set.add(event.category.trim());
     });
-    const combined = [...CORE_CATEGORIES];
-    fromItems.forEach((cat) => {
-      if (!combined.some((c) => c.toLowerCase() === cat.toLowerCase())) {
-        combined.push(cat);
-      }
-    });
-    return combined;
-  }, [items]);
+    return Array.from(set);
+  }, [categories, items]);
 
-  // Client-side filtering across current items
+  function handleCategorySelect(catName) {
+    if (catName === selectedCategory || isPending) return;
+    setSelectedCategory(catName);
+    setError("");
+
+    // Check if we have cached results for this category
+    const cached = categoryCacheRef.current.get(catName);
+    if (cached) {
+      setItems(cached.items);
+      setCursor(cached.nextCursor);
+      setAnnouncement(
+        cached.items.length === 0
+          ? `No events found in ${catName}.`
+          : `Showing ${cached.items.length} events in ${catName}.`
+      );
+      return;
+    }
+
+    // Otherwise, fetch from API via Server Action
+    startTransition(async () => {
+      const result = await loadMoreEvents({
+        category: catName === "All" ? undefined : catName,
+      });
+
+      if (!result.ok) {
+        setError("Could not load events for this category. Please try again.");
+        setAnnouncement("Could not load events.");
+        return;
+      }
+
+      setItems(result.items);
+      setCursor(result.nextCursor);
+      categoryCacheRef.current.set(catName, {
+        items: result.items,
+        nextCursor: result.nextCursor,
+      });
+      setAnnouncement(
+        result.items.length === 0
+          ? `No events found in ${catName}.`
+          : `Showing ${result.items.length} events in ${catName}.`
+      );
+    });
+  }
+
+  function handleResetFilters() {
+    setSearchQuery("");
+    handleCategorySelect("All");
+  }
+
+  // Client-side text search across items returned by the API
   const filteredItems = useMemo(() => {
+    if (!searchQuery.trim()) return items;
+
+    const q = searchQuery.toLowerCase().trim();
     return items.filter((event) => {
-      const matchesCategory =
-        selectedCategory === "All" ||
-        event.category?.toLowerCase() === selectedCategory.toLowerCase();
-
-      if (!matchesCategory) return false;
-
-      if (!searchQuery.trim()) return true;
-
-      const q = searchQuery.toLowerCase().trim();
       const titleMatch = event.title?.toLowerCase().includes(q);
       const hostMatch = event.creatorName?.toLowerCase().includes(q);
       const categoryMatch = event.category?.toLowerCase().includes(q);
@@ -98,7 +151,7 @@ export function EventsListing({
 
       return titleMatch || hostMatch || categoryMatch || locationMatch;
     });
-  }, [items, selectedCategory, searchQuery]);
+  }, [items, searchQuery]);
 
   function handleAction(actionType, event) {
     setModalState({
@@ -113,7 +166,11 @@ export function EventsListing({
     setError("");
 
     startTransition(async () => {
-      const result = await loadMoreEvents(cursor);
+      const result = await loadMoreEvents({
+        category: selectedCategory === "All" ? undefined : selectedCategory,
+        beforeCreatedAt: cursor.beforeCreatedAt,
+        beforeId: cursor.beforeId,
+      });
 
       if (!result.ok) {
         setError(
@@ -128,12 +185,19 @@ export function EventsListing({
       // Guard against overlapping IDs
       const seen = new Set(items.map((event) => event.id));
       const fresh = result.items.filter((event) => !seen.has(event.id));
+      const nextItems = [...items, ...fresh];
 
-      setItems([...items, ...fresh]);
+      setItems(nextItems);
+      setCursor(result.nextCursor);
+      categoryCacheRef.current.set(selectedCategory, {
+        items: nextItems,
+        nextCursor: result.nextCursor,
+      });
+
       setAnnouncement(
         fresh.length === 0
           ? "No further events were found."
-          : `${fresh.length} more events loaded. ${items.length + fresh.length} events shown.`
+          : `${fresh.length} more events loaded. ${nextItems.length} events shown.`
       );
 
       if (result.nextCursor) {
@@ -145,7 +209,7 @@ export function EventsListing({
     });
   }
 
-  const showEmptyState = items.length === 0 && !cursor;
+  const showEmptyState = items.length === 0 && !cursor && !isPending;
   const isFilteringActive = searchQuery.trim() !== "" || selectedCategory !== "All";
 
   return (
@@ -249,10 +313,7 @@ export function EventsListing({
                   {isFilteringActive && (
                     <button
                       type="button"
-                      onClick={() => {
-                        setSearchQuery("");
-                        setSelectedCategory("All");
-                      }}
+                      onClick={handleResetFilters}
                       className="font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/70"
                     >
                       Reset filters
@@ -266,13 +327,13 @@ export function EventsListing({
                 <span className="text-xs font-semibold text-foreground-secondary mr-1">
                   Categories:
                 </span>
-                {categories.map((cat) => {
+                {["All", ...categoryNames].map((cat) => {
                   const isActive = selectedCategory.toLowerCase() === cat.toLowerCase();
                   return (
                     <button
                       key={cat}
                       type="button"
-                      onClick={() => setSelectedCategory(cat)}
+                      onClick={() => handleCategorySelect(cat)}
                       className={cn(
                         "rounded-full px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70",
                         isActive
@@ -281,7 +342,7 @@ export function EventsListing({
                       )}
                       aria-pressed={isActive}
                     >
-                      {cat}
+                      {cat === "All" ? "All" : formatDisplayName(cat)}
                     </button>
                   );
                 })}
@@ -289,7 +350,7 @@ export function EventsListing({
             </div>
 
             {/* Empty Filter State */}
-            {filteredItems.length === 0 ? (
+            {!isPending && filteredItems.length === 0 ? (
               <div className="mt-10 rounded-2xl border border-dashed border-border bg-surface px-6 py-12 text-center">
                 <p className="text-base font-semibold text-foreground">
                   No events found matching your filters
@@ -300,10 +361,7 @@ export function EventsListing({
                 </p>
                 <button
                   type="button"
-                  onClick={() => {
-                    setSearchQuery("");
-                    setSelectedCategory("All");
-                  }}
+                  onClick={handleResetFilters}
                   className="mt-5 inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
                   Clear all filters
@@ -315,7 +373,10 @@ export function EventsListing({
                 id={GRID_ID}
                 role="list"
                 aria-busy={isPending}
-                className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10"
+                className={cn(
+                  "mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10 transition-opacity duration-200",
+                  isPending && "opacity-60 pointer-events-none"
+                )}
               >
                 {filteredItems.map((event, index) => (
                   <li key={event.id}>

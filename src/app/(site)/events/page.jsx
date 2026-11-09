@@ -9,6 +9,7 @@ import {
   getCollectionPageJsonLd,
 } from "@/lib/seo/structured-data";
 import { listPublicEvents } from "@/services/supabase-services/events/get-all-events";
+import { listEventCategories } from "@/services/supabase-services/events/get-event-categories";
 import { LISTING_PAGE_SIZE } from "@/services/supabase-services/shared/constants";
 
 const BREADCRUMBS = [
@@ -43,12 +44,22 @@ export const metadata = buildCollectionMetadata({
  */
 async function EventsPageContent() {
   let page = [];
+  let eventCategories = [];
   let unavailable = false;
 
-  try {
-    page = await listPublicEvents({ limit: LISTING_PAGE_SIZE });
-  } catch {
+  const [eventsResult, categoriesResult] = await Promise.allSettled([
+    listPublicEvents({ limit: LISTING_PAGE_SIZE }),
+    listEventCategories(),
+  ]);
+
+  if (eventsResult.status === "fulfilled") {
+    page = eventsResult.value;
+  } else {
     unavailable = true;
+  }
+
+  if (categoriesResult.status === "fulfilled") {
+    eventCategories = categoriesResult.value;
   }
 
   const last = page[page.length - 1];
@@ -84,6 +95,7 @@ async function EventsPageContent() {
       />
       <EventsListing
         events={liveEvents}
+        categories={eventCategories}
         breadcrumbs={BREADCRUMBS}
         unavailable={unavailable}
         nextCursor={nextCursor}

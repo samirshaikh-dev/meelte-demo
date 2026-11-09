@@ -22,11 +22,12 @@ export async function listPublicAds({
   beforeId,
   forSitemap = false,
 } = {}) {
+  const isAll = !categoryName || categoryName.trim().toLowerCase() === "all";
   const data = await request(
     "web_list_ads",
     {
       p_limit: normalizeLimit(limit),
-      ...(categoryName && { p_category: text(categoryName, 120) }),
+      ...(!isAll && { p_category: text(categoryName, 120) }),
       ...(beforeCreatedAt && { p_before_created_at: beforeCreatedAt }),
       ...(beforeId && { p_before_id: beforeId }),
     },

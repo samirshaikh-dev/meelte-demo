@@ -40,6 +40,7 @@ export function DiscoverySwitch({ ads, events }) {
         {view === "ads" ? (
           <AdsListing
             ads={ads?.items || []}
+            categories={ads?.categories || []}
             nextCursor={ads?.nextCursor || null}
             unavailable={Boolean(ads?.unavailable)}
             toggleControl={toggle}
@@ -48,6 +49,7 @@ export function DiscoverySwitch({ ads, events }) {
         ) : (
           <EventsListing
             events={events?.items || []}
+            categories={events?.categories || []}
             nextCursor={events?.nextCursor || null}
             unavailable={Boolean(events?.unavailable)}
             toggleControl={toggle}

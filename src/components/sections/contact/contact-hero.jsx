@@ -31,7 +31,7 @@ export function ContactHero() {
             </span>
             <span className="text-border" aria-hidden="true">·</span>
             <span className="text-xs font-medium text-foreground-secondary">
-              Real Humans • Real Help
+              Real Rapport • Real Reach
             </span>
           </div>
 

@@ -24,4 +24,6 @@ export const MAX_SITEMAP_PAGES = 1000;
 export const CACHE_TAGS = {
   ads: "meelte-public-ads",
   events: "meelte-public-events",
+  adCategories: "meelte-public-ad-categories",
+  eventCategories: "meelte-public-event-categories",
 };
