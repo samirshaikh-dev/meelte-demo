@@ -14,6 +14,7 @@ import {
   Store,
   ChevronDown,
   Briefcase,
+  Newspaper,
   HelpCircle,
   Home,
 } from "../../lib/icons";
@@ -46,6 +47,7 @@ export function MobileNav() {
       (pathname === item.href || pathname?.startsWith(`${item.href}/`))
   );
   const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
+  const isBlogActive = pathname === "/blog" || pathname?.startsWith("/blog/");
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -198,6 +200,29 @@ export function MobileNav() {
                 <Briefcase className="h-3.5 w-3.5" aria-hidden="true" />
               </div>
               <span>Careers</span>
+            </Link>
+
+            {/* Blog - Direct Link */}
+            <Link
+              href="/blog"
+              onClick={() => setOpen(false)}
+              className={`group flex items-center gap-3 rounded-xl p-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-inset ${
+                isBlogActive
+                  ? "bg-surface-muted text-primary"
+                  : "text-foreground hover:bg-surface-muted hover:text-primary"
+              }`}
+              aria-current={isBlogActive ? "page" : undefined}
+            >
+              <div
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-primary transition-colors ${
+                  isBlogActive
+                    ? "bg-primary text-white"
+                    : "bg-surface-muted group-hover:bg-primary group-hover:text-white"
+                }`}
+              >
+                <Newspaper className="h-3.5 w-3.5" aria-hidden="true" />
+              </div>
+              <span>Blog</span>
             </Link>
 
             {/* Company Accordion */}

@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   Briefcase,
   Users,
+  Newspaper,
   LogOut,
   X,
   Loader2,
@@ -30,6 +31,11 @@ const NAV_ITEMS = [
     name: "Candidates",
     href: "/hr/candidates",
     icon: Users,
+  },
+  {
+    name: "Blog",
+    href: "/hr/blog",
+    icon: Newspaper,
   },
 ];
 

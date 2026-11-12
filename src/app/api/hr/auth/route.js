@@ -1,25 +1,6 @@
 import { NextResponse } from "next/server";
 import { getClientIdentifier, loginHr, logoutHr, getHrSession } from "@/services/hr/auth";
-
-/**
- * Validates request Origin against Host to prevent CSRF attacks on cookie-based endpoints.
- *
- * @param {Request} request
- * @returns {boolean}
- */
-function isOriginAllowed(request) {
-  const origin = request.headers.get("origin");
-  const host = request.headers.get("host");
-
-  if (!origin || !host) return true; // Direct same-origin or programmatic server call
-
-  try {
-    const originHost = new URL(origin).host;
-    return originHost === host;
-  } catch {
-    return false;
-  }
-}
+import { isSameOriginRequest } from "@/utils/security/origin-guard";
 
 /**
  * /api/hr/auth
@@ -36,7 +17,7 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  if (!isOriginAllowed(request)) {
+  if (!isSameOriginRequest(request)) {
     return NextResponse.json(
       { ok: false, error: "Cross-site request blocked." },
       { status: 403 }
@@ -73,7 +54,7 @@ export async function POST(request) {
 }
 
 export async function DELETE(request) {
-  if (!isOriginAllowed(request)) {
+  if (!isSameOriginRequest(request)) {
     return NextResponse.json(
       { ok: false, error: "Cross-site request blocked." },
       { status: 403 }

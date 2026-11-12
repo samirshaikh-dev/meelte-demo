@@ -13,6 +13,13 @@ import {
   addCandidateNote as addCandidateNoteService,
   uploadCandidateResume,
 } from "@/services/hr/candidates";
+import {
+  fetchHrBlogPosts,
+  createHrBlogPost,
+  updateHrBlogPost,
+  deleteHrBlogPost,
+} from "@/services/hr/blog";
+import { fetchWithAuth } from "@/lib/hr-api-client";
 import { notifySuccess, notifyInfo, notifyError } from "@/lib/toast-feedback";
 
 const HrContext = createContext(null);
@@ -20,6 +27,7 @@ const HrContext = createContext(null);
 export function HrProvider({ children }) {
   const [jobs, setJobs] = useState([]);
   const [candidates, setCandidates] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -33,6 +41,7 @@ export function HrProvider({ children }) {
 
   // Delete Confirmation Dialog State
   const [deletingJobId, setDeletingJobId] = useState(null);
+  const [deletingBlogPostId, setDeletingBlogPostId] = useState(null);
 
   // Reusable manual retry handler for user events (buttons, retry triggers)
   const refetchData = useCallback(async () => {
@@ -40,7 +49,7 @@ export function HrProvider({ children }) {
     setError(null);
 
     try {
-      const response = await fetch("/api/hr/dashboard", {
+      const response = await fetchWithAuth("/api/hr/dashboard", {
         headers: { Accept: "application/json" },
         cache: "no-store",
       });
@@ -50,18 +59,21 @@ export function HrProvider({ children }) {
         if (result.success && result.data) {
           setJobs(result.data.jobs || []);
           setCandidates(result.data.candidates || []);
+          setBlogPosts(result.data.blogPosts || []);
           setError(null);
           return;
         }
       }
 
-      const [directJobs, directCandidates] = await Promise.all([
+      const [directJobs, directCandidates, directBlogPosts] = await Promise.all([
         fetchHrJobs(),
         fetchHrCandidates(),
+        fetchHrBlogPosts(),
       ]);
 
       setJobs(directJobs || []);
       setCandidates(directCandidates || []);
+      setBlogPosts(directBlogPosts || []);
       setError(null);
     } catch (err) {
       console.error("[HR Dashboard Error]: Failed to fetch live data from database:", err);
@@ -75,7 +87,7 @@ export function HrProvider({ children }) {
   useEffect(() => {
     let ignore = false;
 
-    fetch("/api/hr/dashboard", {
+    fetchWithAuth("/api/hr/dashboard", {
       headers: { Accept: "application/json" },
       cache: "no-store",
     })
@@ -85,15 +97,21 @@ export function HrProvider({ children }) {
           if (result?.success && result?.data) {
             setJobs(result.data.jobs || []);
             setCandidates(result.data.candidates || []);
+            setBlogPosts(result.data.blogPosts || []);
             setError(null);
             setIsLoading(false);
           } else {
             // Direct client SDK fallback
-            Promise.all([fetchHrJobs(), fetchHrCandidates()])
-              .then(([directJobs, directCandidates]) => {
+            Promise.all([
+              fetchHrJobs(),
+              fetchHrCandidates(),
+              fetchHrBlogPosts(),
+            ])
+              .then(([directJobs, directCandidates, directBlogPosts]) => {
                 if (!ignore) {
                   setJobs(directJobs || []);
                   setCandidates(directCandidates || []);
+                  setBlogPosts(directBlogPosts || []);
                   setError(null);
                 }
               })
@@ -161,7 +179,7 @@ export function HrProvider({ children }) {
 
     // Backend API persistence with client SDK fallback
     try {
-      const res = await fetch("/api/hr/jobs", {
+      const res = await fetchWithAuth("/api/hr/jobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newJob),
@@ -204,7 +222,7 @@ export function HrProvider({ children }) {
 
     // Backend API persistence with client SDK fallback
     try {
-      const res = await fetch(`/api/hr/jobs/${id}`, {
+      const res = await fetchWithAuth(`/api/hr/jobs/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedFields),
@@ -240,7 +258,7 @@ export function HrProvider({ children }) {
 
     // Backend API persistence with client SDK fallback
     try {
-      const res = await fetch(`/api/hr/jobs/${id}`, {
+      const res = await fetchWithAuth(`/api/hr/jobs/${id}`, {
         method: "DELETE",
       });
       if (res.ok) return;
@@ -270,7 +288,7 @@ export function HrProvider({ children }) {
 
     // Backend API persistence with client SDK fallback
     try {
-      const res = await fetch(`/api/hr/jobs/${id}`, {
+      const res = await fetchWithAuth(`/api/hr/jobs/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
@@ -285,6 +303,207 @@ export function HrProvider({ children }) {
     } catch (err) {
       if (process.env.NODE_ENV !== "production") {
         console.warn("[HrProvider] Cloud job status update fallback:", err.message);
+      }
+    }
+  };
+
+  // Actions: Blog CMS
+  const getBlogPostById = (id) => {
+    return blogPosts.find((p) => p.id === id) || null;
+  };
+
+  /**
+   * Shared API-first helper for blog writes.
+   *
+   * Mirrors the jobs actions (REST route first, client SDK fallback), with
+   * one deliberate difference: a 4xx rejection from `/api/hr/blog` — a zod
+   * validation failure at the write boundary — is surfaced to the caller and
+   * never retried through the client SDK, because bypassing it could push a
+   * half-empty story live on `/blog`. Only transport failures and 5xx fall
+   * back to the SDK.
+   *
+   * @returns {{ data: Object|null, error: string|null }}
+   */
+  const requestBlogWrite = async (url, options) => {
+    try {
+      const res = await fetchWithAuth(url, options);
+      const json = await res.json().catch(() => null);
+
+      if (res.ok && json?.success && json.data) {
+        return { data: json.data, error: null };
+      }
+
+      if (res.status >= 400 && res.status < 500) {
+        return { data: null, error: json?.error || "The story could not be saved." };
+      }
+
+      // 5xx or malformed success payload — fall through to the SDK fallback.
+      return { data: null, error: null, retryViaSdk: true };
+    } catch {
+      // Network failure — fall through to the SDK fallback.
+      return { data: null, error: null, retryViaSdk: true };
+    }
+  };
+
+  const createBlogPost = async (postData) => {
+    const nowIso = new Date().toISOString();
+    const newId = postData.id || `post-${Date.now()}`;
+
+    const optimisticPost = {
+      ...postData,
+      id: newId,
+      featured: Boolean(postData.featured),
+      createdAt: nowIso,
+      updatedAt: nowIso,
+      publishedAt: postData.status === "published" ? nowIso : null,
+    };
+
+    // Optimistic UI update
+    setBlogPosts((prev) => [optimisticPost, ...prev]);
+
+    const result = await requestBlogWrite("/api/hr/blog", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(postData),
+    });
+
+    if (result.error) {
+      // Validation failure — remove the optimistic entry and report it.
+      setBlogPosts((prev) => prev.filter((p) => p.id !== newId));
+      throw new Error(result.error);
+    }
+
+    if (result.data) {
+      setBlogPosts((prev) =>
+        prev.map((p) => (p.id === newId ? result.data : p))
+      );
+      return result.data;
+    }
+
+    // Client SDK fallback (transport failure / 5xx only)
+    try {
+      return await createHrBlogPost({ ...postData, id: newId });
+    } catch (err) {
+      setBlogPosts((prev) => prev.filter((p) => p.id !== newId));
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[HrProvider] Cloud blog post creation fallback:", err.message);
+      }
+      throw new Error("The story could not be saved. Please try again.");
+    }
+  };
+
+  const updateBlogPost = async (id, updatedFields) => {
+    const previousPost = blogPosts.find((p) => p.id === id);
+
+    // Optimistic UI update
+    setBlogPosts((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, ...updatedFields } : p))
+    );
+
+    const result = await requestBlogWrite(`/api/hr/blog/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedFields),
+    });
+
+    if (result.error) {
+      // Validation failure — restore the previous state and report it.
+      if (previousPost) {
+        setBlogPosts((prev) =>
+          prev.map((p) => (p.id === id ? previousPost : p))
+        );
+      }
+      throw new Error(result.error);
+    }
+
+    if (result.data) {
+      return result.data;
+    }
+
+    // Client SDK fallback (transport failure / 5xx only)
+    try {
+      return await updateHrBlogPost(id, updatedFields);
+    } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[HrProvider] Cloud blog post update fallback:", err.message);
+      }
+      throw new Error("The story could not be saved. Please try again.");
+    }
+  };
+
+  const updateBlogPostStatus = async (id, newStatus) => {
+    const previousPost = blogPosts.find((p) => p.id === id);
+
+    // Optimistic UI update
+    setBlogPosts((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, status: newStatus } : p))
+    );
+
+    const result = await requestBlogWrite(`/api/hr/blog/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: newStatus }),
+    });
+
+    if (result.error) {
+      // The API refused the transition (e.g. publishing an incomplete draft)
+      // — restore the previous state and explain why.
+      if (previousPost) {
+        setBlogPosts((prev) =>
+          prev.map((p) => (p.id === id ? previousPost : p))
+        );
+      }
+      notifyError(result.error);
+      return null;
+    }
+
+    if (result.data) {
+      notifySuccess(`Story status updated to "${newStatus}".`);
+      return result.data;
+    }
+
+    // Client SDK fallback (transport failure / 5xx only)
+    try {
+      await updateHrBlogPost(id, { status: newStatus });
+      notifySuccess(`Story status updated to "${newStatus}".`);
+      return { ...previousPost, status: newStatus };
+    } catch (err) {
+      if (previousPost) {
+        setBlogPosts((prev) =>
+          prev.map((p) => (p.id === id ? previousPost : p))
+        );
+      }
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[HrProvider] Cloud blog status update fallback:", err.message);
+      }
+      notifyError("Failed to update the story status.");
+      return null;
+    }
+  };
+
+  const deleteBlogPost = async (id) => {
+    const targetPost = blogPosts.find((p) => p.id === id);
+
+    // Optimistic UI update
+    setBlogPosts((prev) => prev.filter((p) => p.id !== id));
+    setDeletingBlogPostId(null);
+    notifyInfo(`Story "${targetPost?.title || id}" deleted.`);
+
+    // Backend API persistence with client SDK fallback
+    try {
+      const res = await fetchWithAuth(`/api/hr/blog/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) return;
+    } catch {
+      // Fallback to client SDK
+    }
+
+    try {
+      await deleteHrBlogPost(id);
+    } catch (err) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[HrProvider] Cloud blog deletion fallback:", err.message);
       }
     }
   };
@@ -389,6 +608,7 @@ export function HrProvider({ children }) {
   const value = {
     jobs,
     candidates,
+    blogPosts,
     stats,
     isLoading,
     error,
@@ -405,6 +625,13 @@ export function HrProvider({ children }) {
     updateJob,
     deleteJob,
     updateJobStatus,
+    deletingBlogPostId,
+    setDeletingBlogPostId,
+    getBlogPostById,
+    createBlogPost,
+    updateBlogPost,
+    updateBlogPostStatus,
+    deleteBlogPost,
     openCandidateModal,
     closeCandidateModal,
     updateCandidateStatus,

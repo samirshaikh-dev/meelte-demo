@@ -115,6 +115,7 @@ export function Navbar() {
       (pathname === link.href || pathname?.startsWith(`${link.href}/`))
   );
   const isCareersActive = pathname === "/careers" || pathname?.startsWith("/careers/");
+  const isBlogActive = pathname === "/blog" || pathname?.startsWith("/blog/");
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/90 shadow-2xs backdrop-blur-md transition-colors duration-200">
@@ -247,6 +248,20 @@ export function Navbar() {
             aria-current={isCareersActive ? "page" : undefined}
           >
             <span>Careers</span>
+          </Link>
+
+          {/* Blog - Direct Link */}
+          <Link
+            href="/blog"
+            onMouseEnter={() => handleMouseEnter(null)}
+            className={`inline-flex items-center rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 ${
+              isBlogActive
+                ? "bg-surface-muted text-primary font-semibold"
+                : "text-foreground-secondary hover:text-foreground hover:bg-surface-muted/60"
+            }`}
+            aria-current={isBlogActive ? "page" : undefined}
+          >
+            <span>Blog</span>
           </Link>
 
           {/* Company Dropdown */}

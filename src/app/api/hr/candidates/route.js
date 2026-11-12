@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/logger";
 import { getHrSession } from "@/services/hr/auth";
-import { fetchHrCandidates, createCandidateApplication } from "@/services/hr/candidates";
+import { fetchHrCandidates, createCandidateApplication } from "@/services/hr/server";
 import { candidateApplicationSchema } from "@/validation/hr/candidate-validation";
 
 /**

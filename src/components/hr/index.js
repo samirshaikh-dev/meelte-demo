@@ -23,6 +23,9 @@ export * from "./candidates/candidates-filter-bar";
 export * from "./candidates/candidates-table";
 export * from "./candidates/candidate-detail-modal";
 
+// Blog CMS Modules
+export * from "./blog";
+
 // Login Modules
 export * from "./login";
 

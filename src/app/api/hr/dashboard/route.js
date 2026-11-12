@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/logger";
 import { getHrSession } from "@/services/hr/auth";
-import { fetchHrJobs } from "@/services/hr/jobs";
-import { fetchHrCandidates } from "@/services/hr/candidates";
+import { fetchHrJobs, fetchHrCandidates, fetchHrBlogPosts } from "@/services/hr/server";
 
 /**
  * GET /api/hr/dashboard
  *
  * Secure server-side endpoint providing aggregated dashboard metrics,
- * live job requisitions, and candidate applications for the HR portal.
+ * live job requisitions, candidate applications and blog posts for the HR
+ * portal. Blog posts ride the same aggregate so `HrProvider` needs no second
+ * initial fetch; the dashboard stat cards still consume only jobs and
+ * candidates.
  */
 export async function GET() {
   try {
@@ -24,9 +26,10 @@ export async function GET() {
       );
     }
 
-    const [jobs, candidates] = await Promise.all([
+    const [jobs, candidates, blogPosts] = await Promise.all([
       fetchHrJobs(),
       fetchHrCandidates(),
+      fetchHrBlogPosts(),
     ]);
 
     const totalRegisteredCandidates = candidates.length;
@@ -42,6 +45,7 @@ export async function GET() {
       data: {
         jobs,
         candidates,
+        blogPosts,
         stats: {
           totalRegisteredCandidates,
           totalActiveJobs,

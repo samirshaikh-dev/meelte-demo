@@ -92,17 +92,6 @@ export default function HrDashboardPage() {
             Dashboard
           </h1>
         </div>
-
-        <div className="flex items-center gap-2">
-          <Link
-            href="/careers"
-            target="_blank"
-            className="group inline-flex items-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-foreground-secondary hover:bg-surface-muted hover:text-primary transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
-          >
-            <span>Public Careers</span>
-            <ArrowUpRight className="h-3.5 w-3.5 text-foreground-muted group-hover:text-primary transition-colors" aria-hidden="true" />
-          </Link>
-        </div>
       </div>
 
       {/* Warning Notice if partial error occurred while displaying cached data */}

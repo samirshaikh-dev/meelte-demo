@@ -1,6 +1,6 @@
 import "server-only";
 import { cacheLife } from "next/cache";
-import { fetchHrJobs, fetchHrJobBySlugOrId } from "@/services/hr/jobs";
+import { fetchHrJobs, fetchHrJobBySlugOrId } from "@/services/hr/server";
 
 /**
  * Returns today's date formatted as YYYY-MM-DD.

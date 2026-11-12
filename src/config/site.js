@@ -15,7 +15,15 @@ export const APP_NAME = "meelTe";
 export const SITE_NAME = "meelTe";
 export const APP_TAGLINE = "Discover Opportunities. Build Connections. Create Experiences.";
 export const APP_DESCRIPTION = "meelTe is a hyperlocal community platform connecting residents with nearby offers, events and people across India.";
-export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL;
+/**
+ * Canonical site origin, with no trailing slash.
+ *
+ * Every consumer concatenates paths directly (`${APP_URL}/about`), so a value
+ * ending in `/` produced `https://…//about` in the sitemap, robots.txt and every
+ * canonical tag. Normalising once here fixes all of them, regardless of how the
+ * environment happens to be formatted.
+ */
+export const APP_URL = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "");
 export const API_BASE_URL = process.env.NEXT_PUBLIC_meelTe_API_BASE_URL;
 export const SUPPORT_EMAIL = "support@meelTe.com";
 export const HR_EMAIL = "hr@meelTe.com";

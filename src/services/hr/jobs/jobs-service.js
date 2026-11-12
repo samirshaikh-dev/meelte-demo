@@ -56,9 +56,7 @@ export async function fetchHrJobs() {
 
     return snapshot.docs.map(normalizeJob);
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.warn("[Jobs Service] Error fetching jobs:", error.message);
-    }
+    console.error("[Jobs Service] Error fetching jobs:", error);
     return [];
   }
 }

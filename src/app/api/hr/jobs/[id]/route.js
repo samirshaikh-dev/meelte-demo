@@ -4,7 +4,7 @@ import {
   fetchHrJobById,
   updateHrJob,
   deleteHrJob,
-} from "@/services/hr/jobs";
+} from "@/services/hr/server";
 
 /**
  * /api/hr/jobs/[id]

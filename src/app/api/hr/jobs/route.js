@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { logger } from "@/lib/logger";
 import { getHrSession } from "@/services/hr/auth";
-import { fetchHrJobs, createHrJob } from "@/services/hr/jobs";
+import { fetchHrJobs, createHrJob } from "@/services/hr/server";
 
 /**
  * /api/hr/jobs

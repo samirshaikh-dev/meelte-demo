@@ -47,9 +47,7 @@ export async function fetchHrCandidates() {
 
     return snapshot.docs.map(normalizeCandidate);
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.warn("[Candidates Service] Error fetching candidates:", error.message);
-    }
+    console.error("[Candidates Service] Error fetching candidates:", error);
     return [];
   }
 }

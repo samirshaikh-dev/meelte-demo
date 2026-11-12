@@ -1,6 +1,7 @@
 import { APP_URL } from "../config/site";
 import { allLiveAds } from "@/services/supabase-services/ads/get-all-ads";
 import { allLiveEvents } from "@/services/supabase-services/events/get-all-events";
+import { fetchPublicBlogPosts } from "@/services/site/blog";
 
 // Stable release date for static pages to ensure search engine crawl trust & deterministic SSG
 const STABLE_RELEASE_DATE = "2026-08-01T00:00:00.000Z";
@@ -21,6 +22,7 @@ export default async function sitemap() {
     { path: "/for-merchants", changeFrequency: "weekly", priority: 0.9 },
     { path: "/how-it-works", changeFrequency: "monthly", priority: 0.9 },
     { path: "/events", changeFrequency: "hourly", priority: 0.8 },
+    { path: "/blog", changeFrequency: "weekly", priority: 0.85 },
     { path: "/about", changeFrequency: "monthly", priority: 0.85 },
     { path: "/signup", changeFrequency: "monthly", priority: 0.8 },
     { path: "/contact", changeFrequency: "monthly", priority: 0.8 },
@@ -39,7 +41,14 @@ export default async function sitemap() {
   }));
 
   try {
-    const [ads, events] = await Promise.all([allLiveAds(), allLiveEvents()]);
+    // Each source is caught individually so one unavailable backend (missing
+    // key, upstream outage) never drops the other two sets from the sitemap.
+    const [ads, events, posts] = await Promise.all([
+      allLiveAds().catch(() => []),
+      allLiveEvents().catch(() => []),
+      fetchPublicBlogPosts({ pageSize: 100 }).catch(() => []),
+    ]);
+
     const dynamicEntries = [
       ...ads.filter((ad) => !ad.hasEnded).map((ad) => ({
         url: `${siteUrl}/ads/${encodeURIComponent(ad.id)}`,
@@ -52,6 +61,12 @@ export default async function sitemap() {
         lastModified: event.createdAt || STABLE_RELEASE_DATE,
         changeFrequency: "hourly",
         priority: 0.8,
+      })),
+      ...posts.map((post) => ({
+        url: `${siteUrl}/blog/${encodeURIComponent(post.slug)}`,
+        lastModified: post.updatedAt || post.publishedAt || STABLE_RELEASE_DATE,
+        changeFrequency: "weekly",
+        priority: 0.75,
       })),
     ];
 
