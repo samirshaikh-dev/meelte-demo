@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, connection } from "next/server";
 import { logger } from "@/lib/logger";
 import { fetchPublicBlogPosts } from "@/services/site/blog";
 import { DEFAULT_BLOG_PAGE_SIZE } from "@/constants/blog-constants";
@@ -12,6 +12,15 @@ import { DEFAULT_BLOG_PAGE_SIZE } from "@/constants/blog-constants";
  *   - pageSize (or limit): number (optional, default 12, max 100)
  */
 export async function GET(request) {
+  // Cache Components prerenders Route Handlers at build time. This handler answers a
+  // filtered listing (`?category=…&pageSize=…`), so it only has a meaningful result for
+  // an actual request. `connection()` states that requirement explicitly: it never
+  // resolves during prerender, which marks the route dynamic, and resolves immediately
+  // at request time. Without it, reading `request.url` raises the framework's
+  // "bail out of prerendering" signal, and the `catch` below would swallow that signal
+  // and log it as an application error on every build.
+  await connection();
+
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category") || "All Stories";
